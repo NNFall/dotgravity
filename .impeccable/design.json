@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-25T22:10:00+04:00",
+  "title": "Design System: Точка притяжения",
+  "extensions": {
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Галерейная бумага", "canonical": "#F5EEE6", "tonalRamp": ["#2C2824", "#514A43", "#756B61", "#9B8E80", "#BEB0A2", "#D9CCC0", "#EAE0D7", "#F5EEE6"] },
+      "ink": { "role": "neutral", "displayName": "Чернильный уголь", "canonical": "#2E2723", "tonalRamp": ["#171311", "#2E2723", "#514741", "#756A62", "#9C9088", "#C0B6AF", "#DED7D2", "#F2EEEB"] },
+      "copper": { "role": "primary", "displayName": "Обожжённая медь", "canonical": "#B44725", "tonalRamp": ["#35120A", "#5D2112", "#87331B", "#B44725", "#CC6849", "#DE947C", "#ECC0AF", "#F8E7DE"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero и единственный главный тезис сцены." },
+      "headline": { "displayName": "Headline", "purpose": "Названия разделов и крупные композиционные строки." },
+      "body": { "displayName": "Body", "purpose": "Описание места, меню, маршрута и состояний." },
+      "label": { "displayName": "Label", "purpose": "Навигация, короткие подписи и метаданные." }
+    },
+    "shadows": [
+      { "name": "passepartout", "value": "0 18px 48px rgba(83,49,31,0.10)", "purpose": "Крупные фото, физически лежащие над бумажной сценой." },
+      { "name": "cta-tactile", "value": "0 10px 24px rgba(143,50,29,0.16)", "purpose": "Только hover и focus primary CTA." }
+    ],
+    "motion": [
+      { "name": "reveal", "value": "520ms cubic-bezier(0.16,1,0.3,1)", "purpose": "Scroll reveal через transform и opacity." },
+      { "name": "state", "value": "220ms cubic-bezier(0.25,1,0.5,1)", "purpose": "Hover, focus и disclosure transitions." }
+    ],
+    "breakpoints": [
+      { "name": "narrow", "value": "320px" },
+      { "name": "mobile", "value": "390px" },
+      { "name": "tablet", "value": "1024px" },
+      { "name": "reference", "value": "1672px" },
+      { "name": "desktop", "value": "1920px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary CTA",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Медная тактильная кнопка с двойной hairline-рамкой.",
+      "html": "<button class=\"ds-cta\">УЗНАТЬ БОЛЬШЕ <span aria-hidden=\"true\">→</span></button>",
+      "css": ".ds-cta{display:inline-flex;min-height:56px;min-width:280px;align-items:center;justify-content:space-between;gap:32px;padding:18px 34px;border:1px solid #B44725;border-radius:8px;background:#B44725;color:#F5EEE6;font:500 16px/1.2 Montserrat,Arial,sans-serif;letter-spacing:.04em;box-shadow:inset 0 0 0 2px #D99B7B;transition:transform 220ms cubic-bezier(.25,1,.5,1),background-color 220ms cubic-bezier(.25,1,.5,1)}.ds-cta:hover{background:#8F321D;transform:translateY(-2px)}.ds-cta:focus-visible{outline:3px solid #2E2723;outline-offset:4px}.ds-cta:active{transform:translateY(0) scale(.98)}"
+    },
+    {
+      "name": "Scene Navigation",
+      "kind": "nav",
+      "refersTo": "navigation",
+      "description": "Бумажная навигация с тонким медным активным знаком.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#about\">О НАС</a><a aria-current=\"page\" href=\"#gallery\">ГАЛЕРЕЯ</a><a href=\"#contacts\">КОНТАКТЫ</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;gap:36px;padding:18px 28px;background:#F5EEE6;color:#2E2723;font:500 13px/1.2 Montserrat,Arial,sans-serif;letter-spacing:.04em}.ds-nav a{position:relative;color:inherit;text-decoration:none}.ds-nav a::after{content:'';position:absolute;left:0;right:100%;bottom:-8px;height:1px;background:#B44725;transition:right 220ms cubic-bezier(.25,1,.5,1)}.ds-nav a:hover::after,.ds-nav a[aria-current=page]::after{right:0}.ds-nav a:focus-visible{outline:2px solid #B44725;outline-offset:6px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Салон у костёла",
+    "overview": "Тёплый печатный каталог частной коллекции оживает в браузере. Бумага, медные линии, спокойная высокая антиква, фарфор и архитектурные контуры соединяют шесть точных сцен.",
+    "keyCharacteristics": ["Бумажная светлая основа", "Обожжённая медь", "Асимметричные арки и коллажи", "Измеряемая типографика", "Отдельная mobile-композиция"],
+    "rules": [
+      { "name": "Copper Restraint", "body": "Медь ведёт взгляд, но не превращает страницу в оранжевую заливку.", "section": "colors" },
+      { "name": "Measured Type", "body": "Кегль, ширина строки и переносы проверяются относительно reference bounding boxes.", "section": "typography" },
+      { "name": "Flat at Rest", "body": "Тень появляется только когда слой перекрывает другой слой или реагирует на действие.", "section": "elevation" }
+    ],
+    "dos": ["Измерять каждую сцену на 1672×941.", "Разделять documentary, reference-derived и generated media.", "Проектировать mobile как самостоятельную композицию."],
+    "donts": ["Не использовать generic café template.", "Не переносить оранжевую айдентику Комода.", "Не вставлять цельный reference PNG.", "Не выдавать синтетику за документальные фотографии."]
+  }
+}
