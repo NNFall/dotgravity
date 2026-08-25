@@ -1,15 +1,7 @@
-import {
-  ArrowRight,
-  Church,
-  Coffee,
-  Gift,
-  Image as ImageIcon,
-  MapPin,
-} from "@phosphor-icons/react";
-
 import { mediaManifest } from "../../media/manifest";
 import { BrandMark } from "./BrandMark";
 import { CathedralOrnament } from "./CathedralOrnament";
+import { PhosphorIcon } from "./PhosphorIcon";
 
 const heroMedia = (() => {
   const registeredHero = mediaManifest.find(
@@ -34,19 +26,19 @@ function HeroFeatureList() {
   return (
     <ul aria-label="Что можно найти в Точке притяжения" className="hero-features">
       <li>
-        <Coffee aria-hidden="true" size={49} weight="light" />
+        <PhosphorIcon aria-hidden="true" name="coffee" size={49} weight="light" />
         <span>Ароматный кофе и какао</span>
       </li>
       <li>
-        <ImageIcon aria-hidden="true" size={49} weight="light" />
+        <PhosphorIcon aria-hidden="true" name="image" size={49} weight="light" />
         <span>Искусство и атмосфера</span>
       </li>
       <li>
-        <Gift aria-hidden="true" size={49} weight="light" />
+        <PhosphorIcon aria-hidden="true" name="gift" size={49} weight="light" />
         <span>Сувениры и подарки</span>
       </li>
       <li>
-        <Church aria-hidden="true" size={49} weight="light" />
+        <PhosphorIcon aria-hidden="true" name="church" size={49} weight="light" />
         <span>Исторический центр Самары</span>
       </li>
     </ul>
@@ -85,7 +77,7 @@ export function HeroSection() {
           католическим костёлом Самары.
         </p>
         <p className="hero-mobile-address">
-          <MapPin aria-hidden="true" size={22} weight="light" />
+          <PhosphorIcon aria-hidden="true" name="mapPin" size={22} weight="light" />
           Самара, ул. Фрунзе, 130
         </p>
         <a
@@ -94,7 +86,7 @@ export function HeroSection() {
           href="tel:+78462630404"
         >
           <span>Забронировать столик</span>
-          <ArrowRight aria-hidden="true" size={31} weight="light" />
+          <PhosphorIcon aria-hidden="true" name="arrowRight" size={31} weight="light" />
         </a>
         <HeroFeatureList />
       </div>

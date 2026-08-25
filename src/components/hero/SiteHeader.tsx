@@ -1,7 +1,6 @@
-import { MapPin, Phone } from "@phosphor-icons/react";
-
 import { BrandMark } from "./BrandMark";
 import { MobileNav } from "./MobileNav";
+import { PhosphorIcon } from "./PhosphorIcon";
 
 const navigationItems = [
   { href: "#about", label: "О нас" },
@@ -44,11 +43,11 @@ export function SiteHeader() {
 
       <address className="site-header__contacts">
         <a className="site-header__address" href="#contacts">
-          <MapPin aria-hidden="true" size={39} weight="light" />
+          <PhosphorIcon aria-hidden="true" name="mapPin" size={39} weight="light" />
           <span>Самара, ул. Фрунзе, 130</span>
         </a>
         <a className="site-header__phone" href="tel:+78462630404">
-          <Phone aria-hidden="true" size={34} weight="light" />
+          <PhosphorIcon aria-hidden="true" name="phone" size={34} weight="light" />
           <span>+7 (846) 263-04-04</span>
         </a>
       </address>
