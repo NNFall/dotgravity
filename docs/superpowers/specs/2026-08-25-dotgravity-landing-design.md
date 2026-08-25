@@ -27,8 +27,8 @@ The production page order is:
 
 1. sticky header and hero;
 2. about / coffee meets art;
-3. gallery / atmosphere;
-4. menu carousel;
+3. menu carousel;
+4. gallery / atmosphere;
 5. compact events/visit invitation in the same visual language, derived because navigation promises events;
 6. souvenirs and rare finds;
 7. contacts, route, hours and final CTA;
