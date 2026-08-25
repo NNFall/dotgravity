@@ -1,0 +1,76 @@
+{
+  "scenes": [
+    {
+      "sceneId": "hero",
+      "file": "hero.png",
+      "sourcePath": "C:\\Users\\User\\Downloads\\ChatGPT Image 24 авг. 2026 г., 21_41_31 (1).png",
+      "width": 1672,
+      "height": 941,
+      "rawComparedPixels": 1573352,
+      "sha256": "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      "sourceType": "user-supplied-generated-reference",
+      "productionImportAllowed": false,
+      "approvalStatus": "authoritative"
+    },
+    {
+      "sceneId": "about",
+      "file": "about.png",
+      "sourcePath": "C:\\Users\\User\\Downloads\\ChatGPT Image 24 авг. 2026 г., 21_41_32 (6).png",
+      "width": 1672,
+      "height": 941,
+      "rawComparedPixels": 1573352,
+      "sha256": "5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9",
+      "sourceType": "user-supplied-generated-reference",
+      "productionImportAllowed": false,
+      "approvalStatus": "authoritative"
+    },
+    {
+      "sceneId": "menu",
+      "file": "menu.png",
+      "sourcePath": "C:\\Users\\User\\Downloads\\ChatGPT Image 24 авг. 2026 г., 21_41_32 (4).png",
+      "width": 1672,
+      "height": 941,
+      "rawComparedPixels": 1573352,
+      "sha256": "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      "sourceType": "user-supplied-generated-reference",
+      "productionImportAllowed": false,
+      "approvalStatus": "authoritative"
+    },
+    {
+      "sceneId": "gallery",
+      "file": "gallery.png",
+      "sourcePath": "C:\\Users\\User\\Downloads\\ChatGPT Image 24 авг. 2026 г., 21_41_32 (3).png",
+      "width": 1672,
+      "height": 941,
+      "rawComparedPixels": 1573352,
+      "sha256": "8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5",
+      "sourceType": "user-supplied-generated-reference",
+      "productionImportAllowed": false,
+      "approvalStatus": "authoritative"
+    },
+    {
+      "sceneId": "souvenirs",
+      "file": "souvenirs.png",
+      "sourcePath": "C:\\Users\\User\\Downloads\\ChatGPT Image 24 авг. 2026 г., 21_41_32 (5).png",
+      "width": 1672,
+      "height": 941,
+      "rawComparedPixels": 1573352,
+      "sha256": "1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0",
+      "sourceType": "user-supplied-generated-reference",
+      "productionImportAllowed": false,
+      "approvalStatus": "authoritative"
+    },
+    {
+      "sceneId": "contacts",
+      "file": "contacts.png",
+      "sourcePath": "C:\\Users\\User\\Downloads\\ChatGPT Image 24 авг. 2026 г., 21_41_31 (2).png",
+      "width": 1672,
+      "height": 941,
+      "rawComparedPixels": 1573352,
+      "sha256": "DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457",
+      "sourceType": "user-supplied-generated-reference",
+      "productionImportAllowed": false,
+      "approvalStatus": "authoritative"
+    }
+  ]
+}
