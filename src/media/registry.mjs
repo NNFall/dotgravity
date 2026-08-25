@@ -66,4 +66,35 @@ export const mediaManifest = [
         "Keep the arch and ceramic display inside the bounded about crop; never extend it into a full-page reference screen.",
     },
   },
+  {
+    id: "menu-iced-coffee-croissant",
+    path: "/media/generated/menu-iced-coffee-croissant.png",
+    sha256: "9C17818567C35E022AB248F8B278C63E380754F3182C94ACDF9E0672CDF188FE",
+    dimensions: {
+      width: 1122,
+      height: 1402,
+    },
+    provenance: {
+      classification: "generated/reference-compatible",
+      documentary: false,
+      createdAt: "2026-08-26",
+      createdWith: "Image Generation",
+      promptSummary:
+        "Warm editorial still life with iced coffee, espresso, a croissant, dried citrus, and no real-venue claim or readable signage.",
+      statement:
+        "Generated reference-compatible artwork for the bounded menu photo region only; it is not a documentary venue photograph and must not be presented as one.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "menu photo region only",
+      referenceShape: "not-reference",
+    },
+    cropRules: {
+      strategy: "cover bounded menu photo region",
+      focalPoint: "iced coffee glass and croissant",
+      responsive:
+        "Keep the coffee and croissant inside the bounded menu crop; never extend it into a full-page reference screen.",
+    },
+  },
 ];

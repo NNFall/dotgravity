@@ -93,6 +93,24 @@ Non-secret prompt summary: warm cafe-like interior with a tall cream arch, ceram
 
 This file is generated reference-compatible artwork. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its inventory, its signage, or its current appearance.
 
+### `menu-iced-coffee-croissant`
+
+| Field | Registered value |
+| --- | --- |
+| Path | `public/media/generated/menu-iced-coffee-croissant.png` (served locally as `/media/generated/menu-iced-coffee-croissant.png`) |
+| SHA-256 | `9C17818567C35E022AB248F8B278C63E380754F3182C94ACDF9E0672CDF188FE` |
+| Intrinsic dimensions | `1122×1402` PNG |
+| Class | `generated/reference-compatible` |
+| Documentary status | `false` |
+| Created | `2026-08-26` via Image Generation |
+| Intended scene and allowance | Menu photo region only; production use is allowed only for that bounded region |
+| Reference shape | `not-reference`; it is not a full target screen or a reference composite |
+| Crop strategy | `cover` the bounded menu photo region, keeping the iced coffee glass and croissant focal; responsive crops must not expand it into a full-page reference screen |
+
+Non-secret prompt summary: warm editorial still life with iced coffee, espresso, a croissant and dried citrus, with no real-venue claim or readable signage.
+
+This file is generated reference-compatible artwork. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its inventory, its signage, or its current appearance.
+
 ## Audit policy
 
 `npm.cmd run qa:assets` runs the shared runtime registry validation, then fails when any registered media file is missing, has a different SHA-256, or has different intrinsic dimensions as reported by Sharp. It also rejects:
