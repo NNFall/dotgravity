@@ -55,7 +55,7 @@ Every created asset must be appended with: file path, class (`generated` or `ref
 
 ## Production media registry
 
-The typed registry currently contains one production asset. Its record is intentionally narrower than a general venue-photo claim.
+The typed registry records the following production assets. Each record is intentionally narrower than a general venue-photo claim.
 
 ### `hero-window-church`
 
@@ -72,6 +72,24 @@ The typed registry currently contains one production asset. Its record is intent
 | Crop strategy | `cover` the bounded hero photo region, keeping the window frame and church view focal; responsive crops must not expand it into a full-page reference screen |
 
 Non-secret prompt summary: warm cafe-window composition with a church view for the bounded hero photo region, with no readable signage, logos, or real-venue claim.
+
+This file is generated reference-compatible artwork. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its inventory, its signage, or its current appearance.
+
+### `about-arch-interior`
+
+| Field | Registered value |
+| --- | --- |
+| Path | `public/media/generated/about-arch-interior.png` (served locally as `/media/generated/about-arch-interior.png`) |
+| SHA-256 | `5A4BADA813E31DD2877A8306F8A7DF74AFE78316FE722F0889260AAD85114BB0` |
+| Intrinsic dimensions | `1024×1536` PNG |
+| Class | `generated/reference-compatible` |
+| Documentary status | `false` |
+| Created | `2026-08-26` via Image Generation |
+| Intended scene and allowance | About photo region only; production use is allowed only for that bounded region |
+| Reference shape | `not-reference`; it is not a full target screen or a reference composite |
+| Crop strategy | `cover` the bounded about photo region, keeping the tall cream arch and ceramic display focal; responsive crops must not expand it into a full-page reference screen |
+
+Non-secret prompt summary: warm cafe-like interior with a tall cream arch, ceramic display and stained-glass church-inspired view, with no real-venue claim or readable signage.
 
 This file is generated reference-compatible artwork. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its inventory, its signage, or its current appearance.
 

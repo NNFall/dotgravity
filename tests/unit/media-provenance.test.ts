@@ -1,6 +1,6 @@
 import { copyFileSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
 import { afterEach, describe, expect, test } from "vitest";
 
 import { auditAssets } from "../../scripts/audit-assets.mjs";
@@ -37,16 +37,16 @@ const createAuditFixture = () => {
   const generatedDirectory = join(repoRoot, "public", "media", "generated");
 
   mkdirSync(generatedDirectory, { recursive: true });
-  copyFileSync(
-    join(
-      process.cwd(),
-      "public",
-      "media",
-      "generated",
-      "hero-window-church.png",
-    ),
-    join(generatedDirectory, "hero-window-church.png"),
-  );
+  for (const asset of mediaManifest) {
+    const relativeMediaPath = asset.path.replace(/^\//, "");
+    const destination = join(repoRoot, "public", relativeMediaPath);
+
+    mkdirSync(dirname(destination), { recursive: true });
+    copyFileSync(
+      join(process.cwd(), "public", relativeMediaPath),
+      destination,
+    );
+  }
 
   return { generatedDirectory, repoRoot };
 };
@@ -64,8 +64,11 @@ describe("media provenance registry", () => {
   test("registers the generated hero with a valid, bounded production record", () => {
     expect(() => validateMediaManifest(mediaManifest)).not.toThrow();
 
-    expect(mediaManifest).toHaveLength(1);
-    expect(mediaManifest[0]).toMatchObject({
+    const hero = mediaManifest.find(
+      (asset) => asset.id === "hero-window-church",
+    );
+
+    expect(hero).toMatchObject({
       id: "hero-window-church",
       path: "/media/generated/hero-window-church.png",
       sha256:
@@ -199,13 +202,13 @@ describe("media provenance registry", () => {
     ).toThrow(expectedError);
   });
 
-  test("audits the registered hero bytes even when future app directories are absent", async () => {
+  test("audits registered media bytes even when future app directories are absent", async () => {
     const { repoRoot } = createAuditFixture();
 
     await expect(
       auditAssets({ log: () => undefined, repoRoot }),
     ).resolves.toMatchObject({
-      assetsChecked: 1,
+      assetsChecked: mediaManifest.length,
       unexpectedMedia: [],
     });
   });
