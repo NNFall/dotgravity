@@ -71,40 +71,38 @@ const hashFile = (path) =>
     .digest("hex")
     .toUpperCase();
 
-const requireTrackedAndUnmodified = (repoRoot, filePath, label) => {
-  const repoRelativePath = relative(repoRoot, filePath).replaceAll(sep, "/");
+const hashBytes = (bytes) =>
+  createHash("sha256").update(bytes).digest("hex").toUpperCase();
 
+const requireMatchesCommittedHead = (repoRoot, filePath, label) => {
+  const repoRelativePath = relative(repoRoot, filePath).replaceAll(sep, "/");
+  if (!isPathInside(repoRoot, filePath)) {
+    refuse(`${label} escaped the repository root.`);
+  }
+
+  let committedBytes;
   try {
-    execFileSync(
+    committedBytes = execFileSync(
       "git",
-      ["ls-files", "--error-unmatch", "--", repoRelativePath],
+      ["show", `HEAD:${repoRelativePath}`],
       {
         cwd: repoRoot,
-        stdio: "pipe",
+        maxBuffer: 32 * 1024 * 1024,
+        stdio: ["ignore", "pipe", "pipe"],
+        windowsHide: true,
       },
     );
   } catch {
     refuse(
-      `${label} must be tracked by Git before use: ${repoRelativePath}`,
+      `${label} must have a committed HEAD blob before use: ${repoRelativePath}`,
     );
   }
 
-  try {
-    execFileSync("git", ["diff", "--quiet", "--", repoRelativePath], {
-      cwd: repoRoot,
-      stdio: "pipe",
-    });
-    execFileSync(
-      "git",
-      ["diff", "--cached", "--quiet", "--", repoRelativePath],
-      {
-        cwd: repoRoot,
-        stdio: "pipe",
-      },
-    );
-  } catch {
+  const currentBytes = readFileSync(filePath);
+  if (!currentBytes.equals(committedBytes)) {
     refuse(
-      `${label} must match its committed version; working tree or index changes are not approved.`,
+      `${label} current bytes must exactly match its committed HEAD blob ` +
+        `(current SHA-256 ${hashBytes(currentBytes)}, HEAD SHA-256 ${hashBytes(committedBytes)}).`,
     );
   }
 };
@@ -136,12 +134,12 @@ const loadBaselineManifest = (repoRoot, viewport) => {
     refuse(`baseline manifest escaped its viewport directory: ${viewport}.`);
   }
 
-  const manifest = readJson(manifestPath, `${viewport} baseline manifest`);
-  requireTrackedAndUnmodified(
+  requireMatchesCommittedHead(
     repoRoot,
     manifestPath,
     `${viewport} baseline manifest`,
   );
+  const manifest = readJson(manifestPath, `${viewport} baseline manifest`);
   if (!isPlainObject(manifest) || !Array.isArray(manifest.scenes)) {
     refuse(`${viewport} baseline manifest must contain a scenes array.`);
   }
@@ -192,7 +190,7 @@ const loadBaselineManifest = (repoRoot, viewport) => {
         `${scene}@${viewport} manifest hash ${manifestSha256} does not match current file hash ${currentSha256}.`,
       );
     }
-    requireTrackedAndUnmodified(
+    requireMatchesCommittedHead(
       repoRoot,
       baselinePath,
       `${scene}@${viewport} baseline file`,
@@ -255,7 +253,7 @@ export function validateVisualUpdateApproval(options = {}) {
     );
   }
 
-  requireTrackedAndUnmodified(
+  requireMatchesCommittedHead(
     realRepoRoot,
     realApprovalPath,
     "approval file",
@@ -344,6 +342,8 @@ export function validateVisualUpdateApproval(options = {}) {
   });
 
   const validated = {
+    mode: "preflight-only",
+    mutatesFiles: false,
     id,
     userApprovalReference,
     reason,
@@ -351,7 +351,7 @@ export function validateVisualUpdateApproval(options = {}) {
     affectedBaselines,
   };
 
-  log(`Validated visual baseline approval ${id}`);
+  log(`Visual candidate-update preflight validated: ${id}`);
   log(`User approval reference: ${userApprovalReference}`);
   log(`Reason: ${reason}`);
   log(`Requested at: ${requestedAt}`);
@@ -360,6 +360,10 @@ export function validateVisualUpdateApproval(options = {}) {
       `Affected ${affected.scene}@${affected.viewport}: ${affected.previousSha256} -> ${affected.proposedSha256}`,
     );
   }
+  log("Preflight report only: no files were changed.");
+  log(
+    "Task 10 candidate pipeline is required before any visual baseline mutation.",
+  );
 
   return validated;
 }

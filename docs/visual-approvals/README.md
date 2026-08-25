@@ -1,9 +1,11 @@
 # Visual baseline approvals
 
-`qa:visual:update` is intentionally closed unless a committed approval record
-documents explicit user approval for every affected baseline. This directory
-contains the schema and, only when real approval exists, the reviewed JSON
-records. The README is not an approval record.
+`qa:visual:update` is currently a preflight-only candidate-update plan. It
+validates a committed approval record and prints an auditable report, but it
+does not launch Playwright, write snapshots, or mutate authoritative baselines.
+The mutation phase stays closed until the dedicated Task 10 candidate pipeline
+exists. This directory contains the schema and, only when real approval exists,
+the reviewed JSON records. The README is not an approval record.
 
 ## Approval record schema
 
@@ -40,10 +42,12 @@ approval to “refresh snapshots” is not sufficient.
 2. Compute its SHA-256 and show the before/after evidence to the user.
 3. Record the explicit approval reference, reason, timestamp, current hash and
    proposed hash in a new JSON file under this directory.
-4. Review and commit that record. The validator rejects untracked, staged-only,
-   or locally modified records, as well as approval paths outside this
-   directory.
-5. Point the guarded command to that committed record and run it:
+4. Review and commit that record. The validator compares the current bytes of
+   the approval, baseline manifest, and referenced baseline files with their
+   exact `HEAD` blobs. It rejects missing committed blobs, local byte changes
+   (including changes hidden with Git index flags), and approval paths outside
+   this directory.
+5. Point the guarded preflight command to that committed record and run it:
 
    ```powershell
    $env:DOTGRAVITY_VISUAL_APPROVAL_FILE = 'docs/visual-approvals/<approved-record>.json'
@@ -51,13 +55,35 @@ approval to “refresh snapshots” is not sufficient.
    Remove-Item Env:\DOTGRAVITY_VISUAL_APPROVAL_FILE
    ```
 
-The validator logs the approval ID, user approval reference, reason, timestamp,
-and every affected `scene@viewport` hash transition before Playwright starts.
-If the produced hash differs from `proposedSha256`, stop and obtain a new exact
-approval; do not edit the record or accept the replacement silently.
+`qa:visual:update` delegates only to `qa:visual:plan`. A successful run logs the
+approval ID, user approval reference, reason, timestamp, every affected
+`scene@viewport` hash transition, and an explicit statement that no files were
+changed. Success means the plan passed preflight; it does not mean a baseline
+was regenerated or approved for automatic replacement.
 
-To validate a record without running Playwright:
+The canonical preflight-only command is also available directly:
 
 ```powershell
-node scripts/verify-visual-update-approval.mjs docs/visual-approvals/<approved-record>.json
+npm.cmd run qa:visual:plan -- docs/visual-approvals/<approved-record>.json
 ```
+
+## Task 10 mutation requirements
+
+No baseline mutation command may be connected to this preflight until Task 10
+adds all of the following controls:
+
+1. Generate candidates into a separate staging directory, never directly over
+   authoritative baselines.
+2. Restrict the candidate set and every eventual write to the exact approved
+   `scene@viewport` records; reject missing or additional files.
+3. Hash every staged candidate after generation and require its actual SHA-256
+   to equal the corresponding approved `proposedSha256` before any promotion.
+4. Promote the exact approved set and update its manifests as one controlled
+   operation, then re-hash the authoritative files and require the same hashes.
+5. On any path or hash deviation, fail without partial acceptance and restore
+   or quarantine the candidate state so the prior authoritative baselines stay
+   recoverable.
+
+Until those controls are implemented and reviewed, use the preflight report as
+planning evidence only. Never append a Playwright `--update-snapshots` command
+or replace a baseline manually after this check.

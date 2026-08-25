@@ -16,7 +16,8 @@
     "qa:browser": "playwright test tests/browser --project=chromium --workers=1",
     "qa:a11y": "playwright test tests/browser/accessibility.spec.ts --project=chromium --workers=1",
     "qa:visual": "playwright test tests/visual/visual.spec.ts --project=chromium --workers=1",
-    "qa:visual:update": "node scripts/verify-visual-update-approval.mjs && playwright test tests/visual/visual.spec.ts --project=chromium --workers=1 --update-snapshots=all",
+    "qa:visual:plan": "node scripts/verify-visual-update-approval.mjs",
+    "qa:visual:update": "npm run qa:visual:plan",
     "qa:raw": "node scripts/compare-reference.mjs",
     "qa:all": "npm run lint && npm test && npm run build && npm run qa:assets && npm run qa:browser && npm run qa:a11y && npm run qa:visual && npm run qa:raw"
   },

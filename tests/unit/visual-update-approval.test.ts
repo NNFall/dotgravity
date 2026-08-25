@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import {
   mkdirSync,
   mkdtempSync,
+  readFileSync,
   rmSync,
   writeFileSync,
 } from "node:fs";
@@ -28,6 +29,8 @@ interface ApprovalRecord {
 interface FixtureOptions {
   approvalRelativePath?: string;
   approvalOverrides?: Partial<ApprovalRecord>;
+  hideApprovalMutationFromGit?: boolean;
+  hideManifestMutationFromGit?: boolean;
   modifyApprovalAfterCommit?: boolean;
   trackApproval?: boolean;
   tamperBaseline?: boolean;
@@ -175,6 +178,34 @@ const createFixture = (options: FixtureOptions = {}) => {
     });
   }
 
+  if (options.hideApprovalMutationFromGit) {
+    execFileSync(
+      "git",
+      ["update-index", "--assume-unchanged", "--", approvalRelativePath],
+      { cwd: repoRoot },
+    );
+    writeJson(join(repoRoot, approvalRelativePath), {
+      ...approval,
+      reason: "Changed after review and hidden from ordinary Git diff checks.",
+    });
+  }
+
+  if (options.hideManifestMutationFromGit) {
+    execFileSync(
+      "git",
+      ["update-index", "--assume-unchanged", "--", manifestRelativePath],
+      { cwd: repoRoot },
+    );
+    const manifestPath = join(repoRoot, manifestRelativePath);
+    const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as {
+      scenes: unknown[];
+    };
+    writeJson(manifestPath, {
+      ...manifest,
+      hiddenTampering: "ordinary Git diff checks do not report this change",
+    });
+  }
+
   if (options.tamperBaseline) {
     writeFileSync(
       join(repoRoot, baselineRelativePath),
@@ -185,6 +216,7 @@ const createFixture = (options: FixtureOptions = {}) => {
 
   return {
     approvalPath: join(repoRoot, approvalRelativePath),
+    baselinePath: join(repoRoot, baselineRelativePath),
     repoRoot,
   };
 };
@@ -221,7 +253,7 @@ describe("visual baseline update approval", () => {
         approvalPath: untracked.approvalPath,
         repoRoot: untracked.repoRoot,
       }),
-    ).toThrow(/tracked/i);
+    ).toThrow(/committed HEAD blob/i);
   });
 
   test.each(malformedApprovalCases)(
@@ -257,9 +289,38 @@ describe("visual baseline update approval", () => {
     ).toThrow(/committed|unmodified|working tree/i);
   });
 
-  test("accepts and logs an exact tracked approval record", () => {
-    const { approvalPath, repoRoot } = createFixture();
+  test("rejects approval tampering hidden by assume-unchanged", () => {
+    const { approvalPath, repoRoot } = createFixture({
+      hideApprovalMutationFromGit: true,
+    });
+
+    expect(() =>
+      validateVisualUpdateApproval({
+        approvalPath,
+        repoRoot,
+        log: () => undefined,
+      }),
+    ).toThrow(/committed HEAD blob|current bytes/i);
+  });
+
+  test("rejects manifest tampering hidden by assume-unchanged", () => {
+    const { approvalPath, repoRoot } = createFixture({
+      hideManifestMutationFromGit: true,
+    });
+
+    expect(() =>
+      validateVisualUpdateApproval({
+        approvalPath,
+        repoRoot,
+        log: () => undefined,
+      }),
+    ).toThrow(/baseline manifest.*committed HEAD blob|current bytes/i);
+  });
+
+  test("accepts and reports an exact tracked approval without mutating baselines", () => {
+    const { approvalPath, baselinePath, repoRoot } = createFixture();
     const output: string[] = [];
+    const baselineBefore = readFileSync(baselinePath);
 
     const approval = validateVisualUpdateApproval({
       approvalPath,
@@ -268,10 +329,15 @@ describe("visual baseline update approval", () => {
     });
 
     expect(approval.id).toBe("approval-001");
+    expect(approval.mutatesFiles).toBe(false);
+    expect(readFileSync(baselinePath)).toEqual(baselineBefore);
     expect(output.join("\n")).toContain("approval-001");
     expect(output.join("\n")).toContain(
       "Replace the hero baseline after explicit visual review.",
     );
     expect(output.join("\n")).toContain("hero@1672x941");
+    expect(output.join("\n")).toMatch(/preflight/i);
+    expect(output.join("\n")).toMatch(/no files (?:were )?changed/i);
+    expect(output.join("\n")).toMatch(/Task 10/i);
   });
 });

@@ -2,6 +2,7 @@ import { describe, expect, test } from "vitest";
 
 import {
   referenceAtlas,
+  referenceAtlasByScene,
   referenceViewports,
   strictRawZeroMismatchContract,
 } from "../visual/referenceAtlas";
@@ -68,6 +69,19 @@ describe("visual reference atlas", () => {
       "souvenirs",
       "contacts",
     ]);
+    expect(Object.keys(referenceAtlasByScene)).toEqual([
+      "hero",
+      "about",
+      "menu",
+      "gallery",
+      "souvenirs",
+      "contacts",
+    ]);
+    for (const [sceneId, reference] of Object.entries(
+      referenceAtlasByScene,
+    )) {
+      expect(reference.sceneId).toBe(sceneId);
+    }
 
     for (const reference of referenceAtlas) {
       expect(reference.viewportId).toBe("1672x941");

@@ -60,10 +60,11 @@ export interface RawZeroMismatchContract {
   channelThreshold: 0;
 }
 
-export interface ReferenceCase extends RawZeroMismatchContract {
-  sceneId: SceneId;
-  selector: `[data-scene="${SceneId}"]`;
-  referencePath: `tests/visual/baselines/${SuppliedReferenceViewport["id"]}/${SceneId}.png`;
+export interface ReferenceCase<Scene extends SceneId = SceneId>
+  extends RawZeroMismatchContract {
+  sceneId: Scene;
+  selector: `[data-scene="${Scene}"]`;
+  referencePath: `tests/visual/baselines/${SuppliedReferenceViewport["id"]}/${Scene}.png`;
   viewportId: SuppliedReferenceViewport["id"];
   width: SuppliedReferenceViewport["width"];
   height: SuppliedReferenceViewport["height"];
@@ -85,7 +86,9 @@ if (!suppliedReferenceViewport) {
   throw new Error("A supplied visual reference viewport is required.");
 }
 
-const referenceCase = (sceneId: SceneId): ReferenceCase => ({
+const referenceCase = <const Scene extends SceneId>(
+  sceneId: Scene,
+): ReferenceCase<Scene> => ({
   sceneId,
   selector: `[data-scene="${sceneId}"]`,
   referencePath: `tests/visual/baselines/${suppliedReferenceViewport.id}/${sceneId}.png`,
@@ -96,11 +99,19 @@ const referenceCase = (sceneId: SceneId): ReferenceCase => ({
   ...strictRawZeroMismatchContract,
 });
 
-export const referenceAtlas: readonly ReferenceCase[] = [
-  referenceCase("hero"),
-  referenceCase("about"),
-  referenceCase("menu"),
-  referenceCase("gallery"),
-  referenceCase("souvenirs"),
-  referenceCase("contacts"),
-];
+type ReferenceAtlasByScene = {
+  readonly [Scene in SceneId]: ReferenceCase<Scene>;
+};
+
+export const referenceAtlasByScene = {
+  hero: referenceCase("hero"),
+  about: referenceCase("about"),
+  menu: referenceCase("menu"),
+  gallery: referenceCase("gallery"),
+  souvenirs: referenceCase("souvenirs"),
+  contacts: referenceCase("contacts"),
+} as const satisfies ReferenceAtlasByScene;
+
+export const referenceAtlas: readonly ReferenceCase[] = Object.values(
+  referenceAtlasByScene,
+);
