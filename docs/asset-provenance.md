@@ -52,3 +52,37 @@ Fresh check: 2026-08-25 around 22:10 Europe/Samara.
 ## Generated and reference-derived assets
 
 Every created asset must be appended with: file path, class (`generated` or `reference-derived`), source/input images and roles, prompt or transformation, creation date, intended section, and statement that it is not documentary venue evidence.
+
+## Production media registry
+
+The typed registry currently contains one production asset. Its record is intentionally narrower than a general venue-photo claim.
+
+### `hero-window-church`
+
+| Field | Registered value |
+| --- | --- |
+| Path | `public/media/generated/hero-window-church.png` (served locally as `/media/generated/hero-window-church.png`) |
+| SHA-256 | `7598C48D9E51326F743A8D8E20C2190A4FAEC6454EAABE181EA1262DC2FB0861` |
+| Intrinsic dimensions | `1672×941` PNG |
+| Class | `generated/reference-compatible` |
+| Documentary status | `false` |
+| Created | `2026-08-25` via Image Generation |
+| Intended scene and allowance | Hero photo region only; production use is allowed only for that bounded region |
+| Reference shape | `not-reference`; it is not a full target screen or a reference composite |
+| Crop strategy | `cover` the bounded hero photo region, keeping the window frame and church view focal; responsive crops must not expand it into a full-page reference screen |
+
+Non-secret prompt summary: warm cafe-window composition with a church view for the bounded hero photo region, with no readable signage, logos, or real-venue claim.
+
+This file is generated reference-compatible artwork. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its inventory, its signage, or its current appearance.
+
+## Audit policy
+
+`npm.cmd run qa:assets` runs the shared runtime registry validation, then fails when any registered media file is missing, has a different SHA-256, or has different intrinsic dimensions as reported by Sharp. It also rejects:
+
+- any unregistered file under `public/media`;
+- a record marked as a full reference screen or reference composite;
+- a production asset whose hash equals one of the six authoritative target references;
+- an authoritative target-reference file copied anywhere else under `public`, including a top-level image referenced by app code;
+- baseline fixture paths or any authoritative target-reference hash embedded in production `app`, `src`, or `public` text/CSS.
+
+The six target PNGs remain nonproduction visual-test baselines. They must never be copied into `public/media`, imported by application code, used as CSS backgrounds, or represented in the registry as a production asset. Missing future `app`, `src`, or `public` source directories are treated as empty by the audit so the registry can be checked before those areas exist.
