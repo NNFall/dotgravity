@@ -16,7 +16,7 @@
     "qa:browser": "playwright test tests/browser --project=chromium --workers=1",
     "qa:a11y": "playwright test tests/browser/accessibility.spec.ts --project=chromium --workers=1",
     "qa:visual": "playwright test tests/visual/visual.spec.ts --project=chromium --workers=1",
-    "qa:visual:update": "node -e \"const approved=process.env.DOTGRAVITY_VISUAL_UPDATE_APPROVED==='YES_I_HAVE_WRITTEN_USER_APPROVAL';const reason=process.env.DOTGRAVITY_VISUAL_UPDATE_REASON?.trim();if(!approved||!reason){console.error('Refusing baseline update: set DOTGRAVITY_VISUAL_UPDATE_APPROVED=YES_I_HAVE_WRITTEN_USER_APPROVAL and a non-empty DOTGRAVITY_VISUAL_UPDATE_REASON only after written user approval.');process.exit(1)}console.log('Approval gate passed; updating snapshots with a documented reason.')\" && playwright test tests/visual/visual.spec.ts --project=chromium --workers=1 --update-snapshots=all",
+    "qa:visual:update": "node scripts/verify-visual-update-approval.mjs && playwright test tests/visual/visual.spec.ts --project=chromium --workers=1 --update-snapshots=all",
     "qa:raw": "node scripts/compare-reference.mjs",
     "qa:all": "npm run lint && npm test && npm run build && npm run qa:assets && npm run qa:browser && npm run qa:a11y && npm run qa:visual && npm run qa:raw"
   },
