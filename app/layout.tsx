@@ -1,19 +1,12 @@
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
-import './globals.css';
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
+import type { Metadata } from "next";
+import "@fontsource/prata/cyrillic-400.css";
+import "@fontsource-variable/montserrat/wght.css";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Untitled site',
+  title: "Точка притяжения | Кофе, искусство и редкие вещи",
+  description:
+    "Кофейня, бар, галерея и сувениры в историческом центре Самары.",
 };
 
 export default function RootLayout({
@@ -22,12 +15,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="ru">
+      <body>{children}</body>
     </html>
   );
 }
