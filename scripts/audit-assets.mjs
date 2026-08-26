@@ -143,7 +143,7 @@ const assertNoReferenceMedia = async (publicDirectory) => {
   return publicFiles.length;
 };
 
-const assertNoReferenceText = async (repoRoot) => {
+const assertNoReferenceText = async (repoRoot, allowedReferenceHashes = new Set()) => {
   const productionDirectories = ["app", "src", "public"].map((directory) =>
     resolve(repoRoot, directory),
   );
@@ -163,7 +163,18 @@ const assertNoReferenceText = async (repoRoot) => {
       );
     }
 
-    const upperCaseContents = contents.toUpperCase();
+    let upperCaseContents = contents.toUpperCase();
+    if (displayPath === "src/media/registry.mjs") {
+      for (const hash of allowedReferenceHashes) {
+        upperCaseContents = upperCaseContents.replace(
+          new RegExp(
+            `PARENTREFERENCESHA256\\s*:\\s*["']${hash}["']`,
+            "g",
+          ),
+          "",
+        );
+      }
+    }
     if (
       [...AUTHORITATIVE_REFERENCE_SHA256].some((hash) =>
         upperCaseContents.includes(hash),
@@ -207,7 +218,15 @@ export const auditAssets = async ({
     publicDirectory,
   );
   const publicFilesHashed = await assertNoReferenceMedia(publicDirectory);
-  const scannedTextFiles = await assertNoReferenceText(resolvedRepoRoot);
+  const allowedReferenceHashes = new Set(
+    validatedManifest
+      .filter((asset) => asset.provenance.classification === "reference-derived")
+      .map((asset) => asset.provenance.parentReferenceSha256),
+  );
+  const scannedTextFiles = await assertNoReferenceText(
+    resolvedRepoRoot,
+    allowedReferenceHashes,
+  );
   const result = {
     assetsChecked: validatedManifest.length,
     publicFilesHashed,

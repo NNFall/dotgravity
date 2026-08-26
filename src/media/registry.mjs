@@ -129,6 +129,130 @@ export const mediaManifest = [
     },
   },
   {
+    id: "gallery-reference-main-arch",
+    path: "/media/reference-derived/gallery-reference-main-arch.png",
+    sha256: "94BA58C4D92F03CDB13DB53F70D2BC3749C88CD92EE34C750A0B663055E80172",
+    dimensions: {
+      width: 582,
+      height: 830,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5",
+      transformation:
+        "Photo-only rectangle crop x=676,y=52,w=582,h=830 from the supplied 1672x941 gallery concept; captions, inset labels and decorative frames excluded; existing CSS arch mask retained.",
+      statement:
+        "Bounded crop from the supplied generated gallery concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["gallery"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "gallery main arch photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "cover the bounded gallery arch frame while preserving the existing CSS arch mask",
+      focalPoint: "bright cafe interior, stained-glass windows and disco-ball ceiling",
+      responsive:
+        "Use only inside the bounded gallery main-photo frame; mobile may crop responsively but never expand into a full reference screen.",
+    },
+  },
+  {
+    id: "gallery-reference-inset-porcelain",
+    path: "/media/reference-derived/gallery-reference-inset-porcelain.png",
+    sha256: "B36785C20DC1AC4A0B3A280BD4172CCD95340CA8EB4FAD0D3779E73AE903B7F8",
+    dimensions: {
+      width: 198,
+      height: 208,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5",
+      transformation:
+        "Photo-only rectangle crop x=1284,y=136,w=198,h=208 from the supplied gallery concept; adjacent caption badge and frame strokes excluded.",
+      statement:
+        "Bounded crop from the supplied generated gallery concept for visual reference only; it is not documentary venue evidence.",
+    },
+    intendedScenes: ["gallery"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "gallery porcelain inset photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "contain within the existing rounded inset frame",
+      focalPoint: "blue-and-white vintage porcelain cup and saucer",
+      responsive:
+        "Keep the cup inside the inset card; never render the crop as a standalone reference screen.",
+    },
+  },
+  {
+    id: "gallery-reference-inset-art",
+    path: "/media/reference-derived/gallery-reference-inset-art.png",
+    sha256: "70922E76598E3E2C37F7392C738DB5661BD5B7342F94A249FD42427E6DCE1C1F",
+    dimensions: {
+      width: 198,
+      height: 195,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5",
+      transformation:
+        "Photo-only rectangle crop x=1284,y=395,w=198,h=195 from the supplied gallery concept; adjacent caption badge and frame strokes excluded.",
+      statement:
+        "Bounded crop from the supplied generated gallery concept for visual reference only; it is not documentary venue evidence.",
+    },
+    intendedScenes: ["gallery"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "gallery artwork inset photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "contain within the existing rounded inset frame",
+      focalPoint: "floral artwork and small ceramic figure",
+      responsive:
+        "Keep the artwork inside the inset card; never render the crop as a standalone reference screen.",
+    },
+  },
+  {
+    id: "gallery-reference-inset-space",
+    path: "/media/reference-derived/gallery-reference-inset-space.png",
+    sha256: "66B3FC1702FF7857B98656E1BB5079B37A5AC78421B6BBBB0FC2CF5C311D9BC6",
+    dimensions: {
+      width: 198,
+      height: 198,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5",
+      transformation:
+        "Photo-only rectangle crop x=1284,y=647,w=198,h=198 from the supplied gallery concept; adjacent caption badge and frame strokes excluded.",
+      statement:
+        "Bounded crop from the supplied generated gallery concept for visual reference only; it is not documentary venue evidence.",
+    },
+    intendedScenes: ["gallery"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "gallery space inset photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "contain within the existing rounded inset frame",
+      focalPoint: "windowed seating area and warm gallery interior",
+      responsive:
+        "Keep the seating area inside the inset card; never render the crop as a standalone reference screen.",
+    },
+  },
+  {
     id: "souvenirs-window-still-life",
     path: "/media/generated/souvenirs-window-still-life.png",
     sha256: "B3282A1935F124EC54934396AF1A9F75257D2739DB84561850CD25683F1AC7B0",

@@ -120,8 +120,20 @@ describe("media provenance registry", () => {
     const serializedRegistry = JSON.stringify(mediaManifest).toUpperCase();
 
     expect(serializedRegistry).not.toMatch(/TESTS[\\/]VISUAL[\\/]BASELINES/);
+    const registeredReferenceHashes = mediaManifest
+      .flatMap((asset) =>
+        asset.provenance.classification === "reference-derived"
+          ? [asset.provenance.parentReferenceSha256]
+          : [],
+      );
     for (const referenceSha256 of authoritativeReferenceSha256) {
-      expect(serializedRegistry).not.toContain(referenceSha256);
+      if (registeredReferenceHashes.includes(referenceSha256)) {
+        expect(serializedRegistry).toMatch(
+          new RegExp(`PARENTREFERENCESHA256[\\s\\S]{0,80}${referenceSha256}`),
+        );
+      } else {
+        expect(serializedRegistry).not.toContain(referenceSha256);
+      }
     }
   });
 

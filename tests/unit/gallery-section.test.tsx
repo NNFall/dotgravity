@@ -25,7 +25,7 @@ const loadGallerySection = async (): Promise<GallerySectionModule | null> => {
 };
 
 describe("gallery anchor scene", () => {
-  test("renders the gallery anchor with the registered non-documentary interior artwork", async () => {
+  test("renders four bounded reference-derived gallery crops with honest provenance", async () => {
     const gallerySectionModule = await loadGallerySection();
 
     expect(gallerySectionModule).not.toBeNull();
@@ -33,12 +33,19 @@ describe("gallery anchor scene", () => {
       return;
     }
 
-    const galleryMedia = mediaManifest.find(
-      (asset) => asset.id === "gallery-arched-interior",
-    );
-    if (!galleryMedia) {
-      throw new Error("The registered gallery artwork is required for this test.");
-    }
+    const cropIds = [
+      "gallery-reference-main-arch",
+      "gallery-reference-inset-porcelain",
+      "gallery-reference-inset-art",
+      "gallery-reference-inset-space",
+    ] as const;
+    const galleryCrops = cropIds.map((id) => {
+      const crop = mediaManifest.find((asset) => asset.id === id);
+      if (!crop) {
+        throw new Error(`The registered gallery crop is required: ${id}`);
+      }
+      return crop;
+    });
 
     render(createElement(gallerySectionModule.GallerySection));
 
@@ -58,20 +65,23 @@ describe("gallery anchor scene", () => {
     ).toBeInTheDocument();
 
     const images = within(gallery).getAllByRole("img", {
-      name: /сгенерированн(?:ый|ая|ое)/i,
+      name: /референсн(?:ый|ая|ое).*не документальн/i,
     });
     expect(images).toHaveLength(4);
-    for (const image of images) {
-      expect(image).toHaveAttribute("src", galleryMedia.path);
+    expect(new Set(images.map((image) => image.getAttribute("src"))).size).toBe(
+      4,
+    );
+    for (const [index, image] of images.entries()) {
+      expect(image).toHaveAttribute("src", galleryCrops[index].path);
       expect(image).toHaveAttribute(
         "data-provenance",
-        "generated/reference-compatible",
+        "reference-derived",
       );
       expect(image).toHaveAccessibleName(/не документальн/i);
     }
 
     expect(
-      within(gallery).getByText("Сгенерированная визуальная композиция"),
+      within(gallery).getByText("Фрагменты референсной концепции"),
     ).toBeInTheDocument();
     expect(
       within(gallery).getByText("не документальная фотография места"),
@@ -97,9 +107,7 @@ describe("gallery anchor scene", () => {
     expect(details).not.toHaveAttribute("open");
     await user.click(summary);
     expect(details).toHaveAttribute("open");
-    expect(
-      within(details).getByText(/иллюстративное изображение/i),
-    ).toBeInTheDocument();
+    expect(within(details).getByText(/референсн(?:ый|ая) фрагмент/i)).toBeInTheDocument();
   });
 
   test("keeps the collage implementation free of reference-screen coupling and exposes mobile scroll snap", () => {

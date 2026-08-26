@@ -1,48 +1,56 @@
-import type { CSSProperties } from "react";
-
 import { mediaManifest } from "../../media/manifest";
 import type { MediaAsset } from "../../media/types";
 
 import styles from "./GallerySection.module.css";
 
-function getGalleryArtwork(): MediaAsset {
-  const artwork = mediaManifest.find(
-    (asset) => asset.id === "gallery-arched-interior",
-  );
+type GalleryCropId =
+  | "gallery-reference-main-arch"
+  | "gallery-reference-inset-porcelain"
+  | "gallery-reference-inset-art"
+  | "gallery-reference-inset-space";
+
+function getGalleryCrop(id: GalleryCropId): MediaAsset {
+  const crop = mediaManifest.find((asset) => asset.id === id);
 
   if (
-    !artwork ||
-    artwork.provenance.classification !==
-      "generated/reference-compatible" ||
-    artwork.provenance.documentary
+    !crop ||
+    crop.provenance.classification !== "reference-derived" ||
+    crop.provenance.documentary ||
+    !crop.productionAllowance.allowed ||
+    !crop.intendedScenes.includes("gallery")
   ) {
     throw new Error(
-      "The gallery scene requires the registered non-documentary generated interior artwork.",
+      `The gallery scene requires the registered bounded reference crop: ${id}.`,
     );
   }
 
-  return artwork;
+  return crop;
 }
 
-const galleryArtwork = getGalleryArtwork();
+const galleryCrops = {
+  main: getGalleryCrop("gallery-reference-main-arch"),
+  porcelain: getGalleryCrop("gallery-reference-inset-porcelain"),
+  art: getGalleryCrop("gallery-reference-inset-art"),
+  space: getGalleryCrop("gallery-reference-inset-space"),
+} as const;
 
-const generatedGalleryAlt =
-  "Сгенерированный визуальный образ арочного интерьера с искусством и посудой, не документальная фотография кафе.";
+const referenceGalleryAlt =
+  "Референсный фрагмент визуальной концепции галереи, не документальная фотография кафе.";
 
 const storyCrops = [
   {
+    asset: galleryCrops.porcelain,
     label: "Винтажная посуда",
-    position: "94% 57%",
     className: styles.porcelainInset,
   },
   {
+    asset: galleryCrops.art,
     label: "Картины современных художников",
-    position: "47% 52%",
     className: styles.artInset,
   },
   {
+    asset: galleryCrops.space,
     label: "Уютное пространство",
-    position: "18% 69%",
     className: styles.spaceInset,
   },
 ] as const;
@@ -124,25 +132,24 @@ function FeatureMark({ children }: { children: string }) {
 }
 
 function GalleryImage({
+  asset,
   className,
   label,
-  objectPosition,
 }: {
+  asset: MediaAsset;
   className?: string;
   label: string;
-  objectPosition: string;
 }) {
   return (
     <figure className={className}>
-      {/* The same bounded generated asset receives intentional editorial crops. */}
+      {/* Each image is a bounded crop from the supplied concept screen; copy, labels and frames remain HTML/CSS. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        alt={generatedGalleryAlt}
-        data-provenance={galleryArtwork.provenance.classification}
-        height={galleryArtwork.dimensions.height}
-        src={galleryArtwork.path}
-        style={{ objectPosition } as CSSProperties}
-        width={galleryArtwork.dimensions.width}
+        alt={referenceGalleryAlt}
+        data-provenance={asset.provenance.classification}
+        height={asset.dimensions.height}
+        src={asset.path}
+        width={asset.dimensions.width}
       />
       <figcaption>{label}</figcaption>
     </figure>
@@ -188,8 +195,9 @@ export function GallerySection() {
           >
             <summary>Посмотреть детали</summary>
             <p>
-              Это иллюстративное изображение, созданное для композиции сайта;
-              оно не подтверждает фактический интерьер кафе.
+              Это референсный фрагмент концепции, использованный только для
+              визуального направления; он не подтверждает фактический
+              интерьер кафе.
             </p>
           </details>
 
@@ -208,25 +216,25 @@ export function GallerySection() {
         </div>
 
         <GalleryImage
+          asset={galleryCrops.main}
           className={styles.mainPhoto}
           label="Интерьер как визуальная композиция"
-          objectPosition="50% 51%"
         />
 
         <div aria-label="Фрагменты визуальной композиции" className={styles.insetRail}>
           {storyCrops.map((crop) => (
             <GalleryImage
+              asset={crop.asset}
               className={`${styles.inset} ${crop.className}`}
               key={crop.label}
               label={crop.label}
-              objectPosition={crop.position}
             />
           ))}
         </div>
 
         <aside className={styles.provenanceNote}>
           <Rosette />
-          <span>Сгенерированная визуальная композиция</span>
+          <span>Фрагменты референсной концепции</span>
           <small>не документальная фотография места</small>
         </aside>
       </div>

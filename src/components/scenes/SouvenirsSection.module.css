@@ -116,6 +116,12 @@
   color: var(--copper);
 }
 
+.copy h2 span b {
+  color: var(--ink);
+  font: inherit;
+  font-weight: inherit;
+}
+
 .introduction {
   max-width: 520px;
   margin: 16px 0 0;

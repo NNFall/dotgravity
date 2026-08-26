@@ -129,6 +129,19 @@ Non-secret prompt summary: warm arched cafe-like interior with a stained-glass w
 
 This file is generated reference-compatible artwork. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its inventory, its signage, or its current appearance.
 
+### Gallery reference-derived crops
+
+The gallery desktop collage uses four bounded, photo-only crops from the supplied generated concept screen (`8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5`). The crops intentionally exclude copy, prices, labels, caption badges and decorative frame strokes; all surrounding structure remains React/CSS/SVG.
+
+| Asset | Crop / role | Status |
+| --- | --- | --- |
+| `gallery-reference-main-arch.png` | `x=676,y=52,w=582,h=830`; main arch photo region | `reference-derived`, non-documentary |
+| `gallery-reference-inset-porcelain.png` | `x=1284,y=136,w=198,h=208`; porcelain inset | `reference-derived`, non-documentary |
+| `gallery-reference-inset-art.png` | `x=1284,y=395,w=198,h=195`; artwork inset | `reference-derived`, non-documentary |
+| `gallery-reference-inset-space.png` | `x=1284,y=647,w=198,h=198`; seating inset | `reference-derived`, non-documentary |
+
+These are concept-derived visual references, not photographs of the real cafe. On mobile they remain bounded to the responsive gallery frames and are never used as a full-screen reference composite.
+
 ### `souvenirs-window-still-life`
 
 | Field | Registered value |

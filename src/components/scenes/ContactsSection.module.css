@@ -97,7 +97,7 @@
 
 .copy h2 {
   margin: 34px 0 0;
-  color: var(--copper);
+  color: var(--ink);
   font-family: Prata, Georgia, serif;
   font-size: clamp(3.45rem, 4.03vw, 4.3rem);
   font-weight: 400;

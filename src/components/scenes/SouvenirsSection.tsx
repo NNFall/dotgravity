@@ -198,7 +198,7 @@ export function SouvenirsSection() {
             <i />
           </p>
           <h2 id="souvenirs-title">
-            ПОДАРКИ, УКРАШЕНИЯ <span>И РЕДКИЕ НАХОДКИ</span>
+            ПОДАРКИ, УКРАШЕНИЯ <span><b>И</b> РЕДКИЕ НАХОДКИ</span>
           </h2>
           <p className={styles.introduction}>
             Здесь собраны образы подарков, фарфора и украшений, которые
