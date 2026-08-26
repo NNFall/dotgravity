@@ -190,10 +190,10 @@ for every desktop photo region (hero, about, menu, gallery, souvenirs and
 contacts), while generated fallbacks remain active on mobile where required.
 
 Current local evidence is green for lint, TypeScript, production build, asset
-audit (26 assets), serialized Vitest (29 files / 107 tests), Chromium behavior
+audit (26 assets), serialized Vitest (29 files / 109 tests), Chromium behavior
 (12 tests), accessibility (5 tests) and the six-scene visual capture (1 test).
 The strict raw RGBA comparator is intentionally red at
-`8,889,803 / 9,440,112` changed pixels because the live component render is not
+`6,885,397 / 9,440,112` changed pixels because the live component render is not
 byte-identical to the supplied concept baselines; no tolerance or mask is used.
 No 1920×1080 or mobile raw baselines were supplied, so those viewports have
 behavioral and overflow evidence only. Final independent review, GitHub push,
@@ -201,5 +201,9 @@ Sites version 4 save and verified owner-only production deployment are complete
 for source commit `2149152f8bd5b333ee8bbc9235e9219f3ca88ec1`; the raw-zero and
 missing baseline items remain intentionally open quality limitations. The
 latest refresh also adds a production favicon route, co-locates the contacts
-reference header, and restores gallery captions/icons while preserving the
-continuous scroll interpretation and provenance boundaries.
+reference header, restores gallery captions/icons, tunes scene paper layers,
+adds the phone booking/route CTA split, and repairs the hero bounded crop's
+edge alpha/plaque underlay while preserving the continuous scroll
+interpretation and provenance boundaries. Runtime commit
+`0c527415fdcdf9818f0de54d872fe4ec10f9470f` is now local and reviewed; docs
+follow-up, GitHub push and Sites redeploy remain pending.

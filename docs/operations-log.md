@@ -56,3 +56,37 @@
 - Rebuilt and packaged the same source state, saved Sites version 4, and deployed it successfully to `https://dotgravity.ferumnikita2009.chatgpt.site`.
 - Verified the returned production URL and current Sites access: one explicit owner, custom owner-only policy, zero external visitors, and no workspace/tenant groups. No public-access change was made.
 - The final evidence/docs follow-up remains part of the next local commit; raw-zero and missing responsive baselines remain intentionally open.
+
+### 2026-08-26 — scene polish refresh
+
+- Integrated independent bounded passes for hero, about, menu, gallery,
+  souvenirs and contacts. The site remains one continuous React/CSS/SVG
+  scroll flow; no supplied screen is imported as a whole-page image.
+- Tuned local scene paper colors/gradients against the supplied reference
+  pixels, tightened hero kicker/type/icon rhythm, and kept mobile overrides
+  separate. Gallery labels now reflect the supplied visual concepts, while
+  menu/souvenir copy remains neutral where current prices, stock or catalogue
+  facts were not verified.
+- Repaired the hero reference-derived crop's accidental edge alpha strips and
+  restored a continuous dark-wood underlay beneath the live CSS plaque. The
+  asset SHA, registry and provenance statement are synchronized at
+  `789791B7809699ABDA65EBF2D2AB03A9E2EE2448FB43D12CA24AE0F12FBAC624`.
+- Contacts now presents a real `tel:+78462630404` booking action plus a
+  separate owner-supplied Yandex route link; the lower route diagram remains
+  explicitly schematic and the hours row stays "Уточняйте перед визитом".
+- Fresh verification is green for lint, TypeScript, asset audit (26 assets),
+  serialized Vitest (29 files / 109 tests), production build, Chromium browser
+  (12/12), accessibility (5/5), visual capture (1/1), and `npm audit` (0 high
+  severity production vulnerabilities). The local production probe is
+  overflow-free at 1920×1080, 390×844 and 320×844; the in-app Browser was
+  reloaded against `http://127.0.0.1:4180/` with one H1, six scenes and both
+  contacts actions present.
+- Fresh raw comparison remains intentionally red at
+  `6,885,397 / 9,440,112` changed pixels (hero `1,007,264`; about `949,988`;
+  menu `1,496,436`; gallery `929,867`; souvenirs `974,225`; contacts
+  `1,527,617`). No tolerance, mask or approval exception was introduced;
+  responsive raw baselines are still absent.
+- AntiGravity was not called again after the user's explicit unavailability
+  instruction. Runtime commit
+  `0c527415fdcdf9818f0de54d872fe4ec10f9470f` is locally verified; the docs
+  follow-up, GitHub push and Sites source save/deploy remain the next steps.

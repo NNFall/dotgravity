@@ -7,7 +7,7 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Commit: `2149152f8bd5b333ee8bbc9235e9219f3ca88ec1` (GitHub feature branch and Sites version 4)
+- Runtime source commit: `0c527415fdcdf9818f0de54d872fe4ec10f9470f` (GitHub feature branch; Sites refresh pending)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -20,7 +20,7 @@
 | `npm.cmd run lint` | pass |
 | `npx.cmd tsc --noEmit` | pass |
 | `npm.cmd run qa:assets` | pass — 26 registered assets / 30 production text files |
-| `npm.cmd test` | pass — 29 files / 107 tests |
+| `npm.cmd test` | pass — 29 files / 109 tests |
 | `npm.cmd run build` | pass |
 | `npm.cmd run qa:browser` | pass — 12 tests |
 | `npm.cmd run qa:a11y` | pass — 5 tests |
@@ -29,7 +29,7 @@
 | `git diff --check` | pass |
 | Sites deployment | pass — version 4 published to production, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `8,889,803 / 9,440,112` pixels differ across the six 1672×941 captures. No tolerance or mask was introduced. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `6,885,397 / 9,440,112` pixels differ across the six 1672×941 captures (hero `1,007,264`; about `949,988`; menu `1,496,436`; gallery `929,867`; souvenirs `974,225`; contacts `1,527,617`). No tolerance or mask was introduced. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 
@@ -44,7 +44,7 @@ Sites version 4 is live at the production URL from the exact source commit
 above. The deployment is intentionally owner-only; an anonymous request is
 expected to show the ChatGPT sign-in screen rather than expose the page publicly.
 
-AntiGravity was not retried after the user reported it unavailable. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence.
+AntiGravity was not retried after the user reported it unavailable. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. The current refresh records a 109-test suite and a registry-synchronized hero asset-mask fix; the docs follow-up and Sites redeploy are the remaining publication steps.
 
 ## Remaining quality work
 
