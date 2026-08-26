@@ -12,6 +12,7 @@
 .composition {
   position: relative;
   width: min(100%, 1672px);
+  height: max(941px, 56.28vw);
   min-height: 941px;
   margin: 0 auto;
 }
@@ -42,9 +43,13 @@
 }
 
 .copy {
-  position: relative;
+  position: absolute;
   z-index: 3;
-  width: min(34.4%, 440px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: min(39.3%, 572px);
+  height: 100%;
   padding: 143px 0 45px 7.9%;
 }
 
@@ -84,7 +89,7 @@
 }
 
 .copy h2 {
-  margin: 38px 0 0;
+  margin: 0;
   color: var(--ink);
   font-family: Prata, Georgia, serif;
   font-size: clamp(3.5rem, 4.22vw, 4.4rem);
@@ -100,7 +105,7 @@
 
 .introduction {
   max-width: 350px;
-  margin: 32px 0 0;
+  margin: 0;
   color: var(--ink);
   font-size: clamp(0.82rem, 1vw, 1.04rem);
   font-weight: 440;
@@ -110,7 +115,7 @@
 
 .storyDetails {
   width: min(100%, 344px);
-  margin-top: 32px;
+  margin: 0;
   border: 1px solid rgb(143 50 29 / 88%);
   border-radius: 7px;
   background: var(--copper);
@@ -165,7 +170,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   width: min(100%, 398px);
-  margin: 44px 0 0;
+  margin: 0;
   padding: 0;
   list-style: none;
 }
@@ -198,7 +203,7 @@
   gap: 16px;
   width: max-content;
   max-width: 100%;
-  margin: 41px 0 0 -11px;
+  margin: 0 0 0 -11px;
   color: var(--copper);
 }
 
@@ -470,6 +475,7 @@
 
   .composition {
     display: grid;
+    height: auto;
     min-height: 0;
     padding: 56px var(--page-gutter) 72px;
   }
@@ -484,8 +490,11 @@
   }
 
   .copy {
+    position: relative;
     z-index: 2;
+    display: block;
     width: 100%;
+    height: auto;
     padding: 0;
   }
 
