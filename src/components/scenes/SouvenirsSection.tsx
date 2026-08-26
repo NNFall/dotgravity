@@ -43,9 +43,9 @@ const referenceSouvenirAlt =
 const stories = [
   {
     artwork: souvenirCrops.bracelet,
-    description: "Нежный браслет с мягким каменным оттенком и металлической деталью.",
+    description: "Нежный браслет в мягкой розовой гамме. Иллюстративный мотив.",
     label: "Браслет",
-    title: "«РОЗОВЫЙ КВАРЦ»",
+    title: "«РОЗОВЫЙ ОТТЕНОК»",
   },
   {
     artwork: souvenirCrops.ring,
@@ -57,7 +57,7 @@ const stories = [
     artwork: souvenirCrops.teacup,
     description: "Чайная пара с цветочным узором. Иллюстративный мотив.",
     label: "Чайная пара",
-    title: "HEREND",
+    title: "ЦВЕТОЧНЫЙ ФАРФОР",
   },
   {
     artwork: souvenirCrops.teaSet,
@@ -204,24 +204,22 @@ export function SouvenirsSection() {
           </h2>
           <p className={styles.introduction}>
             В «Точке Притяжения» вы найдете больше, чем просто сувениры. Это
-            вещи с историей и душой: изящные украшения, фарфор ручной работы,
-            винтажные предметы и редкие находки, которые хочется хранить и
-            дарить. Это визуальная витрина, а не каталог фактического
-            ассортимента.
+            иллюстративная витрина украшений, фарфора, винтажных предметов и
+            редких находок — состав коллекции уточняйте перед визитом.
           </p>
 
           <div aria-label="Причины выбрать памятный подарок" className={styles.motifs}>
             <div>
               <GemIcon />
-              <span>Уникальные позиции</span>
+              <span>Иллюстративные позиции</span>
             </div>
             <div>
               <GiftIcon />
-              <span>Подарки со смыслом</span>
+              <span>Подарочная идея</span>
             </div>
             <div>
               <CrownIcon />
-              <span>Коллекционные находки</span>
+              <span>Коллекционный мотив</span>
             </div>
             <div>
               <HandIcon />
@@ -229,8 +227,12 @@ export function SouvenirsSection() {
             </div>
           </div>
 
-          <a className={styles.cta} href="#contacts">
-            <span>Уточнить наличие в кафе</span>
+          <a
+            aria-label="Уточнить наличие в кафе"
+            className={styles.cta}
+            href="#contacts"
+          >
+            <span>Выбрать подарок</span>
             <ArrowMark />
           </a>
         </div>

@@ -7,7 +7,7 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Commit: `f6c39355ec19a8da0ae93d2a661d3d9370d1ccc0`
+- Commit: `e8f4b5d2ffa111d30488840e57901e98888d0562` (before the final evidence refresh)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -19,8 +19,8 @@
 | --- | --- |
 | `npm.cmd run lint` | pass |
 | `npx.cmd tsc --noEmit` | pass |
-| `npm.cmd run qa:assets` | pass — 26 registered assets |
-| `npm.cmd test` | pass — 29 files / 104 tests |
+| `npm.cmd run qa:assets` | pass — 26 registered assets / 30 production text files |
+| `npm.cmd test` | pass — 29 files / 107 tests |
 | `npm.cmd run build` | pass |
 | `npm.cmd run qa:browser` | pass — 12 tests |
 | `npm.cmd run qa:a11y` | pass — 5 tests |
@@ -29,11 +29,16 @@
 | `git diff --check` | pass |
 | Sites deployment | pass — production publish succeeded, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `8,889,835 / 9,440,112` pixels differ across the six 1672×941 captures. No tolerance or mask was introduced. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `8,889,803 / 9,440,112` pixels differ across the six 1672×941 captures. No tolerance or mask was introduced. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 
-Generated/reference-compatible visual media and bounded `reference-derived` crops are registered separately from documentary Yandex material. VK content could not be confirmed through the managed browser. Yandex facts used in the UI are limited to the confirmed venue name, Samara address and phone; hours, prices, stock and booking availability are not asserted. Documentary-photo usage rights remain unconfirmed and should be cleared before an unrestricted public launch. Souvenir copy uses neutral visual descriptions and explicitly labels illustrative motifs.
+Generated/reference-compatible visual media and bounded `reference-derived` crops are registered separately from documentary Yandex material. VK content could not be confirmed through the managed browser. Yandex facts used in the UI are limited to the confirmed venue name, Samara address and phone; hours, prices, stock and booking availability are not asserted. Documentary-photo usage rights remain unconfirmed and should be cleared before an unrestricted public launch. About/gallery copy uses visual-concept wording, while souvenir copy uses neutral visual descriptions and explicitly labels illustrative motifs.
+
+The final evidence refresh also adds a production `/favicon.svg` route so the
+registered metadata icon is served by Vinext production, co-locates the contacts
+reference header without a second interactive header, restores gallery inset
+captions/icons, and preserves mobile scene continuity.
 
 AntiGravity was not retried after the user reported it unavailable. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence.
 

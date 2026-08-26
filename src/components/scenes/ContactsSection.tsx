@@ -1,5 +1,6 @@
 import { mediaManifest } from "../../media/manifest";
 import type { MediaAsset } from "../../media/types";
+import { SiteHeader } from "../hero/SiteHeader";
 
 import styles from "./ContactsSection.module.css";
 
@@ -78,6 +79,27 @@ function PhoneGlyph() {
       <path
         d="M10.46 4.93 6.6 8.38c-1.73 1.55-1.49 4.75.2 8.04 2.1 4.09 5.48 7.73 9.55 10.15 3.13 1.86 6.25 2.26 7.94.7l3.78-3.5-5.65-5.04-2.74 2.29c-2.38-.99-4.66-3.16-5.72-5.52l2.26-2.82-5.76-5.07Z"
         stroke="currentColor"
+        strokeLinejoin="round"
+        strokeWidth="1.35"
+      />
+    </svg>
+  );
+}
+
+function ClockGlyph() {
+  return (
+    <svg
+      aria-hidden="true"
+      fill="none"
+      focusable="false"
+      viewBox="0 0 35 35"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="17.5" cy="17.5" r="12.5" stroke="currentColor" strokeWidth="1.35" />
+      <path
+        d="M17.5 10.5v7.4l4.7 2.7"
+        stroke="currentColor"
+        strokeLinecap="round"
         strokeLinejoin="round"
         strokeWidth="1.35"
       />
@@ -178,14 +200,17 @@ export function ContactsSection() {
       data-scene="contacts"
       id="contacts"
     >
+      <div className={styles.referenceHeader}>
+        <SiteHeader presentation />
+      </div>
       <div className={styles.composition}>
         <div aria-hidden="true" className={styles.paperLines} />
         <div aria-hidden="true" className={styles.dotField} />
 
         <header className={styles.copy}>
           <p className={styles.eyebrow}>
-            <Rosette />
             <span>Контакты</span>
+            <Rosette />
           </p>
           <h2 id="contacts-title">Как нас найти</h2>
           <p className={styles.introduction}>
@@ -220,6 +245,17 @@ export function ContactsSection() {
               </span>
               <DirectionArrow />
             </a>
+            <div
+              className={`${styles.contactItem} ${styles.contactItemStatic}`}
+              data-contact-fact="hours"
+            >
+              <ClockGlyph />
+              <span>
+                <small>Режим работы</small>
+                <b>Уточняйте перед визитом</b>
+              </span>
+              <span aria-hidden="true" className={styles.contactItemArrowSpace} />
+            </div>
           </address>
 
           <a

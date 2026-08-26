@@ -28,9 +28,14 @@ function SiteNavigation({ className, label }: SiteNavigationProps) {
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ presentation = false }: { presentation?: boolean } = {}) {
   return (
-    <header className="site-header">
+    <header
+      aria-hidden={presentation ? "true" : undefined}
+      className="site-header"
+      data-reference-header={presentation ? "contacts" : undefined}
+      inert={presentation ? true : undefined}
+    >
       <a aria-label="Точка притяжения, в начало страницы" className="brand-lockup" href="#hero">
         <BrandMark className="brand-lockup__mark" />
         <span className="brand-lockup__copy">
@@ -52,7 +57,7 @@ export function SiteHeader() {
         </a>
       </address>
 
-      <MobileNav items={navigationItems} />
+      {presentation ? null : <MobileNav items={navigationItems} />}
     </header>
   );
 }

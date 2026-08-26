@@ -94,9 +94,9 @@ describe("souvenirs anchor scene", () => {
       within(souvenirs).getByText(/больше, чем просто сувениры/i),
     ).toBeInTheDocument();
     for (const title of [
-      "«РОЗОВЫЙ КВАРЦ»",
+      "«РОЗОВЫЙ ОТТЕНОК»",
       "«УЗОР ВРЕМЕНИ»",
-      "HEREND",
+      "ЦВЕТОЧНЫЙ ФАРФОР",
       "ЧАЙНЫЙ НАБОР",
     ]) {
       expect(within(souvenirs).getByRole("heading", { level: 3, name: title })).toBeInTheDocument();

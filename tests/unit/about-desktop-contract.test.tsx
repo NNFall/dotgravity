@@ -57,7 +57,7 @@ describe("about desktop scene geometry contract", () => {
       /\bpadding:\s*53px\s+24px\s+26px\s+clamp\(28px,\s*4\.9vw,\s*82px\);/,
     );
     expect(cathedral).toMatch(/\bwidth:\s*90px;/);
-    expect(footer).toMatch(/\bmargin:\s*clamp\(20px,\s*2\.2vh,\s*24px\) auto 0;/);
+    expect(footer).toMatch(/\bmargin:\s*clamp\(52px,\s*5vh,\s*56px\) auto 0;/);
     expect(cta).toMatch(/\bmargin-top:\s*34px;/);
     expect(mobileLocationCard).toMatch(/\bheight:\s*auto;/);
   });

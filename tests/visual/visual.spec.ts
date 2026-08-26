@@ -46,7 +46,7 @@ const sceneCaptureContexts = {
     viewportOrigin: "scene-top",
   },
   contacts: {
-    liveHeader: "not-co-located",
+    liveHeader: "co-located-scene",
     referenceHeader: "included",
     viewportOrigin: "scene-top",
   },
@@ -119,7 +119,12 @@ test.describe("strict live visual capture", () => {
       );
       await waitForStablePaint(page);
       const frame = await scene.evaluate((element) => {
-        const header = document.querySelector<HTMLElement>(".site-header");
+        const header =
+          element.dataset.scene === "contacts"
+            ? element.querySelector<HTMLElement>(
+                '[data-reference-header="contacts"]',
+              )
+            : document.querySelector<HTMLElement>(".site-header");
         return {
           headerHeight: header?.getBoundingClientRect().height ?? 0,
           headerTopInViewport: header?.getBoundingClientRect().top ?? null,
@@ -132,15 +137,14 @@ test.describe("strict live visual capture", () => {
         expect(frame.scrollY).toBe(0);
         expect(frame.headerTopInViewport).toBe(0);
         expect(frame.sceneTopInViewport).toBe(frame.headerHeight);
-      } else if (context.liveHeader === "not-co-located") {
-        expect(frame.scrollY).toBeLessThan(requestedScrollY);
-        expect(frame.headerTopInViewport).toBeLessThan(0);
-        // The natural end-of-document clamp can leave a fractional positive
-        // scene origin when the final section and footer use viewport-relative
-        // dimensions. It is still non-co-located as long as the origin remains
-        // strictly below the viewport's top edge.
-        expect(frame.sceneTopInViewport).toBeGreaterThan(0);
-        expect(frame.sceneTopInViewport).toBeLessThanOrEqual(
+      } else if (context.liveHeader === "co-located-scene") {
+        expect(frame.scrollY).toBeGreaterThan(0);
+        expect(frame.headerTopInViewport).not.toBeNull();
+        expect(Math.abs(frame.headerTopInViewport ?? 0)).toBeLessThanOrEqual(
+          frame.renderedPixel,
+        );
+        expect(frame.headerHeight).toBeGreaterThan(0);
+        expect(Math.abs(frame.sceneTopInViewport)).toBeLessThanOrEqual(
           frame.renderedPixel,
         );
       } else {
@@ -189,7 +193,7 @@ test.describe("strict live visual capture", () => {
           captureMode: "natural-live-viewport-screenshot-with-explicit-origin",
           baselineRendered: false,
           headerReferenceContract:
-            "Hero includes its co-located live header. Contacts requests its live scene origin, records the browser's natural end-of-page clamp, and does not inject a header or spacer.",
+            "Hero and contacts include co-located live reference headers. Other supplied scenes are captured from their natural scene top without injected headers or spacers.",
           viewport: { id: viewportId, width, height },
           captures,
         },

@@ -110,6 +110,23 @@ describe("gallery anchor scene", () => {
     expect(within(details).getByText(/референсн(?:ый|ая) фрагмент/i)).toBeInTheDocument();
   });
 
+  test("uses distinct subject icons for the three gallery themes", async () => {
+    const gallerySectionModule = await loadGallerySection();
+
+    expect(gallerySectionModule).not.toBeNull();
+    if (!gallerySectionModule) {
+      return;
+    }
+
+    render(createElement(gallerySectionModule.GallerySection));
+
+    expect(
+      Array.from(document.querySelectorAll("[data-feature-icon]"))
+        .map((icon) => icon.getAttribute("data-feature-icon"))
+        .sort(),
+    ).toEqual(["chair", "cup", "easel"]);
+  });
+
   test("keeps the collage implementation free of reference-screen coupling and exposes mobile scroll snap", () => {
     const source = readFileSync(
       resolve(process.cwd(), "src/components/scenes/GallerySection.tsx"),

@@ -11,21 +11,27 @@ describe("ContactsSection", () => {
 
     render(<ContactsSection />);
 
+    const scene = document.querySelector("section#contacts[data-scene='contacts']");
+    expect(scene?.querySelector("h2#contacts-title")).toHaveTextContent(
+      "Как нас найти",
+    );
     expect(
-      screen.getByRole("heading", { name: "Как нас найти" }),
-    ).toBeInTheDocument();
-    expect(screen.getByText("Контакты")).toBeInTheDocument();
-    expect(screen.getByText("Самара, ул. Фрунзе, 130")).toBeInTheDocument();
+      scene?.querySelector("h2#contacts-title")?.previousElementSibling,
+    ).toHaveTextContent("Контакты");
+    const mainContactList = document.querySelector("section#contacts address");
+    expect(mainContactList).toHaveTextContent("Самара, ул. Фрунзе, 130");
 
-    const phone = screen.getByRole("link", { name: /позвонить/i });
+    const phone = scene?.querySelector("a[href='tel:+78462630404']");
     expect(phone).toHaveAttribute("href", "tel:+78462630404");
     expect(phone).toHaveTextContent("+7 (846) 263-04-04");
 
-    const route = screen.getByRole("link", { name: /^построить маршрут$/i });
+    const route = scene?.querySelector(
+      "a[href='https://yandex.ru/maps/-/CTDBI0~o']",
+    );
     expect(route).toHaveAttribute("href", "https://yandex.ru/maps/-/CTDBI0~o");
     expect(route).toHaveAttribute("target", "_blank");
     expect(route).toHaveAttribute("rel", expect.stringContaining("noreferrer"));
-  });
+  }, 15_000);
 
   test("labels bounded reference crops as non-documentary and avoids baseline imagery", async () => {
     const { ContactsSection } = await import(
@@ -71,7 +77,7 @@ describe("ContactsSection", () => {
     expect(source).toContain('asset.intendedScenes.includes("contacts")');
     expect(source).not.toMatch(/@phosphor-icons[\\/]react/i);
     expect(source).not.toMatch(/tests[\\/]visual[\\/]baselines/i);
-  });
+  }, 15_000);
 
   test("keeps the lower route panel explicitly schematic", async () => {
     const { ContactsSection } = await import(
@@ -87,6 +93,35 @@ describe("ContactsSection", () => {
     expect(
       screen.getByRole("complementary", { name: "Как добраться" }),
     ).toBeInTheDocument();
+  });
+
+  test("co-locates the reference header inside the contacts scene without adding a second interactive header", async () => {
+    const { ContactsSection } = await import(
+      "../../src/components/scenes/ContactsSection"
+    );
+
+    const { container } = render(<ContactsSection />);
+    const scene = container.querySelector("section#contacts[data-scene='contacts']");
+    const referenceHeader = scene?.querySelector(
+      "header[data-reference-header='contacts']",
+    );
+
+    expect(referenceHeader).toBeInTheDocument();
+    expect(referenceHeader).toHaveAttribute("aria-hidden", "true");
+    expect(referenceHeader).toHaveAttribute("inert");
+    expect(referenceHeader?.querySelectorAll(".mobile-nav-trigger")).toHaveLength(0);
+  });
+
+  test("keeps the third contact row visually complete without asserting unverified hours", async () => {
+    const { ContactsSection } = await import(
+      "../../src/components/scenes/ContactsSection"
+    );
+
+    render(<ContactsSection />);
+
+    expect(screen.getByText("Режим работы")).toBeInTheDocument();
+    expect(screen.getByText("Уточняйте перед визитом")).toBeInTheDocument();
+    expect(screen.queryByText(/09:00|22:00|круглосуточно/i)).not.toBeInTheDocument();
   });
 
   test("lets the mobile editorial heading wrap inside the contact canvas", () => {

@@ -357,7 +357,7 @@
   justify-content: space-between;
   width: min(100% - 48px, 395px);
   min-height: 66px;
-  margin: 18px auto 0;
+  margin: 23px auto 0;
   padding: 0 25px 0 31px;
   border: 1px solid var(--copper-deep);
   border-radius: 8px;

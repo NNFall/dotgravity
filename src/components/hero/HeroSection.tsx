@@ -50,11 +50,11 @@ function HeroFeatureList() {
       </li>
       <li>
         <PhosphorIcon aria-hidden="true" name="gift" size={49} weight="light" />
-        <span>Сувениры и подарки</span>
+        <span>Сувенирные идеи</span>
       </li>
       <li>
         <PhosphorIcon aria-hidden="true" name="church" size={49} weight="light" />
-        <span>Исторический центр Самары</span>
+        <span>Исторический мотив</span>
       </li>
     </ul>
   );
@@ -87,9 +87,9 @@ export function HeroSection() {
           <br className="hero-introduction__desktop-break" />{" "}
           искусство и история.
           <br className="hero-introduction__desktop-break" />{" "}
-          Сувениры и подарки рядом с великолепным
+          Сувенирные идеи и визуальные детали собраны
           <br className="hero-introduction__desktop-break" />{" "}
-          католическим костёлом Самары.
+          в одной тёплой композиции о Самаре.
         </p>
         <p className="hero-mobile-address">
           <PhosphorIcon aria-hidden="true" name="mapPin" size={22} weight="light" />

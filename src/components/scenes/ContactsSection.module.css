@@ -9,6 +9,17 @@
     var(--paper);
 }
 
+.referenceHeader {
+  position: relative;
+  z-index: 8;
+}
+
+@media (max-width: 1180px) {
+  .referenceHeader {
+    display: none;
+  }
+}
+
 .composition {
   position: relative;
   width: min(100%, 1672px);
@@ -71,7 +82,7 @@
   gap: 12px;
   margin: 0;
   color: var(--copper);
-  font-size: clamp(0.73rem, 0.85vw, 0.89rem);
+  font-size: clamp(0.82rem, 1vw, 1.06rem);
   font-weight: 590;
   letter-spacing: 0.14em;
   line-height: 1.2;
@@ -109,7 +120,7 @@
 
 .introduction {
   max-width: 352px;
-  margin: 30px 0 0;
+  margin: 22px 0 0;
   color: var(--ink);
   font-size: clamp(0.84rem, 0.99vw, 1.02rem);
   font-weight: 440;
@@ -121,7 +132,7 @@
   display: grid;
   gap: 0;
   width: min(100%, 387px);
-  margin: 44px 0 0;
+  margin: 18px 0 0;
   border-top: 1px solid rgb(180 71 37 / 43%);
   font-style: normal;
 }
@@ -131,13 +142,24 @@
   grid-template-columns: 37px minmax(0, 1fr) 34px;
   align-items: center;
   column-gap: 15px;
-  min-height: 86px;
+  min-height: 80px;
   padding: 12px 0;
   border-bottom: 1px solid rgb(180 71 37 / 43%);
   color: var(--ink);
   transition:
     color 220ms cubic-bezier(0.16, 1, 0.3, 1),
     transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.contactItemStatic {
+  cursor: default;
+}
+
+.contactItemArrowSpace {
+  display: block;
+  width: 30px;
+  height: 1px;
+  justify-self: end;
 }
 
 .contactItem > svg:first-child {
@@ -187,9 +209,9 @@
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
-  width: min(100%, 337px);
-  min-height: 59px;
-  margin-top: 34px;
+  width: min(100%, 383px);
+  min-height: 67px;
+  margin-top: 15px;
   padding: 0 24px 0 28px;
   border: 1px solid rgb(143 50 29 / 93%);
   border-radius: 7px;

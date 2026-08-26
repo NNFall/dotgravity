@@ -1,5 +1,6 @@
 import { mediaManifest } from "../../media/manifest";
 import type { MediaAsset } from "../../media/types";
+import type { ReactNode } from "react";
 
 import styles from "./GallerySection.module.css";
 
@@ -40,12 +41,12 @@ const referenceGalleryAlt =
 const storyCrops = [
   {
     asset: galleryCrops.porcelain,
-    label: "Винтажная посуда",
+    label: "Винтажные мотивы",
     className: styles.porcelainInset,
   },
   {
     asset: galleryCrops.art,
-    label: "Картины современных художников",
+    label: "Художественные детали",
     className: styles.artInset,
   },
   {
@@ -120,11 +121,60 @@ function CathedralLinework() {
   );
 }
 
-function FeatureMark({ children }: { children: string }) {
+function CupIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      data-feature-icon="cup"
+      fill="none"
+      focusable="false"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M9 20h27v7.2c0 6.2-5 11.3-11.3 11.3h-4.4C14 38.5 9 33.4 9 27.2V20Z" stroke="currentColor" strokeLinejoin="round" strokeWidth="1.35" />
+      <path d="M36 23h4.2c3.8 0 5.8 2.8 5.8 5.7s-2 5.7-5.8 5.7H36M5 41h36M17 14c0-2.8 2.8-3.2 2.8-6M25 14c0-2.8 2.8-3.2 2.8-6" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.35" />
+    </svg>
+  );
+}
+
+function EaselIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      data-feature-icon="easel"
+      fill="none"
+      focusable="false"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect height="21" rx="1" stroke="currentColor" strokeWidth="1.35" width="25" x="11.5" y="8" />
+      <path d="m13 29-6 13m28-13 6 13M24 29v13M17 23l5-5 4 3 4-5" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.35" />
+      <path d="M24 4v4M21 4h6" stroke="currentColor" strokeLinecap="round" strokeWidth="1.35" />
+    </svg>
+  );
+}
+
+function ChairIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      data-feature-icon="chair"
+      fill="none"
+      focusable="false"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M15 18.5c0-3.6 2.3-5.5 5.4-5.5h8.2c3.1 0 5.4 1.9 5.4 5.5v8.7H15v-8.7Z" stroke="currentColor" strokeLinejoin="round" strokeWidth="1.35" />
+      <path d="M11 27.2h26v5.1c0 2.3-1.8 4.2-4.2 4.2H15.2c-2.3 0-4.2-1.8-4.2-4.2v-5.1ZM15 36.5v5.2m18-5.2v5.2M11 22.5H7.5v9.8m29-9.8h4v9.8" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.35" />
+    </svg>
+  );
+}
+
+function FeatureMark({ children, icon }: { children: string; icon: ReactNode }) {
   return (
     <li className={styles.featureMark}>
       <span aria-hidden="true" className={styles.featureGlyph}>
-        <Rosette />
+        {icon}
       </span>
       <span>{children}</span>
     </li>
@@ -183,8 +233,8 @@ export function GallerySection() {
             <br /> атмосфера
           </h2>
           <p className={styles.introduction}>
-            Каждый уголок хранит историю: коллекция винтажной посуды, картины
-            современных художников и продуманные детали интерьера создают
+            Каждый уголок хранит историю: мотивы винтажной посуды, художественные
+            детали и продуманные элементы интерьера создают
             особую атмосферу — тёплую, вдохновляющую и располагающую к
             неспешным встречам.
           </p>
@@ -202,9 +252,9 @@ export function GallerySection() {
           </details>
 
           <ul aria-label="Темы галереи" className={styles.featureList}>
-            <FeatureMark>Винтажная посуда</FeatureMark>
-            <FeatureMark>Картины современных художников</FeatureMark>
-            <FeatureMark>Уютное пространство</FeatureMark>
+            <FeatureMark icon={<CupIcon />}>Винтажные мотивы</FeatureMark>
+            <FeatureMark icon={<EaselIcon />}>Художественные детали</FeatureMark>
+            <FeatureMark icon={<ChairIcon />}>Уютное пространство</FeatureMark>
           </ul>
 
           <p className={styles.motto}>
