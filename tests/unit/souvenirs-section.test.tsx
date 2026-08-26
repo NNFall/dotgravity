@@ -138,4 +138,32 @@ describe("souvenirs anchor scene", () => {
     expect(styles).toMatch(/min-height:\s*(?:44px|2\.75rem)/i);
     expect(styles).toMatch(/@media \(max-width: 720px\)/i);
   });
+
+  test("holds the desktop reference rhythm for the title and inset story cards", () => {
+    const styles = loadSouvenirsStyles();
+    const mobileStart = styles.indexOf("@media (max-width: 900px)");
+    const desktopStyles = mobileStart === -1 ? styles : styles.slice(0, mobileStart);
+
+    expect(desktopStyles).toMatch(
+      /\.copy h2\s*\{[\s\S]*?font-size:\s*clamp\(2\.8rem,\s*3\.2vw,\s*3\.4rem\);/i,
+    );
+    expect(desktopStyles).toMatch(
+      /\.introduction\s*\{[\s\S]*?max-width:\s*520px;[\s\S]*?margin:\s*16px 0 0;/i,
+    );
+    expect(desktopStyles).toMatch(
+      /\.cta\s*\{[\s\S]*?margin-top:\s*37px;/i,
+    );
+    const storyArticle = desktopStyles.match(
+      /\.storyCard article\s*\{([\s\S]*?)\n  \}/i,
+    )?.[1];
+    expect(storyArticle).toMatch(/padding:\s*11px 7px;/i);
+    expect(storyArticle).toMatch(/gap:\s*14px;/i);
+    const storyContent = desktopStyles.match(
+      /\.storyContent\s*\{([\s\S]*?)\n  \}/i,
+    )?.[1];
+    expect(storyContent).toMatch(/padding:\s*17px 7px 13px;/i);
+    expect(desktopStyles).toMatch(
+      /\.storyVisual\s*\{[\s\S]*?border-radius:\s*7px;/i,
+    );
+  });
 });
