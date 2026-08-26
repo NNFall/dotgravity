@@ -272,7 +272,9 @@
 .features {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  width: calc(100% + 140px);
   margin: clamp(36px, 5.5vh, 56px) 0 0;
+  margin-left: -82px;
   padding: 0;
   list-style: none;
 }
@@ -283,7 +285,17 @@
 }
 
 .feature + .feature {
-  border-left: 1px solid rgb(180 71 37 / 57%);
+  position: relative;
+}
+
+.feature + .feature::before {
+  position: absolute;
+  top: 40px;
+  bottom: 16px;
+  left: 0;
+  width: 1px;
+  background: rgb(180 71 37 / 57%);
+  content: "";
 }
 
 .featureIcon {
@@ -387,7 +399,7 @@
 .cathedralBackdrop {
   position: absolute;
   z-index: -1;
-  top: 9%;
+  top: calc(9% - 45px);
   right: -1.4%;
   width: clamp(174px, 16.9vw, 283px);
   color: rgb(180 71 37 / 16%);
@@ -429,6 +441,11 @@
 
   .feature {
     padding-inline: 14px;
+  }
+
+  .features {
+    width: 100%;
+    margin-left: 0;
   }
 }
 
@@ -542,7 +559,9 @@
   .features {
     grid-template-columns: 1fr;
     gap: 0;
+    width: 100%;
     margin-top: 36px;
+    margin-left: 0;
     text-align: left;
   }
 
@@ -556,6 +575,10 @@
   .feature + .feature {
     border-top: 1px solid rgb(180 71 37 / 47%);
     border-left: 0;
+  }
+
+  .feature + .feature::before {
+    display: none;
   }
 
   .featureIcon {
