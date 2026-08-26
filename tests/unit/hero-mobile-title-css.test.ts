@@ -15,7 +15,7 @@ describe("mobile hero title scale", () => {
     );
     expect(mobileHeroTitleRule?.[1]).not.toContain("15vw");
     expect(stylesheet).toContain(
-      "font-size: clamp(4.25rem, 5.86vw, 6.13rem);",
+      "font-size: clamp(4rem, 4.95vw, 6rem);",
     );
   });
 });

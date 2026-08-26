@@ -24,24 +24,23 @@ test("exposes one page H1 and named primary landmarks", async ({ page }) => {
   ).toHaveCount(1);
 });
 
-test("labels generated menu art as illustrative and non-documentary", async ({
+test("labels reference-derived menu art as illustrative and non-documentary", async ({
   page,
 }) => {
   await page.goto("/", { waitUntil: "domcontentloaded" });
 
-  const generatedArtwork = page
-    .locator('#menu img[data-provenance="generated/reference-compatible"]')
+  const referenceArtwork = page
+    .locator('#menu img[data-provenance="reference-derived"]')
     .first();
 
-  await expect(generatedArtwork).toHaveAccessibleName(
-    /сгенерированн.*не документальн/i,
+  await expect(referenceArtwork).toHaveAccessibleName(
+    /референсный кроп.*не документальн/i,
   );
+  await expect(page.locator('#menu img[data-provenance="reference-derived"]'))
+    .toHaveCount(5);
   await expect(
-    page.getByText("Сгенерировано для иллюстрации", { exact: true }).first(),
-  ).toBeVisible();
-  expect(
-    await page.locator('[data-provenance="generated/reference-compatible"]').count(),
-  ).toBeGreaterThan(0);
+    page.getByText("Сгенерировано для иллюстрации", { exact: true }),
+  ).toHaveCount(0);
 });
 
 function durationInMilliseconds(value: string) {
