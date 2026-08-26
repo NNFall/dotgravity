@@ -65,6 +65,14 @@ export interface ReferenceDerivedProvenance extends BaseProvenance {
   transformation: string;
 }
 
+export interface GeneratedMediaDerivation {
+  parentAssetId: string;
+  parentSha256: string;
+  method: "Remove Background Local";
+  aggressiveness: "0.30";
+  checkerPreviewReviewed: true;
+}
+
 export interface GeneratedReferenceCompatibleProvenance
   extends BaseProvenance {
   classification: "generated/reference-compatible";
@@ -72,6 +80,7 @@ export interface GeneratedReferenceCompatibleProvenance
   createdAt: string;
   createdWith: "Image Generation";
   promptSummary: string;
+  derivation?: GeneratedMediaDerivation;
 }
 
 export interface DecorativeProvenance extends BaseProvenance {

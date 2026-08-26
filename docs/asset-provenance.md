@@ -147,6 +147,62 @@ Non-secret prompt summary: warm window still life with an open jewelry case, por
 
 This file is generated reference-compatible artwork. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its inventory, its signage, or its current appearance.
 
+### `souvenir-rose-quartz-bracelet-source`
+
+| Field | Registered value |
+| --- | --- |
+| Path | `public/media/generated/souvenir-rose-quartz-bracelet-source.png` (served locally as `/media/generated/souvenir-rose-quartz-bracelet-source.png`) |
+| SHA-256 | `4A0D6A67707FF40A63C56B0D363EACA45C94C4A6D9E57A59D4CE1F5C4C790653` |
+| Intrinsic dimensions | `1254×1254` PNG |
+| Class | `generated/reference-compatible` |
+| Documentary status | `false` |
+| Created | `2026-08-26` via Image Generation |
+| Intended scene and allowance | Souvenirs source-only input; production use is **not allowed** |
+| Reference shape | `not-reference`; it is not a full target screen or a reference composite |
+| Crop strategy | Source-only; it must never render in a production scene. The registered transparent derivative is the allowable product cutout. |
+
+Non-secret prompt summary: isolated pink rose-quartz-style bracelet with gold-tone accents on a pale background, with no real-product or real-venue claim.
+
+This file is generated source artwork. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its merchandise, inventory, signage, or current appearance.
+
+### `souvenir-rose-quartz-bracelet-cutout`
+
+| Field | Registered value |
+| --- | --- |
+| Path | `public/media/generated/souvenir-rose-quartz-bracelet-cutout.png` (served locally as `/media/generated/souvenir-rose-quartz-bracelet-cutout.png`) |
+| SHA-256 | `65AA3C2AA0AB04DFBFC393856A357328134490467437D5F49702F61ECA69229D` |
+| Intrinsic dimensions | `1254×1254` PNG with alpha |
+| Class | `generated/reference-compatible` |
+| Documentary status | `false` |
+| Created | `2026-08-26` via Image Generation, then transformed locally |
+| Parent asset | `souvenir-rose-quartz-bracelet-source`, SHA-256 `4A0D6A67707FF40A63C56B0D363EACA45C94C4A6D9E57A59D4CE1F5C4C790653` |
+| Derivation | `Remove Background Local`; aggressiveness `0.30`; checkerboard preview visually reviewed before registration |
+| Intended scene and allowance | Souvenirs product cutout only; production use is allowed only for that bounded region |
+| Reference shape | `not-reference`; it is not a full target screen or a reference composite |
+| Crop strategy | `contain` the bounded product cutout, keeping the full bracelet silhouette in its product card; never expand it into a full-page reference screen |
+
+Non-secret prompt summary: transparent cutout of the registered generated pink rose-quartz-style bracelet, with no real-product or real-venue claim.
+
+This file is generated reference-compatible artwork with a locally removed background. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its merchandise, inventory, signage, or current appearance.
+
+### `contacts-brick-street`
+
+| Field | Registered value |
+| --- | --- |
+| Path | `public/media/generated/contacts-brick-street.png` (served locally as `/media/generated/contacts-brick-street.png`) |
+| SHA-256 | `A53AB8414DC021C3EAB7E488569D81F033701BA7888C92C2230B36C66BABCB82` |
+| Intrinsic dimensions | `1536×1024` PNG |
+| Class | `generated/reference-compatible` |
+| Documentary status | `false` |
+| Created | `2026-08-26` via Image Generation |
+| Intended scene and allowance | Contacts photo region only; production use is allowed only for that bounded region |
+| Reference shape | `not-reference`; it is not a full target screen or a reference composite |
+| Crop strategy | `cover` the bounded contacts photo region, keeping the brick street, tower and warm window facade focal; responsive crops must not expand it into a full-page reference screen |
+
+Non-secret prompt summary: dusk brick street with a church-like tower, warm cafe-like windows and flower planters, with no real-venue claim or readable signage.
+
+This file is generated reference-compatible artwork. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its inventory, its signage, or its current appearance.
+
 ## Audit policy
 
 `npm.cmd run qa:assets` runs the shared runtime registry validation, then fails when any registered media file is missing, has a different SHA-256, or has different intrinsic dimensions as reported by Sharp. It also rejects:

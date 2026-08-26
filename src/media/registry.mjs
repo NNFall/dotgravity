@@ -159,4 +159,105 @@ export const mediaManifest = [
         "Keep the jewelry case and porcelain cups inside the bounded souvenirs crop; never extend it into a full-page reference screen.",
     },
   },
+  {
+    id: "souvenir-rose-quartz-bracelet-source",
+    path: "/media/generated/souvenir-rose-quartz-bracelet-source.png",
+    sha256: "4A0D6A67707FF40A63C56B0D363EACA45C94C4A6D9E57A59D4CE1F5C4C790653",
+    dimensions: {
+      width: 1254,
+      height: 1254,
+    },
+    provenance: {
+      classification: "generated/reference-compatible",
+      documentary: false,
+      createdAt: "2026-08-26",
+      createdWith: "Image Generation",
+      promptSummary:
+        "Isolated pink rose-quartz-style bracelet with gold-tone accents on a pale background, with no real-product or real-venue claim.",
+      statement:
+        "Generated source artwork retained only as the parent input for a bounded bracelet cutout; it is not a documentary venue photograph and must not be presented as one.",
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: false,
+      intendedUse: "source-only input for the bracelet cutout",
+      referenceShape: "not-reference",
+    },
+    cropRules: {
+      strategy: "source-only; do not render in production",
+      focalPoint: "pink bracelet with gold-tone clasp",
+      responsive:
+        "Never render this source file in a production scene; use its registered transparent derivative instead.",
+    },
+  },
+  {
+    id: "souvenir-rose-quartz-bracelet-cutout",
+    path: "/media/generated/souvenir-rose-quartz-bracelet-cutout.png",
+    sha256: "65AA3C2AA0AB04DFBFC393856A357328134490467437D5F49702F61ECA69229D",
+    dimensions: {
+      width: 1254,
+      height: 1254,
+    },
+    provenance: {
+      classification: "generated/reference-compatible",
+      documentary: false,
+      createdAt: "2026-08-26",
+      createdWith: "Image Generation",
+      promptSummary:
+        "Transparent cutout of the registered generated pink rose-quartz-style bracelet, with no real-product or real-venue claim.",
+      statement:
+        "Generated reference-compatible bracelet artwork with a locally removed background for the bounded souvenirs product cutout only; it is not a documentary venue photograph and must not be presented as one.",
+      derivation: {
+        parentAssetId: "souvenir-rose-quartz-bracelet-source",
+        parentSha256:
+          "4A0D6A67707FF40A63C56B0D363EACA45C94C4A6D9E57A59D4CE1F5C4C790653",
+        method: "Remove Background Local",
+        aggressiveness: "0.30",
+        checkerPreviewReviewed: true,
+      },
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "souvenirs product cutout only",
+      referenceShape: "not-reference",
+    },
+    cropRules: {
+      strategy: "contain bounded product cutout",
+      focalPoint: "pink bracelet with gold-tone clasp",
+      responsive:
+        "Keep the full bracelet silhouette within its bounded product card; never extend it into a full-page reference screen.",
+    },
+  },
+  {
+    id: "contacts-brick-street",
+    path: "/media/generated/contacts-brick-street.png",
+    sha256: "A53AB8414DC021C3EAB7E488569D81F033701BA7888C92C2230B36C66BABCB82",
+    dimensions: {
+      width: 1536,
+      height: 1024,
+    },
+    provenance: {
+      classification: "generated/reference-compatible",
+      documentary: false,
+      createdAt: "2026-08-26",
+      createdWith: "Image Generation",
+      promptSummary:
+        "Dusk brick street with a church-like tower, warm cafe-like windows, flower planters, and no real-venue claim or readable signage.",
+      statement:
+        "Generated reference-compatible artwork for the bounded contacts photo region only; it is not a documentary venue photograph and must not be presented as one.",
+    },
+    intendedScenes: ["contacts"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "contacts photo region only",
+      referenceShape: "not-reference",
+    },
+    cropRules: {
+      strategy: "cover bounded contacts photo region",
+      focalPoint: "brick street, tower, and warm window facade",
+      responsive:
+        "Keep the street and warm facade inside the bounded contacts crop; never extend it into a full-page reference screen.",
+    },
+  },
 ];

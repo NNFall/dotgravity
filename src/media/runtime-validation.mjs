@@ -71,6 +71,30 @@ const assertAbsoluteHttpUrl = (value, field) => {
   }
 };
 
+const assertGeneratedDerivation = (derivation) => {
+  assertRecord(derivation, "provenance.derivation");
+  assertNonEmptyString(
+    derivation.parentAssetId,
+    "provenance.derivation.parentAssetId",
+  );
+  assertSha256(
+    derivation.parentSha256,
+    "provenance.derivation.parentSha256",
+  );
+  assert(
+    derivation.method === "Remove Background Local",
+    "provenance.derivation.method must be Remove Background Local",
+  );
+  assert(
+    derivation.aggressiveness === "0.30",
+    "provenance.derivation.aggressiveness must be 0.30",
+  );
+  assert(
+    derivation.checkerPreviewReviewed === true,
+    "provenance.derivation.checkerPreviewReviewed must be true",
+  );
+};
+
 export const isLocalPublicMediaPath = (path) =>
   typeof path === "string" &&
   /^\/media\/[A-Za-z0-9][A-Za-z0-9._/-]*$/.test(path) &&
@@ -137,6 +161,9 @@ const assertProvenance = (provenance) => {
         "provenance.createdWith must be Image Generation",
       );
       assertNonEmptyString(provenance.promptSummary, "provenance.promptSummary");
+      if (provenance.derivation !== undefined) {
+        assertGeneratedDerivation(provenance.derivation);
+      }
       return;
     case "decorative":
       assert(
@@ -224,12 +251,42 @@ export const validateMediaManifestRuntime = (manifest) => {
 
   const ids = new Set();
   const paths = new Set();
+  const assetsById = new Map();
   for (const asset of manifest) {
     assertAsset(asset);
     assert(!ids.has(asset.id), `Duplicate media asset id: ${asset.id}`);
     assert(!paths.has(asset.path), `Duplicate media asset path: ${asset.path}`);
     ids.add(asset.id);
     paths.add(asset.path);
+    assetsById.set(asset.id, asset);
+  }
+
+  for (const asset of manifest) {
+    const provenance = asset.provenance;
+    if (
+      provenance.classification !== "generated/reference-compatible" ||
+      provenance.derivation === undefined
+    ) {
+      continue;
+    }
+
+    const parentAsset = assetsById.get(provenance.derivation.parentAssetId);
+    assert(
+      parentAsset !== undefined,
+      `Generated derivation parent asset is missing: ${provenance.derivation.parentAssetId}`,
+    );
+    assert(
+      parentAsset.id !== asset.id,
+      "Generated derivation cannot use itself as a parent asset",
+    );
+    assert(
+      parentAsset.sha256 === provenance.derivation.parentSha256,
+      `Generated derivation parent SHA-256 does not match: ${asset.id}`,
+    );
+    assert(
+      parentAsset.productionAllowance.allowed === false,
+      `Generated derivation parent must be source-only: ${parentAsset.id}`,
+    );
   }
 
   return /** @type {MediaManifest} */ (manifest);
