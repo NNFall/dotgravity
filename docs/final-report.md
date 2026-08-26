@@ -7,7 +7,7 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Commit: `5308a46101255b5524c5b787c18c55d16597eb4c` (GitHub feature branch; Sites refresh pending)
+- Commit: `2149152f8bd5b333ee8bbc9235e9219f3ca88ec1` (GitHub feature branch and Sites version 4)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -27,7 +27,7 @@
 | `npm.cmd run qa:visual` | pass — 1 six-scene capture test |
 | `npm.cmd audit --omit=dev --audit-level=high` | pass — 0 production vulnerabilities |
 | `git diff --check` | pass |
-| Sites deployment | pass — production publish succeeded, owner-only access |
+| Sites deployment | pass — version 4 published to production, owner-only access |
 
 The strict raw RGBA comparator remains intentionally red: `8,889,803 / 9,440,112` pixels differ across the six 1672×941 captures. No tolerance or mask was introduced. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
@@ -39,6 +39,10 @@ The final evidence refresh also adds a production `/favicon.svg` route so the
 registered metadata icon is served by Vinext production, co-locates the contacts
 reference header without a second interactive header, restores gallery inset
 captions/icons, and preserves mobile scene continuity.
+
+Sites version 4 is live at the production URL from the exact source commit
+above. The deployment is intentionally owner-only; an anonymous request is
+expected to show the ChatGPT sign-in screen rather than expose the page publicly.
 
 AntiGravity was not retried after the user reported it unavailable. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence.
 

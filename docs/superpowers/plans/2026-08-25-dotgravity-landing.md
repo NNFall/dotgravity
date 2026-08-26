@@ -197,9 +197,9 @@ The strict raw RGBA comparator is intentionally red at
 byte-identical to the supplied concept baselines; no tolerance or mask is used.
 No 1920×1080 or mobile raw baselines were supplied, so those viewports have
 behavioral and overflow evidence only. Final independent review, GitHub push,
-Sites version save and verified owner-only production deployment remain pending
-for the current refresh commit; the raw-zero and missing baseline items remain
-intentionally open quality limitations. The latest refresh also adds a
-production favicon route, co-locates the contacts reference header, and
-restores gallery captions/icons while preserving the continuous scroll
-interpretation and provenance boundaries.
+Sites version 4 save and verified owner-only production deployment are complete
+for source commit `2149152f8bd5b333ee8bbc9235e9219f3ca88ec1`; the raw-zero and
+missing baseline items remain intentionally open quality limitations. The
+latest refresh also adds a production favicon route, co-locates the contacts
+reference header, and restores gallery captions/icons while preserving the
+continuous scroll interpretation and provenance boundaries.

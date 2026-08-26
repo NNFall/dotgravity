@@ -49,3 +49,10 @@
 - Rephrased about/gallery editorial copy as visual motifs and illustrative details so the page does not assert an unverified café collection, artist roster or historical inventory while retaining the supplied typographic rhythm.
 - Fresh checks: serialized Vitest `29 files / 107 tests`, lint, TypeScript, build, asset audit (`26` assets), Chromium browser `12/12`, accessibility `5/5`, and visual capture `1/1` pass. Raw RGBA remains intentionally red at `8,889,803 / 9,440,112` changed pixels; no tolerance or mask was added.
 - A fresh independent raw-diff audit found no additional geometry blocker after the gallery/contact adjustments. AntiGravity remains intentionally unused after the user's unavailability instruction. GitHub/Sites publication is pending until this refresh is committed and pushed.
+
+### 2026-08-26 — final publication refresh
+
+- Pushed the exact validated source commit `2149152f8bd5b333ee8bbc9235e9219f3ca88ec1` to the GitHub feature branch and configured Sites source repository.
+- Rebuilt and packaged the same source state, saved Sites version 4, and deployed it successfully to `https://dotgravity.ferumnikita2009.chatgpt.site`.
+- Verified the returned production URL and current Sites access: one explicit owner, custom owner-only policy, zero external visitors, and no workspace/tenant groups. No public-access change was made.
+- The final evidence/docs follow-up remains part of the next local commit; raw-zero and missing responsive baselines remain intentionally open.
