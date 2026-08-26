@@ -197,8 +197,8 @@ The strict raw RGBA comparator is intentionally red at
 byte-identical to the supplied concept baselines; no tolerance or mask is used.
 No 1920×1080 or mobile raw baselines were supplied, so those viewports have
 behavioral and overflow evidence only. Final independent review, GitHub push,
-Sites version 6 save and verified owner-only production deployment are complete
-for source commit `b0b71fc686a34955ccbb3083c0845050427ec553`; the raw-zero and
+Sites version 7 save and verified owner-only production deployment are complete
+for source commit `c288e4a7e1e0ba95da2f4476dbabb6243ab94993`; the raw-zero and
 missing baseline items remain intentionally open quality limitations. The
 latest refresh also adds a production favicon route, co-locates the contacts
 reference header, restores gallery captions/icons, tunes scene paper layers,
@@ -206,7 +206,7 @@ uses neutral visual-motif gallery labels, adds the phone booking/route CTA
 split, and repairs the hero bounded crop's edge alpha/plaque underlay while
 preserving the continuous scroll interpretation and provenance boundaries.
 Runtime commit
-`b0b71fc686a34955ccbb3083c0845050427ec553` is now local, reviewed and pushed;
-the owner-only Sites version 6 deployment is live. Gallery copy is phrased as
-neutral visual motifs, while the strict raw-zero and missing responsive
-baselines remain intentionally open.
+`c288e4a7e1e0ba95da2f4476dbabb6243ab94993` is now local, reviewed and pushed;
+the owner-only Sites version 7 deployment is live. Gallery copy and captions
+are phrased as neutral visual motifs, while the strict raw-zero and missing
+responsive baselines remain intentionally open.

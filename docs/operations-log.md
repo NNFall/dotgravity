@@ -88,7 +88,8 @@
   responsive raw baselines are still absent.
 - AntiGravity was not called again after the user's explicit unavailability
   instruction. Runtime commit
-  `b0b71fc686a34955ccbb3083c0845050427ec553` is locally verified and pushed
-  to GitHub and the Sites source repository. Sites version 6 was saved and
+  `c288e4a7e1e0ba95da2f4476dbabb6243ab94993` is locally verified and pushed
+  to GitHub and the Sites source repository. Sites version 7 was saved and
   deployed successfully to the existing owner-only production URL; the
-  neutral visual-motif gallery copy is included in that deployment.
+  neutral visual-motif gallery copy and captions are included in that
+  deployment.
