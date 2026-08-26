@@ -1,12 +1,15 @@
 import { defineConfig } from "@playwright/test";
 
+const localTestPort = 4174;
+const baseURL = `http://127.0.0.1:${localTestPort}`;
+
 export default defineConfig({
   testDir: "./tests",
   testMatch: ["browser/**/*.spec.ts", "visual/**/*.spec.ts"],
   retries: 0,
   workers: 1,
   use: {
-    baseURL: "http://127.0.0.1:4173",
+    baseURL,
     locale: "ru-RU",
     timezoneId: "Europe/Samara",
     deviceScaleFactor: 1,
@@ -25,8 +28,9 @@ export default defineConfig({
     },
   ],
   webServer: {
-    command: "npm.cmd run dev -- --host 127.0.0.1 --port 4173",
-    url: "http://127.0.0.1:4173",
+    command: `npm.cmd run build && npm.cmd run start -- --hostname 127.0.0.1 --port ${localTestPort}`,
+    url: baseURL,
     reuseExistingServer: false,
+    timeout: 240_000,
   },
 });
