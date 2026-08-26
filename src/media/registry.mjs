@@ -98,6 +98,171 @@ export const mediaManifest = [
     },
   },
   {
+    id: "menu-reference-cappuccino",
+    path: "/media/reference-derived/menu-reference-cappuccino.png",
+    sha256:
+      "881BD0DAE160C87BB9E513D3F5F7E4B732F214BF2833EC9538E50CB0AA41D8D5",
+    dimensions: {
+      width: 250,
+      height: 265,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Photo-only bounded crop x=115,y=349,w=250,h=265 from the supplied menu concept; repeated UI flower badge and clipped card-corner pixels removed, with no text, price or arrow retained.",
+      statement:
+        "Bounded crop from the supplied generated menu concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "menu reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "cover the bounded cappuccino card image frame with the photo-only crop",
+      focalPoint: "blue-and-white cup and cappuccino foam art",
+      responsive:
+        "Keep the crop inside the menu card image frame; never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "menu-reference-berry-dessert",
+    path: "/media/reference-derived/menu-reference-berry-dessert.png",
+    sha256:
+      "6F6DD5DF972A41568C20597B7EE26A571F169596F00B49DFFE00CC3E3F12EE68",
+    dimensions: {
+      width: 250,
+      height: 265,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Photo-only bounded crop x=411,y=349,w=250,h=265 from the supplied menu concept; repeated UI flower badge and clipped card-corner pixels removed, with no text, price or arrow retained.",
+      statement:
+        "Bounded crop from the supplied generated menu concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "menu reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "cover the bounded berry dessert card image frame with the photo-only crop",
+      focalPoint: "ruby berry dessert in a cut-glass tumbler",
+      responsive:
+        "Keep the crop inside the menu card image frame; never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "menu-reference-pistachio-cake",
+    path: "/media/reference-derived/menu-reference-pistachio-cake.png",
+    sha256:
+      "2DD28E974E27337A21F4A2E1FBD8498D63D4F6052AA70C2E2AF045F3EA927F2F",
+    dimensions: {
+      width: 250,
+      height: 265,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Photo-only bounded crop x=706,y=349,w=250,h=265 from the supplied menu concept; repeated UI flower badge and clipped card-corner pixels removed, with no text, price or arrow retained.",
+      statement:
+        "Bounded crop from the supplied generated menu concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "menu reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "cover the bounded pistachio cake card image frame with the photo-only crop",
+      focalPoint: "layered pistachio cake with white ceramic and flower",
+      responsive:
+        "Keep the crop inside the menu card image frame; never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "menu-reference-red-velvet",
+    path: "/media/reference-derived/menu-reference-red-velvet.png",
+    sha256:
+      "C55F076C6A9B96355CA045D9444281D7EE455AF49DC95CB10A76ACEC2C3B793A",
+    dimensions: {
+      width: 250,
+      height: 265,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Photo-only bounded crop x=1001,y=349,w=250,h=265 from the supplied menu concept; repeated UI flower badge and clipped card-corner pixels removed, with no text, price or arrow retained.",
+      statement:
+        "Bounded crop from the supplied generated menu concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "menu reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "cover the bounded red velvet card image frame with the photo-only crop",
+      focalPoint: "red velvet cake slice on patterned porcelain",
+      responsive:
+        "Keep the crop inside the menu card image frame; never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "menu-reference-cheesecake",
+    path: "/media/reference-derived/menu-reference-cheesecake.png",
+    sha256:
+      "437F25968CFE07C25006BD3AFC536976C0BD19B538E6417ED39C5C03419BAED9",
+    dimensions: {
+      width: 250,
+      height: 265,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Photo-only bounded crop x=1303,y=349,w=250,h=265 from the supplied menu concept; repeated UI flower badge and clipped card-corner pixels removed, with no text, price or arrow retained.",
+      statement:
+        "Bounded crop from the supplied generated menu concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "menu reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "cover the bounded cheesecake card image frame with the photo-only crop",
+      focalPoint: "cheesecake slice with blueberries and ceramic pot",
+      responsive:
+        "Keep the crop inside the menu card image frame; never expand it into a full reference screen.",
+    },
+  },
+  {
     id: "gallery-arched-interior",
     path: "/media/generated/gallery-arched-interior.png",
     sha256: "95CC57209EBA6A9DB4A11E77397D81803FBEB65C829BE6DC6D7EF2F88CEA9F27",

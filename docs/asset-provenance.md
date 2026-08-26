@@ -111,6 +111,20 @@ Non-secret prompt summary: warm editorial still life with iced coffee, espresso,
 
 This file is generated reference-compatible artwork. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its inventory, its signage, or its current appearance.
 
+### Menu reference-derived crops
+
+The five menu cards use bounded photo-only crops from the supplied generated menu concept (`DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924`). Created 2026-08-26, each crop is `250×265` PNG, classified `reference-derived`, `documentary: false`, and allowed only in the bounded menu card photo region (`bounded-reference-region`). The transformation removes the repeated UI flower badge and clipped card-corner pixels while retaining no copy, prices or arrows; the live flower mark and card frame remain React/CSS.
+
+| Asset | SHA-256 | Crop / role |
+| --- | --- | --- |
+| `menu-reference-cappuccino.png` | `881BD0DAE160C87BB9E513D3F5F7E4B732F214BF2833EC9538E50CB0AA41D8D5` | `x=115,y=349,w=250,h=265`; cappuccino card |
+| `menu-reference-berry-dessert.png` | `6F6DD5DF972A41568C20597B7EE26A571F169596F00B49DFFE00CC3E3F12EE68` | `x=411,y=349,w=250,h=265`; berry dessert card |
+| `menu-reference-pistachio-cake.png` | `2DD28E974E27337A21F4A2E1FBD8498D63D4F6052AA70C2E2AF045F3EA927F2F` | `x=706,y=349,w=250,h=265`; pistachio cake card |
+| `menu-reference-red-velvet.png` | `C55F076C6A9B96355CA045D9444281D7EE455AF49DC95CB10A76ACEC2C3B793A` | `x=1001,y=349,w=250,h=265`; red velvet card |
+| `menu-reference-cheesecake.png` | `437F25968CFE07C25006BD3AFC536976C0BD19B538E6417ED39C5C03419BAED9` | `x=1303,y=349,w=250,h=265`; cheesecake card |
+
+These are concept-derived visual references, not photographs of the real cafe, and must not be presented as documentary venue evidence. On mobile they remain bounded to the responsive menu rail and are never used as a full-screen reference composite.
+
 ### `gallery-arched-interior`
 
 | Field | Registered value |

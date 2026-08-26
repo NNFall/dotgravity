@@ -45,3 +45,51 @@ test("registers the menu coffee and croissant artwork as bounded non-documentary
   );
   expect(() => validateMediaManifest(mediaManifest)).not.toThrow();
 });
+
+test("registers five bounded non-documentary menu reference crops", () => {
+  const parentReferenceSha256 =
+    "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924";
+  const expectedCrops = [
+    ["menu-reference-cappuccino", 115],
+    ["menu-reference-berry-dessert", 411],
+    ["menu-reference-pistachio-cake", 706],
+    ["menu-reference-red-velvet", 1001],
+    ["menu-reference-cheesecake", 1303],
+  ] as const;
+
+  for (const [id, left] of expectedCrops) {
+    const menuArtwork = mediaManifest.find((asset) => asset.id === id);
+
+    expect(menuArtwork).toBeDefined();
+    if (!menuArtwork) {
+      throw new Error(`The bounded menu crop must be registered: ${id}.`);
+    }
+
+    expect(menuArtwork).toMatchObject({
+      id,
+      path: `/media/reference-derived/${id}.png`,
+      dimensions: { width: 250, height: 265 },
+      intendedScenes: ["menu"],
+      productionAllowance: {
+        allowed: true,
+        intendedUse: "menu reference crop photo region only",
+        referenceShape: "bounded-reference-region",
+      },
+      provenance: {
+        classification: "reference-derived",
+        documentary: false,
+        parentReferenceSha256,
+      },
+    });
+    expect(menuArtwork.provenance).toMatchObject({
+      transformation: expect.stringContaining(
+        `x=${left},y=349,w=250,h=265`,
+      ),
+    });
+    expect(menuArtwork.provenance.statement).toMatch(
+      /not documentary venue evidence/i,
+    );
+  }
+
+  expect(() => validateMediaManifest(mediaManifest)).not.toThrow();
+});

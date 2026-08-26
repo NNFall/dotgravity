@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  type CSSProperties,
   type KeyboardEvent,
   useRef,
   useState,
@@ -11,36 +10,73 @@ import { mediaManifest } from "../../media/manifest";
 import type { MediaAsset } from "../../media/types";
 import styles from "./MenuSection.module.css";
 
-function getMenuArtwork(): MediaAsset {
+function getReferenceMenuArtwork(id: string): MediaAsset {
   const artwork = mediaManifest.find(
-    (asset) => asset.id === "menu-iced-coffee-croissant",
+    (asset) => asset.id === id,
   );
 
   if (
     !artwork ||
-    artwork.provenance.classification !==
-      "generated/reference-compatible"
+    artwork.provenance.classification !== "reference-derived" ||
+    artwork.provenance.documentary ||
+    !artwork.productionAllowance.allowed ||
+    artwork.productionAllowance.referenceShape !== "bounded-reference-region"
   ) {
     throw new Error(
-      "The menu scene requires the registered non-documentary generated artwork.",
+      `The menu scene requires the registered non-documentary reference crop: ${id}.`,
     );
   }
 
   return artwork;
 }
 
-const menuArtwork = getMenuArtwork();
-
 const menuItems = [
-  { title: "Капучино", category: "Кофе", objectPosition: "50% 47%" },
-  { title: "Ягодный десерт", category: "Десерт", objectPosition: "50% 83%" },
-  { title: "Фисташковый торт", category: "Десерт", objectPosition: "76% 80%" },
-  { title: "Красный бархат", category: "Десерт", objectPosition: "21% 79%" },
-  { title: "Чизкейк", category: "Десерт", objectPosition: "63% 68%" },
+  {
+    title: "Капучино",
+    category: "Кофе",
+    artworkId: "menu-reference-cappuccino",
+  },
+  {
+    title: "Ягодный десерт",
+    category: "Десерт",
+    artworkId: "menu-reference-berry-dessert",
+  },
+  {
+    title: "Фисташковый торт",
+    category: "Десерт",
+    artworkId: "menu-reference-pistachio-cake",
+  },
+  {
+    title: "Красный бархат",
+    category: "Десерт",
+    artworkId: "menu-reference-red-velvet",
+  },
+  {
+    title: "Чизкейк",
+    category: "Десерт",
+    artworkId: "menu-reference-cheesecake",
+  },
 ] as const;
 
-const generatedMenuImageAlt =
-  "Сгенерированный иллюстративный натюрморт с кофе и выпечкой, не документальная фотография кафе.";
+type MenuArtworkId = (typeof menuItems)[number]["artworkId"];
+
+const menuArtworkById: Record<MenuArtworkId, MediaAsset> = {
+  "menu-reference-cappuccino": getReferenceMenuArtwork(
+    "menu-reference-cappuccino",
+  ),
+  "menu-reference-berry-dessert": getReferenceMenuArtwork(
+    "menu-reference-berry-dessert",
+  ),
+  "menu-reference-pistachio-cake": getReferenceMenuArtwork(
+    "menu-reference-pistachio-cake",
+  ),
+  "menu-reference-red-velvet": getReferenceMenuArtwork(
+    "menu-reference-red-velvet",
+  ),
+  "menu-reference-cheesecake": getReferenceMenuArtwork(
+    "menu-reference-cheesecake",
+  ),
+};
 
 function FlowerMark({ className }: { className?: string }) {
   return (
@@ -199,45 +235,50 @@ export function MenuSection() {
             onScroll={handleRailScroll}
             ref={cardRailRef}
           >
-            {menuItems.map((item, index) => (
-              <li
-                className={styles.menuCard}
-                data-active={
-                  hasActiveSelection && activeIndex === index ? "true" : undefined
-                }
-                data-menu-card-index={index}
-                id={`menu-card-${index + 1}`}
-                key={item.title}
-              >
-                <article
-                  aria-label={`Иллюстративная позиция меню: ${item.title}. Актуальный состав и стоимость уточняйте в кафе.`}
-                  className={styles.cardInner}
+            {menuItems.map((item, index) => {
+              const artwork = menuArtworkById[item.artworkId];
+
+              return (
+                <li
+                  className={styles.menuCard}
+                  data-active={
+                    hasActiveSelection && activeIndex === index
+                      ? "true"
+                      : undefined
+                  }
+                  data-menu-card-index={index}
+                  id={`menu-card-${index + 1}`}
+                  key={item.title}
                 >
-                  <div className={styles.imageFrame}>
-                    {/* The registered local asset needs five measured cover crops. */}
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      alt={generatedMenuImageAlt}
-                      data-provenance={menuArtwork.provenance.classification}
-                      src={menuArtwork.path}
-                      style={
-                        {
-                          objectPosition: item.objectPosition,
-                        } as CSSProperties
-                      }
-                    />
-                    <FlowerMark className={styles.cardFlower} />
-                    <span className={styles.generatedBadge}>
-                      Сгенерировано для иллюстрации
-                    </span>
-                  </div>
-                  <p className={styles.category}>{item.category}</p>
-                  <h3>{item.title}</h3>
-                  <span aria-hidden="true" className={styles.priceLine} />
-                  <p className={styles.priceNote}>Стоимость уточняйте</p>
-                </article>
-              </li>
-            ))}
+                  <article
+                    aria-label={`Иллюстративная позиция меню: ${item.title}. Актуальный состав и стоимость уточняйте в кафе.`}
+                    className={styles.cardInner}
+                  >
+                    <div className={styles.imageFrame}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        alt={`Референсный кроп «${item.title}», не документальная фотография кафе.`}
+                        data-provenance={artwork.provenance.classification}
+                        height={artwork.dimensions.height}
+                        src={artwork.path}
+                        width={artwork.dimensions.width}
+                      />
+                      <FlowerMark className={styles.cardFlower} />
+                      {artwork.provenance.classification ===
+                      "generated/reference-compatible" ? (
+                        <span className={styles.generatedBadge}>
+                          Сгенерировано для иллюстрации
+                        </span>
+                      ) : null}
+                    </div>
+                    <p className={styles.category}>{item.category}</p>
+                    <h3>{item.title}</h3>
+                    <span aria-hidden="true" className={styles.priceLine} />
+                    <p className={styles.priceNote}>Стоимость уточняйте</p>
+                  </article>
+                </li>
+              );
+            })}
           </ul>
           <button
             aria-controls="menu-card-rail"

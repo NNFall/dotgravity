@@ -30,7 +30,7 @@ const menuStyles = readFileSync(
 );
 
 describe("menu anchor scene", () => {
-  test("renders the five-item menu scene with honest generated-media disclosure", async () => {
+  test("renders five bounded reference crops with honest no-price disclosure", async () => {
     const menuSectionModule = await loadMenuSection();
 
     expect(menuSectionModule).not.toBeNull();
@@ -56,25 +56,32 @@ describe("menu anchor scene", () => {
     ).toBeInTheDocument();
     expect(within(menu).getAllByRole("listitem")).toHaveLength(5);
 
-    const menuArtwork = mediaManifest.find(
-      (asset) => asset.id === "menu-iced-coffee-croissant",
-    );
-    if (!menuArtwork) {
-      throw new Error("The bounded menu artwork must be registered.");
-    }
-
-    const generatedImages = within(menu).getAllByRole("img", {
-      name: /сгенерированн(?:ый|ая|ое)/i,
+    const expectedArtworkIds = [
+      "menu-reference-cappuccino",
+      "menu-reference-berry-dessert",
+      "menu-reference-pistachio-cake",
+      "menu-reference-red-velvet",
+      "menu-reference-cheesecake",
+    ] as const;
+    const referenceImages = within(menu).getAllByRole("img", {
+      name: /референсный кроп/i,
     });
-    expect(generatedImages).toHaveLength(5);
-    for (const image of generatedImages) {
+    expect(referenceImages).toHaveLength(expectedArtworkIds.length);
+    referenceImages.forEach((image, index) => {
+      const menuArtwork = mediaManifest.find(
+        (asset) => asset.id === expectedArtworkIds[index],
+      );
+      if (!menuArtwork) {
+        throw new Error("The bounded menu crop must be registered.");
+      }
+
       expect(image).toHaveAttribute("src", menuArtwork.path);
       expect(image).toHaveAttribute(
         "data-provenance",
-        "generated/reference-compatible",
+        "reference-derived",
       );
       expect(image).toHaveAccessibleName(/не документальн/i);
-    }
+    });
 
     expect(
       within(menu).getByRole("link", {
@@ -83,8 +90,8 @@ describe("menu anchor scene", () => {
     ).toHaveAttribute("href", "#contacts");
     expect(within(menu).getAllByText("Стоимость уточняйте")).toHaveLength(5);
     expect(
-      within(menu).getAllByText("Сгенерировано для иллюстрации"),
-    ).toHaveLength(5);
+      within(menu).queryAllByText("Сгенерировано для иллюстрации"),
+    ).toHaveLength(0);
     expect(screen.queryByText(/210 ₽|260 ₽|290 ₽|350 ₽|360 ₽/)).toBeNull();
   });
 
