@@ -1,9 +1,11 @@
+import { createHash } from "node:crypto";
 import {
   existsSync,
   mkdirSync,
   mkdtempSync,
   readFileSync,
   rmSync,
+  symlinkSync,
   writeFileSync,
 } from "node:fs";
 import { tmpdir } from "node:os";
@@ -11,7 +13,11 @@ import { dirname, join } from "node:path";
 import { afterEach, describe, expect, test } from "vitest";
 import { PNG } from "pngjs";
 
-import { comparePngFiles } from "../../scripts/compare-reference.mjs";
+import {
+  comparePngFiles,
+  isPathInside,
+  runRawComparison,
+} from "../../scripts/compare-reference.mjs";
 
 const temporaryRoots: string[] = [];
 
@@ -31,6 +37,89 @@ const writePng = (
   png.data.set(rgba);
   mkdirSync(dirname(path), { recursive: true });
   writeFileSync(path, PNG.sync.write(png));
+};
+
+const sha256 = (bytes: Buffer) =>
+  createHash("sha256").update(bytes).digest("hex").toUpperCase();
+
+const createRawGateFixture = (manifestHeroSha256?: string) => {
+  const repoRoot = makeFixtureRoot();
+  const baselinePath = join(
+    repoRoot,
+    "tests",
+    "visual",
+    "baselines",
+    "1672x941",
+    "hero.png",
+  );
+  const candidatePath = join(
+    repoRoot,
+    "artifacts",
+    "visual",
+    "captures",
+    "1672x941",
+    "hero.png",
+  );
+
+  writePng(baselinePath, 1, 1, [1, 2, 3, 255]);
+  writePng(candidatePath, 1, 1, [1, 2, 3, 255]);
+  const authoritativeHeroSha256 =
+    manifestHeroSha256 ?? sha256(readFileSync(baselinePath));
+  writeFileSync(
+    join(
+      repoRoot,
+      "tests",
+      "visual",
+      "baselines",
+      "1672x941",
+      "manifest.json",
+    ),
+    `${JSON.stringify(
+      {
+        scenes: [
+          "hero",
+          "about",
+          "menu",
+          "gallery",
+          "souvenirs",
+          "contacts",
+        ].map((sceneId) => ({
+          sceneId,
+          file: `${sceneId}.png`,
+          width: 1672,
+          height: 941,
+          rawComparedPixels: 1672 * 941,
+          sha256:
+            sceneId === "hero" ? authoritativeHeroSha256 : "0".repeat(64),
+        })),
+      },
+      null,
+      2,
+    )}\n`,
+    "utf8",
+  );
+
+  return { baselinePath, repoRoot };
+};
+
+const createBaselineJunctionEscapeFixture = () => {
+  const repoRoot = makeFixtureRoot();
+  const externalBaselines = makeFixtureRoot();
+  const baselineLink = join(
+    repoRoot,
+    "tests",
+    "visual",
+    "baselines",
+    "1672x941",
+  );
+  mkdirSync(dirname(baselineLink), { recursive: true });
+  mkdirSync(
+    join(repoRoot, "artifacts", "visual", "captures", "1672x941"),
+    { recursive: true },
+  );
+  symlinkSync(externalBaselines, baselineLink, "junction");
+
+  return repoRoot;
 };
 
 afterEach(() => {
@@ -138,4 +227,35 @@ describe("raw PNG comparator", () => {
       comparePngFiles({ baselinePath, candidatePath }),
     ).toThrow(/dimensions/i);
   });
+
+  test("refuses a baseline whose bytes do not match the authoritative manifest hash", () => {
+    const { repoRoot } = createRawGateFixture("0".repeat(64));
+
+    expect(() =>
+      runRawComparison({ log: () => undefined, repoRoot }),
+    ).toThrow(/manifest SHA-256/i);
+  });
+
+  test("refuses a baseline PNG whose actual dimensions drift from its manifest", () => {
+    const fixture = createRawGateFixture();
+
+    expect(() =>
+      runRawComparison({ log: () => undefined, repoRoot: fixture.repoRoot }),
+    ).toThrow(/actual PNG dimensions/i);
+  });
+
+  test("does not treat a drive-qualified Windows path as inside another drive", () => {
+    expect(isPathInside("D:\\dotgravity", "C:\\outside\\hero.png")).toBe(false);
+  });
+
+  test.skipIf(process.platform !== "win32")(
+    "refuses a baseline junction that escapes the repository root",
+    () => {
+      const repoRoot = createBaselineJunctionEscapeFixture();
+
+      expect(() =>
+        runRawComparison({ log: () => undefined, repoRoot }),
+      ).toThrow(/Baseline directory escaped its allowed directory/i);
+    },
+  );
 });

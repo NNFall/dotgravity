@@ -1,5 +1,12 @@
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, relative, resolve, sep } from "node:path";
+import { createHash } from "node:crypto";
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  realpathSync,
+  writeFileSync,
+} from "node:fs";
+import { dirname, isAbsolute, relative, resolve, sep } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import pixelmatch from "pixelmatch";
 import { PNG } from "pngjs";
@@ -25,18 +32,49 @@ const DEFAULT_REPO_ROOT = resolve(
   dirname(fileURLToPath(import.meta.url)),
   "..",
 );
+const SHA256_PATTERN = /^[A-Fa-f0-9]{64}$/;
 
 const fail = (message) => {
   throw new Error(`Raw visual comparison refused: ${message}`);
 };
 
-const isPathInside = (parent, candidate) => {
-  const childPath = relative(parent, candidate);
+export const isPathInside = (parent, candidate) => {
+  const childPath = relative(resolve(parent), resolve(candidate));
   return (
     childPath.length > 0 &&
     childPath !== ".." &&
-    !childPath.startsWith(`..${sep}`)
+    !childPath.startsWith(`..${sep}`) &&
+    !isAbsolute(childPath)
   );
+};
+
+const normalizeSha256 = (value, label) => {
+  if (typeof value !== "string" || !SHA256_PATTERN.test(value)) {
+    fail(`${label} must be exactly 64 hexadecimal characters.`);
+  }
+
+  return value.toUpperCase();
+};
+
+const hashFile = (path) =>
+  createHash("sha256").update(readFileSync(path)).digest("hex").toUpperCase();
+
+const realPathInside = (parent, candidate, label) => {
+  let realParent;
+  let realCandidate;
+  try {
+    realParent = realpathSync(parent);
+    realCandidate = realpathSync(candidate);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    fail(`${label} could not be resolved: ${detail}`);
+  }
+
+  if (!isPathInside(realParent, realCandidate)) {
+    fail(`${label} escaped its allowed directory.`);
+  }
+
+  return realCandidate;
 };
 
 const readPng = (path, label) => {
@@ -165,10 +203,24 @@ export function comparePngFiles(options) {
 
 const readBaselineManifest = (repoRoot) => {
   const baselineDirectory = resolve(repoRoot, BASELINE_DIRECTORY);
-  const manifestPath = resolve(baselineDirectory, "manifest.json");
+  if (!isPathInside(repoRoot, baselineDirectory)) {
+    fail("Baseline directory escaped the repository root.");
+  }
+  const realBaselineDirectory = realPathInside(
+    repoRoot,
+    baselineDirectory,
+    "Baseline directory",
+  );
+  const manifestPath = resolve(realBaselineDirectory, "manifest.json");
+  const realManifestPath = realPathInside(
+    realBaselineDirectory,
+    manifestPath,
+    "Baseline manifest",
+  );
+
   let manifest;
   try {
-    manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+    manifest = JSON.parse(readFileSync(realManifestPath, "utf8"));
   } catch (error) {
     const detail = error instanceof Error ? error.message : String(error);
     fail(`Baseline manifest is not readable JSON: ${detail}`);
@@ -199,11 +251,41 @@ const readBaselineManifest = (repoRoot) => {
       fail(`${entry.sceneId} baseline dimensions or raw pixel count drifted.`);
     }
 
-    const baselinePath = resolve(baselineDirectory, entry.file);
-    if (!isPathInside(baselineDirectory, baselinePath)) {
+    const baselinePath = resolve(realBaselineDirectory, entry.file);
+    if (!isPathInside(realBaselineDirectory, baselinePath)) {
       fail(`${entry.sceneId} baseline file escaped its directory.`);
     }
-    entriesByScene.set(entry.sceneId, { ...entry, baselinePath });
+    const realBaselinePath = realPathInside(
+      realBaselineDirectory,
+      baselinePath,
+      `${entry.sceneId} baseline file`,
+    );
+    const manifestSha256 = normalizeSha256(
+      entry.sha256,
+      `${entry.sceneId} manifest sha256`,
+    );
+    const currentSha256 = hashFile(realBaselinePath);
+    if (manifestSha256 !== currentSha256) {
+      fail(
+        `${entry.sceneId} manifest SHA-256 ${manifestSha256} does not match ` +
+          `the actual baseline bytes ${currentSha256}.`,
+      );
+    }
+    const baselineImage = readPng(realBaselinePath, "Baseline");
+    if (
+      baselineImage.width !== VIEWPORT.width ||
+      baselineImage.height !== VIEWPORT.height ||
+      baselineImage.width * baselineImage.height !== VIEWPORT.rawComparedPixels
+    ) {
+      fail(
+        `${entry.sceneId} actual PNG dimensions ${baselineImage.width}x${baselineImage.height} ` +
+          `do not match ${VIEWPORT.width}x${VIEWPORT.height}.`,
+      );
+    }
+    entriesByScene.set(entry.sceneId, {
+      ...entry,
+      baselinePath: realBaselinePath,
+    });
   }
 
   if (entriesByScene.size !== SCENE_IDS.length) {
@@ -223,12 +305,53 @@ const readBaselineManifest = (repoRoot) => {
  */
 export function runRawComparison(options = {}) {
   const { repoRoot = DEFAULT_REPO_ROOT, log = console.log } = options;
-  const resolvedRepoRoot = resolve(repoRoot);
+  let resolvedRepoRoot;
+  try {
+    resolvedRepoRoot = realpathSync(resolve(repoRoot));
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    fail(`Repository root could not be resolved: ${detail}`);
+  }
   const captureDirectory = resolve(resolvedRepoRoot, CAPTURE_DIRECTORY);
+  if (!isPathInside(resolvedRepoRoot, captureDirectory)) {
+    fail("Live capture directory escaped the repository root.");
+  }
+  if (!existsSync(captureDirectory)) {
+    fail(
+      `Live capture directory is missing: ${formatRelativePath(resolvedRepoRoot, captureDirectory)}. ` +
+        "Run npm run qa:visual before npm run qa:raw.",
+    );
+  }
+  const realCaptureDirectory = realPathInside(
+    resolvedRepoRoot,
+    captureDirectory,
+    "Live capture directory",
+  );
+
   const evidenceDirectory = resolve(resolvedRepoRoot, EVIDENCE_DIRECTORY);
+  if (!isPathInside(resolvedRepoRoot, evidenceDirectory)) {
+    fail("Raw comparison evidence directory escaped the repository root.");
+  }
+  mkdirSync(evidenceDirectory, { recursive: true });
+  const realEvidenceDirectory = realPathInside(
+    resolvedRepoRoot,
+    evidenceDirectory,
+    "Raw comparison evidence directory",
+  );
+  const heatmapDirectory = resolve(realEvidenceDirectory, "heatmaps");
+  if (!isPathInside(realEvidenceDirectory, heatmapDirectory)) {
+    fail("Raw comparison heatmap directory escaped its evidence directory.");
+  }
+  mkdirSync(heatmapDirectory, { recursive: true });
+  const realHeatmapDirectory = realPathInside(
+    realEvidenceDirectory,
+    heatmapDirectory,
+    "Raw comparison heatmap directory",
+  );
+
   const scenes = readBaselineManifest(resolvedRepoRoot).map((entry) => {
-    const candidatePath = resolve(captureDirectory, entry.file);
-    if (!isPathInside(captureDirectory, candidatePath)) {
+    const candidatePath = resolve(realCaptureDirectory, entry.file);
+    if (!isPathInside(realCaptureDirectory, candidatePath)) {
       fail(`${entry.sceneId} live capture path escaped its directory.`);
     }
     if (!existsSync(candidatePath)) {
@@ -237,21 +360,32 @@ export function runRawComparison(options = {}) {
           "Run npm run qa:visual before npm run qa:raw.",
       );
     }
-
-    const heatmapPath = resolve(
-      evidenceDirectory,
-      "heatmaps",
-      `${entry.sceneId}.png`,
+    const realCandidatePath = realPathInside(
+      realCaptureDirectory,
+      candidatePath,
+      `${entry.sceneId} live capture`,
     );
+
+    const heatmapPath = resolve(realHeatmapDirectory, `${entry.sceneId}.png`);
+    if (!isPathInside(realHeatmapDirectory, heatmapPath)) {
+      fail(`${entry.sceneId} heatmap path escaped its directory.`);
+    }
+    if (existsSync(heatmapPath)) {
+      realPathInside(
+        realHeatmapDirectory,
+        heatmapPath,
+        `${entry.sceneId} existing heatmap`,
+      );
+    }
     const metrics = comparePngFiles({
       baselinePath: entry.baselinePath,
-      candidatePath,
+      candidatePath: realCandidatePath,
       heatmapPath,
     });
     return {
       sceneId: entry.sceneId,
       baselinePath: formatRelativePath(resolvedRepoRoot, entry.baselinePath),
-      candidatePath: formatRelativePath(resolvedRepoRoot, candidatePath),
+      candidatePath: formatRelativePath(resolvedRepoRoot, realCandidatePath),
       heatmapPath: formatRelativePath(resolvedRepoRoot, heatmapPath),
       ...metrics,
       rawZeroMatch: metrics.changedPixels === 0,
@@ -285,8 +419,17 @@ export function runRawComparison(options = {}) {
     },
   };
 
-  mkdirSync(evidenceDirectory, { recursive: true });
-  const reportPath = resolve(evidenceDirectory, "report.json");
+  const reportPath = resolve(realEvidenceDirectory, "report.json");
+  if (!isPathInside(realEvidenceDirectory, reportPath)) {
+    fail("Raw comparison report path escaped its evidence directory.");
+  }
+  if (existsSync(reportPath)) {
+    realPathInside(
+      realEvidenceDirectory,
+      reportPath,
+      "Existing raw comparison report",
+    );
+  }
   writeFileSync(reportPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
 
   for (const scene of scenes) {

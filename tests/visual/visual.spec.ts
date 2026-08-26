@@ -19,6 +19,38 @@ const captureDirectory = resolve(
   "1672x941",
 );
 const captureManifestPath = resolve(captureDirectory, "capture-manifest.json");
+const sceneCaptureContexts = {
+  hero: {
+    liveHeader: "co-located",
+    referenceHeader: "included",
+    viewportOrigin: "document-top",
+  },
+  about: {
+    liveHeader: "not-applicable",
+    referenceHeader: "not-in-reference-viewport",
+    viewportOrigin: "scene-top",
+  },
+  menu: {
+    liveHeader: "not-applicable",
+    referenceHeader: "not-in-reference-viewport",
+    viewportOrigin: "scene-top",
+  },
+  gallery: {
+    liveHeader: "not-applicable",
+    referenceHeader: "not-in-reference-viewport",
+    viewportOrigin: "scene-top",
+  },
+  souvenirs: {
+    liveHeader: "not-applicable",
+    referenceHeader: "not-in-reference-viewport",
+    viewportOrigin: "scene-top",
+  },
+  contacts: {
+    liveHeader: "not-co-located",
+    referenceHeader: "included",
+    viewportOrigin: "scene-top",
+  },
+} as const;
 
 const relativeToRepo = (path: string) =>
   relative(process.cwd(), path).replaceAll(sep, "/");
@@ -55,7 +87,13 @@ test.describe("strict live visual capture", () => {
       file: string;
       width: number;
       height: number;
+      headerTopInViewport: number | null;
+      requestedScrollY: number;
       scrollY: number;
+      sceneTopInViewport: number;
+      captureContext: string;
+      liveHeader: string;
+      referenceHeader: string;
       sha256: string;
     }> = [];
 
@@ -63,13 +101,48 @@ test.describe("strict live visual capture", () => {
       expect(reference.viewportId).toBe(viewportId);
       expect(reference.width).toBe(width);
       expect(reference.height).toBe(height);
+      const context = sceneCaptureContexts[reference.sceneId];
 
       const scene = page.locator(reference.selector);
       await expect(scene, `${reference.sceneId} live component is present`).toBeVisible();
-      await scene.evaluate((element) => {
-        window.scrollTo(0, Math.round(element.getBoundingClientRect().top + window.scrollY));
-      });
+      const requestedScrollY = await scene.evaluate(
+        (element, viewportOrigin) => {
+          const requested =
+            viewportOrigin === "document-top"
+              ? 0
+              : element.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo(0, requested);
+          return requested;
+        },
+        context.viewportOrigin,
+      );
       await waitForStablePaint(page);
+      const frame = await scene.evaluate((element) => {
+        const header = document.querySelector<HTMLElement>(".site-header");
+        return {
+          headerHeight: header?.getBoundingClientRect().height ?? 0,
+          headerTopInViewport: header?.getBoundingClientRect().top ?? null,
+          renderedPixel: 1 / window.devicePixelRatio,
+          sceneTopInViewport: element.getBoundingClientRect().top,
+          scrollY: window.scrollY,
+        };
+      });
+      if (context.liveHeader === "co-located") {
+        expect(frame.scrollY).toBe(0);
+        expect(frame.headerTopInViewport).toBe(0);
+        expect(frame.sceneTopInViewport).toBe(frame.headerHeight);
+      } else if (context.liveHeader === "not-co-located") {
+        expect(frame.scrollY).toBeLessThan(requestedScrollY);
+        expect(frame.headerTopInViewport).toBeLessThan(0);
+        expect(frame.sceneTopInViewport).toBeGreaterThan(frame.renderedPixel);
+      } else {
+        expect(Math.abs(frame.sceneTopInViewport)).toBeLessThanOrEqual(
+          frame.renderedPixel,
+        );
+      }
+      if (context.referenceHeader === "included") {
+        expect(frame.headerHeight).toBeGreaterThan(0);
+      }
 
       const capturePath = resolve(captureDirectory, `${reference.sceneId}.png`);
       await page.screenshot({
@@ -89,7 +162,13 @@ test.describe("strict live visual capture", () => {
         file: `${reference.sceneId}.png`,
         width: capture.width,
         height: capture.height,
-        scrollY: await page.evaluate(() => window.scrollY),
+        headerTopInViewport: frame.headerTopInViewport,
+        requestedScrollY,
+        scrollY: frame.scrollY,
+        sceneTopInViewport: frame.sceneTopInViewport,
+        captureContext: context.viewportOrigin,
+        liveHeader: context.liveHeader,
+        referenceHeader: context.referenceHeader,
         sha256: sha256(captureBytes),
       });
     }
@@ -99,8 +178,10 @@ test.describe("strict live visual capture", () => {
       `${JSON.stringify(
         {
           schemaVersion: 1,
-          captureMode: "live-viewport-screenshot",
+          captureMode: "natural-live-viewport-screenshot-with-explicit-origin",
           baselineRendered: false,
+          headerReferenceContract:
+            "Hero includes its co-located live header. Contacts requests its live scene origin, records the browser's natural end-of-page clamp, and does not inject a header or spacer.",
           viewport: { id: viewportId, width, height },
           captures,
         },
