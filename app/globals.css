@@ -21,6 +21,16 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (min-width: 721px) {
+  html {
+    scrollbar-width: none;
+  }
+
+  html::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 body {
   min-inline-size: 320px;
   margin: 0;
