@@ -18,21 +18,21 @@ export const mediaManifest = [
       createdAt: "2026-08-25",
       createdWith: "Image Generation",
       promptSummary:
-        "Warm cafe-window composition with a church view for the bounded hero photo region; no readable signage, logos, or real-venue claim.",
+        "Warm cafe-window composition with a church view for the bounded hero or contacts photo region; no readable signage, logos, or real-venue claim.",
       statement:
-        "Generated reference-compatible artwork for the hero photo region only; it is not a documentary venue photograph and must not be presented as one.",
+        "Generated reference-compatible artwork for bounded hero or contacts photo regions only; it is not a documentary venue photograph and must not be presented as one.",
     },
-    intendedScenes: ["hero"],
+    intendedScenes: ["hero", "contacts"],
     productionAllowance: {
       allowed: true,
-      intendedUse: "hero photo region only",
+      intendedUse: "hero or contacts photo region only",
       referenceShape: "not-reference",
     },
     cropRules: {
-      strategy: "cover bounded hero photo region",
+      strategy: "cover bounded hero or contacts photo region",
       focalPoint: "window frame and church view",
       responsive:
-        "Keep the focal area inside the bounded hero crop; never extend it into a full-page reference screen.",
+        "Keep the focal area inside bounded hero or contacts crops; never extend it into a full-page reference screen.",
     },
   },
   {

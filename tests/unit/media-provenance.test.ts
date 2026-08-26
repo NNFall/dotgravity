@@ -61,7 +61,7 @@ afterEach(() => {
 });
 
 describe("media provenance registry", () => {
-  test("registers the generated hero with a valid, bounded production record", () => {
+  test("registers the generated hero for bounded hero and contacts photo regions", () => {
     expect(() => validateMediaManifest(mediaManifest)).not.toThrow();
 
     const hero = mediaManifest.find(
@@ -74,14 +74,14 @@ describe("media provenance registry", () => {
       sha256:
         "7598C48D9E51326F743A8D8E20C2190A4FAEC6454EAABE181EA1262DC2FB0861",
       dimensions: { width: 1672, height: 941 },
-      intendedScenes: ["hero"],
+      intendedScenes: ["hero", "contacts"],
       productionAllowance: {
         allowed: true,
-        intendedUse: "hero photo region only",
+        intendedUse: "hero or contacts photo region only",
         referenceShape: "not-reference",
       },
       cropRules: {
-        strategy: "cover bounded hero photo region",
+        strategy: "cover bounded hero or contacts photo region",
       },
       provenance: {
         classification: "generated/reference-compatible",

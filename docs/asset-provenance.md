@@ -67,11 +67,11 @@ The typed registry records the following production assets. Each record is inten
 | Class | `generated/reference-compatible` |
 | Documentary status | `false` |
 | Created | `2026-08-25` via Image Generation |
-| Intended scene and allowance | Hero photo region only; production use is allowed only for that bounded region |
+| Intended scene and allowance | Hero or contacts photo region only; production use is allowed only for either bounded region |
 | Reference shape | `not-reference`; it is not a full target screen or a reference composite |
-| Crop strategy | `cover` the bounded hero photo region, keeping the window frame and church view focal; responsive crops must not expand it into a full-page reference screen |
+| Crop strategy | `cover` the bounded hero or contacts photo region, keeping the window frame and church view focal; responsive crops must not expand it into a full-page reference screen |
 
-Non-secret prompt summary: warm cafe-window composition with a church view for the bounded hero photo region, with no readable signage, logos, or real-venue claim.
+Non-secret prompt summary: warm cafe-window composition with a church view for bounded hero or contacts photo regions, with no readable signage, logos, or real-venue claim.
 
 This file is generated reference-compatible artwork. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its inventory, its signage, or its current appearance.
 
