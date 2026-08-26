@@ -1,0 +1,142 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { createElement, type ComponentType } from "react";
+import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { describe, expect, test } from "vitest";
+
+import { mediaManifest } from "../../src/media/manifest";
+
+type MenuSectionModule = {
+  MenuSection: ComponentType;
+};
+
+const loadMenuSection = async (): Promise<MenuSectionModule | null> => {
+  try {
+    const componentSpecifier =
+      "../../src/components/scenes/" + "MenuSection";
+
+    return (await import(
+      /* @vite-ignore */ componentSpecifier
+    )) as MenuSectionModule;
+  } catch {
+    return null;
+  }
+};
+
+const menuStyles = readFileSync(
+  resolve(process.cwd(), "src/components/scenes/MenuSection.module.css"),
+  "utf8",
+);
+
+describe("menu anchor scene", () => {
+  test("renders the five-item menu scene with honest generated-media disclosure", async () => {
+    const menuSectionModule = await loadMenuSection();
+
+    expect(menuSectionModule).not.toBeNull();
+    if (!menuSectionModule) {
+      return;
+    }
+
+    render(createElement(menuSectionModule.MenuSection));
+
+    const menu = document.querySelector<HTMLElement>(
+      'section[data-scene="menu"]#menu',
+    );
+    expect(menu).not.toBeNull();
+    if (!menu) {
+      throw new Error("The menu scene must expose its stable anchor.");
+    }
+
+    expect(
+      within(menu).getByRole("heading", {
+        level: 2,
+        name: "ТО, РАДИ ЧЕГО ХОЧЕТСЯ ЗАГЛЯНУТЬ",
+      }),
+    ).toBeInTheDocument();
+    expect(within(menu).getAllByRole("listitem")).toHaveLength(5);
+
+    const menuArtwork = mediaManifest.find(
+      (asset) => asset.id === "menu-iced-coffee-croissant",
+    );
+    if (!menuArtwork) {
+      throw new Error("The bounded menu artwork must be registered.");
+    }
+
+    const generatedImages = within(menu).getAllByRole("img", {
+      name: /сгенерированн(?:ый|ая|ое)/i,
+    });
+    expect(generatedImages).toHaveLength(5);
+    for (const image of generatedImages) {
+      expect(image).toHaveAttribute("src", menuArtwork.path);
+      expect(image).toHaveAttribute(
+        "data-provenance",
+        "generated/reference-compatible",
+      );
+      expect(image).toHaveAccessibleName(/не документальн/i);
+    }
+
+    expect(
+      within(menu).getByRole("link", {
+        name: "Уточнить актуальное меню и стоимость в кафе",
+      }),
+    ).toHaveAttribute("href", "#contacts");
+    expect(within(menu).getAllByText("Стоимость уточняйте")).toHaveLength(5);
+    expect(
+      within(menu).getAllByText("Сгенерировано для иллюстрации"),
+    ).toHaveLength(5);
+    expect(screen.queryByText(/210 ₽|260 ₽|290 ₽|350 ₽|360 ₽/)).toBeNull();
+  });
+
+  test("offers button and keyboard controls for the scroll-snap menu rail", async () => {
+    const menuSectionModule = await loadMenuSection();
+
+    expect(menuSectionModule).not.toBeNull();
+    if (!menuSectionModule) {
+      return;
+    }
+
+    const user = userEvent.setup();
+    render(createElement(menuSectionModule.MenuSection));
+
+    const carousel = screen.getByRole("region", {
+      name: "Иллюстративная витрина меню",
+    });
+    const status = within(carousel).getByRole("status");
+    const next = within(carousel).getByRole("button", {
+      name: "Следующая иллюстративная позиция меню",
+    });
+
+    expect(status).toHaveTextContent("Позиция 1 из 5: Капучино");
+
+    await user.click(next);
+    expect(status).toHaveTextContent("Позиция 2 из 5: Ягодный десерт");
+    expect(document.querySelector("#menu-card-2")).toHaveAttribute(
+      "data-active",
+      "true",
+    );
+
+    carousel.focus();
+    await user.keyboard("{ArrowRight}");
+    expect(status).toHaveTextContent("Позиция 3 из 5: Фисташковый торт");
+
+    await user.keyboard("{ArrowLeft}");
+    expect(status).toHaveTextContent("Позиция 2 из 5: Ягодный десерт");
+  });
+
+  test("keeps the five-card desktop rail aligned to the measured menu anchor", () => {
+    expect(menuStyles).toContain("width: min(100% - 70px, 1465px);");
+    expect(menuStyles).toContain("top: 30px;");
+    expect(menuStyles).toContain("height: 441px;");
+  });
+
+  test("keeps touch-sized previous and next controls visible alongside mobile scroll snap", () => {
+    const mobileControls = menuStyles.match(
+      /@media \(max-width: 720px\) \{[\s\S]*?\.railArrowLeft,[\s\S]*?\.railArrowRight \{([\s\S]*?)\n  \}/,
+    );
+
+    expect(mobileControls?.[1]).toContain("display: grid;");
+    expect(mobileControls?.[1]).toContain("width: 44px;");
+    expect(mobileControls?.[1]).toContain("height: 44px;");
+  });
+});
