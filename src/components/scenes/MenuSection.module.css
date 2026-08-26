@@ -63,7 +63,7 @@
   margin: 32px 0 0;
   color: var(--ink);
   font-family: Prata, Georgia, serif;
-  font-size: clamp(2.65rem, 4.28vw, 4.48rem);
+  font-size: clamp(2.65rem, 3.6vw, 3.75rem);
   font-weight: 400;
   letter-spacing: -0.032em;
   line-height: 1.04;
@@ -438,6 +438,13 @@
     radial-gradient(ellipse at 69% 60%, transparent 0 19px, rgb(180 71 37 / 67%) 19px 20px, transparent 20px) 50% 25% / 57% 48% no-repeat,
     linear-gradient(67deg, transparent 49%, rgb(180 71 37 / 67%) 49.3% 50%, transparent 50.3%) center / 100% 100% no-repeat;
   transform: rotate(-12deg);
+}
+
+@media (min-width: 1440px) {
+  .menuScene {
+    box-sizing: border-box;
+    height: max(941px, 56.28vw);
+  }
 }
 
 @media (max-width: 1200px) {
