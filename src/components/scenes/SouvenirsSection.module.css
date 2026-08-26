@@ -4,9 +4,9 @@
   min-height: 941px;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at 71% 7%, rgb(255 255 255 / 54%), transparent 25rem),
-    linear-gradient(103deg, rgb(234 219 207 / 37%), transparent 39%),
-    var(--paper);
+    radial-gradient(circle at 71% 7%, rgb(255 255 255 / 5%), transparent 25rem),
+    linear-gradient(103deg, rgb(234 219 207 / 20%), transparent 39%),
+    #f6e9dd;
 }
 
 .composition {
@@ -18,20 +18,34 @@
 
 .topographicLines {
   position: absolute;
-  top: -233px;
-  left: 38.6%;
-  width: 428px;
-  height: 422px;
-  border: 1px solid rgb(180 71 37 / 15%);
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 20px rgb(180 71 37 / 0%),
-    0 0 0 40px rgb(180 71 37 / 9%),
-    0 0 0 60px rgb(180 71 37 / 0%),
-    0 0 0 80px rgb(180 71 37 / 7%),
-    0 0 0 100px rgb(180 71 37 / 0%),
-    0 0 0 120px rgb(180 71 37 / 5%);
+  top: -244px;
+  left: 33.7%;
+  width: 430px;
+  height: 405px;
+  color: rgb(180 71 37 / 25%);
   pointer-events: none;
+}
+
+.topographicLines span {
+  position: absolute;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+.topographicLines span:nth-child(1) {
+  inset: 0;
+}
+
+.topographicLines span:nth-child(2) {
+  inset: 24px;
+}
+
+.topographicLines span:nth-child(3) {
+  inset: 49px;
+}
+
+.topographicLines span:nth-child(4) {
+  inset: 74px;
 }
 
 .dotField {
@@ -214,6 +228,7 @@
   height: 536px;
   margin: 0;
   overflow: hidden;
+  padding: 11px 10px;
   border: 1px solid rgb(143 50 29 / 64%);
   border-radius: 25px 25px 19px 19px;
   background: var(--porcelain);
@@ -221,12 +236,7 @@
 }
 
 .mainArtwork::after {
-  position: absolute;
-  inset: 9px;
-  border: 1px solid rgb(245 238 230 / 58%);
-  border-radius: 18px 18px 13px 13px;
-  content: "";
-  pointer-events: none;
+  display: none;
 }
 
 .mainArtwork img {
@@ -235,7 +245,7 @@
   height: 100%;
   object-fit: cover;
   object-position: 49% 51%;
-  filter: saturate(0.89) sepia(0.055) contrast(0.98);
+  filter: none;
 }
 
 .mainArtwork figcaption {
@@ -297,7 +307,11 @@
   right: 2.5%;
   left: 2.5%;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns:
+    minmax(0, 1.07fr)
+    minmax(0, 1fr)
+    minmax(0, 1.01fr)
+    minmax(0, 1.087fr);
   gap: 18px;
   margin: 0;
   padding: 0;
@@ -309,7 +323,7 @@
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  border: 1px solid rgb(180 71 37 / 36%);
+  border: 1px solid rgb(180 71 37 / 25%);
   border-radius: 11px;
   background: rgb(245 238 230 / 70%);
 }
@@ -317,15 +331,42 @@
 .storyCard article {
   box-sizing: border-box;
   display: grid;
-  grid-template-columns: minmax(126px, 56.3%) minmax(0, 1fr);
+  grid-template-columns: minmax(0, var(--story-art-width, 56.3%)) minmax(0, 1fr);
   gap: 14px;
   height: 100%;
-  padding: 11px 7px;
+  padding: 12px 7px 11px;
+}
+
+.storyCard:nth-child(1) article {
+  --story-art-width: 212px;
+}
+
+.storyCard:nth-child(2) article {
+  --story-art-width: 204px;
+}
+
+.storyCard:nth-child(3) article {
+  --story-art-width: 203px;
+}
+
+.storyCard:nth-child(4) article {
+  --story-art-width: 216px;
+}
+
+@media (min-width: 901px) {
+  .storyCard:nth-child(3) article {
+    padding-left: 8px;
+  }
+
+  .storyCard:nth-child(4) article {
+    padding-left: 6px;
+  }
 }
 
 .storyVisual {
   position: relative;
   min-width: 0;
+  min-height: 0;
   overflow: hidden;
   border-radius: 7px;
   background: var(--porcelain);
@@ -336,7 +377,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(0.82) sepia(0.08) contrast(0.98);
+  filter: none;
 }
 
 .braceletPaper {
@@ -362,6 +403,7 @@
   position: relative;
   display: flex;
   min-width: 0;
+  min-height: 0;
   padding: 17px 7px 13px;
   flex-direction: column;
   align-items: flex-start;
@@ -607,11 +649,12 @@
     width: 100%;
     height: min(104vw, 518px);
     margin-top: 44px;
+    padding: 0;
     border-radius: 24px 24px 16px 16px;
   }
 
   .mainArtwork::after {
-    border-radius: 17px 17px 10px 10px;
+    display: none;
   }
 
   .provenanceNote {

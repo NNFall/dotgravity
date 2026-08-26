@@ -178,7 +178,7 @@ describe("souvenirs anchor scene", () => {
     const storyArticle = desktopStyles.match(
       /\.storyCard article\s*\{([\s\S]*?)\n  \}/i,
     )?.[1];
-    expect(storyArticle).toMatch(/padding:\s*11px 7px;/i);
+    expect(storyArticle).toMatch(/padding:\s*12px 7px 11px;/i);
     expect(storyArticle).toMatch(/gap:\s*14px;/i);
     const storyContent = desktopStyles.match(
       /\.storyContent\s*\{([\s\S]*?)\n  \}/i,

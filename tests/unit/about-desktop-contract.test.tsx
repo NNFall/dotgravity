@@ -32,6 +32,13 @@ describe("about desktop scene geometry contract", () => {
     expect(section).toMatch(/\bheight:\s*max\(850px,\s*56\.28vw\);/);
     expect(photoFrame).toMatch(/\bheight:\s*100%;/);
     expect(photoFrame).toMatch(/\bmin-height:\s*0;/);
+    expect(photoFrame).toMatch(
+      /\bwidth:\s*min\(100%,\s*calc\(max\(850px,\s*56\.28vw\)\s*\*\s*0\.84697\)\);/,
+    );
+    expect(photoFrame).toMatch(
+      /\bmargin:\s*0\s+0\s+0\s+max\(17px,\s*1\.016746vw\);/,
+    );
+    expect(photoFrame).toMatch(/\bborder:\s*0;/);
     expect(photoFrame).not.toMatch(/\bmin-height:\s*inherit;/);
     expect(mobileSection).toMatch(/\bheight:\s*auto;/);
   });
@@ -49,6 +56,9 @@ describe("about desktop scene geometry contract", () => {
     const cathedral = getRule(desktopCss, ".locationCardCathedral");
     const footer = getRule(desktopCss, ".footerCallout");
     const cta = getRule(desktopCss, ".cta");
+    const featureHeading = getRule(desktopCss, ".feature h4");
+    const featureDescription = getRule(desktopCss, ".feature p");
+    const featureIcon = getRule(desktopCss, ".featureIcon svg");
     const mobileLocationCard = getRule(mobileCss, ".locationCard");
 
     expect(locationCard).toMatch(/\bheight:\s*204px;/);
@@ -57,8 +67,14 @@ describe("about desktop scene geometry contract", () => {
       /\bpadding:\s*53px\s+24px\s+26px\s+clamp\(28px,\s*4\.9vw,\s*82px\);/,
     );
     expect(cathedral).toMatch(/\bwidth:\s*90px;/);
-    expect(footer).toMatch(/\bmargin:\s*clamp\(52px,\s*5vh,\s*56px\) auto 0;/);
-    expect(cta).toMatch(/\bmargin-top:\s*34px;/);
+    expect(featureHeading).toMatch(/\bmargin:\s*24px 0 0;/);
+    expect(featureDescription).toMatch(/\bfont-size:\s*clamp\(0\.62rem,\s*0\.72vw,\s*0\.76rem\);/);
+    expect(featureDescription).toMatch(/\bline-height:\s*1\.55;/);
+    expect(featureIcon).toMatch(/\bwidth:\s*58px;/);
+    expect(featureIcon).toMatch(/\bheight:\s*54px;/);
+    expect(footer).toMatch(/\bmargin:\s*42px auto 0;/);
+    expect(footer).toMatch(/\btransform:\s*translateX\(2px\);/);
+    expect(cta).toMatch(/\bmargin-top:\s*33px;/);
     expect(mobileLocationCard).toMatch(/\bheight:\s*auto;/);
   });
 });

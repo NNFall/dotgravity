@@ -257,11 +257,11 @@ This file is generated reference-compatible artwork. It is **not a documentary v
 
 ### Hero reference-derived crop
 
-The desktop hero photo layer uses one bounded, alpha-masked crop from the supplied generated hero concept (`21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559`). Created 2026-08-26, `hero-reference-photo.png` is `947×836` PNG, classified `reference-derived`, `documentary: false`, and allowed only inside the desktop hero photo polygon (`bounded-reference-region`). The source rectangle is `x=725,y=105,w=947,h=836`; the mask follows the measured diagonal and removes the plaque safety region `x=1411..1547,y=131..509` in full-reference coordinates. The live diagonal hairline, plaque, copy and all surrounding structure remain React/CSS.
+The desktop hero photo layer uses one bounded, alpha-masked crop from the supplied generated hero concept (`21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559`). Created 2026-08-26, `hero-reference-photo.png` is `947×836` PNG, classified `reference-derived`, `documentary: false`, and allowed only inside the desktop hero photo polygon (`bounded-reference-region`). The source rectangle is `x=725,y=105,w=947,h=836`; the mask follows the measured diagonal through the crop edges, with deterministic dark-wood inpainting over the plaque safety region `x=1411..1547,y=131..509` in full-reference coordinates so the live DOM plaque sits over a continuous photo layer. The live diagonal hairline, plaque, copy and all surrounding structure remain React/CSS.
 
 | Asset | SHA-256 | Crop / role |
 | --- | --- | --- |
-| `hero-reference-photo.png` | `53BB40ED34BDE8F86E4B823C0FDE2A73D60DADB8C5BEAFE21AAE853F32B09DFA` | `x=725,y=105,w=947,h=836`; masked hero window/coffee/porcelain photo layer |
+| `hero-reference-photo.png` | `789791B7809699ABDA65EBF2D2AB03A9E2EE2448FB43D12CA24AE0F12FBAC624` | `x=725,y=105,w=947,h=836`; edge-to-edge diagonal alpha mask with deterministic dark-wood inpaint beneath the live plaque |
 
 This is a bounded fragment of the supplied concept, not a photograph of the real cafe. The generated hero asset remains the responsive fallback at mobile widths; the reference crop is never expanded into a full-screen composite.
 

@@ -28,8 +28,8 @@ describe("hero and about desktop visual contracts", () => {
     expect(heroCopy).toMatch(/\bpadding:\s*clamp\(78px,\s*11vh,\s*104px\) 0 64px/);
     expect(heroHeading).toMatch(/\bfont-size:\s*clamp\(4rem,\s*4\.95vw,\s*6rem\);/);
     expect(heroHeading).toMatch(/\bline-height:\s*1\.18;/);
-    expect(kicker).toMatch(/\bmargin:\s*clamp\(10px,\s*1\.5vh,\s*16px\) 0 0;/);
-    expect(introduction).toMatch(/\bmargin:\s*clamp\(19px,\s*2\.8vh,\s*28px\) 0 0;/);
+    expect(kicker).toMatch(/\bmargin:\s*clamp\(8px,\s*1vh,\s*10px\) 0 0;/);
+    expect(introduction).toMatch(/\bmargin:\s*clamp\(16px,\s*2\.45vh,\s*24px\) 0 0;/);
     expect(introduction).toMatch(/\bline-height:\s*1\.8;/);
     expect(primaryCta).toMatch(/\bmargin-top:\s*clamp\(22px,\s*2\.8vh,\s*28px\);/);
     expect(photoHairline).toMatch(/\bclip-path:\s*polygon\(/);

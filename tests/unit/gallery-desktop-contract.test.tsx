@@ -40,7 +40,7 @@ describe("gallery desktop canvas contract", () => {
       /\.introduction\s*\{[^}]*\bmargin:\s*14px\s+0\s+0\s*;/,
     );
     expect(desktopStyles).toMatch(
-      /\.introduction\s*\{[^}]*\bfont-size:\s*0\.875rem\s*;/,
+      /\.introduction\s*\{[^}]*\bfont-size:\s*0\.9rem\s*;/,
     );
     expect(desktopStyles).toMatch(
       /\.storyDetails\s*\{[^}]*\bmargin:\s*25px\s+0\s+0\s*;/,
@@ -52,7 +52,13 @@ describe("gallery desktop canvas contract", () => {
       /\.motto\s*\{[^}]*\bmargin:\s*auto\s+0\s+0\s+-11px\s*;/,
     );
     expect(desktopStyles).toMatch(
-      /\.mainPhoto\s*\{[^}]*\bleft:\s*39\.3%\s*;/,
+      /\.mainPhoto\s*\{[^}]*\bleft:\s*40\.43%\s*;/,
+    );
+    expect(desktopStyles).toMatch(
+      /\.mainPhoto\s*\{[^}]*\btop:\s*52px\s*;[^}]*\bwidth:\s*582px\s*;[^}]*\bheight:\s*830px\s*;/,
+    );
+    expect(desktopStyles).toMatch(
+      /\.mainPhoto\s+img\s*\{[^}]*\bwidth:\s*582px\s*;[^}]*\bheight:\s*830px\s*;[^}]*\btransform:\s*none\s*;/,
     );
     expect(desktopStyles).toMatch(
       /\.composition::after\s*\{[^}]*transform:\s*translate\(-13px,\s*0\)\s*;/,

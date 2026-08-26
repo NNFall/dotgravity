@@ -102,7 +102,7 @@ describe("gallery anchor scene", () => {
     const details = screen.getByRole("group", {
       name: "Подробнее о визуальной композиции",
     });
-    const summary = within(details).getByText("Посмотреть детали");
+    const summary = within(details).getByText("Посмотреть галерею");
 
     expect(details).not.toHaveAttribute("open");
     await user.click(summary);

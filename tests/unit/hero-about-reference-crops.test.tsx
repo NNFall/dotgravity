@@ -17,6 +17,8 @@ describe("bounded hero and about reference crops", () => {
 
     expect(heroCrop).toMatchObject({
       path: "/media/reference-derived/hero-reference-photo.png",
+      sha256:
+        "789791B7809699ABDA65EBF2D2AB03A9E2EE2448FB43D12CA24AE0F12FBAC624",
       dimensions: { width: 947, height: 836 },
       provenance: {
         classification: "reference-derived",
@@ -32,6 +34,9 @@ describe("bounded hero and about reference crops", () => {
     expect(heroCrop?.provenance).toMatchObject({
       transformation: expect.stringContaining("x=725,y=105,w=947,h=836"),
     });
+    if (heroCrop?.provenance.classification === "reference-derived") {
+      expect(heroCrop.provenance.transformation).toMatch(/inpaint/i);
+    }
 
     expect(aboutCrop).toMatchObject({
       path: "/media/reference-derived/about-reference-arch.png",
@@ -75,7 +80,7 @@ describe("bounded hero and about reference crops", () => {
   });
 
   test("documents desktop-only switching and keeps the baseline out of source", async () => {
-    const [heroCss, aboutCss, heroSource, aboutSource] = await Promise.all([
+    const [heroCss, aboutCss, heroSource, aboutSource, globalCss] = await Promise.all([
       readFile(resolve(process.cwd(), "src/components/hero/HeroSection.module.css"), "utf8"),
       readFile(
         resolve(process.cwd(), "src/components/scenes/AboutSection.module.css"),
@@ -86,10 +91,13 @@ describe("bounded hero and about reference crops", () => {
         resolve(process.cwd(), "src/components/scenes/AboutSection.tsx"),
         "utf8",
       ),
+      readFile(resolve(process.cwd(), "app/globals.css"), "utf8"),
     ]);
 
     expect(heroCss).toMatch(/@media\s*\(min-width:\s*721px\)/);
     expect(heroCss).toMatch(/referenceCrop[\s\S]*display:\s*block/);
+    expect(globalCss).toMatch(/\.hero-kicker[\s\S]*letter-spacing:\s*-0\.02em/);
+    expect(globalCss).toMatch(/\.hero-features svg[\s\S]*width:\s*62px/);
     expect(aboutCss).toMatch(/@media\s*\(min-width:\s*761px\)/);
     expect(aboutCss).toMatch(/referenceCrop[\s\S]*display:\s*block/);
     expect(heroSource).not.toMatch(/tests\/visual\/baselines|referenceAtlas|rawComparedPixels/i);

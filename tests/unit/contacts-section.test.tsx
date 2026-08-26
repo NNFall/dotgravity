@@ -124,6 +124,49 @@ describe("ContactsSection", () => {
     expect(screen.queryByText(/09:00|22:00|круглосуточно/i)).not.toBeInTheDocument();
   });
 
+  test("keeps the three desktop contact pictograms inside reference-sized copper medallions", async () => {
+    const { ContactsSection } = await import(
+      "../../src/components/scenes/ContactsSection"
+    );
+
+    const { container } = render(<ContactsSection />);
+    const contactList = container.querySelector(
+      "section#contacts address:has([data-contact-fact='hours'])",
+    );
+    const icons = contactList?.querySelectorAll("[data-contact-icon]");
+
+    expect(icons).toHaveLength(3);
+    expect(Array.from(icons ?? [], (icon) => icon.querySelector("svg"))).toHaveLength(3);
+    expect(Array.from(icons ?? [], (icon) => icon.getAttribute("aria-hidden"))).toEqual([
+      "true",
+      "true",
+      "true",
+    ]);
+  });
+
+  test("uses a real phone action for booking and keeps the route as a separate map link", async () => {
+    const { ContactsSection } = await import(
+      "../../src/components/scenes/ContactsSection"
+    );
+
+    const { container } = render(<ContactsSection />);
+    const scene = container.querySelector("section#contacts[data-scene='contacts']");
+    const booking = scene?.querySelector("a[data-action='booking']");
+    const route = scene?.querySelector(
+      "a[data-action='route'][href='https://yandex.ru/maps/-/CTDBI0~o']",
+    );
+
+    expect(booking).toHaveAttribute("href", "tel:+78462630404");
+    expect(booking).toHaveTextContent("Забронировать столик");
+    expect(booking).toHaveAttribute(
+      "aria-label",
+      "Позвонить в кафе и забронировать столик",
+    );
+    expect(route).toHaveTextContent("Построить маршрут");
+    expect(route).toHaveAttribute("target", "_blank");
+    expect(route).toHaveAttribute("rel", expect.stringContaining("noreferrer"));
+  });
+
   test("lets the mobile editorial heading wrap inside the contact canvas", () => {
     const css = readFileSync(
       "src/components/scenes/ContactsSection.module.css",

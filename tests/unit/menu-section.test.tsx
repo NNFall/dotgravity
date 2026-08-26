@@ -162,9 +162,9 @@ describe("menu anchor scene", () => {
   });
 
   test("keeps the five-card desktop rail aligned to the measured menu anchor", () => {
-    expect(menuStyles).toContain("width: min(100% - 70px, 1465px);");
-    expect(menuStyles).toContain("top: 30px;");
-    expect(menuStyles).toContain("height: 441px;");
+    expect(menuStyles).toContain("width: min(100% - 64px, 1470px);");
+    expect(menuStyles).toContain("top: 8px;");
+    expect(menuStyles).toContain("width: min(10.2vw, 170px);");
   });
 
   test("keeps touch-sized previous and next controls visible alongside mobile scroll snap", () => {

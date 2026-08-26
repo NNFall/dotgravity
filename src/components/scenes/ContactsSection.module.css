@@ -4,9 +4,9 @@
   min-height: calc(941px - var(--header-height));
   overflow: clip;
   background:
-    radial-gradient(circle at 73% 9%, rgb(255 255 255 / 60%), transparent 26rem),
-    linear-gradient(116deg, rgb(234 219 207 / 42%), transparent 46%),
-    var(--paper);
+    radial-gradient(circle at 73% 9%, rgb(255 255 255 / 8%), transparent 26rem),
+    linear-gradient(116deg, rgb(234 219 207 / 5%), transparent 46%),
+    #f6e8dc;
 }
 
 .referenceHeader {
@@ -133,18 +133,16 @@
   gap: 0;
   width: min(100%, 387px);
   margin: 18px 0 0;
-  border-top: 1px solid rgb(180 71 37 / 43%);
   font-style: normal;
 }
 
 .contactItem {
   display: grid;
-  grid-template-columns: 37px minmax(0, 1fr) 34px;
+  grid-template-columns: 50px minmax(0, 1fr) 34px;
   align-items: center;
-  column-gap: 15px;
+  column-gap: 16px;
   min-height: 80px;
   padding: 12px 0;
-  border-bottom: 1px solid rgb(180 71 37 / 43%);
   color: var(--ink);
   transition:
     color 220ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -160,6 +158,30 @@
   width: 30px;
   height: 1px;
   justify-self: end;
+}
+
+.contactIcon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  margin-left: -4px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--copper);
+  color: var(--paper);
+  gap: 0;
+}
+
+.contactIcon svg {
+  width: 30px;
+  height: 30px;
+  color: currentColor;
+}
+
+.contactIcon:has(svg[viewBox="0 0 32 42"]) svg {
+  width: 27px;
+  height: 35px;
 }
 
 .contactItem > svg:first-child {
@@ -178,6 +200,11 @@
   display: grid;
   gap: 6px;
   min-width: 0;
+}
+
+.contactItem .contactIcon {
+  gap: 0;
+  min-width: 48px;
 }
 
 .contactItem small {
@@ -241,6 +268,49 @@
 
 .routeButton:active {
   transform: translateY(1px) scale(0.99);
+}
+
+.routeLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 22px;
+  min-height: 44px;
+  margin-top: 29px;
+  color: var(--copper-deep);
+  font-size: clamp(0.68rem, 0.78vw, 0.82rem);
+  font-weight: 560;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-decoration-color: rgb(143 50 29 / 55%);
+  text-underline-offset: 6px;
+  transition:
+    color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+    text-decoration-color 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.routeLink svg {
+  width: 44px;
+  height: 44px;
+  flex: 0 0 auto;
+}
+
+.routeLink:hover {
+  color: var(--copper);
+  text-decoration-color: currentColor;
+  transform: translateX(2px);
+}
+
+.routeLink:active {
+  transform: translateX(1px) scale(0.99);
+}
+
+@media (min-width: 1181px) {
+  .contactItem > svg:last-child {
+    display: none;
+  }
 }
 
 .photoPair {
@@ -344,7 +414,7 @@
 .routePanel {
   position: absolute;
   z-index: 5;
-  right: 3%;
+  right: 2.94%;
   bottom: 32px;
   width: 59.8%;
   height: 314px;
@@ -439,6 +509,42 @@
   color: rgb(180 71 37 / 43%);
 }
 
+.mapBlocks {
+  color: rgb(180 71 37 / 24%);
+  opacity: 0.62;
+}
+
+.mapStreets {
+  opacity: 0.64;
+}
+
+.mapLabels {
+  color: rgb(46 39 35 / 76%);
+  font-family: 'Montserrat Variable', Montserrat, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 560;
+  letter-spacing: 0.035em;
+  opacity: 0.76;
+}
+
+.mapVenueMark,
+.mapVenuePin,
+.mapChurchMark {
+  color: var(--copper);
+}
+
+.mapVenueMark {
+  opacity: 0.9;
+}
+
+.mapVenuePin {
+  opacity: 0.95;
+}
+
+.mapChurchMark {
+  opacity: 0.76;
+}
+
 .routePanel figcaption {
   position: absolute;
   z-index: 3;
@@ -472,10 +578,10 @@
   right: 0;
   bottom: 0;
   display: grid;
-  align-content: center;
-  gap: 13px;
+  align-content: start;
+  gap: 0;
   width: 36.5%;
-  padding: 29px clamp(18px, 2.15vw, 36px);
+  padding: 23px 32px 22px 49px;
   border-left: 1px solid rgb(180 71 37 / 50%);
   background: rgb(245 238 230 / 76%);
 }
@@ -498,6 +604,49 @@
   font-weight: 470;
   letter-spacing: 0.008em;
   line-height: 1.46;
+}
+
+.travelRows {
+  display: grid;
+  gap: 13px;
+  margin-top: 20px;
+}
+
+.travelRow {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: start;
+  column-gap: 14px;
+  min-height: 55px;
+}
+
+.travelRow > svg {
+  width: 32px;
+  max-height: 36px;
+  margin-left: -5px;
+  color: var(--copper);
+}
+
+.travelRow > span {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+}
+
+.travelRow b {
+  color: var(--ink);
+  font-size: clamp(0.62rem, 0.72vw, 0.76rem);
+  font-weight: 640;
+  letter-spacing: 0.012em;
+  line-height: 1.2;
+}
+
+.travelRow small {
+  color: var(--ink);
+  font-size: clamp(0.56rem, 0.64vw, 0.68rem);
+  font-weight: 460;
+  letter-spacing: 0.006em;
+  line-height: 1.38;
 }
 
 .routeSidebar a {
@@ -533,6 +682,22 @@
 
 .routeSidebar a:active {
   transform: translateX(1px) scale(0.99);
+}
+
+@media (min-width: 1181px) {
+  .routePanelCopy,
+  .routePanel > figcaption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    border: 0;
+    white-space: nowrap;
+  }
 }
 
 @media (max-width: 1180px) {
@@ -610,10 +775,35 @@
     min-height: 80px;
   }
 
+  .contactIcon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    margin-left: -2px;
+  }
+
+  .contactItem .contactIcon {
+    min-width: 42px;
+  }
+
+  .contactIcon svg {
+    width: 27px;
+    height: 27px;
+  }
+
+  .contactIcon:has(svg[viewBox="0 0 32 42"]) svg {
+    width: 24px;
+    height: 31px;
+  }
+
   .routeButton {
     width: min(100%, 430px);
     min-height: 58px;
     margin-top: 25px;
+  }
+
+  .routeLink {
+    margin-top: 22px;
   }
 
   .photoPair {
@@ -691,6 +881,12 @@
     width: min(58%, 280px);
   }
 
+  .routeLink {
+    gap: 14px;
+    margin-top: 22px;
+    font-size: 0.65rem;
+  }
+
   .routePanel figcaption {
     right: 14px;
     bottom: 14px;
@@ -721,8 +917,25 @@
     min-height: 82px;
   }
 
-  .contactItem > svg:first-child {
-    width: 29px;
+  .contactIcon {
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    margin-left: 0;
+  }
+
+  .contactItem .contactIcon {
+    min-width: 30px;
+  }
+
+  .contactIcon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .contactIcon:has(svg[viewBox="0 0 32 42"]) svg {
+    width: 19px;
+    height: 25px;
   }
 
   .contactItem > svg:last-child {
@@ -853,7 +1066,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .contactItem,
-  .routeButton {
+  .routeButton,
+  .routeLink {
     transition: none;
   }
 }

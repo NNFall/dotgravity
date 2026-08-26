@@ -23,7 +23,7 @@ describe("menu desktop scene contract", () => {
     expect(wideDesktopScene?.[1]).toContain(
       "height: max(941px, 56.28vw);",
     );
-    expect(cardRail?.[1]).toContain("margin: 22px auto 0;");
+    expect(cardRail?.[1]).toContain("margin: 21px auto 0;");
     expect(cardInner?.[1]).toContain("padding: 12px 14px 10px;");
   });
 });

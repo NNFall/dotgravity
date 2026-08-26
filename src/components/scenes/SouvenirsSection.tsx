@@ -186,7 +186,12 @@ export function SouvenirsSection() {
       id="souvenirs"
     >
       <div className={styles.composition}>
-        <div aria-hidden="true" className={styles.topographicLines} />
+        <div aria-hidden="true" className={styles.topographicLines}>
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
         <div aria-hidden="true" className={styles.dotField} />
         <div aria-hidden="true" className={styles.cathedral}>
           <CathedralLinework />

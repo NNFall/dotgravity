@@ -303,9 +303,9 @@ a:focus-visible {
   min-height: calc(100dvh - var(--header-height));
   overflow: clip;
   background:
-    radial-gradient(circle at 40% 0%, rgb(255 255 255 / 62%), transparent 34rem),
+    radial-gradient(circle at 40% 0%, rgb(255 255 255 / 6%), transparent 34rem),
     linear-gradient(108deg, rgb(234 219 207 / 48%), transparent 38%),
-    var(--paper);
+    #f6ebe0;
 }
 
 .hero-copy {
@@ -335,18 +335,18 @@ a:focus-visible {
 }
 
 .hero-kicker {
-  margin: clamp(10px, 1.5vh, 16px) 0 0;
+  margin: clamp(8px, 1vh, 10px) 0 0;
   color: var(--copper);
   font-size: clamp(1.05rem, 1.45vw, 1.52rem);
   font-weight: 460;
-  letter-spacing: 0.052em;
+  letter-spacing: -0.02em;
   line-height: 1.2;
   text-transform: uppercase;
 }
 
 .hero-introduction {
   max-width: 530px;
-  margin: clamp(19px, 2.8vh, 28px) 0 0;
+  margin: clamp(16px, 2.45vh, 24px) 0 0;
   font-size: clamp(0.9rem, 1.05vw, 1.11rem);
   font-weight: 430;
   letter-spacing: 0.005em;
@@ -388,7 +388,7 @@ a:focus-visible {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0;
   width: min(100%, 550px);
-  margin: clamp(35px, 4.1vh, 41px) 0 0;
+  margin: clamp(32px, 3.8vh, 38px) 0 0;
   padding: 0;
   list-style: none;
 }
@@ -402,7 +402,8 @@ a:focus-visible {
 }
 
 .hero-features svg {
-  height: 49px;
+  width: 62px;
+  height: 62px;
 }
 
 .hero-features span {

@@ -95,6 +95,62 @@ function FlowerMark({ className }: { className?: string }) {
   );
 }
 
+function CathedralMark() {
+  return (
+    <svg
+      aria-hidden="true"
+      className={styles.cathedralLinework}
+      fill="none"
+      focusable="false"
+      viewBox="0 0 170 470"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M17 460V229l18-27 17 27v231M103 460V229l17-27 17 27v231" strokeWidth="1.35" />
+        <path d="m17 229 18-120 17 120M103 229l17-120 17 120" strokeWidth="1.35" />
+        <path d="M35 109V43m-7 12 7-25 7 25M120 109V43m-7 12 7-25 7 25" strokeWidth="1.35" />
+        <path d="M49 460V171l36-44 37 44v289M85 127V24m-9 19 9-32 9 32" strokeWidth="1.45" />
+        <path d="M50 171h72M58 160l27-33 28 33M56 460V290h58v170" strokeWidth="1.15" />
+        <path d="M69 460v-95c0-16 7-29 16-37 10 8 17 21 17 37v95M35 229v-42M120 229v-42M25 257h20m-20 32h20m-20 32h20m58-64h24m-24 32h24m-24 32h24" strokeWidth="0.95" />
+        <path d="M5 460h160M13 440h144M41 212h89M47 189h76" strokeWidth="0.95" />
+        <path d="M80 227h10m-5-7v14M30 132h10m-5-7v14m80-7h10m-5-7v14" strokeWidth="0.95" />
+      </g>
+    </svg>
+  );
+}
+
+function BotanicalMark() {
+  return (
+    <svg
+      aria-hidden="true"
+      className={styles.botanicalLinework}
+      fill="none"
+      focusable="false"
+      viewBox="0 0 240 270"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M151 270c2-42 13-83 30-119 14-29 28-51 49-76" strokeWidth="1.25" />
+        <path d="M177 185c-28-5-53-18-73-37m95 0c-10-25-14-52-11-79m-28 133c-21-2-42 3-60 15m75-42c17-3 32-12 44-24" strokeWidth="1" />
+        <path d="M96 147c13-15 29-17 47-12-12 14-28 19-47 12Zm-7 46c16-12 32-11 48-2-14 11-30 12-48 2Zm73-29c-4-19 3-33 18-44 5 17-1 32-18 44Zm24-62c-2-18 6-31 20-40 3 17-3 29-20 40Zm-4 53c15-9 29-8 43-1-12 12-26 13-43 1Zm-43 30c-4-15 2-27 14-36 5 14 0 25-14 36Z" strokeWidth="0.95" />
+        <path d="M151 239c-20-3-37 2-52 14m55-2c15-2 28-8 39-19" strokeWidth="0.9" />
+        <path d="M86 257c7-14 19-20 35-20-6 14-18 21-35 20Zm104-15c9-13 21-18 36-17-8 13-20 19-36 17Z" strokeWidth="0.9" />
+        <circle cx="207" cy="111" r="6" strokeWidth="0.9" />
+        <circle cx="215" cy="120" r="4" strokeWidth="0.9" />
+        <circle cx="202" cy="120" r="3" strokeWidth="0.9" />
+      </g>
+    </svg>
+  );
+}
+
 function ArrowMark() {
   return (
     <svg
@@ -104,6 +160,22 @@ function ArrowMark() {
       viewBox="0 0 24 24"
     >
       <path d="M3 12h17M14.5 5.5 21 12l-6.5 6.5" />
+    </svg>
+  );
+}
+
+function GiftMark() {
+  return (
+    <svg
+      aria-hidden="true"
+      className={styles.giftMark}
+      fill="none"
+      focusable="false"
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path d="M5 14h22v14H5zM4 10h24v5H4zM16 10v18" stroke="currentColor" strokeWidth="1.25" />
+      <path d="M16 10c-1.8-5.8-8.7-7-9.1-2.9C6.6 10.7 12.6 11 16 10Zm0 0c1.8-5.8 8.7-7 9.1-2.9.3 3.6-5.7 3.9-9.1 2.9Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.25" />
     </svg>
   );
 }
@@ -195,7 +267,8 @@ export function MenuSection() {
       data-scene="menu"
       id="menu"
     >
-      <div aria-hidden="true" className={styles.cathedralLinework} />
+      <CathedralMark />
+      <div aria-hidden="true" className={styles.dotField} />
       <div aria-hidden="true" className={styles.topographicLines} />
       <div className={styles.content}>
         <header className={styles.header}>
@@ -297,8 +370,8 @@ export function MenuSection() {
         </div>
 
         <p className={styles.menuNote}>
-          <FlowerMark />
-          <span>Это лишь малая часть витрины. Актуальные позиции уточняйте в кафе.</span>
+          <GiftMark />
+          <span>Это лишь малая часть витрины меню. Другие позиции и стоимость уточняйте в кафе перед визитом.</span>
         </p>
         <a
           aria-label="Уточнить актуальное меню и стоимость в кафе"
@@ -309,7 +382,7 @@ export function MenuSection() {
           <ArrowMark />
         </a>
       </div>
-      <div aria-hidden="true" className={styles.botanicalLinework} />
+      <BotanicalMark />
     </section>
   );
 }

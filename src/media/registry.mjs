@@ -70,7 +70,7 @@ export const mediaManifest = [
     id: "hero-reference-photo",
     path: "/media/reference-derived/hero-reference-photo.png",
     sha256:
-      "53BB40ED34BDE8F86E4B823C0FDE2A73D60DADB8C5BEAFE21AAE853F32B09DFA",
+      "789791B7809699ABDA65EBF2D2AB03A9E2EE2448FB43D12CA24AE0F12FBAC624",
     dimensions: {
       width: 947,
       height: 836,
@@ -81,7 +81,7 @@ export const mediaManifest = [
       parentReferenceSha256:
         "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
       transformation:
-        "Photo-only bounded crop x=725,y=105,w=947,h=836 from the supplied hero concept; alpha mask follows the live diagonal and removes the plaque region x=1411..1547,y=131..509 in reference coordinates, while the DOM plaque and hairline remain live.",
+        "Photo-only bounded crop x=725,y=105,w=947,h=836 from the supplied hero concept; alpha mask fills the measured diagonal through the crop edges, and deterministic dark-wood inpainting restores the plaque region x=1411..1547,y=131..509 in reference coordinates beneath the live DOM plaque and hairline.",
       statement:
         "Bounded crop from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
     },

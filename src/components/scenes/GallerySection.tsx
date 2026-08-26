@@ -41,12 +41,12 @@ const referenceGalleryAlt =
 const storyCrops = [
   {
     asset: galleryCrops.porcelain,
-    label: "Винтажные мотивы",
+    label: "Винтажная посуда",
     className: styles.porcelainInset,
   },
   {
     asset: galleryCrops.art,
-    label: "Художественные детали",
+    label: "Картины современных художников",
     className: styles.artInset,
   },
   {
@@ -233,17 +233,16 @@ export function GallerySection() {
             <br /> атмосфера
           </h2>
           <p className={styles.introduction}>
-            Каждый уголок хранит историю: мотивы винтажной посуды, художественные
-            детали и продуманные элементы интерьера создают
-            особую атмосферу — тёплую, вдохновляющую и располагающую к
-            неспешным встречам.
+            Коллекция винтажной посуды, картины современных художников и
+            продуманные детали интерьера создают особую атмосферу — тёплую,
+            вдохновляющую и располагающую к неспешным встречам.
           </p>
 
           <details
             aria-label="Подробнее о визуальной композиции"
             className={styles.storyDetails}
           >
-            <summary>Посмотреть детали</summary>
+            <summary>Посмотреть галерею</summary>
             <p>
               Это референсный фрагмент концепции, использованный только для
               визуального направления; он не подтверждает фактический
@@ -252,8 +251,8 @@ export function GallerySection() {
           </details>
 
           <ul aria-label="Темы галереи" className={styles.featureList}>
-            <FeatureMark icon={<CupIcon />}>Винтажные мотивы</FeatureMark>
-            <FeatureMark icon={<EaselIcon />}>Художественные детали</FeatureMark>
+            <FeatureMark icon={<CupIcon />}>Винтажная посуда</FeatureMark>
+            <FeatureMark icon={<EaselIcon />}>Картины современных художников</FeatureMark>
             <FeatureMark icon={<ChairIcon />}>Уютное пространство</FeatureMark>
           </ul>
 
