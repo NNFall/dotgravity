@@ -418,6 +418,167 @@ export const mediaManifest = [
     },
   },
   {
+    id: "souvenirs-reference-main-photo",
+    path: "/media/reference-derived/souvenirs-reference-main-photo.png",
+    sha256:
+      "A86165D939862917E61AEBEF2D690C99076804E275C491D3F7E2C24ED6B7A174",
+    dimensions: {
+      width: 764,
+      height: 512,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0",
+      transformation:
+        "Photo-only bounded crop x=818,y=101,w=764,h=512 from the supplied souvenirs concept; outer frame, inset stroke, caption and decorative overlays excluded. Facade signage is baked into the source image content.",
+      statement:
+        "Bounded crop from the supplied generated souvenirs concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "souvenirs reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "cover the existing bounded souvenirs main photo frame",
+      focalPoint:
+        "open jewelry case, porcelain cups, flowers and facade sign inside the photo region",
+      responsive:
+        "Keep the photo inside the bounded main artwork frame; never render it as a full-page reference screen.",
+    },
+  },
+  {
+    id: "souvenirs-reference-bracelet",
+    path: "/media/reference-derived/souvenirs-reference-bracelet.png",
+    sha256:
+      "7640E3AAECAE82591E8609DB4B3C025C8CB32D38A57849A2EB8C753DFF4F3748",
+    dimensions: {
+      width: 212,
+      height: 184,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0",
+      transformation:
+        "Photo-only bounded crop x=50,y=674,w=212,h=184 from the supplied souvenirs concept; card border, text panel and decorative overlays excluded.",
+      statement:
+        "Bounded crop from the supplied generated souvenirs concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "souvenirs reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "cover the first bounded souvenir card photo region",
+      focalPoint: "rose-quartz bracelet on the textile surface",
+      responsive:
+        "Keep the bracelet inside the first bounded card visual; never render the crop as a standalone reference screen.",
+    },
+  },
+  {
+    id: "souvenirs-reference-ring",
+    path: "/media/reference-derived/souvenirs-reference-ring.png",
+    sha256:
+      "C5A1EEA39027D9669E2261E59E524B23F5183CC216A2B55978338135CD4F1A97",
+    dimensions: {
+      width: 204,
+      height: 184,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0",
+      transformation:
+        "Photo-only bounded crop x=462,y=674,w=204,h=184 from the supplied souvenirs concept; card border, text panel and decorative overlays excluded.",
+      statement:
+        "Bounded crop from the supplied generated souvenirs concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "souvenirs reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "cover the second bounded souvenir card photo region",
+      focalPoint: "single ring and paper-backed jewelry display",
+      responsive:
+        "Keep the ring inside the second bounded card visual; never render the crop as a standalone reference screen.",
+    },
+  },
+  {
+    id: "souvenirs-reference-teacup",
+    path: "/media/reference-derived/souvenirs-reference-teacup.png",
+    sha256:
+      "52F7246A42E33A37149367378DA44A7BD7F7001015C46100052072E5CD506D73",
+    dimensions: {
+      width: 203,
+      height: 184,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0",
+      transformation:
+        "Photo-only bounded crop x=849,y=674,w=203,h=184 from the supplied souvenirs concept; card border, text panel and decorative overlays excluded.",
+      statement:
+        "Bounded crop from the supplied generated souvenirs concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "souvenirs reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "cover the third bounded souvenir card photo region",
+      focalPoint: "porcelain teacup and saucer beside the flowers",
+      responsive:
+        "Keep the teacup inside the third bounded card visual; never render the crop as a standalone reference screen.",
+    },
+  },
+  {
+    id: "souvenirs-reference-tea-set",
+    path: "/media/reference-derived/souvenirs-reference-tea-set.png",
+    sha256:
+      "D3FB908D377A9373390D80832C4E6A75C7C550EA25992E12EB32168C5C71C800",
+    dimensions: {
+      width: 216,
+      height: 184,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0",
+      transformation:
+        "Photo-only bounded crop x=1237,y=674,w=216,h=184 from the supplied souvenirs concept; card border, text panel and decorative overlays excluded.",
+      statement:
+        "Bounded crop from the supplied generated souvenirs concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "souvenirs reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "cover the fourth bounded souvenir card photo region",
+      focalPoint: "porcelain tea set and candle-lit table detail",
+      responsive:
+        "Keep the tea set inside the fourth bounded card visual; never render the crop as a standalone reference screen.",
+    },
+  },
+  {
     id: "souvenirs-window-still-life",
     path: "/media/generated/souvenirs-window-still-life.png",
     sha256: "B3282A1935F124EC54934396AF1A9F75257D2739DB84561850CD25683F1AC7B0",
