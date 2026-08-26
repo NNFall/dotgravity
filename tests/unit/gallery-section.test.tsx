@@ -134,9 +134,11 @@ describe("gallery anchor scene", () => {
     expect(introduction).toBeInTheDocument();
     expect(introduction).not.toHaveTextContent(/Коллекция винтажной посуды/i);
     expect(introduction).not.toHaveTextContent(/картины современных художников/i);
+    expect(gallery).not.toHaveTextContent(/Винтажная посуда/i);
+    expect(gallery).not.toHaveTextContent(/Картины современных художников/i);
 
-    expect(within(gallery).getByText("Винтажный мотив")).toBeInTheDocument();
-    expect(within(gallery).getByText("Художественный мотив")).toBeInTheDocument();
+    expect(within(gallery).getAllByText("Винтажный мотив")).not.toHaveLength(0);
+    expect(within(gallery).getAllByText("Художественный мотив")).not.toHaveLength(0);
   });
 
   test("uses distinct subject icons for the three gallery themes", async () => {

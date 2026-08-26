@@ -41,12 +41,12 @@ const referenceGalleryAlt =
 const storyCrops = [
   {
     asset: galleryCrops.porcelain,
-    label: "Винтажная посуда",
+    label: "Винтажный мотив",
     className: styles.porcelainInset,
   },
   {
     asset: galleryCrops.art,
-    label: "Картины современных художников",
+    label: "Художественный мотив",
     className: styles.artInset,
   },
   {
