@@ -1,68 +1,66 @@
+import type { CSSProperties } from "react";
+
 import { mediaManifest } from "../../media/manifest";
 import type { MediaAsset } from "../../media/types";
 
 import styles from "./SouvenirsSection.module.css";
 
-type SouvenirReferenceCropId =
-  | "souvenirs-reference-main-photo"
-  | "souvenirs-reference-bracelet"
-  | "souvenirs-reference-ring"
-  | "souvenirs-reference-teacup"
-  | "souvenirs-reference-tea-set";
+type AllowedSouvenirMediaId =
+  | "souvenirs-window-still-life"
+  | "souvenir-rose-quartz-bracelet-cutout";
 
-function getReferenceSouvenirCrop(id: SouvenirReferenceCropId): MediaAsset {
-  const crop = mediaManifest.find((asset) => asset.id === id);
+function getSouvenirMedia(id: AllowedSouvenirMediaId): MediaAsset {
+  const asset = mediaManifest.find((candidate) => candidate.id === id);
 
   if (
-    !crop ||
-    crop.provenance.classification !== "reference-derived" ||
-    crop.provenance.documentary ||
-    !crop.productionAllowance.allowed ||
-    crop.productionAllowance.referenceShape !== "bounded-reference-region" ||
-    !crop.intendedScenes.includes("souvenirs")
+    !asset ||
+    !asset.productionAllowance.allowed ||
+    asset.provenance.classification !== "generated/reference-compatible"
   ) {
     throw new Error(
-      `The souvenirs scene requires the registered bounded reference crop: ${id}.`,
+      "The souvenirs scene requires a registered, allowed generated artwork.",
     );
   }
 
-  return crop;
+  return asset;
 }
 
-const souvenirCrops = {
-  main: getReferenceSouvenirCrop("souvenirs-reference-main-photo"),
-  bracelet: getReferenceSouvenirCrop("souvenirs-reference-bracelet"),
-  ring: getReferenceSouvenirCrop("souvenirs-reference-ring"),
-  teacup: getReferenceSouvenirCrop("souvenirs-reference-teacup"),
-  teaSet: getReferenceSouvenirCrop("souvenirs-reference-tea-set"),
-} as const;
+const stillLife = getSouvenirMedia("souvenirs-window-still-life");
+const braceletCutout = getSouvenirMedia(
+  "souvenir-rose-quartz-bracelet-cutout",
+);
 
-const referenceSouvenirAlt =
-  "Референсный фрагмент визуальной концепции сувениров, не документальная фотография кафе.";
+const generatedStillLifeAlt =
+  "Сгенерированная иллюстрация: натюрморт с украшениями, фарфором и цветами, не документальная фотография кафе.";
+const generatedBraceletAlt =
+  "Сгенерированная иллюстрация: браслет из розового кварца, не документальная фотография кафе.";
 
 const stories = [
   {
-    artwork: souvenirCrops.bracelet,
     description: "Мягкий розовый оттенок и золотистые детали в образе украшения.",
+    kind: "bracelet",
     label: "Украшение",
     title: "РОЗОВЫЙ КВАРЦ",
   },
   {
-    artwork: souvenirCrops.ring,
     description: "Тонкий фарфоровый мотив для неспешного чаепития.",
+    kind: "still-life",
     label: "Посуда",
+    objectPosition: "75% 66%",
     title: "ЧАЙНАЯ ДЕТАЛЬ",
   },
   {
-    artwork: souvenirCrops.teacup,
     description: "Тёплая фактура старой рамы, свечи и бумаги в одной композиции.",
+    kind: "still-life",
     label: "Памятный мотив",
+    objectPosition: "46% 50%",
     title: "ИСТОРИЯ В РАМЕ",
   },
   {
-    artwork: souvenirCrops.teaSet,
     description: "Небольшой жест, в котором важны фактура, свет и настроение.",
+    kind: "still-life",
     label: "Подарочный мотив",
+    objectPosition: "17% 55%",
     title: "ТЕПЛОЕ ВНИМАНИЕ",
   },
 ] as const;
@@ -234,21 +232,21 @@ export function SouvenirsSection() {
         </div>
 
         <figure className={styles.mainArtwork}>
-          {/* This registered crop is deliberately bounded to the photo region. */}
+          {/* This registered image is deliberately bounded to the photo region. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            alt={referenceSouvenirAlt}
-            data-provenance={souvenirCrops.main.provenance.classification}
-            height={souvenirCrops.main.dimensions.height}
-            src={souvenirCrops.main.path}
-            width={souvenirCrops.main.dimensions.width}
+            alt={generatedStillLifeAlt}
+            data-provenance={stillLife.provenance.classification}
+            height={stillLife.dimensions.height}
+            src={stillLife.path}
+            width={stillLife.dimensions.width}
           />
-          <figcaption>Фрагмент референсной концепции</figcaption>
+          <figcaption>Иллюстративный натюрморт</figcaption>
         </figure>
 
         <aside className={styles.provenanceNote}>
           <FloralSeal />
-          <span>Фрагменты референсной концепции</span>
+          <span>Сгенерированная визуальная композиция</span>
           <small>не документальная фотография места</small>
         </aside>
 
@@ -257,15 +255,38 @@ export function SouvenirsSection() {
             <li className={styles.storyCard} key={story.title}>
               <article>
                 <div className={styles.storyVisual}>
-                  {/* Copy, borders and decorative overlays stay in HTML/CSS around this bounded crop. */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    alt={referenceSouvenirAlt}
-                    data-provenance={story.artwork.provenance.classification}
-                    height={story.artwork.dimensions.height}
-                    src={story.artwork.path}
-                    width={story.artwork.dimensions.width}
-                  />
+                  {story.kind === "bracelet" ? (
+                    <>
+                      <div aria-hidden="true" className={styles.braceletPaper} />
+                      {/* The locally reviewed transparent derivative is the only bracelet image rendered. */}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        alt={generatedBraceletAlt}
+                        className={styles.bracelet}
+                        data-provenance={braceletCutout.provenance.classification}
+                        height={braceletCutout.dimensions.height}
+                        src={braceletCutout.path}
+                        width={braceletCutout.dimensions.width}
+                      />
+                    </>
+                  ) : (
+                    <>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        data-provenance={stillLife.provenance.classification}
+                        height={stillLife.dimensions.height}
+                        src={stillLife.path}
+                        style={
+                          {
+                            objectPosition: story.objectPosition,
+                          } as CSSProperties
+                        }
+                        width={stillLife.dimensions.width}
+                      />
+                    </>
+                  )}
                 </div>
                 <div className={styles.storyContent}>
                   <StoryIcon index={index} />

@@ -27,7 +27,7 @@ describe("ContactsSection", () => {
     expect(route).toHaveAttribute("rel", expect.stringContaining("noreferrer"));
   });
 
-  test("labels generated visuals as non-documentary and avoids baseline imagery", async () => {
+  test("labels bounded reference crops as non-documentary and avoids baseline imagery", async () => {
     const { ContactsSection } = await import(
       "../../src/components/scenes/ContactsSection"
     );
@@ -38,7 +38,7 @@ describe("ContactsSection", () => {
     expect(scene).toHaveAttribute("aria-labelledby", "contacts-title");
 
     expect(
-      screen.getAllByText(/сгенерированная визуальная композиция/i),
+      screen.getAllByText(/фрагмент референсной концепции/i),
     ).toHaveLength(2);
     expect(
       screen.getAllByText(/не документальная фотография/i),
@@ -48,12 +48,12 @@ describe("ContactsSection", () => {
     );
     expect(visuals).toHaveLength(2);
     expect(visuals.map((visual) => visual.getAttribute("src"))).toEqual([
-      "/media/generated/hero-window-church.png",
-      "/media/generated/contacts-brick-street.png",
+      "/media/reference-derived/contacts-reference-window-crop.png",
+      "/media/reference-derived/contacts-reference-street-crop.png",
     ]);
     expect(visuals.map((visual) => visual.dataset.provenance)).toEqual([
-      "generated/reference-compatible",
-      "generated/reference-compatible",
+      "reference-derived",
+      "reference-derived",
     ]);
     expect(container.innerHTML).not.toMatch(/visual[\\/]baselines/i);
     expect(container.innerHTML).not.toMatch(/\bпн\b|\bвс\b|завтрак|меню дня/i);
@@ -62,8 +62,12 @@ describe("ContactsSection", () => {
       "src/components/scenes/ContactsSection.tsx",
       "utf8",
     );
-    expect(source).toContain('requireGeneratedContactVisual("hero-window-church")');
-    expect(source).toContain('requireGeneratedContactVisual("contacts-brick-street")');
+    expect(source).toMatch(
+      /requireReferenceContactCrop\(\s*"contacts-reference-window-crop"\s*,?\s*\)/,
+    );
+    expect(source).toMatch(
+      /requireReferenceContactCrop\(\s*"contacts-reference-street-crop"\s*,?\s*\)/,
+    );
     expect(source).toContain('asset.intendedScenes.includes("contacts")');
     expect(source).not.toMatch(/@phosphor-icons[\\/]react/i);
     expect(source).not.toMatch(/tests[\\/]visual[\\/]baselines/i);

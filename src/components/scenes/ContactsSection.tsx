@@ -3,28 +3,35 @@ import type { MediaAsset } from "../../media/types";
 
 import styles from "./ContactsSection.module.css";
 
-type ContactVisualId = "hero-window-church" | "contacts-brick-street";
+type ContactVisualId =
+  | "contacts-reference-window-crop"
+  | "contacts-reference-street-crop";
 
-function requireGeneratedContactVisual(id: ContactVisualId): MediaAsset {
+function requireReferenceContactCrop(id: ContactVisualId): MediaAsset {
   const asset = mediaManifest.find((item) => item.id === id);
 
   if (
     !asset ||
     !asset.productionAllowance.allowed ||
     !asset.intendedScenes.includes("contacts") ||
-    asset.provenance.classification !== "generated/reference-compatible" ||
-    asset.provenance.documentary
+    asset.provenance.classification !== "reference-derived" ||
+    asset.provenance.documentary ||
+    asset.productionAllowance.referenceShape !== "bounded-reference-region"
   ) {
     throw new Error(
-      `The contacts scene requires the registered non-documentary generated visual: ${id}.`,
+      `The contacts scene requires the registered bounded reference crop: ${id}.`,
     );
   }
 
   return asset;
 }
 
-const windowVisual = requireGeneratedContactVisual("hero-window-church");
-const streetVisual = requireGeneratedContactVisual("contacts-brick-street");
+const windowVisual = requireReferenceContactCrop(
+  "contacts-reference-window-crop",
+);
+const streetVisual = requireReferenceContactCrop(
+  "contacts-reference-street-crop",
+);
 
 function DirectionArrow() {
   return (
@@ -135,7 +142,7 @@ function SchematicRoute() {
   );
 }
 
-function GeneratedVisual({
+function ReferenceCropVisual({
   asset,
   className,
   label,
@@ -146,17 +153,17 @@ function GeneratedVisual({
 }) {
   return (
     <figure className={className}>
-      {/* Registered generated visual, bounded to this composition rather than a reference screen. */}
+      {/* Registered bounded reference crop; the plaque, labels, route map and frame remain live CSS/SVG/HTML. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        alt={`Сгенерированная визуальная композиция: ${label}; не документальная фотография кофейни.`}
+        alt={`Референсный фрагмент: ${label}; не документальная фотография кофейни.`}
         data-provenance={asset.provenance.classification}
         height={asset.dimensions.height}
         src={asset.path}
         width={asset.dimensions.width}
       />
       <figcaption>
-        <span>Сгенерированная визуальная композиция</span>
+        <span>Фрагмент референсной концепции</span>
         <small>не документальная фотография кофейни</small>
       </figcaption>
     </figure>
@@ -231,12 +238,12 @@ export function ContactsSection() {
           className={styles.photoPair}
           role="group"
         >
-          <GeneratedVisual
+          <ReferenceCropVisual
             asset={windowVisual}
             className={styles.windowVisual}
             label="вид из окна с архитектурным мотивом"
           />
-          <GeneratedVisual
+          <ReferenceCropVisual
             asset={streetVisual}
             className={styles.streetVisual}
             label="вечерняя улица с тёплыми окнами"

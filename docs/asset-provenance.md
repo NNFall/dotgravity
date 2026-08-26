@@ -156,6 +156,16 @@ The gallery desktop collage uses four bounded, photo-only crops from the supplie
 
 These are concept-derived visual references, not photographs of the real cafe. On mobile they remain bounded to the responsive gallery frames and are never used as a full-screen reference composite.
 
+### Contacts reference-derived crops
+
+The contacts desktop photo pair uses two photo-only crops from the supplied generated contacts concept (`DC6958CC6FB22CB2892C5D4708B907468EE52C2A01251A6378F2E3E001B2E88457`). Created 2026-08-26, both assets are classified `reference-derived`, have `documentary: false`, and are allowed only inside the bounded contacts photo regions (`bounded-reference-region`). The plaque, captions, labels and schematic route remain live HTML/CSS/SVG; they are not duplicated in the PNGs.
+
+| Asset | SHA-256 | Crop / treatment |
+| --- | --- | --- |
+| `contacts-reference-window-crop.png` | `9C339940840CDB19C7690CAB529DD57B77414EDCD3DF23327C4C3124B09DD703` | `x=656,y=106,w=429,h=477`; alpha-masked polygon follows `(790,106)` to `(656,582)` and removes heading/frame/plaque pixels |
+| `contacts-reference-street-crop.png` | `9DF641E07DA51B7361391F4785189201B0EA8445ABDA37C2A663E8FAE8C22F53` | `x=1158,y=106,w=514,h=477`; excludes header, divider, lower route panel and DOM labels; source facade signage remains part of the concept crop |
+
+These are bounded fragments of the supplied concept, not photographs of the real cafe. They must not be presented as documentary venue evidence, and responsive layouts may crop them further but may not expand either fragment into a full reference screen.
 ### `souvenirs-window-still-life`
 
 | Field | Registered value |

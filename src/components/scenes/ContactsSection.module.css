@@ -273,7 +273,7 @@
 
 .windowVisual img {
   object-position: 26% 51%;
-  transform: scaleX(-1) scale(1.025);
+  transform: scale(1.025);
 }
 
 .streetVisual img {

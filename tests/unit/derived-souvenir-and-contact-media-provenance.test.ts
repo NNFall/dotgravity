@@ -8,15 +8,18 @@ import {
 const cloneManifest = () =>
   JSON.parse(JSON.stringify(mediaManifest)) as typeof mediaManifest;
 
-test("registers the bracelet source, its reviewed cutout, and contacts artwork honestly", () => {
+test("registers the bracelet source, its reviewed cutout, and contact crops honestly", () => {
   const braceletSource = mediaManifest.find(
     (asset) => asset.id === "souvenir-rose-quartz-bracelet-source",
   );
   const braceletCutout = mediaManifest.find(
     (asset) => asset.id === "souvenir-rose-quartz-bracelet-cutout",
   );
-  const contactsArtwork = mediaManifest.find(
-    (asset) => asset.id === "contacts-brick-street",
+  const contactsWindowCrop = mediaManifest.find(
+    (asset) => asset.id === "contacts-reference-window-crop",
+  );
+  const contactsStreetCrop = mediaManifest.find(
+    (asset) => asset.id === "contacts-reference-street-crop",
   );
 
   expect(braceletSource).toMatchObject({
@@ -67,30 +70,59 @@ test("registers the bracelet source, its reviewed cutout, and contacts artwork h
     },
   });
 
-  expect(contactsArtwork).toMatchObject({
-    id: "contacts-brick-street",
-    path: "/media/generated/contacts-brick-street.png",
+  expect(contactsWindowCrop).toMatchObject({
+    id: "contacts-reference-window-crop",
+    path: "/media/reference-derived/contacts-reference-window-crop.png",
     sha256:
-      "A53AB8414DC021C3EAB7E488569D81F033701BA7888C92C2230B36C66BABCB82",
-    dimensions: { width: 1536, height: 1024 },
+      "9C339940840CDB19C7690CAB529DD57B77414EDCD3DF23327C4C3124B09DD703",
+    dimensions: { width: 429, height: 477 },
     intendedScenes: ["contacts"],
     productionAllowance: {
       allowed: true,
-      intendedUse: "contacts photo region only",
-      referenceShape: "not-reference",
+      intendedUse: "contacts reference crop photo region only",
+      referenceShape: "bounded-reference-region",
     },
     provenance: {
-      classification: "generated/reference-compatible",
+      classification: "reference-derived",
       documentary: false,
-      createdAt: "2026-08-26",
-      createdWith: "Image Generation",
+      parentReferenceSha256:
+        "DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457",
+      transformation: expect.stringContaining(
+        "x=656,y=106,w=429,h=477",
+      ),
+    },
+  });
+
+  expect(contactsStreetCrop).toMatchObject({
+    id: "contacts-reference-street-crop",
+    path: "/media/reference-derived/contacts-reference-street-crop.png",
+    sha256:
+      "9DF641E07DA51B7361391F4785189201B0EA8445ABDA37C2A663E8FAE8C22F53",
+    dimensions: { width: 514, height: 477 },
+    intendedScenes: ["contacts"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "contacts reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457",
+      transformation: expect.stringContaining(
+        "x=1158,y=106,w=514,h=477",
+      ),
     },
   });
 
   expect(braceletCutout?.provenance.statement).toMatch(
     /not a documentary venue photograph/i,
   );
-  expect(contactsArtwork?.provenance.statement).toMatch(
+  expect(contactsWindowCrop?.provenance.statement).toMatch(
+    /not a documentary venue photograph/i,
+  );
+  expect(contactsStreetCrop?.provenance.statement).toMatch(
     /not a documentary venue photograph/i,
   );
   expect(() => validateMediaManifest(mediaManifest)).not.toThrow();
