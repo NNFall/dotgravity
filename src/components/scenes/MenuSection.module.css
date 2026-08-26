@@ -535,7 +535,7 @@
   }
 
   .cards {
-    grid-auto-columns: minmax(0, calc(100% - 52px));
+    grid-auto-columns: calc(100vw - 52px);
     grid-auto-flow: column;
     grid-template-columns: none;
     gap: 14px;
@@ -649,7 +649,7 @@
   }
 
   .cards {
-    grid-auto-columns: minmax(0, calc(100% - 39px));
+    grid-auto-columns: calc(100vw - 39px);
     gap: 11px;
   }
 
