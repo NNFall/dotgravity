@@ -28,11 +28,19 @@ describe("hero scene", () => {
     expect(reservationCallToAction).toHaveAttribute("href", "tel:+78462630404");
     expect(reservationCallToAction).toHaveTextContent("Забронировать столик");
 
+    const siteHeader = screen
+      .getByRole("link", { name: "Точка притяжения, в начало страницы" })
+      .closest("header");
+
+    if (!siteHeader) {
+      throw new Error("The site brand link must remain inside the site header.");
+    }
+
     expect(
-      screen.getByRole("link", { name: "Самара, ул. Фрунзе, 130" }),
+      within(siteHeader).getByRole("link", { name: "Самара, ул. Фрунзе, 130" }),
     ).toHaveAttribute("href", "#contacts");
     expect(
-      screen.getByRole("link", { name: "+7 (846) 263-04-04" }),
+      within(siteHeader).getByRole("link", { name: "+7 (846) 263-04-04" }),
     ).toHaveAttribute("href", "tel:+78462630404");
 
     const navigation = screen.getByRole("navigation", { name: "Разделы сайта" });
