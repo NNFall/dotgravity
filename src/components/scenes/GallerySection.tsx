@@ -233,9 +233,9 @@ export function GallerySection() {
             <br /> атмосфера
           </h2>
           <p className={styles.introduction}>
-            Коллекция винтажной посуды, картины современных художников и
-            продуманные детали интерьера создают особую атмосферу — тёплую,
-            вдохновляющую и располагающую к неспешным встречам.
+            Винтажные детали, художественные мотивы и уютное пространство
+            создают особую атмосферу — тёплую, вдохновляющую и располагающую к
+            неспешным встречам.
           </p>
 
           <details
@@ -251,8 +251,8 @@ export function GallerySection() {
           </details>
 
           <ul aria-label="Темы галереи" className={styles.featureList}>
-            <FeatureMark icon={<CupIcon />}>Винтажная посуда</FeatureMark>
-            <FeatureMark icon={<EaselIcon />}>Картины современных художников</FeatureMark>
+            <FeatureMark icon={<CupIcon />}>Винтажный мотив</FeatureMark>
+            <FeatureMark icon={<EaselIcon />}>Художественный мотив</FeatureMark>
             <FeatureMark icon={<ChairIcon />}>Уютное пространство</FeatureMark>
           </ul>
 

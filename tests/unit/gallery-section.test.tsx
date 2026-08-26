@@ -110,6 +110,35 @@ describe("gallery anchor scene", () => {
     expect(within(details).getByText(/референсн(?:ый|ая) фрагмент/i)).toBeInTheDocument();
   });
 
+  test("labels gallery themes as visual motifs instead of unverified venue facts", async () => {
+    const gallerySectionModule = await loadGallerySection();
+
+    expect(gallerySectionModule).not.toBeNull();
+    if (!gallerySectionModule) {
+      return;
+    }
+
+    render(createElement(gallerySectionModule.GallerySection));
+
+    const gallery = document.querySelector<HTMLElement>(
+      'section[data-scene="gallery"]#gallery',
+    );
+    expect(gallery).not.toBeNull();
+    if (!gallery) {
+      return;
+    }
+
+    const introduction = within(gallery).getByText(
+      /Винтажные детали, художественные мотивы и уютное пространство/i,
+    );
+    expect(introduction).toBeInTheDocument();
+    expect(introduction).not.toHaveTextContent(/Коллекция винтажной посуды/i);
+    expect(introduction).not.toHaveTextContent(/картины современных художников/i);
+
+    expect(within(gallery).getByText("Винтажный мотив")).toBeInTheDocument();
+    expect(within(gallery).getByText("Художественный мотив")).toBeInTheDocument();
+  });
+
   test("uses distinct subject icons for the three gallery themes", async () => {
     const gallerySectionModule = await loadGallerySection();
 
