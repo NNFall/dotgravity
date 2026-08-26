@@ -1,0 +1,667 @@
+.galleryScene {
+  position: relative;
+  isolation: isolate;
+  min-height: 941px;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 57% 18%, rgb(255 255 255 / 62%), transparent 25rem),
+    linear-gradient(102deg, rgb(234 219 207 / 36%), transparent 38%),
+    var(--paper);
+}
+
+.composition {
+  position: relative;
+  width: min(100%, 1672px);
+  min-height: 941px;
+  margin: 0 auto;
+}
+
+.composition::after {
+  position: absolute;
+  z-index: -1;
+  top: 34px;
+  right: 18.4%;
+  width: 40.8%;
+  height: 866px;
+  border: 1px solid rgb(180 71 37 / 54%);
+  border-bottom: 0;
+  border-radius: 48% 48% 0 0 / 16% 16% 0 0;
+  content: "";
+  transform: translate(-13px, -16px);
+}
+
+.dotField {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 76px;
+  height: 179px;
+  background-image: radial-gradient(circle, rgb(180 71 37 / 52%) 1px, transparent 1.35px);
+  background-size: 13px 13px;
+  opacity: 0.58;
+}
+
+.copy {
+  position: relative;
+  z-index: 3;
+  width: min(34.4%, 440px);
+  padding: 143px 0 45px 7.9%;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0;
+  color: var(--copper);
+  font-size: clamp(0.82rem, 1.06vw, 1.1rem);
+  font-weight: 560;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.eyebrow svg {
+  width: 33px;
+  height: 33px;
+  flex: 0 0 auto;
+}
+
+.eyebrow i {
+  display: block;
+  width: min(10.4vw, 175px);
+  height: 1px;
+  margin-left: 1px;
+  background: currentColor;
+  opacity: 0.64;
+}
+
+.eyebrow svg:last-child {
+  width: 18px;
+  height: 18px;
+  margin-left: -3px;
+  fill: currentColor;
+}
+
+.copy h2 {
+  margin: 38px 0 0;
+  color: var(--ink);
+  font-family: Prata, Georgia, serif;
+  font-size: clamp(3.5rem, 4.22vw, 4.4rem);
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 1.13;
+  text-transform: uppercase;
+}
+
+.copy h2::first-line {
+  color: var(--copper);
+}
+
+.introduction {
+  max-width: 350px;
+  margin: 32px 0 0;
+  color: var(--ink);
+  font-size: clamp(0.82rem, 1vw, 1.04rem);
+  font-weight: 440;
+  letter-spacing: 0.003em;
+  line-height: 1.55;
+}
+
+.storyDetails {
+  width: min(100%, 344px);
+  margin-top: 32px;
+  border: 1px solid rgb(143 50 29 / 88%);
+  border-radius: 7px;
+  background: var(--copper);
+  color: var(--paper);
+  box-shadow: inset 0 0 0 2px rgb(245 238 230 / 29%);
+}
+
+.storyDetails summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 58px;
+  padding: 0 22px 0 28px;
+  cursor: pointer;
+  font-size: clamp(0.76rem, 0.93vw, 0.96rem);
+  font-weight: 540;
+  letter-spacing: 0.035em;
+  line-height: 1.25;
+  list-style: none;
+  text-transform: uppercase;
+}
+
+.storyDetails summary::-webkit-details-marker {
+  display: none;
+}
+
+.storyDetails summary::after {
+  width: 11px;
+  height: 11px;
+  border-top: 1px solid currentColor;
+  border-right: 1px solid currentColor;
+  content: "";
+  transform: rotate(45deg);
+  transition: transform 180ms ease;
+}
+
+.storyDetails[open] summary::after {
+  transform: rotate(135deg);
+}
+
+.storyDetails p {
+  margin: -1px 26px 20px 28px;
+  padding-top: 15px;
+  border-top: 1px solid rgb(245 238 230 / 42%);
+  font-size: 0.69rem;
+  letter-spacing: 0.015em;
+  line-height: 1.5;
+}
+
+.featureList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  width: min(100%, 398px);
+  margin: 44px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.featureMark {
+  display: grid;
+  justify-items: center;
+  gap: 11px;
+  color: var(--ink);
+  font-size: clamp(0.54rem, 0.64vw, 0.68rem);
+  font-weight: 560;
+  letter-spacing: 0.075em;
+  line-height: 1.44;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.featureGlyph {
+  color: var(--copper);
+}
+
+.featureGlyph svg {
+  width: 44px;
+  height: 44px;
+}
+
+.motto {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: max-content;
+  max-width: 100%;
+  margin: 41px 0 0 -11px;
+  color: var(--copper);
+}
+
+.motto > span {
+  display: block;
+  width: 30px;
+  height: 1px;
+  flex: 0 0 auto;
+  background: currentColor;
+  opacity: 0.62;
+}
+
+.motto svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.motto b {
+  max-width: 222px;
+  font-size: clamp(0.55rem, 0.64vw, 0.68rem);
+  font-weight: 570;
+  letter-spacing: 0.092em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.mainPhoto,
+.inset {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  background: var(--porcelain);
+}
+
+.mainPhoto {
+  position: absolute;
+  z-index: 2;
+  top: 36px;
+  left: 39.3%;
+  width: 41.6%;
+  height: 867px;
+  border: 1px solid rgb(180 71 37 / 72%);
+  border-bottom: 0;
+  border-radius: 48% 48% 0 0 / 16% 16% 0 0;
+}
+
+.mainPhoto::after {
+  position: absolute;
+  inset: 11px;
+  border: 1px solid rgb(245 238 230 / 64%);
+  border-bottom: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 0 1px rgb(180 71 37 / 23%);
+  content: "";
+  pointer-events: none;
+}
+
+.mainPhoto img,
+.inset img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.88) sepia(0.055) contrast(0.97);
+}
+
+.mainPhoto img {
+  transform: scale(1.035);
+}
+
+.mainPhoto figcaption {
+  position: absolute;
+  z-index: 1;
+  bottom: 20px;
+  left: 24px;
+  max-width: 150px;
+  color: rgb(245 238 230 / 92%);
+  font-size: 0.61rem;
+  font-weight: 600;
+  letter-spacing: 0.085em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  text-shadow: 0 1px 10px rgb(46 39 35 / 55%);
+}
+
+.insetRail {
+  position: absolute;
+  z-index: 4;
+  top: 122px;
+  right: 9.4%;
+  width: 14.9%;
+  height: 737px;
+}
+
+.inset {
+  position: absolute;
+  width: 100%;
+  border: 1px solid rgb(180 71 37 / 70%);
+  border-radius: 25px;
+  box-shadow: 0 10px 28px rgb(71 44 30 / 13%);
+}
+
+.inset::after {
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgb(245 238 230 / 64%);
+  border-radius: 20px;
+  content: "";
+  pointer-events: none;
+}
+
+.porcelainInset {
+  top: 0;
+  height: 234px;
+}
+
+.artInset {
+  top: 263px;
+  left: 3px;
+  width: 88.2%;
+  height: 218px;
+}
+
+.spaceInset {
+  top: 511px;
+  left: 0;
+  width: 100%;
+  height: 226px;
+}
+
+.inset figcaption {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: -129px;
+  display: flex;
+  align-items: center;
+  width: 164px;
+  min-height: 60px;
+  padding: 10px 14px 10px 40px;
+  border: 1px solid rgb(180 71 37 / 55%);
+  border-radius: 16px;
+  background: rgb(245 238 230 / 93%);
+  color: var(--ink);
+  font-size: 0.57rem;
+  font-weight: 640;
+  letter-spacing: 0.074em;
+  line-height: 1.35;
+  text-transform: uppercase;
+  transform: translateY(-50%);
+}
+
+.inset figcaption::before {
+  position: absolute;
+  top: 50%;
+  left: 14px;
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--copper);
+  border-radius: 50%;
+  content: "";
+  transform: translateY(-50%);
+}
+
+.artInset figcaption::before {
+  border-radius: 0;
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.spaceInset figcaption::before {
+  background:
+    radial-gradient(circle at 50% 7%, var(--copper) 0 1.3px, transparent 1.8px),
+    radial-gradient(circle at 89% 30%, var(--copper) 0 1.3px, transparent 1.8px),
+    radial-gradient(circle at 74% 82%, var(--copper) 0 1.3px, transparent 1.8px),
+    radial-gradient(circle at 26% 82%, var(--copper) 0 1.3px, transparent 1.8px),
+    radial-gradient(circle at 11% 30%, var(--copper) 0 1.3px, transparent 1.8px);
+}
+
+.provenanceNote {
+  position: absolute;
+  z-index: 5;
+  right: 2.4%;
+  bottom: 23px;
+  display: grid;
+  grid-template-columns: 27px minmax(0, 1fr);
+  gap: 4px 10px;
+  width: 208px;
+  padding: 10px 12px;
+  border-top: 1px solid rgb(180 71 37 / 34%);
+  color: var(--copper-deep);
+}
+
+.provenanceNote svg {
+  grid-row: 1 / span 2;
+  width: 25px;
+  height: 25px;
+}
+
+.provenanceNote span,
+.provenanceNote small {
+  font-size: 0.53rem;
+  font-weight: 620;
+  letter-spacing: 0.058em;
+  line-height: 1.32;
+  text-transform: uppercase;
+}
+
+.provenanceNote small {
+  color: var(--ink);
+  font-size: 0.47rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+.cathedralBackdrop {
+  position: absolute;
+  z-index: 1;
+  bottom: 28px;
+  left: -2.4%;
+  width: clamp(118px, 11.8vw, 198px);
+  color: rgb(180 71 37 / 23%);
+  pointer-events: none;
+}
+
+.cathedralBackdrop svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1220px) {
+  .copy {
+    width: 36%;
+    padding-left: 5.5%;
+  }
+
+  .copy h2 {
+    font-size: clamp(3rem, 4.4vw, 3.8rem);
+  }
+
+  .eyebrow i {
+    width: 6vw;
+  }
+
+  .mainPhoto {
+    left: 38.4%;
+    width: 43.1%;
+  }
+
+  .inset figcaption {
+    right: -102px;
+    width: 132px;
+    padding-left: 34px;
+    font-size: 0.5rem;
+  }
+
+  .inset figcaption::before {
+    left: 11px;
+    width: 14px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .galleryScene {
+    min-height: 0;
+  }
+
+  .composition {
+    display: grid;
+    min-height: 0;
+    padding: 56px var(--page-gutter) 72px;
+  }
+
+  .composition::after {
+    display: none;
+  }
+
+  .dotField {
+    width: 59px;
+    height: 118px;
+  }
+
+  .copy {
+    z-index: 2;
+    width: 100%;
+    padding: 0;
+  }
+
+  .eyebrow {
+    gap: 12px;
+    font-size: 0.74rem;
+  }
+
+  .eyebrow svg {
+    width: 27px;
+    height: 27px;
+  }
+
+  .eyebrow i {
+    width: min(22vw, 120px);
+  }
+
+  .copy h2 {
+    margin-top: 27px;
+    font-size: clamp(2.25rem, 10vw, 3.55rem);
+    line-height: 1.14;
+  }
+
+  .introduction {
+    max-width: 37ch;
+    margin-top: 24px;
+    font-size: 0.89rem;
+    line-height: 1.61;
+  }
+
+  .storyDetails {
+    width: min(100%, 384px);
+    margin-top: 26px;
+  }
+
+  .storyDetails summary {
+    min-height: 56px;
+    padding-inline: 21px;
+    font-size: 0.74rem;
+  }
+
+  .featureList,
+  .motto {
+    display: none;
+  }
+
+  .mainPhoto {
+    position: relative;
+    top: auto;
+    left: auto;
+    grid-row: 2;
+    width: 100%;
+    height: min(120vw, 670px);
+    margin-top: 43px;
+    border-radius: 49% 49% 0 0 / 16% 16% 0 0;
+  }
+
+  .mainPhoto figcaption {
+    bottom: 17px;
+    left: 19px;
+  }
+
+  .insetRail {
+    position: relative;
+    top: auto;
+    right: auto;
+    display: flex;
+    grid-row: 3;
+    gap: 13px;
+    width: calc(100% + var(--page-gutter));
+    height: auto;
+    margin-top: 20px;
+    margin-right: calc(var(--page-gutter) * -1);
+    padding: 0 var(--page-gutter) 8px 0;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scroll-padding-inline: 0;
+    scroll-snap-type: x mandatory;
+    scrollbar-color: rgb(180 71 37 / 42%) transparent;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .inset {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(76vw, 294px);
+    height: min(75vw, 290px);
+    flex: 0 0 min(76vw, 294px);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .porcelainInset,
+  .artInset,
+  .spaceInset {
+    top: auto;
+    left: auto;
+    width: min(76vw, 294px);
+    height: min(75vw, 290px);
+  }
+
+  .inset figcaption {
+    top: auto;
+    right: 10px;
+    bottom: 10px;
+    width: auto;
+    max-width: calc(100% - 20px);
+    min-height: 44px;
+    padding: 8px 12px 8px 31px;
+    border-radius: 12px;
+    font-size: 0.5rem;
+    transform: none;
+  }
+
+  .inset figcaption::before {
+    left: 10px;
+    width: 12px;
+    height: 12px;
+  }
+
+  .provenanceNote {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    grid-row: 4;
+    width: min(100%, 270px);
+    margin-top: 25px;
+  }
+
+  .cathedralBackdrop {
+    right: -8%;
+    bottom: 6%;
+    left: auto;
+    width: 144px;
+    opacity: 0.72;
+  }
+}
+
+@media (max-width: 360px) {
+  .composition {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .copy h2 {
+    font-size: 2.15rem;
+  }
+
+  .eyebrow i {
+    width: 15vw;
+  }
+
+  .storyDetails summary {
+    min-height: 54px;
+    font-size: 0.67rem;
+  }
+
+  .insetRail {
+    width: calc(100% + 18px);
+    margin-right: -18px;
+    padding-right: 18px;
+  }
+
+  .inset,
+  .porcelainInset,
+  .artInset,
+  .spaceInset {
+    width: min(79vw, 258px);
+    height: min(76vw, 246px);
+    flex-basis: min(79vw, 258px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .storyDetails summary::after {
+    transition: none;
+  }
+}
