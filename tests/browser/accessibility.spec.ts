@@ -81,3 +81,33 @@ test("honors reduced motion while retaining an operable mobile menu", async ({
     page.getByRole("dialog", { name: "Навигация сайта" }),
   ).toBeVisible();
 });
+
+test("uses instant carousel scrolling when reduced motion is requested", async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+
+  await page.evaluate(() => {
+    const original = Element.prototype.scrollIntoView;
+    Element.prototype.scrollIntoView = function scrollIntoView(options) {
+      const behavior =
+        typeof options === "object" && options !== null
+          ? options.behavior ?? "auto"
+          : "auto";
+      document.documentElement.dataset.lastScrollBehavior = behavior;
+      original.call(this, options);
+    };
+  });
+
+  await page
+    .getByRole("region", { name: "Иллюстративная витрина меню" })
+    .getByRole("button", { name: "Следующая иллюстративная позиция меню" })
+    .click();
+
+  await expect(page.locator("html")).toHaveAttribute(
+    "data-last-scroll-behavior",
+    "auto",
+  );
+});

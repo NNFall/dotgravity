@@ -180,3 +180,21 @@ git status --short --branch
 - [ ] Use finishing-a-development-branch. Confirm scope, remote and secret scan; push reviewed commits to NNFall/dotgravity and integrate only through the approved finish flow.
 - [ ] Record final SHA, branch, public URL, screenshot links, raw metrics, all exceptions and unresolved rights status in final-report.md.
 
+## Execution status addendum — 2026-08-26
+
+The implementation has completed the scene, responsive, provenance and
+interaction work described above. The six reference targets are rendered as
+independent React/CSS/SVG scenes in one continuous scroll with a semantic
+`aside#events` bridge and footer. Bounded reference-derived crops are registered
+for every desktop photo region (hero, about, menu, gallery, souvenirs and
+contacts), while generated fallbacks remain active on mobile where required.
+
+Current local evidence is green for lint, TypeScript, production build, asset
+audit (26 assets), serialized Vitest (29 files / 104 tests), Chromium behavior
+(12 tests), accessibility (5 tests) and the six-scene visual capture (1 test).
+The strict raw RGBA comparator is intentionally red at
+`8,889,835 / 9,440,112` changed pixels because the live component render is not
+byte-identical to the supplied concept baselines; no tolerance or mask is used.
+No 1920×1080 or mobile raw baselines were supplied, so those viewports have
+behavioral and overflow evidence only. Final independent review, GitHub push
+and owner-only Sites deployment remain release-gate steps.

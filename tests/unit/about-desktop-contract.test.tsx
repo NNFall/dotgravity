@@ -53,6 +53,9 @@ describe("about desktop scene geometry contract", () => {
 
     expect(locationCard).toMatch(/\bheight:\s*204px;/);
     expect(locationCard).toMatch(/\bmin-height:\s*0;/);
+    expect(locationCard).toMatch(
+      /\bpadding:\s*53px\s+24px\s+26px\s+clamp\(28px,\s*4\.9vw,\s*82px\);/,
+    );
     expect(cathedral).toMatch(/\bwidth:\s*90px;/);
     expect(footer).toMatch(/\bmargin:\s*clamp\(20px,\s*2\.2vh,\s*24px\) auto 0;/);
     expect(cta).toMatch(/\bmargin-top:\s*34px;/);

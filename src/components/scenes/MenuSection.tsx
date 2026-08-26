@@ -119,12 +119,16 @@ export function MenuSection() {
 
     setActiveIndex(normalizedIndex);
     setHasActiveSelection(true);
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     cardRailRef.current
       ?.querySelector<HTMLElement>(
         `[data-menu-card-index="${normalizedIndex}"]`,
       )
       ?.scrollIntoView?.({
-        behavior: "smooth",
+        behavior: prefersReducedMotion ? "auto" : "smooth",
         block: "nearest",
         inline: "center",
       });

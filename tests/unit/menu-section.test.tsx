@@ -131,6 +131,36 @@ describe("menu anchor scene", () => {
     expect(status).toHaveTextContent("Позиция 2 из 5: Ягодный десерт");
   });
 
+  test("keeps the menu controls operable when matchMedia is unavailable", async () => {
+    const menuSectionModule = await loadMenuSection();
+
+    expect(menuSectionModule).not.toBeNull();
+    if (!menuSectionModule) {
+      return;
+    }
+
+    const originalMatchMedia = Object.getOwnPropertyDescriptor(window, "matchMedia");
+    Object.defineProperty(window, "matchMedia", {
+      configurable: true,
+      value: undefined,
+    });
+
+    try {
+      render(createElement(menuSectionModule.MenuSection));
+      const next = screen.getByRole("button", {
+        name: "Следующая иллюстративная позиция меню",
+      });
+
+      expect(() => next.click()).not.toThrow();
+    } finally {
+      if (originalMatchMedia) {
+        Object.defineProperty(window, "matchMedia", originalMatchMedia);
+      } else {
+        Reflect.deleteProperty(window, "matchMedia");
+      }
+    }
+  });
+
   test("keeps the five-card desktop rail aligned to the measured menu anchor", () => {
     expect(menuStyles).toContain("width: min(100% - 70px, 1465px);");
     expect(menuStyles).toContain("top: 30px;");

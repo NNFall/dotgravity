@@ -34,10 +34,9 @@ function ExternalArrow() {
 
 export function EventsBridge() {
   return (
-    <section
+    <aside
       aria-labelledby="events-title"
       className={styles.eventsBridge}
-      data-scene="events"
       id="events"
     >
       <div aria-hidden="true" className={styles.leftOrbit}>
@@ -74,6 +73,6 @@ export function EventsBridge() {
           <ExternalArrow />
         </a>
       </div>
-    </section>
+    </aside>
   );
 }

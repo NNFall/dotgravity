@@ -133,4 +133,18 @@ describe("gallery anchor scene", () => {
     expect(css).toMatch(/min-height:\s*(?:44px|2\.75rem)/i);
     expect(css).toMatch(/overflow-x:\s*hidden/i);
   });
+
+  test("keeps reference disclosure in the accessibility tree without overlaying target artwork", () => {
+    const css = readFileSync(
+      resolve(
+        process.cwd(),
+        "src/components/scenes/GallerySection.module.css",
+      ),
+      "utf8",
+    );
+
+    expect(css).toMatch(
+      /\.mainPhoto figcaption,\s*\.provenanceNote\s*\{[\s\S]*?clip:\s*rect\(0 0 0 0\)/i,
+    );
+  });
 });

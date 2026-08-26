@@ -25,7 +25,9 @@ Target screens, all 1672×941:
 
 The production page order is:
 
-1. sticky header and hero;
+1. shared header in normal flow and hero (the supplied scene captures place the
+   header only on the hero/contact states, so a sticky overlay would obscure
+   the other anchor compositions);
 2. about / coffee meets art;
 3. menu carousel;
 4. gallery / atmosphere;
@@ -38,7 +40,7 @@ The six referenced sections keep exact desktop compositions. Derived bridge/foot
 
 ## Architecture and component boundaries
 
-- One route renders a semantic page shell and six stable `<section data-scene="...">` targets.
+- One route renders a semantic page shell and six stable `<section data-scene="...">` targets; the derived events invitation is a separate `aside#events` bridge because it has no supplied reference screen.
 - Content and media metadata live outside view components so facts, labels and provenance can be verified independently.
 - Each major scene owns its layout file and CSS module/style scope; shared primitives cover header, CTA, ornament, framed image, icon-label and reveal behavior.
 - Motion is isolated and progressive. Base HTML remains usable without JavaScript; animation uses `transform`/`opacity`, IntersectionObserver or the framework-approved motion layer, and reduced-motion disables choreography.

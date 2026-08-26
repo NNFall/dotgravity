@@ -810,3 +810,19 @@
     transition: none;
   }
 }
+
+/* Keep the disclosure accessible but out of the photo surface so the live
+   typography and bounded crop retain the supplied composition. */
+.mainArtwork figcaption,
+.provenanceNote {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}

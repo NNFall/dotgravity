@@ -35,19 +35,17 @@ describe("home scene flow", () => {
 
     const mainChildren = Array.from(main.children);
     expect(mainChildren).toHaveLength(expectedSceneOrder.length);
-    expect(
-      mainChildren.every(
-        (child) => child instanceof HTMLElement && child.matches("section[data-scene]"),
-      ),
-    ).toBe(true);
+    expect(mainChildren.every((child) => child instanceof HTMLElement)).toBe(true);
     expect(
       mainChildren.map((scene) => ({
         id: (scene as HTMLElement).id,
         scene: (scene as HTMLElement).dataset.scene,
       })),
-    ).toEqual(
-      expectedSceneOrder.map((sceneId) => ({ id: sceneId, scene: sceneId })),
-    );
+    ).toEqual([
+      ...expectedSceneOrder.slice(0, 5).map((sceneId) => ({ id: sceneId, scene: sceneId })),
+      { id: "events", scene: undefined },
+      { id: "contacts", scene: "contacts" },
+    ]);
 
     for (const [index, sceneId] of expectedSceneOrder.entries()) {
       expect(document.querySelectorAll(`[id="${sceneId}"]`)).toHaveLength(1);

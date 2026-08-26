@@ -158,7 +158,7 @@ These are concept-derived visual references, not photographs of the real cafe. O
 
 ### Contacts reference-derived crops
 
-The contacts desktop photo pair uses two photo-only crops from the supplied generated contacts concept (`DC6958CC6FB22CB2892C5D4708B907468EE52C2A01251A6378F2E3E001B2E88457`). Created 2026-08-26, both assets are classified `reference-derived`, have `documentary: false`, and are allowed only inside the bounded contacts photo regions (`bounded-reference-region`). The plaque, captions, labels and schematic route remain live HTML/CSS/SVG; they are not duplicated in the PNGs.
+The contacts desktop photo pair uses two photo-only crops from the supplied generated contacts concept (`DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457`). Created 2026-08-26, both assets are classified `reference-derived`, have `documentary: false`, and are allowed only inside the bounded contacts photo regions (`bounded-reference-region`). The plaque, captions, labels and schematic route remain live HTML/CSS/SVG; they are not duplicated in the PNGs.
 
 | Asset | SHA-256 | Crop / treatment |
 | --- | --- | --- |
@@ -166,6 +166,21 @@ The contacts desktop photo pair uses two photo-only crops from the supplied gene
 | `contacts-reference-street-crop.png` | `9DF641E07DA51B7361391F4785189201B0EA8445ABDA37C2A663E8FAE8C22F53` | `x=1158,y=106,w=514,h=477`; excludes header, divider, lower route panel and DOM labels; source facade signage remains part of the concept crop |
 
 These are bounded fragments of the supplied concept, not photographs of the real cafe. They must not be presented as documentary venue evidence, and responsive layouts may crop them further but may not expand either fragment into a full reference screen.
+
+### Souvenirs reference-derived crops
+
+The souvenirs desktop composition uses five bounded, photo-only crops from the supplied generated concept screen (`1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0`). The crops exclude the outer frame, caption, card copy and decorative overlays; all surrounding structure remains React/CSS/SVG. The facade sign visible inside the main crop is baked into the source image and is not an independently authored venue claim.
+
+| Asset | SHA-256 | Crop / role |
+| --- | --- | --- |
+| `souvenirs-reference-main-photo.png` | `A86165D939862917E61AEBEF2D690C99076804E275C491D3F7E2C24ED6B7A174` | `x=818,y=101,w=764,h=512`; main photo region |
+| `souvenirs-reference-bracelet.png` | `7640E3AAECAE82591E8609DB4B3C025C8CB32D38A57849A2EB8C753DFF4F3748` | `x=50,y=674,w=212,h=184`; bracelet card photo |
+| `souvenirs-reference-ring.png` | `C5A1EEA39027D9669E2261E59E524B23F5183CC216A2B55978338135CD4F1A97` | `x=462,y=674,w=204,h=184`; ring card photo |
+| `souvenirs-reference-teacup.png` | `52F7246A42E33A37149367378DA44A7BD7F7001015C46100052072E5CD506D73` | `x=849,y=674,w=203,h=184`; teacup card photo |
+| `souvenirs-reference-tea-set.png` | `D3FB908D377A9373390D80832C4E6A75C7C550EA25992E12EB32168C5C71C800` | `x=1237,y=674,w=216,h=184`; tea-set card photo |
+
+These are concept-derived visual references, not photographs of the real cafe. They remain bounded to the main artwork frame and responsive story-card visuals and are never used as a full-screen reference composite. The previously reviewed generated bracelet cutout remains registered for provenance, but the scene uses the reference bracelet crop because it matches the supplied card geometry more faithfully.
+
 ### `souvenirs-window-still-life`
 
 | Field | Registered value |

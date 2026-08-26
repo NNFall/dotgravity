@@ -90,6 +90,17 @@ describe("souvenirs anchor scene", () => {
         name: "ПОДАРКИ, УКРАШЕНИЯ И РЕДКИЕ НАХОДКИ",
       }),
     ).toBeInTheDocument();
+    expect(
+      within(souvenirs).getByText(/больше, чем просто сувениры/i),
+    ).toBeInTheDocument();
+    for (const title of [
+      "«РОЗОВЫЙ КВАРЦ»",
+      "«УЗОР ВРЕМЕНИ»",
+      "HEREND",
+      "ЧАЙНЫЙ НАБОР",
+    ]) {
+      expect(within(souvenirs).getByRole("heading", { level: 3, name: title })).toBeInTheDocument();
+    }
     expect(within(souvenirs).getAllByRole("listitem")).toHaveLength(4);
     expect(
       within(souvenirs).getByRole("link", {
@@ -110,6 +121,9 @@ describe("souvenirs anchor scene", () => {
     expect(souvenirs.innerHTML).not.toContain(braceletCutout.path);
     expect(souvenirs.innerHTML).not.toContain(braceletSource.path);
     expect(souvenirs.innerHTML).not.toMatch(/корзин|купить|в наличии|₽/i);
+    expect(souvenirs.innerHTML).not.toMatch(
+      /натуральн|серебрян|лимитирован|венгерск|европ|xx века|отличное состояние/i,
+    );
     expect(
       within(souvenirs).getByText("Фрагменты референсной концепции"),
     ).toBeInTheDocument();
@@ -172,6 +186,14 @@ describe("souvenirs anchor scene", () => {
     expect(storyContent).toMatch(/padding:\s*17px 7px 13px;/i);
     expect(desktopStyles).toMatch(
       /\.storyVisual\s*\{[\s\S]*?border-radius:\s*7px;/i,
+    );
+  });
+
+  test("keeps provenance disclosure accessible without overlaying the reference crop", () => {
+    const styles = loadSouvenirsStyles();
+
+    expect(styles).toMatch(
+      /\.mainArtwork figcaption,\s*\.provenanceNote\s*\{[\s\S]*?clip:\s*rect\(0 0 0 0\)/i,
     );
   });
 });

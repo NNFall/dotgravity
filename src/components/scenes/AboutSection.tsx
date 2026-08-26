@@ -179,12 +179,20 @@ export function AboutSection() {
 
       <aside className={styles.locationCard}>
         <span className={styles.locationCardEyebrow}>
+          ВИД НА КОСТЁЛ
+        </span>
+        <h2 className={styles.visuallyHidden} id="about-title">
+          О нас
+        </h2>
+        <p>ПРЕСВЯТОГО СЕРДЦА ИИСУСА</p>
+        <span className={styles.locationCardRule} />
+        <small>исторический центр Самары</small>
+        <span className={styles.provenanceNote}>
           Сгенерированная визуальная композиция
         </span>
-        <h2 id="about-title">О нас</h2>
-        <p>Архитектурный мотив с силуэтом костёла</p>
-        <span className={styles.locationCardRule} />
-        <small>не документальная фотография места</small>
+        <span className={styles.provenanceNote}>
+          не документальная фотография места
+        </span>
         <div aria-hidden="true" className={styles.locationCardCathedral}>
           <CathedralDrawing />
         </div>

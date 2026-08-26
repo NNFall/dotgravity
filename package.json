@@ -10,7 +10,7 @@
     "build": "vinext build",
     "start": "vinext start",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
-    "test": "vitest run",
+    "test": "vitest run --no-file-parallelism",
     "test:watch": "vitest",
     "qa:assets": "node scripts/audit-assets.mjs",
     "qa:browser": "playwright test tests/browser --project=chromium --workers=1",

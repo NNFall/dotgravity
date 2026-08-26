@@ -32,9 +32,7 @@ describe("events bridge", () => {
 
     render(createElement(eventsBridgeModule.EventsBridge));
 
-    const bridge = document.querySelector<HTMLElement>(
-      'section[data-scene="events"]#events',
-    );
+    const bridge = document.querySelector<HTMLElement>("aside#events");
     expect(bridge).not.toBeNull();
     if (!bridge) {
       throw new Error("The continuous events bridge must expose its anchor.");

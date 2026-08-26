@@ -50,6 +50,11 @@ describe("about anchor scene", () => {
     expect(
       within(about).getByText("не документальная фотография места"),
     ).toBeInTheDocument();
+    expect(within(about).getByText("ВИД НА КОСТЁЛ")).toBeInTheDocument();
+    expect(
+      within(about).getByText("ПРЕСВЯТОГО СЕРДЦА ИИСУСА"),
+    ).toBeInTheDocument();
+    expect(within(about).getByText("исторический центр Самары")).toBeInTheDocument();
     expect(about.innerHTML).not.toContain("tests/visual/baselines");
   });
 

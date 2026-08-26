@@ -102,4 +102,15 @@ describe("ContactsSection", () => {
       /@media\s*\(max-width:\s*520px\)[\s\S]*?\.contactItem\s*\{[\s\S]*?grid-template-columns:\s*32px\s+minmax\(0,\s*1fr\)\s+27px;/i,
     );
   });
+
+  test("keeps reference disclosure accessible without adding copy over the photos", () => {
+    const css = readFileSync(
+      "src/components/scenes/ContactsSection.module.css",
+      "utf8",
+    );
+
+    expect(css).toMatch(
+      /\.windowVisual figcaption,\s*\.streetVisual figcaption\s*\{[\s\S]*?clip:\s*rect\(0 0 0 0\)/i,
+    );
+  });
 });
