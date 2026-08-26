@@ -84,4 +84,18 @@ describe("ContactsSection", () => {
       screen.getByRole("complementary", { name: "Как добраться" }),
     ).toBeInTheDocument();
   });
+
+  test("lets the mobile editorial heading wrap inside the contact canvas", () => {
+    const css = readFileSync(
+      "src/components/scenes/ContactsSection.module.css",
+      "utf8",
+    );
+
+    expect(css).toMatch(
+      /@media\s*\(max-width:\s*860px\)[\s\S]*?\.copy h2\s*\{[\s\S]*?white-space:\s*normal;/i,
+    );
+    expect(css).toMatch(
+      /@media\s*\(max-width:\s*520px\)[\s\S]*?\.contactItem\s*\{[\s\S]*?grid-template-columns:\s*32px\s+minmax\(0,\s*1fr\)\s+27px;/i,
+    );
+  });
 });

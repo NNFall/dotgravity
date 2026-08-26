@@ -567,6 +567,9 @@
   .copy h2 {
     margin-top: 28px;
     font-size: clamp(2.55rem, 11.2vw, 4rem);
+    max-inline-size: 100%;
+    overflow-wrap: anywhere;
+    white-space: normal;
   }
 
   .introduction {
