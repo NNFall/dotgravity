@@ -7,7 +7,7 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Commit: `e8f4b5d2ffa111d30488840e57901e98888d0562` (before the final evidence refresh)
+- Commit: `5308a46101255b5524c5b787c18c55d16597eb4c` (GitHub feature branch; Sites refresh pending)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`

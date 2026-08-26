@@ -79,7 +79,7 @@ npm.cmd install -D vitest @testing-library/react @testing-library/jest-dom jsdom
 - [ ] RED: assert address Самара, ул. Фрунзе, 130; tel:+78462630404; supplied Yandex route; order hero/about/menu/gallery/souvenirs/contacts; no invented weekly hours; one H1; data-scene=hero; no baseline path in rendered HTML.
 - [ ] Run npm.cmd test -- tests/unit/site-content.test.ts and observe the expected missing-module failure.
 - [ ] GREEN data: verified facts only, stale price note, VK unconfirmed, honest route/contact CTA.
-- [ ] GREEN metadata: html lang ru; title Точка притяжения | Кофе, искусство и редкие вещи; concrete description; Prata display and Montserrat body with Cyrillic subsets; no Geist/starter/dark-mode defaults.
+- [ ] GREEN metadata: html lang ru; title Точка притяжения | Кофе, искусство и атмосфера; concrete description; Prata display and Montserrat body with Cyrillic subsets; no Geist/starter/dark-mode defaults. The title intentionally avoids an unverified inventory claim.
 - [ ] GREEN hero at 1672×941: 104 px header; logo starts near x=52; content x=109; H1 y≈205 at 92–98 px; CTA about 378×65; diagonal photo polygon from approximately (955,105) to (725,941). All copy, icons and rules are live DOM/CSS.
 - [ ] Run focused test, lint and build.
 - [ ] Start npm.cmd run dev -- --host 127.0.0.1 --port 4173 in a retained session, request the route, then show the exact URL as the first meaningful preview before further source edits.
@@ -197,9 +197,9 @@ The strict raw RGBA comparator is intentionally red at
 byte-identical to the supplied concept baselines; no tolerance or mask is used.
 No 1920×1080 or mobile raw baselines were supplied, so those viewports have
 behavioral and overflow evidence only. Final independent review, GitHub push,
-Sites version save and verified owner-only production deployment are complete
-for commit `f6c39355ec19a8da0ae93d2a661d3d9370d1ccc0`; the raw-zero and missing
-baseline items remain intentionally open quality limitations. The latest
-refresh also adds a production favicon route, co-locates the contacts reference
-header, and restores gallery captions/icons while preserving the continuous
-scroll interpretation and provenance boundaries.
+Sites version save and verified owner-only production deployment remain pending
+for the current refresh commit; the raw-zero and missing baseline items remain
+intentionally open quality limitations. The latest refresh also adds a
+production favicon route, co-locates the contacts reference header, and
+restores gallery captions/icons while preserving the continuous scroll
+interpretation and provenance boundaries.
