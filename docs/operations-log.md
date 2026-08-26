@@ -64,9 +64,9 @@
   scroll flow; no supplied screen is imported as a whole-page image.
 - Tuned local scene paper colors/gradients against the supplied reference
   pixels, tightened hero kicker/type/icon rhythm, and kept mobile overrides
-  separate. Gallery labels now reflect the supplied visual concepts, while
-  menu/souvenir copy remains neutral where current prices, stock or catalogue
-  facts were not verified.
+  separate. Gallery labels now express the supplied visual concepts as neutral
+  motifs, while menu/souvenir copy remains neutral where current prices, stock
+  or catalogue facts were not verified.
 - Repaired the hero reference-derived crop's accidental edge alpha strips and
   restored a continuous dark-wood underlay beneath the live CSS plaque. The
   asset SHA, registry and provenance statement are synchronized at
@@ -82,11 +82,13 @@
   reloaded against `http://127.0.0.1:4180/` with one H1, six scenes and both
   contacts actions present.
 - Fresh raw comparison remains intentionally red at
-  `6,885,397 / 9,440,112` changed pixels (hero `1,007,264`; about `949,988`;
-  menu `1,496,436`; gallery `929,867`; souvenirs `974,225`; contacts
+  `6,885,892 / 9,440,112` changed pixels (hero `1,007,264`; about `949,988`;
+  menu `1,496,436`; gallery `930,362`; souvenirs `974,225`; contacts
   `1,527,617`). No tolerance, mask or approval exception was introduced;
   responsive raw baselines are still absent.
 - AntiGravity was not called again after the user's explicit unavailability
   instruction. Runtime commit
-  `0c527415fdcdf9818f0de54d872fe4ec10f9470f` is locally verified; the docs
-  follow-up, GitHub push and Sites source save/deploy remain the next steps.
+  `b0b71fc686a34955ccbb3083c0845050427ec553` is locally verified and pushed
+  to GitHub and the Sites source repository. Sites version 6 was saved and
+  deployed successfully to the existing owner-only production URL; the
+  neutral visual-motif gallery copy is included in that deployment.

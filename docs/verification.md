@@ -11,14 +11,14 @@ continues to own its isolated `4174` server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 29 files, 109 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 29 files, 110 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
 | `npm.cmd run qa:assets` | pass | 26 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 6,885,397 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 6,885,892 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -77,7 +77,7 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `6885397 / 9440112` changed
+  mask was introduced. The latest raw report is `6885892 / 9440112` changed
   pixels across the six supplied 1672×941 frames: hero is `1007264` changed
   pixels and about is `949988`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
@@ -93,10 +93,10 @@ labels. The bounded hero crop remains `947×836`; its registry SHA is
 `789791B7809699ABDA65EBF2D2AB03A9E2EE2448FB43D12CA24AE0F12FBAC624`.
 
 The fresh capture at `1672×941` reports: hero `1,007,264`, about `949,988`,
-menu `1,496,436`, gallery `929,867`, souvenirs `974,225`, contacts `1,527,617`
-changed pixels; total `6,885,397 / 9,440,112`. This remains a strict
+menu `1,496,436`, gallery `930,362`, souvenirs `974,225`, contacts `1,527,617`
+changed pixels; total `6,885,892 / 9,440,112`. This remains a strict
 zero-tolerance failure and no mask/tolerance/exception was introduced.
-The refreshed serialized suite is `29 files / 109 tests`; lint, TypeScript,
+The refreshed serialized suite is `29 files / 110 tests`; lint, TypeScript,
 asset audit (`26` assets), production build, Chromium behavior (`12/12`),
 accessibility (`5/5`), visual capture (`1/1`) and production dependency audit
 (`0` high-severity vulnerabilities) pass. The local production probe reports
