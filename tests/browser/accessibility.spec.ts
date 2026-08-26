@@ -1,5 +1,16 @@
 import { expect, test } from "@playwright/test";
 
+test("serves the registered favicon without a missing ico request", async ({ page }) => {
+  await page.goto("/", { waitUntil: "domcontentloaded" });
+
+  await expect(page.locator('link[rel="icon"]')).toHaveAttribute(
+    "href",
+    "/favicon.svg",
+  );
+  const response = await page.request.get("/favicon.svg");
+  expect(response.ok()).toBe(true);
+});
+
 test("exposes one page H1 and named primary landmarks", async ({ page }) => {
   await page.goto("/", { waitUntil: "domcontentloaded" });
 

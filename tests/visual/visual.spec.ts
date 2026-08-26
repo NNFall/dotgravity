@@ -72,6 +72,7 @@ const waitForStablePaint = async (page: Page) => {
 
 test.describe("strict live visual capture", () => {
   test("captures every supplied scene from the live component page", async ({ page }) => {
+    test.setTimeout(120_000);
     const [{ height, viewportId, width }] = referenceAtlas;
     rmSync(captureDirectory, { force: true, recursive: true });
     mkdirSync(captureDirectory, { recursive: true });

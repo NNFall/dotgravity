@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   title: "Точка притяжения | Кофе, искусство и редкие вещи",
   description:
     "Кофейня, бар, галерея и сувениры в историческом центре Самары.",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
