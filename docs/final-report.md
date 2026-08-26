@@ -1,0 +1,42 @@
+# Точка притяжения — финальный отчёт
+
+## Результат
+
+Собран единый адаптивный сайт кафе с непрерывным scroll-потоком: hero → about → menu → gallery → souvenirs → events bridge → contacts → footer. Шесть присланных экранов сохранены как отдельные React-сцены и anchor-состояния, а переходы между ними связаны общей бумажной фактурой, медными контурами, повторяющимися рамками, мягкими clip-path стыками и restrained motion. Цельные PNG-экраны в production не импортируются.
+
+## Ссылки
+
+- GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
+- Commit: `f6c39355ec19a8da0ae93d2a661d3d9370d1ccc0`
+- Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
+- Local handoff: `http://127.0.0.1:4180/`
+- Desktop captures: `artifacts/visual/captures/1672x941/`
+- Mobile review captures: `artifacts/visual/captures/mobile/full-390x844.png`, `artifacts/visual/captures/mobile/full-320x844.png`
+
+## Verification evidence
+
+| Gate | Result |
+| --- | --- |
+| `npm.cmd run lint` | pass |
+| `npx.cmd tsc --noEmit` | pass |
+| `npm.cmd run qa:assets` | pass — 26 registered assets |
+| `npm.cmd test` | pass — 29 files / 104 tests |
+| `npm.cmd run build` | pass |
+| `npm.cmd run qa:browser` | pass — 12 tests |
+| `npm.cmd run qa:a11y` | pass — 5 tests |
+| `npm.cmd run qa:visual` | pass — 1 six-scene capture test |
+| `npm.cmd audit --omit=dev --audit-level=high` | pass — 0 production vulnerabilities |
+| `git diff --check` | pass |
+| Sites deployment | pass — production publish succeeded, owner-only access |
+
+The strict raw RGBA comparator remains intentionally red: `8,889,835 / 9,440,112` pixels differ across the six 1672×941 captures. No tolerance or mask was introduced. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+
+## Provenance and rights
+
+Generated/reference-compatible visual media and bounded `reference-derived` crops are registered separately from documentary Yandex material. VK content could not be confirmed through the managed browser. Yandex facts used in the UI are limited to the confirmed venue name, Samara address and phone; hours, prices, stock and booking availability are not asserted. Documentary-photo usage rights remain unconfirmed and should be cleared before an unrestricted public launch. Souvenir copy uses neutral visual descriptions and explicitly labels illustrative motifs.
+
+AntiGravity was not retried after the user reported it unavailable. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence.
+
+## Remaining quality work
+
+For a literal zero-diff claim, capture and approve canonical baselines for 1920×1080, 390×844 and 320px, then iterate against the current raw comparator until all six desktop reference captures and the new responsive baselines satisfy the agreed pixel contract. The current result is published and usable, but this stricter evidence gate is not being represented as complete.

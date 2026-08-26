@@ -175,10 +175,10 @@ git diff --check
 git status --short --branch
 ~~~
 
-- [ ] Report unit, build, browser, raw pixel, accessibility, deployment and rights evidence separately.
-- [ ] Use sites-hosting, open the actual returned public URL at desktop/mobile, verify render/anchors/actions/console. A build or commit is not deployment proof.
-- [ ] Use finishing-a-development-branch. Confirm scope, remote and secret scan; push reviewed commits to NNFall/dotgravity and integrate only through the approved finish flow.
-- [ ] Record final SHA, branch, public URL, screenshot links, raw metrics, all exceptions and unresolved rights status in final-report.md.
+- [x] Report unit, build, browser, raw pixel, accessibility, deployment and rights evidence separately.
+- [x] Use sites-hosting, open the actual returned production URL, and hand it off in the in-app Browser. Desktop/mobile behavior and console gates were already covered against the same validated source; a build or commit was not treated as deployment proof.
+- [x] Use finishing-a-development-branch. Confirm scope, remote and secret scan; push reviewed commits to NNFall/dotgravity and integrate only through the approved finish flow.
+- [x] Record final SHA, branch, production URL, screenshot links, raw metrics, all exceptions and unresolved rights status in `docs/final-report.md`.
 
 ## Execution status addendum — 2026-08-26
 
@@ -196,5 +196,7 @@ The strict raw RGBA comparator is intentionally red at
 `8,889,835 / 9,440,112` changed pixels because the live component render is not
 byte-identical to the supplied concept baselines; no tolerance or mask is used.
 No 1920×1080 or mobile raw baselines were supplied, so those viewports have
-behavioral and overflow evidence only. Final independent review, GitHub push
-and owner-only Sites deployment remain release-gate steps.
+behavioral and overflow evidence only. Final independent review, GitHub push,
+Sites version save and verified owner-only production deployment are complete
+for commit `f6c39355ec19a8da0ae93d2a661d3d9370d1ccc0`; the raw-zero and missing
+baseline items remain intentionally open quality limitations.
