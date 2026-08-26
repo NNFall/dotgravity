@@ -93,7 +93,7 @@
 .cardRail {
   position: relative;
   width: min(100% - 70px, 1465px);
-  margin: 27px auto 0;
+  margin: 22px auto 0;
 }
 
 .cards {
@@ -138,7 +138,7 @@
   grid-template-rows: 267px auto auto 1px auto;
   align-content: start;
   min-height: 403px;
-  padding: 12px 14px 22px;
+  padding: 12px 14px 10px;
   background:
     linear-gradient(150deg, rgb(255 255 255 / 26%), transparent 38%),
     var(--paper);

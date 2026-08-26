@@ -13,6 +13,8 @@ describe("menu desktop scene contract", () => {
       /@media \(min-width: 1440px\) \{\s*\.menuScene \{([\s\S]*?)\n  \}/,
     );
     const heading = menuStyles.match(/\.header h2 \{([\s\S]*?)\n\}/);
+    const cardRail = menuStyles.match(/\.cardRail \{([\s\S]*?)\n\}/);
+    const cardInner = menuStyles.match(/\.cardInner \{([\s\S]*?)\n\}/);
 
     expect(heading?.[1]).toContain(
       "font-size: clamp(2.65rem, 3.6vw, 3.75rem);",
@@ -21,5 +23,7 @@ describe("menu desktop scene contract", () => {
     expect(wideDesktopScene?.[1]).toContain(
       "height: max(941px, 56.28vw);",
     );
+    expect(cardRail?.[1]).toContain("margin: 22px auto 0;");
+    expect(cardInner?.[1]).toContain("padding: 12px 14px 10px;");
   });
 });
