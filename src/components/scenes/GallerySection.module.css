@@ -47,7 +47,7 @@
   z-index: 3;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: min(39.3%, 572px);
   height: 100%;
   padding: 143px 0 45px 7.9%;
@@ -89,7 +89,7 @@
 }
 
 .copy h2 {
-  margin: 0;
+  margin: 22px 0 0;
   color: var(--ink);
   font-family: Prata, Georgia, serif;
   font-size: clamp(3.5rem, 4.22vw, 4.4rem);
@@ -105,9 +105,9 @@
 
 .introduction {
   max-width: 350px;
-  margin: 0;
+  margin: 14px 0 0;
   color: var(--ink);
-  font-size: clamp(0.82rem, 1vw, 1.04rem);
+  font-size: 0.875rem;
   font-weight: 440;
   letter-spacing: 0.003em;
   line-height: 1.55;
@@ -115,7 +115,7 @@
 
 .storyDetails {
   width: min(100%, 344px);
-  margin: 0;
+  margin: 25px 0 0;
   border: 1px solid rgb(143 50 29 / 88%);
   border-radius: 7px;
   background: var(--copper);
@@ -170,7 +170,7 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   width: min(100%, 398px);
-  margin: 0;
+  margin: 44px 0 0;
   padding: 0;
   list-style: none;
 }
@@ -203,7 +203,7 @@
   gap: 16px;
   width: max-content;
   max-width: 100%;
-  margin: 0 0 0 -11px;
+  margin: auto 0 0 -11px;
   color: var(--copper);
 }
 

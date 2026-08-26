@@ -17,7 +17,7 @@ const desktopStyles = galleryStylesheet.slice(0, mobileBreakpointIndex);
 const mobileStyles = galleryStylesheet.slice(mobileBreakpointIndex);
 
 describe("gallery desktop canvas contract", () => {
-  test("fixes the reference canvas while keeping the copy out of normal flow", () => {
+  test("keeps the desktop copy aligned to the reference story rhythm", () => {
     expect(desktopStyles).toMatch(
       /\.composition\s*\{[^}]*\bheight:\s*max\(\s*941px\s*,\s*56\.28vw\s*\)\s*;/,
     );
@@ -31,7 +31,28 @@ describe("gallery desktop canvas contract", () => {
       /\.copy\s*\{[^}]*\bheight:\s*100%\s*;/,
     );
     expect(desktopStyles).toMatch(
-      /\.copy\s*\{[^}]*\bjustify-content:\s*space-between\s*;/,
+      /\.copy\s*\{[^}]*\bjustify-content:\s*flex-start\s*;/,
+    );
+    expect(desktopStyles).toMatch(
+      /\.copy\s+h2\s*\{[^}]*\bmargin:\s*22px\s+0\s+0\s*;/,
+    );
+    expect(desktopStyles).toMatch(
+      /\.introduction\s*\{[^}]*\bmargin:\s*14px\s+0\s+0\s*;/,
+    );
+    expect(desktopStyles).toMatch(
+      /\.introduction\s*\{[^}]*\bfont-size:\s*0\.875rem\s*;/,
+    );
+    expect(desktopStyles).toMatch(
+      /\.storyDetails\s*\{[^}]*\bmargin:\s*25px\s+0\s+0\s*;/,
+    );
+    expect(desktopStyles).toMatch(
+      /\.featureList\s*\{[^}]*\bmargin:\s*44px\s+0\s+0\s*;/,
+    );
+    expect(desktopStyles).toMatch(
+      /\.motto\s*\{[^}]*\bmargin:\s*auto\s+0\s+0\s+-11px\s*;/,
+    );
+    expect(desktopStyles).toMatch(
+      /\.mainPhoto\s*\{[^}]*\bleft:\s*39\.3%\s*;/,
     );
     expect(mobileStyles).toMatch(
       /\.composition\s*\{[^}]*\bheight:\s*auto\s*;/,
