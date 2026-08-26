@@ -67,6 +67,72 @@ export const mediaManifest = [
     },
   },
   {
+    id: "hero-reference-photo",
+    path: "/media/reference-derived/hero-reference-photo.png",
+    sha256:
+      "53BB40ED34BDE8F86E4B823C0FDE2A73D60DADB8C5BEAFE21AAE853F32B09DFA",
+    dimensions: {
+      width: 947,
+      height: 836,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Photo-only bounded crop x=725,y=105,w=947,h=836 from the supplied hero concept; alpha mask follows the live diagonal and removes the plaque region x=1411..1547,y=131..509 in reference coordinates, while the DOM plaque and hairline remain live.",
+      statement:
+        "Bounded crop from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "hero reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "fill the bounded desktop hero photo polygon with the masked photo-only crop",
+      focalPoint: "cathedral window, flowers, coffee and porcelain shelf",
+      responsive:
+        "Use only inside the desktop hero photo region; keep the generated fallback on mobile and never expand the crop into a full reference screen.",
+    },
+  },
+  {
+    id: "about-reference-arch",
+    path: "/media/reference-derived/about-reference-arch.png",
+    sha256:
+      "36ED679595E6BC5131328BD579E1873AD745EA8C73635983852F690772A085B5",
+    dimensions: {
+      width: 797,
+      height: 941,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9",
+      transformation:
+        "Photo-only bounded crop x=17,y=0,w=797,h=941 from the supplied about concept; alpha mask follows the inner arch and removes the location-card region x=1..433,y=676..906 in reference coordinates, while the live frame, card and disclosure remain React/CSS.",
+      statement:
+        "Bounded crop from the supplied generated about concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["about"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "about reference crop photo region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "fill the bounded desktop about arch frame with the masked photo-only crop",
+      focalPoint: "arched interior, stained-glass windows and porcelain display",
+      responsive:
+        "Use only inside the bounded about photo frame; keep the generated fallback on mobile and never expand the crop into a full reference screen.",
+    },
+  },
+  {
     id: "menu-iced-coffee-croissant",
     path: "/media/generated/menu-iced-coffee-croissant.png",
     sha256: "9C17818567C35E022AB248F8B278C63E380754F3182C94ACDF9E0672CDF188FE",

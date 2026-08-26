@@ -240,6 +240,26 @@ Non-secret prompt summary: dusk brick street with a church-like tower, warm cafe
 
 This file is generated reference-compatible artwork. It is **not a documentary venue photograph** and must not be presented as evidence of the venue, its inventory, its signage, or its current appearance.
 
+### Hero reference-derived crop
+
+The desktop hero photo layer uses one bounded, alpha-masked crop from the supplied generated hero concept (`21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559`). Created 2026-08-26, `hero-reference-photo.png` is `947×836` PNG, classified `reference-derived`, `documentary: false`, and allowed only inside the desktop hero photo polygon (`bounded-reference-region`). The source rectangle is `x=725,y=105,w=947,h=836`; the mask follows the measured diagonal and removes the plaque safety region `x=1411..1547,y=131..509` in full-reference coordinates. The live diagonal hairline, plaque, copy and all surrounding structure remain React/CSS.
+
+| Asset | SHA-256 | Crop / role |
+| --- | --- | --- |
+| `hero-reference-photo.png` | `53BB40ED34BDE8F86E4B823C0FDE2A73D60DADB8C5BEAFE21AAE853F32B09DFA` | `x=725,y=105,w=947,h=836`; masked hero window/coffee/porcelain photo layer |
+
+This is a bounded fragment of the supplied concept, not a photograph of the real cafe. The generated hero asset remains the responsive fallback at mobile widths; the reference crop is never expanded into a full-screen composite.
+
+### About reference-derived crop
+
+The desktop about photo frame uses one bounded, alpha-masked crop from the supplied generated about concept (`5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9`). Created 2026-08-26, `about-reference-arch.png` is `797×941` PNG, classified `reference-derived`, `documentary: false`, and allowed only inside the about arch frame (`bounded-reference-region`). The source rectangle is `x=17,y=0,w=797,h=941`; the mask follows the measured inner arch and removes the location-card safety region `x=1..433,y=676..906` in full-reference coordinates. The live frame, location card, disclosure, text and cathedral drawing remain React/CSS.
+
+| Asset | SHA-256 | Crop / role |
+| --- | --- | --- |
+| `about-reference-arch.png` | `36ED679595E6BC5131328BD579E1873AD745EA8C73635983852F690772A085B5` | `x=17,y=0,w=797,h=941`; masked about arch interior photo layer |
+
+This is a bounded fragment of the supplied concept, not a photograph of the real cafe. The generated about asset remains the responsive fallback at mobile widths; the reference crop is never expanded into a full-screen composite.
+
 ## Audit policy
 
 `npm.cmd run qa:assets` runs the shared runtime registry validation, then fails when any registered media file is missing, has a different SHA-256, or has different intrinsic dimensions as reported by Sharp. It also rejects:

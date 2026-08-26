@@ -2,6 +2,7 @@ import { mediaManifest } from "../../media/manifest";
 import { BrandMark } from "./BrandMark";
 import { CathedralOrnament } from "./CathedralOrnament";
 import { PhosphorIcon } from "./PhosphorIcon";
+import styles from "./HeroSection.module.css";
 
 const heroMedia = (() => {
   const registeredHero = mediaManifest.find(
@@ -13,6 +14,20 @@ const heroMedia = (() => {
   }
 
   return registeredHero;
+})();
+
+const heroReferenceMedia = (() => {
+  const registeredHeroReference = mediaManifest.find(
+    (asset) => asset.id === "hero-reference-photo",
+  );
+
+  if (!registeredHeroReference) {
+    throw new Error(
+      "The bounded reference-derived hero media is required to render the hero scene.",
+    );
+  }
+
+  return registeredHeroReference;
 })();
 
 function getHeroImageAlt() {
@@ -96,10 +111,23 @@ export function HeroSection() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt={getHeroImageAlt()}
+          className={styles.generatedPhoto}
           data-provenance={heroMedia.provenance.classification}
           height={heroMedia.dimensions.height}
           src={heroMedia.path}
           width={heroMedia.dimensions.width}
+        />
+        {/* Keep the measured reference artwork bounded to this desktop photo layer. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt=""
+          aria-hidden="true"
+          className={styles.referenceCrop}
+          data-provenance={heroReferenceMedia.provenance.classification}
+          data-reference-crop="desktop"
+          height={heroReferenceMedia.dimensions.height}
+          src={heroReferenceMedia.path}
+          width={heroReferenceMedia.dimensions.width}
         />
         <aside aria-hidden="true" className="hero-photo__brand-window">
           <BrandMark className="hero-photo__brand-mark" />

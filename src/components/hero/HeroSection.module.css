@@ -1,0 +1,40 @@
+.referenceCrop {
+  display: none;
+}
+
+:global(.hero-photo) .generatedPhoto,
+:global(.hero-photo) .referenceCrop {
+  position: absolute;
+  inset: 0;
+}
+
+:global(.hero-photo) .referenceCrop {
+  display: none;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  object-position: 0 0;
+  filter: none;
+  transform: none;
+}
+
+:global(.hero-photo) .generatedPhoto {
+  z-index: 0;
+}
+
+@media (min-width: 721px) {
+  :global(.hero-photo) .generatedPhoto {
+    display: none;
+  }
+
+  :global(.hero-photo) .referenceCrop {
+    display: block;
+  }
+}
+
+@media (max-width: 720px) {
+  :global(.hero-photo) .generatedPhoto {
+    position: relative;
+  }
+}

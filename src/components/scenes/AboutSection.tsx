@@ -16,6 +16,20 @@ const aboutMedia = (() => {
   return registeredAboutArtwork;
 })();
 
+const aboutReferenceMedia = (() => {
+  const registeredAboutReference = mediaManifest.find(
+    (asset) => asset.id === "about-reference-arch",
+  );
+
+  if (!registeredAboutReference) {
+    throw new Error(
+      "The bounded reference-derived about media is required to render the about scene.",
+    );
+  }
+
+  return registeredAboutReference;
+})();
+
 function getAboutImageAlt() {
   if (aboutMedia.provenance.classification === "generated/reference-compatible") {
     return "Сгенерированный визуальный образ: арочный интерьер с керамикой";
@@ -143,10 +157,23 @@ export function AboutSection() {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           alt={getAboutImageAlt()}
+          className={styles.generatedPhoto}
           data-provenance={aboutMedia.provenance.classification}
           height={aboutMedia.dimensions.height}
           src={aboutMedia.path}
           width={aboutMedia.dimensions.width}
+        />
+        {/* Keep the measured reference artwork bounded to this desktop arch layer. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt=""
+          aria-hidden="true"
+          className={styles.referenceCrop}
+          data-provenance={aboutReferenceMedia.provenance.classification}
+          data-reference-crop="desktop"
+          height={aboutReferenceMedia.dimensions.height}
+          src={aboutReferenceMedia.path}
+          width={aboutReferenceMedia.dimensions.width}
         />
       </figure>
 
