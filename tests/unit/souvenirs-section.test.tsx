@@ -38,7 +38,7 @@ const loadSouvenirsStyles = () => {
 };
 
 describe("souvenirs anchor scene", () => {
-  test("renders four availability-led souvenir stories with only registered generated media", async () => {
+  test("renders the bounded main photo and four reference-derived story crops", async () => {
     const souvenirsSectionModule = await loadSouvenirsSection();
 
     expect(souvenirsSectionModule).not.toBeNull();
@@ -46,6 +46,20 @@ describe("souvenirs anchor scene", () => {
       return;
     }
 
+    const referenceCropIds = [
+      "souvenirs-reference-main-photo",
+      "souvenirs-reference-bracelet",
+      "souvenirs-reference-ring",
+      "souvenirs-reference-teacup",
+      "souvenirs-reference-tea-set",
+    ] as const;
+    const referenceCrops = referenceCropIds.map((id) => {
+      const crop = mediaManifest.find((asset) => asset.id === id);
+      if (!crop) {
+        throw new Error(`The registered souvenirs crop is required: ${id}`);
+      }
+      return crop;
+    });
     const stillLife = mediaManifest.find(
       (asset) => asset.id === "souvenirs-window-still-life",
     );
@@ -57,7 +71,7 @@ describe("souvenirs anchor scene", () => {
     );
 
     if (!stillLife || !braceletCutout || !braceletSource) {
-      throw new Error("The registered souvenirs media is required for this test.");
+      throw new Error("The legacy generated souvenirs media is required for this test.");
     }
 
     render(createElement(souvenirsSectionModule.SouvenirsSection));
@@ -83,27 +97,21 @@ describe("souvenirs anchor scene", () => {
       }),
     ).toHaveAttribute("href", "#contacts");
 
-    const mainArtwork = within(souvenirs).getByRole("img", {
-      name: /сгенерированн(?:ая|ый) иллюстрация.*натюрморт.*не документальн/i,
+    const referenceImages = within(souvenirs).getAllByRole("img", {
+      name: /референсный фрагмент.*не документальн/i,
     });
-    expect(mainArtwork).toHaveAttribute("src", stillLife.path);
-    expect(mainArtwork).toHaveAttribute(
-      "data-provenance",
-      "generated/reference-compatible",
-    );
-
-    const braceletArtwork = within(souvenirs).getByRole("img", {
-      name: /сгенерированн(?:ая|ый) иллюстрация.*браслет.*не документальн/i,
-    });
-    expect(braceletArtwork).toHaveAttribute("src", braceletCutout.path);
-    expect(braceletArtwork).toHaveAttribute(
-      "data-provenance",
-      "generated/reference-compatible",
-    );
+    expect(referenceImages).toHaveLength(referenceCrops.length);
+    for (const [index, image] of referenceImages.entries()) {
+      expect(image).toHaveAttribute("src", referenceCrops[index].path);
+      expect(image).toHaveAttribute("data-provenance", "reference-derived");
+      expect(image).toHaveAccessibleName(/не документальн/i);
+    }
+    expect(souvenirs.innerHTML).not.toContain(stillLife.path);
+    expect(souvenirs.innerHTML).not.toContain(braceletCutout.path);
     expect(souvenirs.innerHTML).not.toContain(braceletSource.path);
     expect(souvenirs.innerHTML).not.toMatch(/корзин|купить|в наличии|₽/i);
     expect(
-      within(souvenirs).getByText("Сгенерированная визуальная композиция"),
+      within(souvenirs).getByText("Фрагменты референсной концепции"),
     ).toBeInTheDocument();
     expect(
       within(souvenirs).getByText("не документальная фотография места"),
