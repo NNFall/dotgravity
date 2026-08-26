@@ -97,4 +97,66 @@ export const mediaManifest = [
         "Keep the coffee and croissant inside the bounded menu crop; never extend it into a full-page reference screen.",
     },
   },
+  {
+    id: "gallery-arched-interior",
+    path: "/media/generated/gallery-arched-interior.png",
+    sha256: "95CC57209EBA6A9DB4A11E77397D81803FBEB65C829BE6DC6D7EF2F88CEA9F27",
+    dimensions: {
+      width: 1536,
+      height: 1024,
+    },
+    provenance: {
+      classification: "generated/reference-compatible",
+      documentary: false,
+      createdAt: "2026-08-26",
+      createdWith: "Image Generation",
+      promptSummary:
+        "Warm arched cafe-like interior with a stained-glass window, flower artwork, mirrored disco balls, porcelain display, and no real-venue claim or readable signage.",
+      statement:
+        "Generated reference-compatible artwork for the bounded gallery photo region only; it is not a documentary venue photograph and must not be presented as one.",
+    },
+    intendedScenes: ["gallery"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "gallery photo region only",
+      referenceShape: "not-reference",
+    },
+    cropRules: {
+      strategy: "cover bounded gallery photo region",
+      focalPoint: "stained-glass arch, flower artwork, and porcelain display",
+      responsive:
+        "Keep the arched window and display inside the bounded gallery crop; never extend it into a full-page reference screen.",
+    },
+  },
+  {
+    id: "souvenirs-window-still-life",
+    path: "/media/generated/souvenirs-window-still-life.png",
+    sha256: "B3282A1935F124EC54934396AF1A9F75257D2739DB84561850CD25683F1AC7B0",
+    dimensions: {
+      width: 1672,
+      height: 941,
+    },
+    provenance: {
+      classification: "generated/reference-compatible",
+      documentary: false,
+      createdAt: "2026-08-26",
+      createdWith: "Image Generation",
+      promptSummary:
+        "Warm window still life with an open jewelry case, porcelain cups, flowers, a candle, framed architecture, and no real-venue claim or readable signage.",
+      statement:
+        "Generated reference-compatible artwork for the bounded souvenirs photo region only; it is not a documentary venue photograph and must not be presented as one.",
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "souvenirs photo region only",
+      referenceShape: "not-reference",
+    },
+    cropRules: {
+      strategy: "cover bounded souvenirs photo region",
+      focalPoint: "open jewelry case and porcelain cups",
+      responsive:
+        "Keep the jewelry case and porcelain cups inside the bounded souvenirs crop; never extend it into a full-page reference screen.",
+    },
+  },
 ];
