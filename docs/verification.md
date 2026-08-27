@@ -36,10 +36,10 @@ loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 
 | Viewport | client width / scroll width | document height | Notes |
 | --- | ---: | ---: | --- |
-| 1672×941 | 1672 / 1672 | 6024 px | all six desktop scenes inspected at their anchor positions |
-| 1920×1080 | 1920 / 1920 | 6598 px | desktop scaling and navigation inspected |
-| 390×844 | 390 / 390 | 9443 px | no horizontal overflow; menu rail, contacts wrap and footer inspected |
-| 320×844 | 320 / 320 | 8960 px | no horizontal overflow; `Как нас найти` and footer wrap cleanly |
+| 1672×941 | 1672 / 1672 | 6129 px | all six desktop scenes inspected at their anchor positions |
+| 1920×1080 | 1920 / 1920 | 6703 px | desktop scaling and navigation inspected |
+| 390×844 | 390 / 390 | 9463 px | no horizontal overflow; menu rail, contacts wrap and footer inspected |
+| 320×844 | 320 / 320 | 8946 px | no horizontal overflow; `Как нас найти` and footer wrap cleanly |
 
 The mobile menu traps focus, closes on `Escape`, restores focus to its trigger,
 and keeps touch targets at or above 44 px. Reduced-motion behavior is covered
@@ -95,7 +95,8 @@ contacts plaque strip, and a bounded contacts map artwork layer. The bounded
 hero crop remains `947×836`; its registry SHA is
 `789791B7809699ABDA65EBF2D2AB03A9E2EE2448FB43D12CA24AE0F12FBAC624`.
 
-The fresh capture at `1672×941` reports: hero `789,934`, about `947,514`,
+The fresh capture at `1672×941` (capture files written 12:20:54–12:20:56
+Europe/Samara) reports: hero `789,934`, about `947,514`,
 menu `1,305,073`, gallery `930,362`, souvenirs `932,954`, contacts `864,017`
 changed pixels; total `5,769,854 / 9,440,112`. This remains a strict
 zero-tolerance failure and no mask/tolerance/exception was introduced.
