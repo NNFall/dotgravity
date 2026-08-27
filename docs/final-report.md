@@ -7,7 +7,7 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source commit: `6457765628b5156bb9e42322cef653d52495a66d` (GitHub `main` and feature branch; current private Sites deployment)
+- Runtime source commit: `33a84397d01cd1714d5ef7f3a3d89139bb39ba0e` (GitHub `main` and feature branch; current private Sites deployment)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -20,16 +20,16 @@
 | `npm.cmd run lint` | pass |
 | `npx.cmd tsc --noEmit` | pass |
 | `npm.cmd run qa:assets` | pass — 38 registered assets / 30 production text files |
-| `npm.cmd test` | pass — 32 files / 142 tests |
+| `npm.cmd test` | pass — 32 files / 143 tests |
 | `npm.cmd run build` | pass |
 | `npm.cmd run qa:browser` | pass — 12 tests |
 | `npm.cmd run qa:a11y` | pass — 5 tests |
 | `npm.cmd run qa:visual` | pass — 1 six-scene capture test |
 | `npm.cmd audit --omit=dev --audit-level=high` | pass — 0 production vulnerabilities |
 | `git diff --check` | pass |
-| Sites deployment | pass — version 14 published to production, owner-only access |
+| Sites deployment | pass — version 15 published to production, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `5,499,213 / 9,440,112` pixels differ across the six 1672×941 captures (hero `736,298`; about `941,854`; menu `1,166,766`; gallery `870,707`; souvenirs `932,716`; contacts `850,872`). No tolerance or mask was introduced. The latest bounded header-mark pass improved the previous published report by `23` changed pixels, for a cumulative improvement of `1,192,754` pixels (`17.82%`) from the pre-polish report. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `5,499,188 / 9,440,112` pixels differ across the six 1672×941 captures (hero `736,298`; about `941,848`; menu `1,166,747`; gallery `870,707`; souvenirs `932,716`; contacts `850,872`). No tolerance or mask was introduced. The latest bounded CSS calibration improved the previous published report by `25` changed pixels, for a cumulative improvement of `1,192,779` pixels (`17.82%`) from the pre-polish report. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 
@@ -41,11 +41,32 @@ reference header without a second interactive header, restores gallery inset
 captions/icons, keeps gallery themes phrased as visual motifs rather than
 unverified venue facts, and preserves mobile scene continuity.
 
-Sites version 14 is live at the production URL from the exact source commit
-above (version 13 is superseded). The deployment is intentionally owner-only; an anonymous request is
+Sites version 15 is live at the production URL from the exact source commit
+above (version 14 is superseded). The deployment is intentionally owner-only; an anonymous request is
 expected to show the ChatGPT sign-in screen rather than expose the page publicly.
 
-AntiGravity Worker was available for this refresh. Its analysis job `deea0e25-5a71-4f6c-a04e-da6ac32f319b` identified a Gallery order hypothesis; the follow-up edit job `b8946fe6-022b-485e-aec6-96a41800509b` was allowed to test the bounded DOM change but timed out after its browser suite. Independent A/B measurement showed the reorder was worse, so it was reverted; no tolerance or mask was added. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. The current refresh records a 142-test suite, 38 registered assets, bounded header/cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork; the source is pushed and the owner-only Sites deployment is live.
+AntiGravity Worker was available for this refresh. Its analysis job `deea0e25-5a71-4f6c-a04e-da6ac32f319b` identified a Gallery order hypothesis; the follow-up edit job `b8946fe6-022b-485e-aec6-96a41800509b` was allowed to test the bounded DOM change but timed out after its browser suite. Independent A/B measurement showed the reorder was worse, so it was reverted; no tolerance or mask was added. The latest read-only analysis job `4118fa47-7e2e-4fce-a1af-e0671a138555` ranked About location-card geometry, Menu card-rail calibration and the desktop header ROI as bounded low-risk hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. The current refresh records a 143-test suite, 38 registered assets, bounded header/cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork; the source is pushed and the owner-only Sites deployment is live.
+
+## Latest bounded CSS calibration and publication — 2026-08-27
+
+Runtime `33a84397d01cd1714d5ef7f3a3d89139bb39ba0e` contains two measured,
+desktop-only CSS adjustments: the About location-card sidebar track changed from
+`124px` to `94px`, and the wide Menu heading uses `scaleY(.9)` with a top-center
+origin. The Menu contract test records the breakpoint and transform; the 390px
+and 320px mobile compositions remain unchanged. No copy, media provenance or
+tolerance/mask rule changed.
+
+Fresh verification is green for 32 Vitest files / 143 tests, lint, TypeScript,
+asset audit (38 assets), production build, Chromium behavior 12/12,
+accessibility 5/5, visual capture 1/1 and the production dependency audit.
+The strict raw comparator remains NO-GO at `5,499,188 / 9,440,112` changed
+pixels (hero `736,298`; about `941,848`; menu `1,166,747`; gallery `870,707`;
+souvenirs `932,716`; contacts `850,872`), an improvement of 25 changed pixels
+over Sites v14, with no tolerance or mask. Sites version 15 was saved from the
+matching archive (`sha256:3ade958de437b632f076033eaa8ecf51fe4cb9e9e9dbb2f3e8c7fc528999ad09`,
+129 files, 27,596,800 bytes) and deployed successfully to the same owner-only
+production URL; anonymous access continues to show the expected sign-in
+interstitial.
 
 ## Previous bounded header-mark pass — 2026-08-27 (superseded by release-hygiene follow-up)
 
@@ -65,7 +86,7 @@ souvenirs `932,716`; contacts `850,872`), with no tolerance, mask or approval
 exception. Sites version 13 was deployed from the matching archive to the same
 owner-only URL; anonymous access shows the expected sign-in interstitial.
 
-## Latest release-hygiene follow-up — 2026-08-27
+## Previous release-hygiene follow-up — 2026-08-27 (superseded by bounded CSS calibration)
 
 Runtime `6457765628b5156bb9e42322cef653d52495a66d` keeps the same rendered
 geometry and pixel metrics while resolving the release-review recommendations:

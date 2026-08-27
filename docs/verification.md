@@ -11,14 +11,14 @@ continues to own its isolated `4174` server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 32 files, 142 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 32 files, 143 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
 | `npm.cmd run qa:assets` | pass | 38 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 5,499,213 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 5,499,188 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -78,9 +78,9 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `5499213 / 9440112` changed
+  mask was introduced. The latest raw report is `5499188 / 9440112` changed
   pixels across the six supplied 1672×941 frames: hero is `736298` changed
-  pixels, about is `941854`, menu is `1166766`, gallery is `870707`, souvenirs
+  pixels, about is `941848`, menu is `1166747`, gallery is `870707`, souvenirs
   is `932716`, and contacts is `850872`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
@@ -254,7 +254,7 @@ Chromium behavior (12/12), accessibility (5/5), visual capture (1/1), and the
 production dependency audit. Sites version 13 was deployed owner-only; anonymous
 navigation continues to show the expected sign-in interstitial.
 
-### Current release-hygiene follow-up — 2026-08-27
+### Previous release-hygiene follow-up — 2026-08-27 (superseded by current bounded CSS calibration)
 
 Runtime commit `6457765628b5156bb9e42322cef653d52495a66d` is the current
 GitHub/Sites source state. It leaves the bounded header crop and responsive
@@ -267,3 +267,35 @@ files / 142 tests, lint, TypeScript, 38-asset audit, build, browser 12/12,
 accessibility 5/5, visual 1/1 and production dependency audit). Sites version
 14 is deployed from the matching archive (`sha256:6a15fc7cbc29ace4a2b105d1a8f13da432562ab471573db6ea915a7eeb1ad441`,
 129 files, 27,596,800 bytes) owner-only at the production URL.
+
+### Current bounded CSS calibration — 2026-08-27
+
+Runtime commit `33a84397d01cd1714d5ef7f3a3d89139bb39ba0e` is pushed to GitHub
+`main` and `feat/pixel-accurate-landing` and synchronized to the Sites source
+repository. The bounded pass changes only desktop geometry: the About
+location-card sidebar track is `94px` at the wide layout, and the Menu heading
+uses `scaleY(.9)` at the wide breakpoint. The contract test covers the Menu
+transform; mobile 390px and 320px retain their responsive reset.
+
+Fresh verification is green for 32 Vitest files / 143 tests, lint, TypeScript,
+38-asset audit, production build, Chromium browser 12/12, accessibility 5/5,
+visual capture 1/1 and the production dependency audit. The strict raw report
+is still intentionally red with no mask or tolerance:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 736,298 | 4.32861814 |
+| about | 941,848 | 6.22187359 |
+| menu | 1,166,747 | 5.93727866 |
+| gallery | 870,707 | 8.09495475 |
+| souvenirs | 932,716 | 7.09114966 |
+| contacts | 850,872 | 4.26629022 |
+| **Total** | **5,499,188 / 9,440,112** | **—** |
+
+This is a 25-pixel improvement over the previous Sites v14 report; raw-zero
+and missing responsive baselines remain open quality gates. Sites version 15
+was saved from the matching archive (`sha256:3ade958de437b632f076033eaa8ecf51fe4cb9e9e9dbb2f3e8c7fc528999ad09`,
+129 files, 27,596,800 bytes) and deployed successfully owner-only at the
+production URL. Deployment `appgdep_6a905599ca688191890650dc616dcb2d` reached
+`succeeded`; anonymous access continues to show the expected sign-in
+interstitial.

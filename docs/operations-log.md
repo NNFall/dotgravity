@@ -288,3 +288,27 @@
   owner-only production URL. Deployment
   `appgdep_6a904abaeba4819181b27efc9ad7e6ec` reached `succeeded`; anonymous
   access continues to show the expected ChatGPT sign-in interstitial.
+
+### 2026-08-27 — bounded CSS calibration and Sites v15
+
+- Integrated two independent, bounded desktop-only measurements: the About
+  location-card sidebar track changed from `124px` to `94px`, and the wide
+  Menu heading uses `scaleY(.9)` with a top-center origin. The Menu contract
+  test covers the breakpoint and transform; mobile 390px/320px resets remain
+  unchanged. No copy, media provenance, mask or tolerance changed.
+- Fresh verification passed: 32 Vitest files / 143 tests, lint, TypeScript,
+  asset audit (38), production build, Chromium browser 12/12, accessibility
+  5/5, visual capture 1/1 and production dependency audit. The strict raw
+  comparator remains intentionally red at `5,499,188 / 9,440,112` changed
+  pixels (hero `736,298`; about `941,848`; menu `1,166,747`; gallery `870,707`;
+  souvenirs `932,716`; contacts `850,872`), improving the previous report by
+  25 pixels without introducing a mask or tolerance.
+- Runtime commit `33a84397d01cd1714d5ef7f3a3d89139bb39ba0e` was timestamp-
+  refreshed before push and published to GitHub `main` and
+  `feat/pixel-accurate-landing`, then synchronized to the Sites source
+  repository. Sites version 15 was saved from the matching archive
+  (`sha256:3ade958de437b632f076033eaa8ecf51fe4cb9e9e9dbb2f3e8c7fc528999ad09`,
+  129 files, 27,596,800 bytes) and deployed successfully to the existing
+  owner-only production URL. Deployment
+  `appgdep_6a905599ca688191890650dc616dcb2d` reached `succeeded`; anonymous
+  access continues to show the expected ChatGPT sign-in interstitial.

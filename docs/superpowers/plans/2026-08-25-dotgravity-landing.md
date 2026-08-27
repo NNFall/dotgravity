@@ -369,3 +369,37 @@ Chromium browser 12/12, accessibility 5/5, visual capture 1/1 and the
 production dependency audit. The strict raw comparator remains intentionally
 red at `5,499,213 / 9,440,112` changed pixels; raw-zero and missing responsive
 baselines remain open quality gates.
+
+## Execution status addendum — 2026-08-27 bounded CSS calibration and Sites v15
+
+Two independent raw-driven bounded passes are integrated in runtime commit
+`33a84397d01cd1714d5ef7f3a3d89139bb39ba0e`: the wide About location card uses
+a `94px` sidebar track, and the wide Menu heading uses `scaleY(.9)` with a
+top-center origin. The Menu contract test covers the transform and the mobile
+390px/320px resets remain unchanged. No visual tolerance, mask, copy or
+provenance rule changed.
+
+The runtime SHA was pushed to GitHub `main` and `feat/pixel-accurate-landing`
+and synchronized to the Sites source repository. Sites version 15 is deployed
+owner-only from the matching archive (`sha256:3ade958de437b632f076033eaa8ecf51fe4cb9e9e9dbb2f3e8c7fc528999ad09`,
+129 files, 27,596,800 bytes) at the existing production URL; deployment
+`appgdep_6a905599ca688191890650dc616dcb2d` reached `succeeded`.
+
+Fresh verification is green for 32 Vitest files / 143 tests, lint, TypeScript,
+38-asset audit, production build, Chromium browser 12/12, accessibility 5/5,
+visual capture 1/1 and production dependency audit. The strict raw comparator
+remains intentionally red with no tolerance or mask:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 736,298 | 4.32861814 |
+| about | 941,848 | 6.22187359 |
+| menu | 1,166,747 | 5.93727866 |
+| gallery | 870,707 | 8.09495475 |
+| souvenirs | 932,716 | 7.09114966 |
+| contacts | 850,872 | 4.26629022 |
+| **Total** | **5,499,188 / 9,440,112** | **—** |
+
+This is a 25-pixel improvement over Sites v14. Raw-zero and missing responsive
+reference baselines remain open quality gates; the current release is usable
+and published but is not represented as literal pixel identity.
