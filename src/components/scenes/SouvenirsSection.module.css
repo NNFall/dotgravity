@@ -385,6 +385,10 @@
 }
 
 @media (min-width: 901px) {
+  .storyCard article {
+    gap: 16px;
+  }
+
   .storyCard:nth-child(3) article {
     padding-left: 8px;
   }

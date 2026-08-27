@@ -96,4 +96,38 @@ describe("about desktop scene geometry contract", () => {
     expect(cta).toMatch(/\bmargin-top:\s*33px;/);
     expect(mobileLocationCard).toMatch(/\bheight:\s*auto;/);
   });
+
+  test("nudges only the wide desktop about title onto the reference baseline", async () => {
+    const source = await readFile(
+      resolve(process.cwd(), "src/components/scenes/AboutSection.module.css"),
+      "utf8",
+    );
+    const mobileStart = source.indexOf("@media (max-width: 760px)");
+    const desktopCss = mobileStart === -1 ? source : source.slice(0, mobileStart);
+    const mobileCss = mobileStart === -1 ? "" : source.slice(mobileStart);
+
+    expect(desktopCss).toMatch(
+      /@media\s*\(min-width:\s*1081px\)\s*\{[\s\S]*?\.content h3\s*\{[\s\S]*?\btransform:\s*translate\(7px,\s*-4px\);/,
+    );
+    expect(mobileCss).not.toMatch(
+      /\.content h3\s*\{[\s\S]*?\btransform:\s*translate\(7px,\s*-4px\);/,
+    );
+  });
+
+  test("nudges only the wide desktop location illustration toward the reference crop", async () => {
+    const source = await readFile(
+      resolve(process.cwd(), "src/components/scenes/AboutSection.module.css"),
+      "utf8",
+    );
+    const mobileStart = source.indexOf("@media (max-width: 760px)");
+    const desktopCss = mobileStart === -1 ? source : source.slice(0, mobileStart);
+    const mobileCss = mobileStart === -1 ? "" : source.slice(mobileStart);
+
+    expect(desktopCss).toMatch(
+      /@media\s*\(min-width:\s*1081px\)\s*\{[\s\S]*?\.locationCardCathedral\s*\{[\s\S]*?\btransform:\s*translate\(5px,\s*-14px\);/,
+    );
+    expect(mobileCss).not.toMatch(
+      /\.locationCardCathedral\s*\{[\s\S]*?\btransform:\s*translate\(5px,\s*-14px\);/,
+    );
+  });
 });

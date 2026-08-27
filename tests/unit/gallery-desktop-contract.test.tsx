@@ -99,4 +99,13 @@ describe("gallery desktop canvas contract", () => {
       /\.copy\s*\{[^}]*\bheight:\s*auto\s*;/,
     );
   });
+
+  test("nudges the reference-calibrated desktop gallery heading down by two pixels", () => {
+    expect(desktopStyles).toMatch(
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.copy\s+h2\s*\{[^}]*\btransform:\s*translateY\(2px\)\s*;/,
+    );
+    expect(mobileStyles).not.toMatch(
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.copy\s+h2\s*\{[^}]*\btransform:\s*translateY\(2px\)\s*;/,
+    );
+  });
 });

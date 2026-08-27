@@ -476,6 +476,12 @@
   }
 }
 
+@media (min-width: 1440px) {
+  .copy h2 {
+    transform: translateY(2px);
+  }
+}
+
 @media (max-width: 1220px) {
   .copy {
     width: 36%;

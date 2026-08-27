@@ -263,4 +263,12 @@ describe("souvenirs anchor scene", () => {
       /@media\s*\(min-width:\s*901px\)[\s\S]*?\.storyVisual\s*\{[\s\S]*?border-radius:\s*0;/i,
     );
   });
+
+  test("gives desktop story copy the measured inset from each bounded crop", () => {
+    const styles = loadSouvenirsStyles();
+
+    expect(styles).toMatch(
+      /@media\s*\(min-width:\s*901px\)[\s\S]*?\.storyCard article\s*\{[\s\S]*?gap:\s*16px;/i,
+    );
+  });
 });

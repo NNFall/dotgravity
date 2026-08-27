@@ -517,6 +517,12 @@
   .cardRail {
     margin: 22px auto 0;
   }
+
+  .menuCta {
+    position: relative;
+    left: -4px;
+    top: 1px;
+  }
 }
 
 @media (max-width: 1200px) {

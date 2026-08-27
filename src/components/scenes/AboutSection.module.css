@@ -290,6 +290,11 @@
 @media (min-width: 1081px) {
   .content h3 {
     white-space: nowrap;
+    transform: translate(7px, -4px);
+  }
+
+  .locationCardCathedral {
+    transform: translate(5px, -14px);
   }
 }
 

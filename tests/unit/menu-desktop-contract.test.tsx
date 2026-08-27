@@ -73,6 +73,17 @@ describe("menu desktop scene contract", () => {
     expect(wideDesktopHeading?.[1]).toContain("transform-origin: top center;");
   });
 
+  test("anchors the wide desktop CTA to the supplied raster origin", () => {
+    const wideDesktopBlock = menuStyles.match(
+      /@media \(min-width: 1440px\) \{([\s\S]*?)\n\}\s*\n\s*@media \(max-width: 1200px\)/,
+    );
+
+    expect(wideDesktopBlock?.[1]).toContain(".menuCta {");
+    expect(wideDesktopBlock?.[1]).toContain("position: relative;");
+    expect(wideDesktopBlock?.[1]).toContain("left: -4px;");
+    expect(wideDesktopBlock?.[1]).toContain("top: 1px;");
+  });
+
   test("keeps the wide desktop menu paper surface flat", () => {
     expect(menuStyles).toMatch(
       /@media \(min-width: 1440px\) \{[\s\S]*?\.menuScene\s*\{[\s\S]*?background: var\(--menu-paper\);[\s\S]*?\}/,
