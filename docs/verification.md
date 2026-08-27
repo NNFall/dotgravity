@@ -11,14 +11,14 @@ continues to own its isolated `4174` server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 32 files, 143 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 33 files, 147 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
 | `npm.cmd run qa:assets` | pass | 38 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 5,499,188 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 5,473,941 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -38,8 +38,8 @@ loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 | --- | ---: | ---: | --- |
 | 1672×941 | 1672 / 1672 | 6129 px | all six desktop scenes inspected at their anchor positions |
 | 1920×1080 | 1920 / 1920 | 6703 px | desktop scaling and navigation inspected |
-| 390×844 | 375 / 375 | 9537 px | no horizontal overflow; menu rail, contacts wrap and footer inspected |
-| 320×844 | 305 / 320 | 8976 px | no horizontal overflow; `Как нас найти` and footer wrap cleanly |
+| 390×844 | 390 / 390 | 9463 px | no horizontal overflow; menu rail, contacts wrap and footer inspected |
+| 320×844 | 320 / 320 | 8946 px | no horizontal overflow; `Как нас найти` and footer wrap cleanly |
 
 The mobile menu traps focus, closes on `Escape`, restores focus to its trigger,
 and keeps touch targets at or above 44 px. Reduced-motion behavior is covered
@@ -78,10 +78,10 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `5499188 / 9440112` changed
-  pixels across the six supplied 1672×941 frames: hero is `736298` changed
+  mask was introduced. The latest raw report is `5473941 / 9440112` changed
+  pixels across the six supplied 1672×941 frames: hero is `711367` changed
   pixels, about is `941848`, menu is `1166747`, gallery is `870707`, souvenirs
-  is `932716`, and contacts is `850872`. This is evidence, not a claimed pixel-perfect
+  is `932428`, and contacts is `850844`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
 
@@ -299,3 +299,42 @@ was saved from the matching archive (`sha256:3ade958de437b632f076033eaa8ecf51fe4
 production URL. Deployment `appgdep_6a905599ca688191890650dc616dcb2d` reached
 `succeeded`; anonymous access continues to show the expected sign-in
 interstitial.
+
+### Current bounded desktop polish — 2026-08-27
+
+Runtime commit `81a66760607f907cebc2811b9941791e827858bc` is pushed to GitHub
+`main` and `feat/pixel-accurate-landing`, synchronized to the Sites source
+repository, and deployed as Sites version 16. The accepted bounded changes are
+desktop-only: the opaque header surface is scoped back to the desktop
+breakpoint, the hero feature rail moves down `1px`, wide Contacts route-panel
+pseudo-markers are hidden, and the wide Souvenirs story image uses a `0` radius.
+Mobile resets remain intact; focused contracts cover all four breakpoint rules.
+
+Fresh verification is green for 33 Vitest files / 147 tests, lint, TypeScript,
+38-asset audit, production build, browser behavior 12/12, accessibility 5/5,
+visual capture 1/1, and `npm audit --omit=dev --audit-level=high` (0
+vulnerabilities). The fresh 4180 production probe returned HTTP 200, fetched
+the current client chunk three times with HTTP 200, and fetched the registered
+header crop with HTTP 200. Chromium probes at 1920×1080, 1672×941, 390×844 and
+320×844 reported `scrollWidth === clientWidth`; mobile menu open/close was
+operable in the current bundle.
+
+The strict raw report is still intentionally red with no mask or tolerance:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 711,367 | 4.12517653 |
+| about | 941,848 | 6.22187359 |
+| menu | 1,166,747 | 5.93727866 |
+| gallery | 870,707 | 8.09495475 |
+| souvenirs | 932,428 | 7.08657233 |
+| contacts | 850,844 | 4.26206612 |
+| **Total** | **5,473,941 / 9,440,112** | **—** |
+
+The candidate improves Sites v15 by `25,247` changed pixels. Sites version 16
+archive provenance is `sha256:3d0c2d407da82856573cd1f2712dfe5825956b059158facc755a8aeb09071b4c`,
+129 files and 27,596,800 bytes; deployment
+`appgdep_6a9075a778388191948f72c7d4ab5bbe` reached `succeeded`. Owner-only
+access remains unchanged and anonymous navigation is expected to show the
+ChatGPT sign-in interstitial. Raw-zero and missing responsive baselines remain
+open quality gates.

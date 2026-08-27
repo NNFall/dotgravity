@@ -7,7 +7,7 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source commit: `33a84397d01cd1714d5ef7f3a3d89139bb39ba0e` (GitHub `main` and feature branch; current private Sites deployment)
+- Runtime source commit: `81a66760607f907cebc2811b9941791e827858bc` (GitHub `main` and feature branch; current private Sites deployment)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -20,16 +20,16 @@
 | `npm.cmd run lint` | pass |
 | `npx.cmd tsc --noEmit` | pass |
 | `npm.cmd run qa:assets` | pass — 38 registered assets / 30 production text files |
-| `npm.cmd test` | pass — 32 files / 143 tests |
+| `npm.cmd test` | pass — 33 files / 147 tests |
 | `npm.cmd run build` | pass |
 | `npm.cmd run qa:browser` | pass — 12 tests |
 | `npm.cmd run qa:a11y` | pass — 5 tests |
 | `npm.cmd run qa:visual` | pass — 1 six-scene capture test |
 | `npm.cmd audit --omit=dev --audit-level=high` | pass — 0 production vulnerabilities |
 | `git diff --check` | pass |
-| Sites deployment | pass — version 15 published to production, owner-only access |
+| Sites deployment | pass — version 16 published to production, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `5,499,188 / 9,440,112` pixels differ across the six 1672×941 captures (hero `736,298`; about `941,848`; menu `1,166,747`; gallery `870,707`; souvenirs `932,716`; contacts `850,872`). No tolerance or mask was introduced. The latest bounded CSS calibration improved the previous published report by `25` changed pixels, for a cumulative improvement of `1,192,779` pixels (`17.82%`) from the pre-polish report. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `5,473,941 / 9,440,112` pixels differ across the six 1672×941 captures (hero `711,367`; about `941,848`; menu `1,166,747`; gallery `870,707`; souvenirs `932,428`; contacts `850,844`). No tolerance or mask was introduced. The latest bounded desktop-surface/crop pass improved the previous published report by `25,247` changed pixels. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 
@@ -41,11 +41,51 @@ reference header without a second interactive header, restores gallery inset
 captions/icons, keeps gallery themes phrased as visual motifs rather than
 unverified venue facts, and preserves mobile scene continuity.
 
-Sites version 15 is live at the production URL from the exact source commit
-above (version 14 is superseded). The deployment is intentionally owner-only; an anonymous request is
+Sites version 16 is live at the production URL from the exact source commit
+above (version 15 is superseded). The deployment is intentionally owner-only; an anonymous request is
 expected to show the ChatGPT sign-in screen rather than expose the page publicly.
 
-AntiGravity Worker was available for this refresh. Its analysis job `deea0e25-5a71-4f6c-a04e-da6ac32f319b` identified a Gallery order hypothesis; the follow-up edit job `b8946fe6-022b-485e-aec6-96a41800509b` was allowed to test the bounded DOM change but timed out after its browser suite. Independent A/B measurement showed the reorder was worse, so it was reverted; no tolerance or mask was added. The latest read-only analysis job `4118fa47-7e2e-4fce-a1af-e0671a138555` ranked About location-card geometry, Menu card-rail calibration and the desktop header ROI as bounded low-risk hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. The current refresh records a 143-test suite, 38 registered assets, bounded header/cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork; the source is pushed and the owner-only Sites deployment is live.
+The latest read-only AntiGravity analysis job `4118fa47-7e2e-4fce-a1af-e0671a138555` ranked About location-card geometry, Menu card-rail calibration and the desktop header ROI as bounded low-risk hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. This release records a 147-test suite, 38 registered assets, bounded header/cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork; the accepted runtime changes are desktop-only header surface scoping, a 1px hero feature-rail calibration, hidden desktop route pseudo-markers and a zero-radius desktop souvenir story crop. The source is pushed and the owner-only Sites deployment is live.
+
+## Latest bounded desktop polish and publication — 2026-08-27
+
+Runtime `81a66760607f907cebc2811b9941791e827858bc` contains four measured,
+desktop-scoped surface/crop adjustments: the opaque header surface is restored
+on mobile and limited to the desktop breakpoint, the hero feature rail moves
+down by `1px`, Contacts route-panel corner pseudo-markers are hidden on wide
+desktop, and the Souvenirs story image loses its desktop-only `7px` radius.
+Focused TDD contracts cover each breakpoint rule; no documentary media,
+provenance, copy, tolerance or mask rule changed.
+
+Fresh verification is green for 33 Vitest files / 147 tests, lint, TypeScript,
+asset audit (38 assets / 30 production text files), production build,
+Chromium behavior 12/12, accessibility 5/5, visual capture 1/1, and the
+production dependency audit (0 vulnerabilities). A fresh server on
+`http://127.0.0.1:4180/` returned HTTP 200; its current client chunk and the
+registered header crop both returned HTTP 200. The four viewport probes
+(`1920×1080`, `1672×941`, `390×844`, `320×844`) had no horizontal overflow;
+the mobile menu opened and closed through the live client bundle.
+
+The strict raw comparator remains NO-GO at `5,473,941 / 9,440,112` changed
+pixels, with no tolerance or mask:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 711,367 | 4.12517653 |
+| about | 941,848 | 6.22187359 |
+| menu | 1,166,747 | 5.93727866 |
+| gallery | 870,707 | 8.09495475 |
+| souvenirs | 932,428 | 7.08657233 |
+| contacts | 850,844 | 4.26206612 |
+| **Total** | **5,473,941 / 9,440,112** | **—** |
+
+This is a `25,247`-pixel improvement over Sites v15. Sites version 16 was
+saved from the matching archive (`sha256:3d0c2d407da82856573cd1f2712dfe5825956b059158facc755a8aeb09071b4c`,
+129 files, 27,596,800 bytes) and deployment
+`appgdep_6a9075a778388191948f72c7d4ab5bbe` reached `succeeded` at the same
+owner-only production URL. Raw-zero and absent responsive reference baselines
+remain open quality gates; the current release is usable and published but is
+not represented as literal pixel identity.
 
 ## Latest bounded CSS calibration and publication — 2026-08-27
 

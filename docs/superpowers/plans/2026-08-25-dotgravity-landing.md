@@ -403,3 +403,34 @@ remains intentionally red with no tolerance or mask:
 This is a 25-pixel improvement over Sites v14. Raw-zero and missing responsive
 reference baselines remain open quality gates; the current release is usable
 and published but is not represented as literal pixel identity.
+
+## Execution status addendum — 2026-08-27 bounded desktop polish and Sites v16
+
+Runtime commit `81a66760607f907cebc2811b9941791e827858bc` integrates four
+bounded, raw-driven desktop calibrations: the opaque header surface is scoped to
+the desktop breakpoint while mobile keeps its translucent surface, the hero
+feature rail moves down `1px`, wide Contacts route-panel pseudo-markers are
+hidden, and the wide Souvenirs story image uses a `0` radius. Each change has a
+focused TDD contract; mobile 390px/320px resets and the continuous scene flow
+remain unchanged. No new media, copy, provenance, tolerance or mask rule was
+introduced.
+
+The runtime SHA was pushed to GitHub `main` and `feat/pixel-accurate-landing`,
+synchronized to the Sites source repository, saved as Sites version 16 from
+the matching archive (`sha256:3d0c2d407da82856573cd1f2712dfe5825956b059158facc755a8aeb09071b4c`,
+129 files, 27,596,800 bytes), and deployed owner-only. Deployment
+`appgdep_6a9075a778388191948f72c7d4ab5bbe` reached `succeeded` at the existing
+production URL.
+
+Fresh verification is green for 33 Vitest files / 147 tests, lint, TypeScript,
+38-asset audit, production build, Chromium browser 12/12, accessibility 5/5,
+visual capture 1/1, and the production dependency audit. The fresh local
+server on port 4180 returned HTTP 200 with the current client chunk and header
+crop both reachable; 1920×1080, 1672×941, 390×844 and 320×844 probes reported
+no horizontal overflow and the mobile menu remained operable.
+
+The strict raw comparator remains intentionally red without tolerance or mask
+at `5,473,941 / 9,440,112` changed pixels (hero `711,367`; about `941,848`;
+menu `1,166,747`; gallery `870,707`; souvenirs `932,428`; contacts `850,844`),
+an improvement of `25,247` pixels over Sites v15. Raw-zero and missing
+responsive baselines remain open quality gates, so the goal stays active.

@@ -312,3 +312,34 @@
   owner-only production URL. Deployment
   `appgdep_6a905599ca688191890650dc616dcb2d` reached `succeeded`; anonymous
   access continues to show the expected ChatGPT sign-in interstitial.
+
+### 2026-08-27 — bounded desktop polish and Sites v16
+
+- Integrated four raw-driven, desktop-scoped CSS contracts in runtime commit
+  `81a66760607f907cebc2811b9941791e827858bc`: restore the translucent header
+  surface on mobile while keeping the opaque desktop surface, move the hero
+  feature rail down `1px`, hide wide Contacts route-panel pseudo-markers, and
+  remove the wide Souvenirs story-image radius. No new media, copy,
+  provenance, mask or tolerance rule was introduced. Focused tests cover the
+  breakpoint behavior.
+- Fresh verification passed: 33 Vitest files / 147 tests, lint, TypeScript,
+  38-asset audit, production build, Chromium browser 12/12, accessibility
+  5/5, visual capture 1/1, and the production dependency audit with zero
+  vulnerabilities. The fresh handoff server at `127.0.0.1:4180` returned
+  HTTP 200; its current client chunk and registered header crop returned HTTP
+  200; four viewport probes were overflow-free and the live mobile menu opened
+  and closed.
+- The strict raw comparator remains intentionally red without tolerance or
+  masks at `5,473,941 / 9,440,112` changed pixels: hero `711,367` (mean
+  `4.12517653`), about `941,848` (`6.22187359`), menu `1,166,747`
+  (`5.93727866`), gallery `870,707` (`8.09495475`), souvenirs `932,428`
+  (`7.08657233`), contacts `850,844` (`4.26206612`). This improves Sites v15
+  by `25,247` changed pixels; no raw-zero claim is made.
+- Runtime `81a66760607f907cebc2811b9941791e827858bc` was timestamp-refreshed
+  before push and published to GitHub `main` and `feat/pixel-accurate-landing`,
+  then synchronized to the Sites source repository. Sites version 16 was saved
+  from the matching archive (`sha256:3d0c2d407da82856573cd1f2712dfe5825956b059158facc755a8aeb09071b4c`,
+  129 files, 27,596,800 bytes) and deployed successfully; deployment
+  `appgdep_6a9075a778388191948f72c7d4ab5bbe` reached `succeeded` at the
+  existing owner-only production URL. Anonymous access continues to show the
+  expected ChatGPT sign-in interstitial.
