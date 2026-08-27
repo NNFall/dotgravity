@@ -283,4 +283,21 @@ describe("ContactsSection", () => {
       /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.copy\s+h2\s*\{[\s\S]*?font-size:\s*64px;[\s\S]*?letter-spacing:\s*-0\.01em;[\s\S]*?line-height:\s*1;/i,
     );
   });
+
+  test("calibrates desktop route pictograms without leaking into responsive layout", () => {
+    const css = readFileSync(
+      "src/components/scenes/ContactsSection.module.css",
+      "utf8",
+    );
+
+    expect(css).toMatch(
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.travelRow:has\(>\s*svg\[viewBox=\"0 0 48 34\"\]\)\s*>\s*svg\s*\{[\s\S]*?transform:\s*translateY\(2\.5px\)\s+scaleY\(1\.3\);/i,
+    );
+    expect(css).toMatch(
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.travelRow:has\(>\s*svg\[viewBox=\"0 0 36 46\"\]\)\s*>\s*svg\s*\{[\s\S]*?transform:\s*translateX\(-1px\)\s+scaleX\(1\.25\);/i,
+    );
+    expect(css).toMatch(
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.travelRow:has\(>\s*svg\[viewBox=\"0 0 36 48\"\]\)\s*>\s*svg\s*\{[\s\S]*?transform:\s*translate\(-1px,\s*-2px\)\s+scale\(1\.05,\s*0\.97\);/i,
+    );
+  });
 });

@@ -48,7 +48,7 @@ describe("menu desktop scene contract", () => {
       /@media \(min-width: 1440px\) \{[\s\S]*?\.eyebrow > span:first-child,\s*\.eyebrow > span:last-child\s*\{[\s\S]*?width: 70px;[\s\S]*?\}/,
     );
     expect(menuStyles).toMatch(
-      /@media \(min-width: 1440px\) \{[\s\S]*?\.header h2\s*\{[\s\S]*?margin: 44px 0 0;[\s\S]*?letter-spacing: -0\.012em;[\s\S]*?\}/,
+      /@media \(min-width: 1440px\) \{[\s\S]*?\.header h2\s*\{[\s\S]*?margin: 44px 0 0;[\s\S]*?letter-spacing: -0\.004em;[\s\S]*?\}/,
     );
     expect(menuStyles).toMatch(
       /@media \(min-width: 1440px\) \{[\s\S]*?\.headingOrnament\s*\{[\s\S]*?margin-top: 13px;[\s\S]*?\}/,
@@ -71,6 +71,15 @@ describe("menu desktop scene contract", () => {
 
     expect(wideDesktopHeading?.[1]).toContain("transform: scaleY(0.9);");
     expect(wideDesktopHeading?.[1]).toContain("transform-origin: top center;");
+  });
+
+  test("nudges the wide desktop heading onto the measured raster origin", () => {
+    const wideDesktopHeading = menuStyles.match(
+      /@media \(min-width: 1440px\) \{[\s\S]*?\.header h2\s*\{([\s\S]*?)\n  \}/,
+    );
+
+    expect(wideDesktopHeading?.[1]).toContain("position: relative;");
+    expect(wideDesktopHeading?.[1]).toContain("left: 16px;");
   });
 
   test("anchors the wide desktop CTA to the supplied raster origin", () => {

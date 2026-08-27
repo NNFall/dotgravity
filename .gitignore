@@ -12,6 +12,7 @@
 /coverage
 /artifacts/visual/
 /artifacts/sites/
+/artifacts/server/
 /blob-report/
 /playwright-report/
 /test-results/

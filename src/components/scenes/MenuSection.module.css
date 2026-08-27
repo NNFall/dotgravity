@@ -496,8 +496,10 @@
   }
 
   .header h2 {
+    position: relative;
     margin: 44px 0 0;
-    letter-spacing: -0.012em;
+    left: 16px;
+    letter-spacing: -0.004em;
     transform: scaleY(0.9);
     transform-origin: top center;
   }

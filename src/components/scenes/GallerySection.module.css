@@ -484,6 +484,15 @@
   .storyDetails {
     margin-top: 77px;
   }
+
+  .porcelainInset figcaption {
+    top: 62%;
+  }
+
+  .artInset figcaption,
+  .spaceInset figcaption {
+    top: 56%;
+  }
 }
 
 @media (max-width: 1220px) {

@@ -117,4 +117,19 @@ describe("gallery desktop canvas contract", () => {
       /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.storyDetails\s*\{[^}]*\bmargin-top:\s*77px\s*;/,
     );
   });
+
+  test("keeps wide desktop inset labels on the reference callout rhythm", () => {
+    expect(desktopStyles).toMatch(
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.porcelainInset\s+figcaption\s*\{[^}]*\btop:\s*62%\s*;/,
+    );
+    expect(desktopStyles).toMatch(
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.artInset\s+figcaption\s*,\s*\.spaceInset\s+figcaption\s*\{[^}]*\btop:\s*56%\s*;/,
+    );
+    expect(mobileStyles).not.toMatch(
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.porcelainInset\s+figcaption\s*\{[^}]*\btop:\s*62%\s*;/,
+    );
+    expect(mobileStyles).not.toMatch(
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.artInset\s+figcaption\s*,\s*\.spaceInset\s+figcaption\s*\{[^}]*\btop:\s*56%\s*;/,
+    );
+  });
 });
