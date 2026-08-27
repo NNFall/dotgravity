@@ -153,3 +153,25 @@
   shows the ChatGPT sign-in interstitial. The hero reference sentence remains
   documented as concept-derived copy, not an independently confirmed venue
   fact. AntiGravity was not called per the user's unavailability instruction.
+
+### 2026-08-27 — combined bounded rhythm pass and publication
+
+- Integrated the six independent raw-driven scene passes into runtime commit
+  `a8f6e1cd40414143a28e1925fdd99886809aac41`: hero dot-grid registration,
+  about CTA label, contacts sidebar/type rhythm, gallery inset corners, menu
+  card/heading offsets, and souvenir topographic/story alignment.
+- Re-ran the complete validation set: 31 Vitest files / 125 tests, lint,
+  TypeScript, 29-asset audit, production build, browser 12/12,
+  accessibility 5/5, visual 1/1, and npm audit with 0 high-severity issues.
+- The strict raw comparator remains red without tolerance or masks at
+  `5,629,472 / 9,440,112` changed pixels (hero `789,931`; about `947,514`;
+  menu `1,167,038`; gallery `928,556`; souvenirs `932,845`; contacts
+  `863,588`).
+- Pushed the exact SHA to GitHub `main` and `feat/pixel-accurate-landing`,
+  synchronized the Sites source repository `main`, saved Sites version 10
+  from the matching build archive
+  (`sha256:5186f5bcf3c7bec2924fd1a7edce15622444f0782db75a68120b2901dbea5187`),
+  and deployed successfully to the existing owner-only URL.
+- In-app Browser reload confirmed the local handoff, and anonymous production
+  access still shows the expected ChatGPT sign-in interstitial. AntiGravity was
+  not called, per the user's unavailability instruction.

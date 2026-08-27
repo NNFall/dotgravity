@@ -11,14 +11,14 @@ continues to own its isolated `4174` server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 31 files, 120 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 31 files, 125 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
 | `npm.cmd run qa:assets` | pass | 29 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 5,769,854 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 5,629,472 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -78,13 +78,13 @@ by the accessibility suite.
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
   mask was introduced. The latest raw report is `5769854 / 9440112` changed
-  pixels across the six supplied 1672×941 frames: hero is `789934` changed
-  pixels, about is `947514`, menu is `1305073`, gallery is `930362`, souvenirs
-  is `932954`, and contacts is `864017`. This is evidence, not a claimed pixel-perfect
+  pixels across the six supplied 1672×941 frames: hero is `789931` changed
+  pixels, about is `947514`, menu is `1167038`, gallery is `928556`, souvenirs
+  is `932845`, and contacts is `863588`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
 
-## Latest evidence refresh — 2026-08-27
+## Previous evidence refresh — 2026-08-27 (superseded by the current candidate below)
 
 The latest source refresh includes measured per-scene background tuning, a
 continuous hero photo layer beneath the live plaque (with the accidental
@@ -116,6 +116,34 @@ user's unavailability instruction. The hero reference sentence is retained
 for visual fidelity as concept-derived copy and is not independently confirmed
 venue fact. The desktop-only plaque/map layers leave live semantic/ARIA markup
 in the DOM; mobile keeps the responsive fallback composition.
+
+### Current bounded rhythm candidate — 2026-08-27
+
+The current verification candidate is runtime commit
+`a8f6e1cd40414143a28e1925fdd99886809aac41`, published as Sites version 10 from
+the matching build archive. The latest visual capture and raw report are the
+ones under `artifacts/visual/captures/1672x941/` and
+`artifacts/visual/raw-comparison/1672x941/`; the fresh strict metrics are:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 789,931 | 4.56900363 |
+| about | 947,514 | 6.37672403 |
+| menu | 1,167,038 | 6.36761592 |
+| gallery | 928,556 | 8.41061965 |
+| souvenirs | 932,845 | 7.22634223 |
+| contacts | 863,588 | 5.08241973 |
+| **Total** | **5,629,472 / 9,440,112** | **—** |
+
+The zero-difference gate is still intentionally red; no mask, channel
+tolerance or approval exception was added. The combined pass is smaller than
+the previous published candidate by 140,382 changed pixels. Regression status
+is green for 31 Vitest files / 125 tests, lint, TypeScript, assets (29), build,
+Chromium behavior (12/12), accessibility (5/5), visual capture (1/1), and the
+production dependency audit. The in-app Browser reload confirms one H1, six
+scene anchors, the events bridge, both contacts actions and no horizontal
+overflow at the handoff viewport. Anonymous production access continues to
+show the expected owner-only sign-in interstitial.
 
 Fresh mobile full-page evidence is kept at
 `artifacts/visual/captures/mobile/full-390x844.png` and

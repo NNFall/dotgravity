@@ -257,3 +257,24 @@ owner-only URL. The returned URL was checked in the in-app Browser; anonymous
 access correctly shows the ChatGPT sign-in interstitial. AntiGravity was not
 called again per the user's unavailability instruction. Raw-zero and responsive
 baseline gates remain intentionally open.
+
+## Execution status addendum — 2026-08-27 combined bounded rhythm pass
+
+Six independent raw-driven agents completed bounded desktop-only polish with no
+whole-screen PNG coupling: hero dot-grid registration, about CTA copy, contacts
+sidebar/type rhythm, gallery inset image corners, menu card/heading rhythm, and
+souvenir topographic/story alignment. Mobile overrides remain isolated.
+
+The resulting runtime commit is
+`a8f6e1cd40414143a28e1925fdd99886809aac41`. Fresh verification is green for
+31 Vitest files / 125 tests, lint, TypeScript, asset audit (29 assets), build,
+browser 12/12, accessibility 5/5, visual 1/1 and npm audit (0 high-severity
+vulnerabilities). The strict raw comparator remains red at
+`5,629,472 / 9,440,112` changed pixels (hero `789,931`; about `947,514`;
+menu `1,167,038`; gallery `928,556`; souvenirs `932,845`; contacts `863,588`),
+with no tolerance or mask.
+
+The exact SHA is pushed to GitHub `main` and `feat/pixel-accurate-landing` and
+the Sites source repository `main`; Sites version 10 was saved from the
+matching archive and deployed owner-only. The local and production browser
+checks remain complete; raw-zero and missing responsive baselines remain open.
