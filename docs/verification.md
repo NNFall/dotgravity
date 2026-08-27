@@ -11,14 +11,14 @@ continues to own its isolated `4174` server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 29 files, 113 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 31 files, 120 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
-| `npm.cmd run qa:assets` | pass | 26 registered assets, 30 production text files, no unexpected media |
+| `npm.cmd run qa:assets` | pass | 29 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 6,691,967 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 5,769,854 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -29,7 +29,7 @@ baseline with a live capture.
 ## Browser evidence
 
 The in-app Browser and terminal Chromium probes were checked against the
-production server at all required viewports. The page has one document H1, 18
+production server at all required viewports. The page has one document H1, 20
 loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 `aside#events` bridge, and the continuous order
 `hero → about → menu → gallery → souvenirs → events → contacts`.
@@ -77,9 +77,10 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `6691967 / 9440112` changed
-  pixels across the six supplied 1672×941 frames: hero is `1007264` changed
-  pixels, about is `947514`, and menu is `1305070`. This is evidence, not a claimed pixel-perfect
+  mask was introduced. The latest raw report is `5769854 / 9440112` changed
+  pixels across the six supplied 1672×941 frames: hero is `789934` changed
+  pixels, about is `947514`, menu is `1305073`, gallery is `930362`, souvenirs
+  is `932954`, and contacts is `864017`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
 
@@ -88,16 +89,18 @@ by the accessibility suite.
 The latest source refresh includes measured per-scene background tuning, a
 continuous hero photo layer beneath the live plaque (with the accidental
 edge-alpha strips removed), desktop hero type/icon rhythm tuning, a separate
-phone booking CTA plus Yandex route link in contacts, and updated gallery
-labels. The bounded hero crop remains `947×836`; its registry SHA is
+phone booking CTA plus Yandex route link in contacts, updated gallery labels,
+an exact bounded hero plaque strip, intrinsic desktop contacts crops, a
+contacts plaque strip, and a bounded contacts map artwork layer. The bounded
+hero crop remains `947×836`; its registry SHA is
 `789791B7809699ABDA65EBF2D2AB03A9E2EE2448FB43D12CA24AE0F12FBAC624`.
 
-The fresh capture at `1672×941` reports: hero `1,007,264`, about `947,514`,
-menu `1,305,070`, gallery `930,362`, souvenirs `974,225`, contacts `1,527,532`
-changed pixels; total `6,691,967 / 9,440,112`. This remains a strict
+The fresh capture at `1672×941` reports: hero `789,934`, about `947,514`,
+menu `1,305,073`, gallery `930,362`, souvenirs `932,954`, contacts `864,017`
+changed pixels; total `5,769,854 / 9,440,112`. This remains a strict
 zero-tolerance failure and no mask/tolerance/exception was introduced.
-The refreshed serialized suite is `29 files / 113 tests`; lint, TypeScript,
-asset audit (`26` assets), production build, Chromium behavior (`12/12`),
+The refreshed serialized suite is `31 files / 120 tests`; lint, TypeScript,
+asset audit (`29` assets), production build, Chromium behavior (`12/12`),
 accessibility (`5/5`), visual capture (`1/1`) and production dependency audit
 (`0` high-severity vulnerabilities) pass. The local production probe reports
 `1920×1080: 1920/1920, 6703px`, `390×844: 390/390, 9486px`, and
@@ -106,9 +109,12 @@ contacts actions present. The menu crop pass removed the desktop-only image
 scale and aligned each bounded card to its measured reference origin. Its
 responsive reset is covered by both a CSS contract and a browser assertion at
 390px and 320px. About, gallery and contacts received bounded decorative/
-diagonal refinements; the strict raw result improved by `193,925` pixels versus
-the previous report. AntiGravity was not retried per the user's unavailability
-instruction.
+diagonal refinements; the strict raw result improved by `922,113` pixels
+(`13.78%`) versus the previous report. AntiGravity was not retried per the
+user's unavailability instruction. The hero reference sentence is retained
+for visual fidelity as concept-derived copy and is not independently confirmed
+venue fact. The desktop-only plaque/map layers leave live semantic/ARIA markup
+in the DOM; mobile keeps the responsive fallback composition.
 
 Fresh mobile full-page evidence is kept at
 `artifacts/visual/captures/mobile/full-390x844.png` and

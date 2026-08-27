@@ -228,3 +228,32 @@ with no tolerance or mask. Runtime commit
 source repository; Sites version 8 is deployed owner-only. AntiGravity remains
 unused per the user's unavailability instruction, and raw-zero/missing
 responsive baselines remain open quality gates.
+
+## Execution status addendum — 2026-08-27 bounded plaque/map refresh
+
+The final independent code review approved runtime commit
+`4cf508abcd5b50efea47e82703edcdc5e84e5775` for integration with no P0/P1
+findings. This candidate keeps the six scenes as live React/CSS/SVG sections in
+one continuous scroll and adds only measured, bounded reference-derived layers:
+the `137×379` hero plaque, `73×477` contacts plaque, and `634×312` contacts map
+artwork. The contacts photos now render at their intrinsic desktop geometry and
+the souvenir scene uses the calibrated flat paper field; all three new layers
+are hidden below their desktop breakpoints while live semantic/ARIA markup
+remains in place.
+
+Fresh verification is green for serialized Vitest (`31 files / 120 tests`),
+lint, TypeScript, asset audit (`29` assets), production build, browser
+(`12/12`), accessibility (`5/5`), visual capture (`1/1`) and production
+dependency audit (`0` high-severity vulnerabilities). The strict raw comparator
+is intentionally red at `5,769,854 / 9,440,112` changed pixels (hero `789,934`,
+about `947,514`, menu `1,305,073`, gallery `930,362`, souvenirs `932,954`,
+contacts `864,017`), an improvement of `922,113` pixels (`13.78%`) with no
+tolerance, mask or approval exception. The hero sentence is retained as
+reference-derived concept copy and is not independently confirmed venue fact.
+
+The exact source was pushed to GitHub and the Sites source repository, packaged
+from the matching commit, saved as Sites version 9 and deployed to the existing
+owner-only URL. The returned URL was checked in the in-app Browser; anonymous
+access correctly shows the ChatGPT sign-in interstitial. AntiGravity was not
+called again per the user's unavailability instruction. Raw-zero and responsive
+baseline gates remain intentionally open.

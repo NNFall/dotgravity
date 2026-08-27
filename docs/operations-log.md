@@ -119,3 +119,37 @@
   the existing owner-only production URL. Access remains custom with one
   owner, zero external visitors and no workspace/tenant groups. AntiGravity
   was not called per the user's unavailability instruction.
+
+### 2026-08-27 — bounded plaque/map refresh and publication
+
+- Integrated the final independent code-review-approved candidate. The hero
+  now uses a desktop-only bounded plaque strip over the live `aria-hidden`
+  plaque markup; the contacts scene uses intrinsic desktop photo geometry,
+  a bounded plaque strip between the two crops, and a bounded map artwork
+  layer over the live semantic route sidebar/SVG structure. Souvenirs now use
+  the reference-calibrated flat paper surface. Mobile breakpoints keep the
+  responsive fallback composition and hide the desktop-only reference layers.
+- Registered three new non-documentary `reference-derived` assets with exact
+  parent hashes and ROIs: hero plaque `137×379` at `x=1411,y=131`, contacts
+  plaque `73×477` at `x=1085,y=106`, and contacts map `634×312` at
+  `x=624,y=596`. The registry, focused TDD contracts and provenance record
+  are synchronized; no whole-screen reference PNG is imported.
+- Fresh evidence passed: 31 Vitest files / 120 tests, lint, TypeScript,
+  asset audit (29 assets), production build, Chromium browser 12/12,
+  accessibility 5/5, visual capture 1/1, and `npm audit` with zero high
+  severity production vulnerabilities. The independent final code review
+  found no P0/P1 and confirmed no overflow at the required desktop/mobile
+  widths.
+- The strict raw comparator remains intentionally red but improved to
+  `5,769,854 / 9,440,112` changed pixels: hero `789,934`, about `947,514`,
+  menu `1,305,073`, gallery `930,362`, souvenirs `932,954`, contacts
+  `864,017`. This is a `922,113`-pixel (`13.78%`) improvement over the prior
+  report; no tolerance, mask or approval exception was introduced.
+- Runtime commit `4cf508abcd5b50efea47e82703edcdc5e84e5775` was amended with
+  the current local timestamp, pushed to GitHub and the Sites source
+  repository. Sites version 9 was saved from the matching build archive and
+  deployed successfully to the existing owner-only production URL. The
+  returned URL was checked in the in-app Browser; anonymous access correctly
+  shows the ChatGPT sign-in interstitial. The hero reference sentence remains
+  documented as concept-derived copy, not an independently confirmed venue
+  fact. AntiGravity was not called per the user's unavailability instruction.

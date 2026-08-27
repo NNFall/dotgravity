@@ -7,7 +7,7 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source commit: `ddcf8dbaea0f538f84fd1b3d84e8a536952c4334` (GitHub feature branch; current private Sites deployment)
+- Runtime source commit: `4cf508abcd5b50efea47e82703edcdc5e84e5775` (GitHub feature branch; current private Sites deployment)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -19,21 +19,21 @@
 | --- | --- |
 | `npm.cmd run lint` | pass |
 | `npx.cmd tsc --noEmit` | pass |
-| `npm.cmd run qa:assets` | pass — 26 registered assets / 30 production text files |
-| `npm.cmd test` | pass — 29 files / 113 tests |
+| `npm.cmd run qa:assets` | pass — 29 registered assets / 30 production text files |
+| `npm.cmd test` | pass — 31 files / 120 tests |
 | `npm.cmd run build` | pass |
 | `npm.cmd run qa:browser` | pass — 12 tests |
 | `npm.cmd run qa:a11y` | pass — 5 tests |
 | `npm.cmd run qa:visual` | pass — 1 six-scene capture test |
 | `npm.cmd audit --omit=dev --audit-level=high` | pass — 0 production vulnerabilities |
 | `git diff --check` | pass |
-| Sites deployment | pass — version 8 published to production, owner-only access |
+| Sites deployment | pass — version 9 published to production, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `6,691,967 / 9,440,112` pixels differ across the six 1672×941 captures (hero `1,007,264`; about `947,514`; menu `1,305,070`; gallery `930,362`; souvenirs `974,225`; contacts `1,527,532`). No tolerance or mask was introduced. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `5,769,854 / 9,440,112` pixels differ across the six 1672×941 captures (hero `789,934`; about `947,514`; menu `1,305,073`; gallery `930,362`; souvenirs `932,954`; contacts `864,017`). No tolerance or mask was introduced. The bounded plaque/map refresh improved the previous report by `922,113` changed pixels (`13.78%`). There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 
-Generated/reference-compatible visual media and bounded `reference-derived` crops are registered separately from documentary Yandex material. VK content could not be confirmed through the managed browser. Yandex facts used in the UI are limited to the confirmed venue name, Samara address and phone; hours, prices, stock and booking availability are not asserted. Documentary-photo usage rights remain unconfirmed and should be cleared before an unrestricted public launch. About/gallery copy uses visual-concept wording, while souvenir copy uses neutral visual descriptions and explicitly labels illustrative motifs.
+Generated/reference-compatible visual media and bounded `reference-derived` crops are registered separately from documentary Yandex material. VK content could not be confirmed through the managed browser. Yandex facts used in the UI are limited to the confirmed venue name, Samara address and phone; hours, prices, stock and booking availability are not asserted. Documentary-photo usage rights remain unconfirmed and should be cleared before an unrestricted public launch. About/gallery copy uses visual-concept wording, while souvenir copy uses neutral visual descriptions and explicitly labels illustrative motifs. The hero sentence `Сувениры и подарки рядом с великолепным католическим костёлом Самары.` is retained as reference-derived concept copy for visual fidelity and is not independently confirmed venue fact.
 
 The final evidence refresh also adds a production `/favicon.svg` route so the
 registered metadata icon is served by Vinext production, co-locates the contacts
@@ -41,11 +41,11 @@ reference header without a second interactive header, restores gallery inset
 captions/icons, keeps gallery themes phrased as visual motifs rather than
 unverified venue facts, and preserves mobile scene continuity.
 
-Sites version 8 is live at the production URL from the exact source commit
+Sites version 9 is live at the production URL from the exact source commit
 above. The deployment is intentionally owner-only; an anonymous request is
 expected to show the ChatGPT sign-in screen rather than expose the page publicly.
 
-AntiGravity was not retried after the user reported it unavailable. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. The current refresh records a 113-test suite, neutral visual-motif gallery copy and captions, measured menu crop alignment with a responsive offset reset, and a registry-synchronized hero asset-mask fix; the source is pushed and the owner-only Sites deployment is live.
+AntiGravity was not retried after the user reported it unavailable. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. The current refresh records a 120-test suite, 29 registered assets, measured menu crop alignment with a responsive offset reset, a flat souvenir paper field, an exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork; the source is pushed and the owner-only Sites deployment is live.
 
 ## Remaining quality work
 

@@ -275,6 +275,26 @@ The desktop about photo frame uses one bounded, alpha-masked crop from the suppl
 
 This is a bounded fragment of the supplied concept, not a photograph of the real cafe. The generated about asset remains the responsive fallback at mobile widths; the reference crop is never expanded into a full-screen composite.
 
+### Final bounded plaque and map layers — 2026-08-27
+
+The final desktop polish adds three small, non-documentary `reference-derived`
+layers from the supplied generated concepts. They are deliberately bounded to
+measured visual regions; live React/CSS/SVG structure, copy and ARIA markup
+remain responsible for the surrounding interface. None is a documentary venue
+photograph or a real map screenshot.
+
+| Asset | SHA-256 | Intrinsic size | Parent / source ROI | Production role |
+| --- | --- | --- | --- | --- |
+| `hero-reference-plaque-strip.png` | `76AC5E8232573A91849487531C5F71E24A776E6A251D4B323B50829D183A7E02` | `137×379` | hero concept `21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559`; `x=1411,y=131,w=137,h=379` | desktop hero plaque only; hidden below desktop breakpoint |
+| `contacts-reference-plaque-strip.png` | `8A183366677132F156B40C55EED43BED57CBCB275BA5C568B581D4BC94348AD3` | `73×477` | contacts concept `DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457`; `x=1085,y=106,w=73,h=477` | desktop photo-pair gap plaque only; hidden below desktop breakpoint |
+| `contacts-reference-map-crop.png` | `7A027FB903E6071F933CDDC5847FA3E1645D33E633CD11ECE5ADBC8D6BCD46AF` | `634×312` | contacts concept `DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457`; `x=624,y=596,w=634,h=312` | desktop map artwork only; live route sidebar/SVG remains semantic |
+
+The plaque strips preserve only reference ornament, lettering and frame pixels;
+the map crop preserves only the supplied visual artwork. They must not be
+expanded into full-screen composites or described as evidence of the café,
+its signage, or its geography. The hero sentence paired with the plaque is
+reference-derived concept copy and is not independently confirmed venue fact.
+
 ## Audit policy
 
 `npm.cmd run qa:assets` runs the shared runtime registry validation, then fails when any registered media file is missing, has a different SHA-256, or has different intrinsic dimensions as reported by Sharp. It also rejects:
