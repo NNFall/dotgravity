@@ -165,6 +165,39 @@ export const mediaManifest = [
     },
   },
   {
+    id: "header-reference-mark",
+    path: "/media/reference-derived/header-reference-mark.png",
+    sha256:
+      "9549F3F59AB4CB784568C4D77575497A95EAD2125C63489648F50F6789DA8A3E",
+    dimensions: {
+      width: 47,
+      height: 49,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded logo-only ROI crop x=52,y=32,w=47,h=49 from the supplied hero concept; background was removed with deterministic chroma-derived alpha extraction, retaining only the flower rosette mark and excluding brand text, navigation and contact details.",
+      statement:
+        "Bounded logo mark from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["hero", "contacts"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "hero and contacts header logo mark only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the bounded logo mark inside the live header lockup on desktop",
+      focalPoint: "flower rosette brand mark",
+      responsive:
+        "Use only as the desktop header mark; retain the live SVG mark below the desktop breakpoint and never expand the crop into a full reference screen.",
+    },
+  },
+  {
     id: "about-reference-arch",
     path: "/media/reference-derived/about-reference-arch.png",
     sha256:

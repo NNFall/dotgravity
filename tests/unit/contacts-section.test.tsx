@@ -51,7 +51,7 @@ describe("ContactsSection", () => {
     ).toHaveLength(2);
     const visuals = Array.from(
       container.querySelectorAll<HTMLImageElement>(
-        "img[data-provenance]:not([data-contacts-decoration])",
+        "img[data-provenance]:not([data-contacts-decoration]):not(.brand-lockup__reference-mark)",
       ),
     );
     expect(visuals).toHaveLength(2);

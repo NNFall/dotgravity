@@ -38,6 +38,16 @@ export function SiteHeader({ presentation = false }: { presentation?: boolean } 
     >
       <a aria-label="Точка притяжения, в начало страницы" className="brand-lockup" href="#hero">
         <BrandMark className="brand-lockup__mark" />
+        <img
+          alt=""
+          aria-hidden="true"
+          className="brand-lockup__reference-mark"
+          data-provenance="reference-derived"
+          data-reference-crop="desktop"
+          height={49}
+          src="/media/reference-derived/header-reference-mark.png"
+          width={47}
+        />
         <span className="brand-lockup__copy">
           <span className="brand-lockup__name">Точка притяжения</span>
           <span className="brand-lockup__descriptor">Кофейня · бар · галерея · сувениры</span>

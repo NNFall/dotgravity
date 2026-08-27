@@ -79,6 +79,10 @@ a:focus-visible {
   color: var(--copper);
 }
 
+.brand-lockup__reference-mark {
+  display: none;
+}
+
 .brand-lockup__copy {
   display: grid;
   gap: 4px;
@@ -102,6 +106,25 @@ a:focus-visible {
   line-height: 1.1;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+@media (min-width: 721px) {
+  .brand-lockup__mark {
+    display: none;
+  }
+
+  .brand-lockup__reference-mark {
+    display: block;
+    flex: 0 0 auto;
+    width: 47px;
+    height: 49px;
+    object-fit: fill;
+    transform: translateY(4px);
+  }
+
+  .brand-lockup__copy {
+    transform: translateY(4px);
+  }
 }
 
 .site-header__nav {
@@ -739,6 +762,10 @@ a:focus-visible {
 
   .brand-lockup__mark {
     width: 39px;
+  }
+
+  .brand-lockup__reference-mark {
+    display: none;
   }
 
   .brand-lockup__name {
