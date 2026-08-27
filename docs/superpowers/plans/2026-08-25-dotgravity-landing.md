@@ -434,3 +434,44 @@ at `5,473,941 / 9,440,112` changed pixels (hero `711,367`; about `941,848`;
 menu `1,166,747`; gallery `870,707`; souvenirs `932,428`; contacts `850,844`),
 an improvement of `25,247` pixels over Sites v15. Raw-zero and missing
 responsive baselines remain open quality gates, so the goal stays active.
+
+## Execution status addendum — 2026-08-27 bounded desktop alignment and Sites v17
+
+Runtime commit `32a2249a20592fd1bc99163932d49104058d6fa5` integrates four
+raw-driven, desktop-scoped calibrations: About title and cathedral illustration
+offsets, a `2px` wide Gallery heading offset, a `4px/1px` wide Menu CTA offset,
+and a measured `16px` desktop Souvenirs story-copy gap. A Contacts body-scale
+hypothesis was tested and reverted after strict A/B increased the changed-pixel
+count. Each accepted rule has a focused TDD contract; mobile guards and the
+continuous scene flow remain unchanged. No new media, copy, provenance,
+tolerance or mask rule was introduced.
+
+The runtime SHA was timestamp-refreshed before push and published to GitHub
+`main` and `feat/pixel-accurate-landing`, synchronized to the Sites source
+repository, saved as Sites version 17 from the matching archive
+(`sha256:c65fce7d6a9f105d675e068094a781484c68f3941b57478cfbb7230386977b18`,
+129 files, 27,596,800 bytes), and deployed owner-only. Deployment
+`appgdep_6a90849d5c2881919fea94dd9c74dc22` reached `succeeded` at the existing
+production URL.
+
+Fresh verification is green for 33 Vitest files / 152 tests, lint, TypeScript,
+38-asset audit, production build, Chromium browser 12/12, accessibility 5/5,
+visual capture 1/1 and production dependency audit with zero vulnerabilities.
+The rebuilt local 4180 server returns HTTP 200; all four viewport probes are
+overflow-free and the live mobile menu opens and closes.
+
+The strict raw comparator remains intentionally red with no tolerance or mask:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 711,367 | 4.12517653 |
+| about | 941,743 | 5.86134826 |
+| menu | 1,166,729 | 5.88439507 |
+| gallery | 870,690 | 7.99102823 |
+| souvenirs | 932,428 | 7.07670598 |
+| contacts | 850,844 | 4.26206612 |
+| **Total** | **5,473,801 / 9,440,112** | **—** |
+
+This is a `140`-pixel improvement over Sites v16. Raw-zero and missing
+responsive reference baselines remain open quality gates, so the goal stays
+active and the release is not represented as literal pixel identity.

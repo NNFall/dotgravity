@@ -343,3 +343,33 @@
   `appgdep_6a9075a778388191948f72c7d4ab5bbe` reached `succeeded` at the
   existing owner-only production URL. Anonymous access continues to show the
   expected ChatGPT sign-in interstitial.
+
+### 2026-08-27 — bounded desktop alignment and Sites v17
+
+- Integrated four independent raw-driven, desktop-scoped calibrations in
+  runtime commit `32a2249a20592fd1bc99163932d49104058d6fa5`: About title and
+  cathedral illustration offsets, a `2px` Gallery heading offset, a `4px/1px`
+  Menu CTA offset and a `16px` desktop Souvenirs story-copy gap. A Contacts
+  sidebar body-scale hypothesis was tested, increased strict changed-pixel
+  count and was reverted. No new media, copy, provenance, mask or tolerance
+  rule was introduced.
+- Fresh verification passed: 33 Vitest files / 152 tests, lint, TypeScript,
+  asset audit (38 assets / 30 production text files), production build,
+  Chromium browser 12/12, accessibility 5/5, visual capture 1/1 and the
+  production dependency audit with zero vulnerabilities. The rebuilt 4180
+  handoff server returned HTTP 200; all four viewport probes were overflow-free
+  and the live mobile menu opened and closed.
+- Strict raw comparison remains intentionally red at
+  `5,473,801 / 9,440,112` changed pixels: hero `711,367` (mean `4.12517653`),
+  about `941,743` (`5.86134826`), menu `1,166,729` (`5.88439507`), gallery
+  `870,690` (`7.99102823`), souvenirs `932,428` (`7.07670598`), contacts
+  `850,844` (`4.26206612`). This is `140` fewer changed pixels than v16;
+  no raw-zero claim is made.
+- Runtime `32a2249a20592fd1bc99163932d49104058d6fa5` was timestamp-refreshed
+  before push and published to GitHub `main` and `feat/pixel-accurate-landing`,
+  then synchronized to the Sites source repository. Sites version 17 was saved
+  from the matching archive (`sha256:c65fce7d6a9f105d675e068094a781484c68f3941b57478cfbb7230386977b18`,
+  129 files, 27,596,800 bytes) and deployed successfully; deployment
+  `appgdep_6a90849d5c2881919fea94dd9c74dc22` reached `succeeded` at the
+  existing owner-only production URL. Anonymous access remains the expected
+  ChatGPT sign-in interstitial.

@@ -11,14 +11,14 @@ continues to own its isolated `4174` server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 33 files, 147 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 33 files, 152 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
 | `npm.cmd run qa:assets` | pass | 38 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 5,473,941 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 5,473,801 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -78,12 +78,50 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `5473941 / 9440112` changed
+  mask was introduced. The latest raw report is `5473801 / 9440112` changed
   pixels across the six supplied 1672×941 frames: hero is `711367` changed
-  pixels, about is `941848`, menu is `1166747`, gallery is `870707`, souvenirs
+  pixels, about is `941743`, menu is `1166729`, gallery is `870690`, souvenirs
   is `932428`, and contacts is `850844`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
+
+## Latest bounded desktop alignment and publication — 2026-08-27
+
+The validated runtime is `32a2249a20592fd1bc99163932d49104058d6fa5`, pushed to
+both GitHub branches and synchronized to the Sites source repository. Four
+desktop-scoped CSS calibrations are included: About title and cathedral
+illustration offsets, a `2px` wide Gallery heading offset, a `4px/1px` wide
+Menu CTA offset, and a measured `16px` desktop Souvenirs story-copy gap. A
+Contacts body-scale hypothesis was rejected after strict A/B because it added
+changed pixels; Contacts source is unchanged in this candidate. Each accepted
+rule has a focused TDD contract, mobile guards remain intact, and no new media,
+copy, provenance, tolerance or mask rule was introduced.
+
+The fresh full suite is green: 33 Vitest files / 152 tests, lint, TypeScript,
+38-asset audit, production build, Chromium browser 12/12, accessibility 5/5,
+visual capture 1/1 and production dependency audit with zero vulnerabilities.
+The handoff server at `127.0.0.1:4180` was rebuilt from this source; the root,
+current client chunks and registered header crop returned HTTP 200. Probes at
+`1920×1080`, `1672×941`, `390×844` and `320×844` reported equal client and
+scroll widths, and the mobile menu opened and closed through the live bundle.
+
+The strict raw report remains red, with no mask or tolerance:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 711,367 | 4.12517653 |
+| about | 941,743 | 5.86134826 |
+| menu | 1,166,729 | 5.88439507 |
+| gallery | 870,690 | 7.99102823 |
+| souvenirs | 932,428 | 7.07670598 |
+| contacts | 850,844 | 4.26206612 |
+| **Total** | **5,473,801 / 9,440,112** | **—** |
+
+This is `140` fewer changed pixels than the Sites v16 report. Sites version 17
+was saved from the matching archive (`sha256:c65fce7d6a9f105d675e068094a781484c68f3941b57478cfbb7230386977b18`,
+129 files, 27,596,800 bytes) and deployed successfully as
+`appgdep_6a90849d5c2881919fea94dd9c74dc22` to the existing owner-only
+production URL. Raw-zero and missing responsive baselines remain open gates.
 
 ## Previous evidence refresh — 2026-08-27 (superseded by the current candidate below)
 
