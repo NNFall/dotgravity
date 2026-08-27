@@ -189,6 +189,17 @@ describe("souvenirs anchor scene", () => {
     );
   });
 
+  test("keeps bounded desktop decoration and card disclosure out of the photo crops", () => {
+    const styles = loadSouvenirsStyles();
+
+    expect(styles).toMatch(
+      /\.topographicLines\s*\{[\s\S]*?top:\s*-228px;[\s\S]*?left:\s*38\.6%;[\s\S]*?width:\s*428px;[\s\S]*?height:\s*422px;/i,
+    );
+    expect(styles).toMatch(
+      /@media\s*\(min-width:\s*901px\)[\s\S]*?\.storyContent\s*\{[\s\S]*?padding:\s*2px 7px 13px 0;[\s\S]*?\.storyRule,\s*\.storyContent\s+b\s*\{[\s\S]*?display:\s*none;/i,
+    );
+  });
+
   test("keeps provenance disclosure accessible without overlaying the reference crop", () => {
     const styles = loadSouvenirsStyles();
 

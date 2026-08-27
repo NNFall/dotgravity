@@ -143,9 +143,12 @@
   --menu-card-x: -2px;
 }
 
-.menuCard:nth-child(3),
+.menuCard:nth-child(3) {
+  --menu-card-x: -5px;
+}
+
 .menuCard:nth-child(4) {
-  --menu-card-x: -4px;
+  --menu-card-x: -8px;
 }
 
 .menuCard:nth-child(5) {
@@ -485,6 +488,33 @@
   .menuScene {
     box-sizing: border-box;
     height: max(941px, 56.28vw);
+    background: var(--menu-paper);
+  }
+
+  .eyebrow > span:first-child,
+  .eyebrow > span:last-child {
+    width: 70px;
+  }
+
+  .header h2 {
+    margin: 44px 0 0;
+    letter-spacing: -0.012em;
+  }
+
+  .headingOrnament {
+    margin-top: 13px;
+  }
+
+  .headingOrnament > span {
+    width: 166px;
+  }
+
+  .introduction {
+    margin: 17px 0 0;
+  }
+
+  .cardRail {
+    margin: 22px auto 0;
   }
 }
 

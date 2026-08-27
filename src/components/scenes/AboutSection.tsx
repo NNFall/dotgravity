@@ -246,7 +246,7 @@ export function AboutSection() {
           </div>
           <p>Вдохновляемся красотой. Делимся теплом.</p>
           <a className={styles.cta} href="#contacts">
-            <span>Как добраться</span>
+            <span>Узнать больше</span>
             <LineArrow />
           </a>
         </div>

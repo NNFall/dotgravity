@@ -122,4 +122,18 @@ describe("bounded hero and about reference crops", () => {
     expect(heroCss).toContain("font-size: clamp(0.9rem, 1.09vw, 1.14rem);");
     expect(heroCss).toContain("line-height: 1.736;");
   });
+
+  test("locks the desktop dot-grid registration without changing mobile behavior", async () => {
+    const heroCss = await readFile(
+      resolve(process.cwd(), "src/components/hero/HeroSection.module.css"),
+      "utf8",
+    );
+
+    expect(heroCss).toMatch(
+      /@media\s*\(min-width:\s*721px\)[\s\S]*?\.hero-dots[\s\S]*?background-position:\s*-4px\s+-2px;[\s\S]*?opacity:\s*0\.3;/,
+    );
+    const mobileRules =
+      heroCss.match(/@media\s*\(max-width:\s*720px\)[\s\S]*?(?=\n@media|$)/)?.[0] ?? "";
+    expect(mobileRules).not.toContain("background-position: -4px -2px;");
+  });
 });

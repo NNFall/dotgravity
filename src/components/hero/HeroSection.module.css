@@ -61,6 +61,11 @@
     color: rgb(180 71 37 / 6%);
   }
 
+  :global(.hero-dots) {
+    background-position: -4px -2px;
+    opacity: 0.3;
+  }
+
   :global(.hero-copy h1) {
     transform: translate(-6px, 3px);
   }

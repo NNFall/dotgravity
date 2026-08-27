@@ -443,6 +443,15 @@
   height: auto;
 }
 
+/* The supplied desktop inset crops are rectangular photo regions.  The
+   surrounding card supplies the rounded silhouette; clipping the image adds
+   four painted corners that are not present in the reference frame. */
+@media (min-width: 901px) {
+  .inset img {
+    border-radius: 0;
+  }
+}
+
 @media (max-width: 1220px) {
   .copy {
     width: 36%;

@@ -15,10 +15,10 @@
 
 .topographicLines {
   position: absolute;
-  top: -244px;
-  left: 33.7%;
-  width: 430px;
-  height: 405px;
+  top: -228px;
+  left: 38.6%;
+  width: 428px;
+  height: 422px;
   color: rgb(180 71 37 / 25%);
   pointer-events: none;
 }
@@ -460,6 +460,17 @@
   letter-spacing: 0.055em;
   line-height: 1.2;
   text-transform: uppercase;
+}
+
+@media (min-width: 901px) {
+  .storyContent {
+    padding: 2px 7px 13px 0;
+  }
+
+  .storyRule,
+  .storyContent b {
+    display: none;
+  }
 }
 
 .ribbon {

@@ -66,6 +66,9 @@ describe("gallery desktop canvas contract", () => {
     expect(desktopStyles).toMatch(
       /\.inset\s*\{[^}]*overflow:\s*visible\s*;/,
     );
+    expect(desktopStyles).toMatch(
+      /@media\s*\(min-width:\s*901px\)[\s\S]*?\.inset\s+img\s*\{[^}]*border-radius:\s*0\s*;/,
+    );
     expect(desktopStyles).toMatch(/\.artInset\s*\{[^}]*top:\s*261px\s*;/);
     expect(desktopStyles).toMatch(/\.spaceInset\s*\{[^}]*top:\s*513px\s*;/);
     expect(mobileStyles).toMatch(

@@ -31,7 +31,7 @@ describe("about anchor scene", () => {
       within(about).getByRole("heading", { level: 2, name: "О нас" }),
     ).toBeInTheDocument();
     expect(
-      within(about).getByRole("link", { name: "Как добраться" }),
+      within(about).getByRole("link", { name: "Узнать больше" }),
     ).toHaveAttribute("href", "#contacts");
 
     const artwork = within(about).getByRole("img", {
@@ -55,6 +55,7 @@ describe("about anchor scene", () => {
       within(about).getByText("ПРЕСВЯТОГО СЕРДЦА ИИСУСА"),
     ).toBeInTheDocument();
     expect(within(about).getByText("исторический центр Самары")).toBeInTheDocument();
+    expect(within(about).getByRole("link", { name: "Узнать больше" })).toBeInTheDocument();
     expect(about.innerHTML).not.toContain("tests/visual/baselines");
   });
 
