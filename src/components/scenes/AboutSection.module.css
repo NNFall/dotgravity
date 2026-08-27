@@ -447,6 +447,29 @@
   height: auto;
 }
 
+.cathedralReference {
+  display: none;
+}
+
+@media (min-width: 761px) {
+  .cathedralBackdrop {
+    top: 40px;
+    right: 0;
+    width: 112px;
+  }
+
+  .cathedralBackdrop > svg {
+    display: none;
+  }
+
+  .cathedralReference {
+    display: block;
+    width: 112px;
+    height: 690px;
+    object-fit: fill;
+  }
+}
+
 @media (max-width: 1080px) {
   .section {
     height: 820px;
@@ -666,6 +689,14 @@
     right: -26%;
     width: 270px;
     opacity: 0.72;
+  }
+
+  .cathedralBackdrop > svg {
+    display: block;
+  }
+
+  .cathedralReference {
+    display: none;
   }
 }
 

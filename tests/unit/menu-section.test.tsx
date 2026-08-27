@@ -167,6 +167,10 @@ describe("menu anchor scene", () => {
     expect(menuStyles).toContain("width: 176px;");
   });
 
+  test("keeps the desktop card-cut border at the reference-calibrated opacity", () => {
+    expect(menuStyles).toContain("background: rgb(180 71 37 / 25%);");
+  });
+
   test("renders the bounded cathedral decoration as a decorative reference asset", async () => {
     const menuSectionModule = await loadMenuSection();
 
@@ -190,6 +194,32 @@ describe("menu anchor scene", () => {
       "src",
       cathedralArtwork?.path,
     );
+    expect(decoration).toHaveAttribute("data-provenance", "reference-derived");
+    expect(decoration).toHaveAttribute("aria-hidden", "true");
+    expect(decoration).toHaveAttribute("alt", "");
+  });
+
+  test("renders the measured botanical decoration as a bounded reference asset", async () => {
+    const menuSectionModule = await loadMenuSection();
+
+    expect(menuSectionModule).not.toBeNull();
+    if (!menuSectionModule) {
+      return;
+    }
+
+    const botanicalArtwork = mediaManifest.find(
+      (asset) => asset.id === "menu-reference-botanical-linework",
+    );
+
+    expect(botanicalArtwork).toBeDefined();
+    render(createElement(menuSectionModule.MenuSection));
+
+    const decoration = document.querySelector<HTMLImageElement>(
+      '[data-menu-decoration="botanical"]',
+    );
+
+    expect(decoration).not.toBeNull();
+    expect(decoration).toHaveAttribute("src", botanicalArtwork?.path);
     expect(decoration).toHaveAttribute("data-provenance", "reference-derived");
     expect(decoration).toHaveAttribute("aria-hidden", "true");
     expect(decoration).toHaveAttribute("alt", "");

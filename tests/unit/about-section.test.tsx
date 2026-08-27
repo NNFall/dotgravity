@@ -90,6 +90,38 @@ describe("about anchor scene", () => {
     }
   });
 
+  test("uses the reference-safe antique tableware feature label", () => {
+    render(<AboutSection />);
+
+    const about = document.querySelector<HTMLElement>(
+      'section[data-scene="about"]',
+    );
+
+    expect(about).not.toBeNull();
+    expect(
+      within(about as HTMLElement).getByText("АНТИКВАРНАЯ ПОСУДА"),
+    ).toBeInTheDocument();
+  });
+
+  test("renders the measured cathedral artwork as a bounded reference decoration", () => {
+    const cathedralArtwork = mediaManifest.find(
+      (asset) => asset.id === "about-reference-cathedral-linework",
+    );
+
+    expect(cathedralArtwork).toBeDefined();
+    render(<AboutSection />);
+
+    const decoration = document.querySelector<HTMLImageElement>(
+      '[data-about-decoration="cathedral"]',
+    );
+
+    expect(decoration).not.toBeNull();
+    expect(decoration).toHaveAttribute("src", cathedralArtwork?.path);
+    expect(decoration).toHaveAttribute("data-provenance", "reference-derived");
+    expect(decoration).toHaveAttribute("aria-hidden", "true");
+    expect(decoration).toHaveAttribute("alt", "");
+  });
+
   test("does not couple the scene implementation to a reference baseline or hash", async () => {
     const source = await readFile(
       resolve(process.cwd(), "src/components/scenes/AboutSection.tsx"),

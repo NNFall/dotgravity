@@ -111,7 +111,7 @@
   min-width: 0;
   min-height: 405px;
   padding: 1px;
-  background: rgb(180 71 37 / 38%);
+  background: rgb(180 71 37 / 25%);
   clip-path: polygon(
     0 12px,
     8px 12px,
@@ -474,12 +474,12 @@
 .botanicalLinework {
   position: absolute;
   z-index: 0;
-  right: -2px;
-  bottom: -35px;
-  width: min(16.2vw, 270px);
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: min(12vw, 199px);
   height: auto;
-  color: rgb(180 71 37 / 57%);
-  opacity: 0.72;
+  opacity: 1;
   pointer-events: none;
 }
 

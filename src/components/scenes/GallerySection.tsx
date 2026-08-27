@@ -8,7 +8,8 @@ type GalleryCropId =
   | "gallery-reference-main-arch"
   | "gallery-reference-inset-porcelain"
   | "gallery-reference-inset-art"
-  | "gallery-reference-inset-space";
+  | "gallery-reference-inset-space"
+  | "gallery-reference-cathedral-linework";
 
 function getGalleryCrop(id: GalleryCropId): MediaAsset {
   const crop = mediaManifest.find((asset) => asset.id === id);
@@ -34,6 +35,10 @@ const galleryCrops = {
   art: getGalleryCrop("gallery-reference-inset-art"),
   space: getGalleryCrop("gallery-reference-inset-space"),
 } as const;
+
+const galleryCathedralArtwork = getGalleryCrop(
+  "gallery-reference-cathedral-linework",
+);
 
 const referenceGalleryAlt =
   "Референсный фрагмент визуальной концепции галереи, не документальная фотография кафе.";
@@ -98,6 +103,7 @@ function CathedralLinework() {
   return (
     <svg
       aria-hidden="true"
+      className={styles.cathedralVector}
       fill="none"
       focusable="false"
       viewBox="0 0 180 535"
@@ -118,6 +124,23 @@ function CathedralLinework() {
         />
       </g>
     </svg>
+  );
+}
+
+function ReferenceCathedralLinework() {
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      alt=""
+      aria-hidden="true"
+      className={styles.cathedralReference}
+      data-gallery-decoration="cathedral"
+      data-provenance={galleryCathedralArtwork.provenance.classification}
+      decoding="async"
+      height={galleryCathedralArtwork.dimensions.height}
+      src={galleryCathedralArtwork.path}
+      width={galleryCathedralArtwork.dimensions.width}
+    />
   );
 }
 
@@ -217,6 +240,7 @@ export function GallerySection() {
       <div className={styles.composition}>
         <div aria-hidden="true" className={styles.dotField} />
         <div aria-hidden="true" className={styles.cathedralBackdrop}>
+          <ReferenceCathedralLinework />
           <CathedralLinework />
         </div>
 

@@ -132,6 +132,39 @@ export const mediaManifest = [
     },
   },
   {
+    id: "hero-reference-cathedral-strip",
+    path: "/media/reference-derived/hero-reference-cathedral-strip.png",
+    sha256:
+      "0383FBE84D2DE6BA71CBD332D260F34C90B3AA72D6318D9FD3D5718CC096760E",
+    dimensions: {
+      width: 108,
+      height: 541,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded cathedral decoration ROI crop x=0,y=400,w=108,h=541 from the supplied hero concept; this narrow paper-backed strip contains only the left cathedral ornament and excludes the live copy, CTA, navigation and photo regions.",
+      statement:
+        "Bounded decorative strip from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "hero cathedral decorative crop only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the exact paper-backed cathedral decoration at the desktop hero lower-left edge",
+      focalPoint: "fine cathedral linework behind the hero copy rail",
+      responsive:
+        "Use only inside the desktop hero decoration footprint; hide it below the desktop breakpoint and never expand it into a full reference screen.",
+    },
+  },
+  {
     id: "about-reference-arch",
     path: "/media/reference-derived/about-reference-arch.png",
     sha256:
@@ -162,6 +195,39 @@ export const mediaManifest = [
       focalPoint: "arched interior, stained-glass windows and porcelain display",
       responsive:
         "Use only inside the bounded about photo frame; keep the generated fallback on mobile and never expand the crop into a full reference screen.",
+    },
+  },
+  {
+    id: "about-reference-cathedral-linework",
+    path: "/media/reference-derived/about-reference-cathedral-linework.png",
+    sha256:
+      "825909493396B1A94D31A496CC28C54EB04C0866FE07831666B6A838A96AEA5E",
+    dimensions: {
+      width: 112,
+      height: 690,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9",
+      transformation:
+        "Bounded cathedral linework ROI x=1560,y=40,w=112,h=690 from the supplied about concept; dark copy pixels and paper background were removed with a deterministic warm-line alpha extraction, leaving only the desktop edge ornament.",
+      statement:
+        "Bounded decorative linework from the supplied generated about concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["about"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "about cathedral linework region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the transparent bounded cathedral linework at the measured right edge of the about scene on desktop",
+      focalPoint: "fine cathedral illustration behind the about copy rail",
+      responsive:
+        "Keep the decoration inside the desktop about edge footprint and retain the vector fallback on mobile; never expand it into a full reference screen.",
     },
   },
   {
@@ -394,6 +460,39 @@ export const mediaManifest = [
     },
   },
   {
+    id: "menu-reference-botanical-linework",
+    path: "/media/reference-derived/menu-reference-botanical-linework.png",
+    sha256:
+      "6A96766CB4BFF22AE8123404E1050B71C5F6B8DD0F205020A636A4C8072582D3",
+    dimensions: {
+      width: 199,
+      height: 227,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Bounded botanical linework ROI x=1473,y=714,w=199,h=227 from the supplied menu concept; card-border overlap was masked, then a deterministic red-blue chroma alpha extraction (threshold 27, divisor 70, alpha cap 0.72) retained only the decorative linework in a fixed terracotta tone.",
+      statement:
+        "Bounded decorative botanical linework from the supplied generated menu concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "menu botanical linework region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the transparent bounded botanical linework at the lower-right of the menu scene",
+      focalPoint: "branch, leaves and berry clusters",
+      responsive:
+        "Keep the decoration behind the menu scene content, scale it within the lower-right edge on mobile, and never expand it into a full reference screen.",
+    },
+  },
+  {
     id: "gallery-arched-interior",
     path: "/media/generated/gallery-arched-interior.png",
     sha256: "95CC57209EBA6A9DB4A11E77397D81803FBEB65C829BE6DC6D7EF2F88CEA9F27",
@@ -546,6 +645,38 @@ export const mediaManifest = [
       focalPoint: "windowed seating area and warm gallery interior",
       responsive:
         "Keep the seating area inside the inset card; never render the crop as a standalone reference screen.",
+    },
+  },
+  {
+    id: "gallery-reference-cathedral-linework",
+    path: "/media/reference-derived/gallery-reference-cathedral-linework.png",
+    sha256: "B9DC6C4A466013FAF30C777C1817DDF73AFF4179C2C75EC50A6FAFC813E32AFC",
+    dimensions: {
+      width: 120,
+      height: 665,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5",
+      transformation:
+        "Bounded cathedral linework ROI x=0,y=250,w=120,h=665 from the supplied gallery concept; paper texture and the adjacent motto rule were removed with a deterministic warm-line alpha extraction, leaving only the live decorative illustration.",
+      statement:
+        "Bounded decorative linework from the supplied generated gallery concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["gallery"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "gallery cathedral linework region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the transparent bounded linework at the measured left edge of the gallery scene on desktop",
+      focalPoint: "three-spire cathedral illustration and its fine architectural lines",
+      responsive:
+        "Keep the decoration behind the gallery copy on desktop and retain the vector fallback on mobile; never expand it into a full reference screen.",
     },
   },
   {
@@ -707,6 +838,72 @@ export const mediaManifest = [
       focalPoint: "porcelain tea set and candle-lit table detail",
       responsive:
         "Keep the tea set inside the fourth bounded card visual; never render the crop as a standalone reference screen.",
+    },
+  },
+  {
+    id: "souvenirs-reference-cathedral-linework",
+    path: "/media/reference-derived/souvenirs-reference-cathedral-linework.png",
+    sha256:
+      "D1BB9136A76718626B4AEC9D399F5CB4B4A35E7EEA14DF9E451A1E770A59A18C",
+    dimensions: {
+      width: 95,
+      height: 520,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0",
+      transformation:
+        "Bounded cathedral linework ROI x=0,y=140,w=95,h=520 from the supplied souvenirs concept; paper background was removed with a deterministic warm-line alpha extraction, leaving only the desktop left-edge ornament.",
+      statement:
+        "Bounded decorative linework from the supplied generated souvenirs concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "souvenirs cathedral linework region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the transparent bounded cathedral linework at the measured left edge of the souvenirs scene on desktop",
+      focalPoint: "fine cathedral illustration behind the souvenirs copy rail",
+      responsive:
+        "Keep the decoration inside the desktop souvenirs edge footprint and retain the vector fallback on mobile; never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "souvenirs-reference-seal-linework",
+    path: "/media/reference-derived/souvenirs-reference-seal-linework.png",
+    sha256:
+      "71703D5F543B93658E258AEC33F7BD34CD4F155ED06ECACC52F4137DF0443E55",
+    dimensions: {
+      width: 82,
+      height: 250,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0",
+      transformation:
+        "Bounded floral seal ROI x=1590,y=400,w=82,h=250 from the supplied souvenirs concept; adjacent photo pixels and paper background were removed with a deterministic warm-line alpha extraction, leaving only the desktop right-edge ornament.",
+      statement:
+        "Bounded decorative linework from the supplied generated souvenirs concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "souvenirs floral seal linework region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the transparent bounded floral seal at the measured right edge of the souvenirs scene on desktop",
+      focalPoint: "partial floral seal and fine circular linework",
+      responsive:
+        "Keep the decoration inside the desktop souvenirs edge footprint and hide it below the desktop breakpoint; never expand it into a full reference screen.",
     },
   },
   {
@@ -936,6 +1133,39 @@ export const mediaManifest = [
       focalPoint: "brick facade, venue sign and decorated windows",
       responsive:
         "Keep the street facade inside the contacts photo frame; responsive layouts may crop it but never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "contacts-reference-cathedral-linework",
+    path: "/media/reference-derived/contacts-reference-cathedral-linework.png",
+    sha256:
+      "AC2E5872FF4E7ED578198D6F194BB6397E962C560B2BE7C156A16C4EC1BD123D",
+    dimensions: {
+      width: 95,
+      height: 560,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457",
+      transformation:
+        "Bounded cathedral linework ROI x=0,y=350,w=95,h=560 from the supplied contacts concept; paper background was removed with a deterministic warm-line alpha extraction, leaving only the desktop left-edge ornament.",
+      statement:
+        "Bounded decorative linework from the supplied generated contacts concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["contacts"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "contacts cathedral linework region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the transparent bounded cathedral linework at the measured left edge of the contacts scene on desktop",
+      focalPoint: "fine cathedral illustration behind the contacts copy rail",
+      responsive:
+        "Keep the decoration inside the desktop contacts edge footprint and hide it below the desktop breakpoint; never expand it into a full reference screen.",
     },
   },
   {

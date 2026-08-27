@@ -68,6 +68,24 @@
   opacity: 0.62;
 }
 
+.cathedralReference {
+  display: none;
+}
+
+@media (min-width: 1181px) {
+  .cathedralReference {
+    position: absolute;
+    z-index: 0;
+    top: 245px;
+    left: 0;
+    display: block;
+    width: 95px;
+    height: 560px;
+    object-fit: fill;
+    pointer-events: none;
+  }
+}
+
 .copy {
   position: relative;
   z-index: 3;

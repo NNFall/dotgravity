@@ -93,6 +93,14 @@ describe("souvenirs anchor scene", () => {
     expect(
       within(souvenirs).getByText(/больше, чем просто сувениры/i),
     ).toBeInTheDocument();
+    for (const motif of [
+      "УНИКАЛЬНЫЕ ПОЗИЦИИ",
+      "ПОДАРКИ СО СМЫСЛОМ",
+      "КОЛЛЕКЦИОННЫЕ НАХОДКИ",
+      "ВНИМАНИЕ К ДЕТАЛЯМ",
+    ]) {
+      expect(within(souvenirs).getByText(motif)).toBeInTheDocument();
+    }
     for (const title of [
       "«РОЗОВЫЙ ОТТЕНОК»",
       "«УЗОР ВРЕМЕНИ»",
@@ -130,6 +138,42 @@ describe("souvenirs anchor scene", () => {
     expect(
       within(souvenirs).getByText("не документальная фотография места"),
     ).toBeInTheDocument();
+  });
+
+  test("renders the desktop cathedral and floral seal as bounded reference decorations", async () => {
+    const souvenirsSectionModule = await loadSouvenirsSection();
+
+    expect(souvenirsSectionModule).not.toBeNull();
+    if (!souvenirsSectionModule) {
+      return;
+    }
+
+    const decorationIds = [
+      ["cathedral", "souvenirs-reference-cathedral-linework"],
+      ["seal", "souvenirs-reference-seal-linework"],
+    ] as const;
+
+    render(createElement(souvenirsSectionModule.SouvenirsSection));
+
+    const souvenirs = document.querySelector<HTMLElement>(
+      'section[data-scene="souvenirs"]#souvenirs',
+    );
+    expect(souvenirs).not.toBeNull();
+
+    for (const [kind, id] of decorationIds) {
+      const artwork = mediaManifest.find((asset) => asset.id === id);
+      expect(artwork).toBeDefined();
+
+      const decoration = souvenirs?.querySelector<HTMLImageElement>(
+        `[data-souvenirs-decoration="${kind}"]`,
+      );
+
+      expect(decoration).not.toBeNull();
+      expect(decoration).toHaveAttribute("src", artwork?.path);
+      expect(decoration).toHaveAttribute("data-provenance", "reference-derived");
+      expect(decoration).toHaveAttribute("aria-hidden", "true");
+      expect(decoration).toHaveAttribute("alt", "");
+    }
   });
 
   test("keeps the semantic scene free of source-image, reference-screen, and icon-library coupling", async () => {

@@ -115,8 +115,13 @@ describe("bounded hero and about reference crops", () => {
     expect(heroCss).toContain(":global(.hero-photo)::after {");
     expect(heroCss).toContain("display: none;");
     expect(heroCss).toContain("background: #f6ebe0;");
-    expect(heroCss).toContain("width: clamp(128px, 7.66vw, 148px);");
-    expect(heroCss).toContain("color: rgb(180 71 37 / 6%);");
+    expect(heroCss).toContain("width: clamp(108px, 6.46vw, 128px);");
+    expect(heroCss).toContain(
+      "height: calc(clamp(108px, 6.46vw, 128px) * 5.009259);",
+    );
+    expect(heroCss).toContain(
+      'background-image: url("/media/reference-derived/hero-reference-cathedral-strip.png");',
+    );
     expect(heroCss).toContain("transform: translate(-6px, 3px);");
     expect(heroCss).toContain("letter-spacing: -0.01em;");
     expect(heroCss).toContain("font-size: clamp(0.9rem, 1.09vw, 1.14rem);");

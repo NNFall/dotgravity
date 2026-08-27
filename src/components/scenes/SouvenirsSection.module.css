@@ -72,6 +72,40 @@
   height: auto;
 }
 
+.cathedralReference,
+.sealReference {
+  display: none;
+}
+
+@media (min-width: 901px) {
+  .cathedral {
+    display: none;
+  }
+
+  .cathedralReference,
+  .sealReference {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    object-fit: fill;
+    pointer-events: none;
+  }
+
+  .cathedralReference {
+    top: 140px;
+    left: 0;
+    width: 95px;
+    height: 520px;
+  }
+
+  .sealReference {
+    top: 400px;
+    right: 0;
+    width: 82px;
+    height: 250px;
+  }
+}
+
 .copy {
   position: absolute;
   z-index: 3;

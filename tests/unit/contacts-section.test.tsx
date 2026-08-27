@@ -50,7 +50,9 @@ describe("ContactsSection", () => {
       screen.getAllByText(/не документальная фотография/i),
     ).toHaveLength(2);
     const visuals = Array.from(
-      container.querySelectorAll<HTMLImageElement>("img[data-provenance]"),
+      container.querySelectorAll<HTMLImageElement>(
+        "img[data-provenance]:not([data-contacts-decoration])",
+      ),
     );
     expect(visuals).toHaveLength(2);
     expect(visuals.map((visual) => visual.getAttribute("src"))).toEqual([
@@ -78,6 +80,26 @@ describe("ContactsSection", () => {
     expect(source).not.toMatch(/@phosphor-icons[\\/]react/i);
     expect(source).not.toMatch(/tests[\\/]visual[\\/]baselines/i);
   }, 30_000);
+
+  test("renders the desktop cathedral as a bounded reference decoration", async () => {
+    const { ContactsSection } = await import(
+      "../../src/components/scenes/ContactsSection"
+    );
+
+    const { container } = render(<ContactsSection />);
+    const decoration = container.querySelector<HTMLImageElement>(
+      '[data-contacts-decoration="cathedral"]',
+    );
+
+    expect(decoration).not.toBeNull();
+    expect(decoration).toHaveAttribute(
+      "src",
+      "/media/reference-derived/contacts-reference-cathedral-linework.png",
+    );
+    expect(decoration).toHaveAttribute("data-provenance", "reference-derived");
+    expect(decoration).toHaveAttribute("aria-hidden", "true");
+    expect(decoration).toHaveAttribute("alt", "");
+  });
 
   test("keeps the lower route panel explicitly schematic", async () => {
     const { ContactsSection } = await import(

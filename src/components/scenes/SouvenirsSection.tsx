@@ -8,7 +8,9 @@ type SouvenirReferenceCropId =
   | "souvenirs-reference-bracelet"
   | "souvenirs-reference-ring"
   | "souvenirs-reference-teacup"
-  | "souvenirs-reference-tea-set";
+  | "souvenirs-reference-tea-set"
+  | "souvenirs-reference-cathedral-linework"
+  | "souvenirs-reference-seal-linework";
 
 function getReferenceSouvenirCrop(id: SouvenirReferenceCropId): MediaAsset {
   const crop = mediaManifest.find((asset) => asset.id === id);
@@ -35,6 +37,13 @@ const souvenirCrops = {
   ring: getReferenceSouvenirCrop("souvenirs-reference-ring"),
   teacup: getReferenceSouvenirCrop("souvenirs-reference-teacup"),
   teaSet: getReferenceSouvenirCrop("souvenirs-reference-tea-set"),
+} as const;
+
+const souvenirDecorations = {
+  cathedral: getReferenceSouvenirCrop(
+    "souvenirs-reference-cathedral-linework",
+  ),
+  seal: getReferenceSouvenirCrop("souvenirs-reference-seal-linework"),
 } as const;
 
 const referenceSouvenirAlt =
@@ -196,6 +205,31 @@ export function SouvenirsSection() {
         <div aria-hidden="true" className={styles.cathedral}>
           <CathedralLinework />
         </div>
+        {/* Measured reference-derived ornaments stay bounded to the desktop scene edges. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt=""
+          aria-hidden="true"
+          className={styles.cathedralReference}
+          data-provenance={souvenirDecorations.cathedral.provenance.classification}
+          data-souvenirs-decoration="cathedral"
+          decoding="async"
+          height={souvenirDecorations.cathedral.dimensions.height}
+          src={souvenirDecorations.cathedral.path}
+          width={souvenirDecorations.cathedral.dimensions.width}
+        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt=""
+          aria-hidden="true"
+          className={styles.sealReference}
+          data-provenance={souvenirDecorations.seal.provenance.classification}
+          data-souvenirs-decoration="seal"
+          decoding="async"
+          height={souvenirDecorations.seal.dimensions.height}
+          src={souvenirDecorations.seal.path}
+          width={souvenirDecorations.seal.dimensions.width}
+        />
 
         <div className={styles.copy}>
           <p className={styles.eyebrow}>
@@ -216,19 +250,19 @@ export function SouvenirsSection() {
           <div aria-label="Причины выбрать памятный подарок" className={styles.motifs}>
             <div>
               <GemIcon />
-              <span>Иллюстративные позиции</span>
+              <span>УНИКАЛЬНЫЕ ПОЗИЦИИ</span>
             </div>
             <div>
               <GiftIcon />
-              <span>Подарочная идея</span>
+              <span>ПОДАРКИ СО СМЫСЛОМ</span>
             </div>
             <div>
               <CrownIcon />
-              <span>Коллекционный мотив</span>
+              <span>КОЛЛЕКЦИОННЫЕ НАХОДКИ</span>
             </div>
             <div>
               <HandIcon />
-              <span>Внимание к деталям</span>
+              <span>ВНИМАНИЕ К ДЕТАЛЯМ</span>
             </div>
           </div>
 

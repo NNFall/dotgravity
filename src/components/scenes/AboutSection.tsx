@@ -30,6 +30,20 @@ const aboutReferenceMedia = (() => {
   return registeredAboutReference;
 })();
 
+const aboutCathedralArtwork = (() => {
+  const registeredAboutCathedral = mediaManifest.find(
+    (asset) => asset.id === "about-reference-cathedral-linework",
+  );
+
+  if (!registeredAboutCathedral) {
+    throw new Error(
+      "The bounded reference-derived about cathedral artwork is required to render the about scene.",
+    );
+  }
+
+  return registeredAboutCathedral;
+})();
+
 function getAboutImageAlt() {
   if (aboutMedia.provenance.classification === "generated/reference-compatible") {
     return "Сгенерированный визуальный образ: арочный интерьер с керамикой";
@@ -150,6 +164,19 @@ export function AboutSection() {
       <div aria-hidden="true" className={styles.paperGlow} />
       <div aria-hidden="true" className={styles.cathedralBackdrop}>
         <CathedralDrawing />
+        {/* Keep the measured reference-derived ornament bounded to this desktop edge layer. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt=""
+          aria-hidden="true"
+          className={styles.cathedralReference}
+          data-about-decoration="cathedral"
+          data-provenance={aboutCathedralArtwork.provenance.classification}
+          decoding="async"
+          height={aboutCathedralArtwork.dimensions.height}
+          src={aboutCathedralArtwork.path}
+          width={aboutCathedralArtwork.dimensions.width}
+        />
       </div>
 
       <figure className={styles.photoFrame}>
@@ -228,7 +255,7 @@ export function AboutSection() {
             description="Визуальный мотив старинной посуды — изысканная красота в каждой детали."
             icon={<PorcelainIcon />}
           >
-            Посуда и детали
+            АНТИКВАРНАЯ ПОСУДА
           </AboutFeature>
           <AboutFeature
             description="Образы современного искусства и подарочные мотивы с характером."

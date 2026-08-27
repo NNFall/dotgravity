@@ -6,7 +6,8 @@ import styles from "./ContactsSection.module.css";
 
 type ContactVisualId =
   | "contacts-reference-window-crop"
-  | "contacts-reference-street-crop";
+  | "contacts-reference-street-crop"
+  | "contacts-reference-cathedral-linework";
 
 function requireReferenceContactCrop(id: ContactVisualId): MediaAsset {
   const asset = mediaManifest.find((item) => item.id === id);
@@ -32,6 +33,9 @@ const windowVisual = requireReferenceContactCrop(
 );
 const streetVisual = requireReferenceContactCrop(
   "contacts-reference-street-crop",
+);
+const cathedralVisual = requireReferenceContactCrop(
+  "contacts-reference-cathedral-linework",
 );
 
 function DirectionArrow() {
@@ -337,6 +341,19 @@ export function ContactsSection() {
         <SiteHeader presentation />
       </div>
       <div className={styles.composition}>
+        {/* Keep the measured reference-derived cathedral bounded to the desktop edge layer. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt=""
+          aria-hidden="true"
+          className={styles.cathedralReference}
+          data-contacts-decoration="cathedral"
+          data-provenance={cathedralVisual.provenance.classification}
+          decoding="async"
+          height={cathedralVisual.dimensions.height}
+          src={cathedralVisual.path}
+          width={cathedralVisual.dimensions.width}
+        />
         <div aria-hidden="true" className={styles.paperLines} />
         <div aria-hidden="true" className={styles.dotField} />
 

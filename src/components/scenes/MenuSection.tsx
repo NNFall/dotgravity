@@ -82,6 +82,10 @@ const menuCathedralArtwork = getReferenceMenuArtwork(
   "menu-reference-cathedral-linework",
 );
 
+const menuBotanicalArtwork = getReferenceMenuArtwork(
+  "menu-reference-botanical-linework",
+);
+
 function FlowerMark({ className }: { className?: string }) {
   return (
     <svg
@@ -118,29 +122,18 @@ function CathedralMark() {
 
 function BotanicalMark() {
   return (
-    <svg
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      alt=""
       aria-hidden="true"
       className={styles.botanicalLinework}
-      fill="none"
-      focusable="false"
-      viewBox="0 0 240 270"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <g
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M151 270c2-42 13-83 30-119 14-29 28-51 49-76" strokeWidth="1.25" />
-        <path d="M177 185c-28-5-53-18-73-37m95 0c-10-25-14-52-11-79m-28 133c-21-2-42 3-60 15m75-42c17-3 32-12 44-24" strokeWidth="1" />
-        <path d="M96 147c13-15 29-17 47-12-12 14-28 19-47 12Zm-7 46c16-12 32-11 48-2-14 11-30 12-48 2Zm73-29c-4-19 3-33 18-44 5 17-1 32-18 44Zm24-62c-2-18 6-31 20-40 3 17-3 29-20 40Zm-4 53c15-9 29-8 43-1-12 12-26 13-43 1Zm-43 30c-4-15 2-27 14-36 5 14 0 25-14 36Z" strokeWidth="0.95" />
-        <path d="M151 239c-20-3-37 2-52 14m55-2c15-2 28-8 39-19" strokeWidth="0.9" />
-        <path d="M86 257c7-14 19-20 35-20-6 14-18 21-35 20Zm104-15c9-13 21-18 36-17-8 13-20 19-36 17Z" strokeWidth="0.9" />
-        <circle cx="207" cy="111" r="6" strokeWidth="0.9" />
-        <circle cx="215" cy="120" r="4" strokeWidth="0.9" />
-        <circle cx="202" cy="120" r="3" strokeWidth="0.9" />
-      </g>
-    </svg>
+      data-menu-decoration="botanical"
+      data-provenance={menuBotanicalArtwork.provenance.classification}
+      decoding="async"
+      height={menuBotanicalArtwork.dimensions.height}
+      src={menuBotanicalArtwork.path}
+      width={menuBotanicalArtwork.dimensions.width}
+    />
   );
 }
 

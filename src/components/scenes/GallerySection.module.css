@@ -434,6 +434,14 @@
   pointer-events: none;
 }
 
+.cathedralReference {
+  display: none;
+}
+
+.cathedralVector {
+  display: block;
+}
+
 .cathedralBackdrop svg {
   display: block;
   width: 100%;
@@ -446,6 +454,25 @@
 @media (min-width: 901px) {
   .inset img {
     border-radius: 0;
+  }
+
+  .cathedralBackdrop {
+    top: 250px;
+    right: auto;
+    bottom: auto;
+    left: 0;
+    width: 120px;
+  }
+
+  .cathedralReference {
+    display: block;
+    width: 120px;
+    height: 665px;
+    object-fit: fill;
+  }
+
+  .cathedralVector {
+    display: none;
   }
 }
 
@@ -701,6 +728,14 @@
     left: auto;
     width: 144px;
     opacity: 0.72;
+  }
+
+  .cathedralReference {
+    display: none;
+  }
+
+  .cathedralVector {
+    display: block;
   }
 }
 

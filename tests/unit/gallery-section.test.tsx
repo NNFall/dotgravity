@@ -88,6 +88,32 @@ describe("gallery anchor scene", () => {
     ).toBeInTheDocument();
   });
 
+  test("renders the measured cathedral illustration as a bounded reference decoration", async () => {
+    const gallerySectionModule = await loadGallerySection();
+
+    expect(gallerySectionModule).not.toBeNull();
+    if (!gallerySectionModule) {
+      return;
+    }
+
+    const cathedralArtwork = mediaManifest.find(
+      (asset) => asset.id === "gallery-reference-cathedral-linework",
+    );
+
+    expect(cathedralArtwork).toBeDefined();
+    render(createElement(gallerySectionModule.GallerySection));
+
+    const decoration = document.querySelector<HTMLImageElement>(
+      '[data-gallery-decoration="cathedral"]',
+    );
+
+    expect(decoration).not.toBeNull();
+    expect(decoration).toHaveAttribute("src", cathedralArtwork?.path);
+    expect(decoration).toHaveAttribute("data-provenance", "reference-derived");
+    expect(decoration).toHaveAttribute("aria-hidden", "true");
+    expect(decoration).toHaveAttribute("alt", "");
+  });
+
   test("uses a native progressive-disclosure control for the visual story", async () => {
     const gallerySectionModule = await loadGallerySection();
 
@@ -194,5 +220,38 @@ describe("gallery anchor scene", () => {
     expect(css).toMatch(
       /\.mainPhoto figcaption,\s*\.provenanceNote\s*\{[\s\S]*?clip:\s*rect\(0 0 0 0\)/i,
     );
+  });
+
+  test("renders the progressive-disclosure control before gallery theme motifs in desktop order", async () => {
+    const gallerySectionModule = await loadGallerySection();
+
+    expect(gallerySectionModule).not.toBeNull();
+    if (!gallerySectionModule) {
+      return;
+    }
+
+    render(createElement(gallerySectionModule.GallerySection));
+
+    const gallery = document.querySelector<HTMLElement>(
+      'section[data-scene="gallery"]#gallery',
+    );
+    expect(gallery).not.toBeNull();
+    if (!gallery) {
+      return;
+    }
+
+    const featureList = within(gallery).getByRole("list", {
+      name: "Темы галереи",
+    });
+    const details = within(gallery).getByRole("group", {
+      name: "Подробнее о визуальной композиции",
+    });
+
+    expect(
+      Boolean(
+        details.compareDocumentPosition(featureList) &
+          Node.DOCUMENT_POSITION_FOLLOWING,
+      ),
+    ).toBe(true);
   });
 });
