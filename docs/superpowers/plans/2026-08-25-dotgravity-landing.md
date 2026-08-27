@@ -210,3 +210,21 @@ Runtime commit
 the owner-only Sites version 7 deployment is live. Gallery copy and captions
 are phrased as neutral visual motifs, while the strict raw-zero and missing
 responsive baselines remain intentionally open.
+
+## Execution status addendum — 2026-08-27
+
+Four independent raw-driven agents completed a bounded polish pass. Menu
+desktop crops now render at intrinsic 250×265 dimensions with measured
+per-card offsets; the responsive cascade explicitly resets those offsets at
+≤1200px and a browser contract checks the computed values at 390px and 320px.
+About, Gallery and Contacts received small reference-aligned decorative and
+diagonal refinements. The refreshed serialized suite is `29 files / 113 tests`;
+lint, TypeScript, asset audit, build, browser `12/12`, accessibility `5/5` and
+visual capture `1/1` are green. The raw comparator remains intentionally red at
+`6,691,967 / 9,440,112` changed pixels (hero `1,007,264`; about `947,514`;
+menu `1,305,070`; gallery `930,362`; souvenirs `974,225`; contacts `1,527,532`),
+with no tolerance or mask. Runtime commit
+`ddcf8dbaea0f538f84fd1b3d84e8a536952c4334` is pushed to GitHub and the Sites
+source repository; Sites version 8 is deployed owner-only. AntiGravity remains
+unused per the user's unavailability instruction, and raw-zero/missing
+responsive baselines remain open quality gates.

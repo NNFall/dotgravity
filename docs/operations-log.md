@@ -93,3 +93,29 @@
   deployed successfully to the existing owner-only production URL; the
   neutral visual-motif gallery copy and captions are included in that
   deployment.
+
+### 2026-08-27 — raw-driven crop polish and publication
+
+- Independent About, Gallery, Menu and Contacts agents completed bounded
+  visual passes. Menu photo crops now use intrinsic 250×265 media with measured
+  per-card offsets, removing the former 1.04 scale; About's decorative ring,
+  Gallery's lower arch seam and Contacts' lower window diagonal were tuned to
+  the supplied desktop references.
+- A follow-up reviewer found and fixed a mobile specificity issue: the
+  desktop-only menu offsets are now explicitly reset for every `nth-child`
+  selector at ≤1200px. A browser assertion covers the computed zero offsets at
+  390px and 320px.
+- Fresh verification passed: 29 Vitest files / 113 tests, lint, TypeScript,
+  asset audit (26 assets), production build, Chromium browser 12/12,
+  accessibility 5/5, visual capture 1/1, and `npm audit` with zero high
+  severity production vulnerabilities. `git diff --check` is clean.
+- The strict raw comparator remains intentionally red but improved to
+  `6,691,967 / 9,440,112` changed pixels: hero `1,007,264`, about `947,514`,
+  menu `1,305,070`, gallery `930,362`, souvenirs `974,225`, contacts
+  `1,527,532`. No tolerance, mask or approval exception was introduced.
+- Runtime commit `ddcf8dbaea0f538f84fd1b3d84e8a536952c4334` was amended with the
+  current local timestamp, pushed to GitHub and the Sites source repository.
+  Sites version 8 was saved from the matching build archive and deployed to
+  the existing owner-only production URL. Access remains custom with one
+  owner, zero external visitors and no workspace/tenant groups. AntiGravity
+  was not called per the user's unavailability instruction.
