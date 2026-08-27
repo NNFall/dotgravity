@@ -7,7 +7,7 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source commit: `cbddfb75f847d7e142daa67294eb445f41925a56` (GitHub `main` and feature branch; current private Sites deployment)
+- Runtime source commit: `ddc687f6689ffc9850ebc712a578dd463a8ad51c` (GitHub `main` and feature branch; current private Sites deployment)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -19,17 +19,17 @@
 | --- | --- |
 | `npm.cmd run lint` | pass |
 | `npx.cmd tsc --noEmit` | pass |
-| `npm.cmd run qa:assets` | pass — 30 registered assets / 30 production text files |
-| `npm.cmd test` | pass — 31 files / 130 tests |
+| `npm.cmd run qa:assets` | pass — 37 registered assets / 30 production text files |
+| `npm.cmd test` | pass — 31 files / 140 tests |
 | `npm.cmd run build` | pass |
 | `npm.cmd run qa:browser` | pass — 12 tests |
 | `npm.cmd run qa:a11y` | pass — 5 tests |
 | `npm.cmd run qa:visual` | pass — 1 six-scene capture test |
 | `npm.cmd audit --omit=dev --audit-level=high` | pass — 0 production vulnerabilities |
 | `git diff --check` | pass |
-| Sites deployment | pass — version 11 published to production, owner-only access |
+| Sites deployment | pass — version 12 published to production, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `5,583,911 / 9,440,112` pixels differ across the six 1672×941 captures (hero `789,931`; about `942,133`; menu `1,166,847`; gallery `901,261`; souvenirs `932,845`; contacts `850,894`). No tolerance or mask was introduced. The latest bounded detail pass improved the previous published report by `45,561` changed pixels (`0.81%`), for a cumulative improvement of `1,108,056` pixels (`16.56%`) from the pre-polish report. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `5,499,236 / 9,440,112` pixels differ across the six 1672×941 captures (hero `736,299`; about `941,854`; menu `1,166,766`; gallery `870,707`; souvenirs `932,716`; contacts `850,894`). No tolerance or mask was introduced. The latest bounded ornament/copy pass improved the previous published report by `84,675` changed pixels (`1.52%`), for a cumulative improvement of `1,192,731` pixels (`17.82%`) from the pre-polish report. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 
@@ -41,11 +41,31 @@ reference header without a second interactive header, restores gallery inset
 captions/icons, keeps gallery themes phrased as visual motifs rather than
 unverified venue facts, and preserves mobile scene continuity.
 
-Sites version 11 is live at the production URL from the exact source commit
-above (version 10 is superseded). The deployment is intentionally owner-only; an anonymous request is
+Sites version 12 is live at the production URL from the exact source commit
+above (version 11 is superseded). The deployment is intentionally owner-only; an anonymous request is
 expected to show the ChatGPT sign-in screen rather than expose the page publicly.
 
-AntiGravity was not retried after the user reported it unavailable. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. The current refresh records a 130-test suite, 30 registered assets, a bounded cathedral linework crop, measured menu crop alignment with a responsive offset reset, a flat souvenir paper field, an exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork; the source is pushed and the owner-only Sites deployment is live.
+AntiGravity Worker was available for this refresh. Its analysis job `deea0e25-5a71-4f6c-a04e-da6ac32f319b` identified a Gallery order hypothesis; the follow-up edit job `b8946fe6-022b-485e-aec6-96a41800509b` was allowed to test the bounded DOM change but timed out after its browser suite. Independent A/B measurement showed the reorder was worse, so it was reverted; no tolerance or mask was added. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. The current refresh records a 140-test suite, 37 registered assets, bounded cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork; the source is pushed and the owner-only Sites deployment is live.
+
+## Latest bounded ornament and copy pass — 2026-08-27
+
+Runtime `ddc687f6689ffc9850ebc712a578dd463a8ad51c` adds seven bounded,
+non-documentary reference-derived ornament assets across hero, about, menu,
+gallery, souvenirs and contacts. The assets are rendered as separate desktop
+edge layers with responsive vector/fallback behavior or deliberate hiding on
+mobile. Souvenir motif labels now follow the supplied concept wording without
+reintroducing unverified product facts. The Gallery details control remains
+before the motif list because that order matches the supplied screen; the
+AntiGravity alternative was measured and rejected after a negative A/B result.
+
+Fresh evidence is green for 31 Vitest files / 140 tests, lint, TypeScript,
+asset audit (37 assets), production build, Chromium behavior 12/12,
+accessibility 5/5, visual capture 1/1, and the production dependency audit.
+The strict raw comparator is still NO-GO at `5,499,236 / 9,440,112` changed
+pixels, with no tolerance, mask or approval exception. The latest candidate is
+published as Sites version 12 from the exact source/archive pair to the same
+owner-only URL; anonymous in-app Browser access shows the expected sign-in
+interstitial.
 
 ## Latest bounded rhythm pass — 2026-08-27
 

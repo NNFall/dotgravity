@@ -204,3 +204,38 @@
   Anonymous production access still shows the expected ChatGPT sign-in
   interstitial. AntiGravity was not called, per the user's unavailability
   instruction.
+
+### 2026-08-27 — bounded ornament/copy pass and publication
+
+- Integrated seven bounded `reference-derived` ornament assets for hero,
+  about, menu, gallery, souvenirs and contacts. Each crop is registered with
+  its parent reference hash, dimensions, ROI and `documentary: false` policy;
+  no whole-screen PNG is imported. Souvenir motif labels were aligned to the
+  supplied concept while prices, stock and other unverified product facts
+  remain neutral.
+- AntiGravity Worker analysis job
+  `deea0e25-5a71-4f6c-a04e-da6ac32f319b` identified a Gallery order hypothesis.
+  Its edit continuation `b8946fe6-022b-485e-aec6-96a41800509b` ran focused
+  tests and build/a11y checks but exceeded the 900-second worker limit during
+  browser checks. Independent A/B measurement showed the proposed DOM reorder
+  was worse, so it was reverted; the accepted changes are the measured
+  ornaments and safe copy pass.
+- Fresh verification passed: 31 Vitest files / 140 tests, lint, TypeScript,
+  asset audit (37 assets), production build, Chromium browser 12/12,
+  accessibility 5/5, visual capture 1/1, and `npm audit` with zero high
+  severity production vulnerabilities. In-app Browser checks at 1920×1080,
+  390×844 and 320×844 remain overflow-free.
+- The strict raw comparator remains intentionally red at
+  `5,499,236 / 9,440,112` changed pixels: hero `736,299`, about `941,854`,
+  menu `1,166,766`, gallery `870,707`, souvenirs `932,716`, contacts
+  `850,894`. This is an `84,675`-pixel (`1.52%`) improvement over the
+  previous published candidate; no tolerance, mask or approval exception was
+  introduced.
+- Runtime commit `ddc687f6689ffc9850ebc712a578dd463a8ad51c` was timestamp-
+  refreshed before push and published to GitHub `main` and
+  `feat/pixel-accurate-landing`, then synchronized to the Sites source
+  repository. Sites version 12 was saved from the matching archive
+  (`sha256:d9ae193fb68588fd86d1f21cbb74dabacca1f6b8cff8cc0bd9c116ec2536e7f9`)
+  and deployed successfully to the existing owner-only production URL.
+  Anonymous production navigation still shows the expected ChatGPT sign-in
+  interstitial.

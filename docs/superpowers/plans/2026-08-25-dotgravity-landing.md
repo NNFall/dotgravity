@@ -302,3 +302,28 @@ no tolerance, mask or approval exception. This is a `45,561`-pixel improvement
 over the previous published candidate. Raw-zero and missing responsive
 baselines remain open quality gates; AntiGravity was not called after the user
 reported it unavailable.
+
+## Execution status addendum — 2026-08-27 bounded ornament/copy pass
+
+The latest bounded pass adds seven reference-derived cathedral, botanical and
+seal linework assets across the six scenes and aligns the safe souvenir motif
+labels to the supplied concept. The assets are individually registered with
+parent hashes, ROIs and non-documentary provenance; each is a live bounded
+desktop layer with an intentional mobile fallback or hide rule. The Gallery
+progressive-disclosure control remains before the motif list because this
+matches the supplied reference. AntiGravity analysis job
+`deea0e25-5a71-4f6c-a04e-da6ac32f319b` proposed that order as a hypothesis; its
+edit continuation `b8946fe6-022b-485e-aec6-96a41800509b` timed out during
+browser checks, and the alternative reorder was independently measured as a
+regression and reverted.
+
+Runtime commit `ddc687f6689ffc9850ebc712a578dd463a8ad51c` is pushed to GitHub
+`main` and `feat/pixel-accurate-landing` and synchronized to the Sites source
+repository. Sites version 12 is deployed owner-only from the matching archive.
+Fresh verification is green for 31 Vitest files / 140 tests, lint, TypeScript,
+37-asset audit, production build, Chromium browser 12/12, accessibility 5/5,
+visual capture 1/1 and the production dependency audit. The strict raw
+comparator remains intentionally red at `5,499,236 / 9,440,112` changed pixels
+(hero `736,299`; about `941,854`; menu `1,166,766`; gallery `870,707`;
+souvenirs `932,716`; contacts `850,894`), with no tolerance, mask or approval
+exception. Raw-zero and missing responsive baselines remain open quality gates.

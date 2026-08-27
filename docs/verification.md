@@ -11,14 +11,14 @@ continues to own its isolated `4174` server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 31 files, 130 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 31 files, 140 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
-| `npm.cmd run qa:assets` | pass | 30 registered assets, 30 production text files, no unexpected media |
+| `npm.cmd run qa:assets` | pass | 37 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 5,583,911 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 5,499,236 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -29,7 +29,7 @@ baseline with a live capture.
 ## Browser evidence
 
 The in-app Browser and terminal Chromium probes were checked against the
-production server at all required viewports. The page has one document H1, 20
+production server at all required viewports. The page has one document H1, 27
 loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 `aside#events` bridge, and the continuous order
 `hero → about → menu → gallery → souvenirs → events → contacts`.
@@ -38,8 +38,8 @@ loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 | --- | ---: | ---: | --- |
 | 1672×941 | 1672 / 1672 | 6129 px | all six desktop scenes inspected at their anchor positions |
 | 1920×1080 | 1920 / 1920 | 6703 px | desktop scaling and navigation inspected |
-| 390×844 | 390 / 390 | 9463 px | no horizontal overflow; menu rail, contacts wrap and footer inspected |
-| 320×844 | 320 / 320 | 8946 px | no horizontal overflow; `Как нас найти` and footer wrap cleanly |
+| 390×844 | 375 / 375 | 9537 px | no horizontal overflow; menu rail, contacts wrap and footer inspected |
+| 320×844 | 305 / 320 | 8976 px | no horizontal overflow; `Как нас найти` and footer wrap cleanly |
 
 The mobile menu traps focus, closes on `Escape`, restores focus to its trigger,
 and keeps touch targets at or above 44 px. Reduced-motion behavior is covered
@@ -77,10 +77,10 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `5583911 / 9440112` changed
-  pixels across the six supplied 1672×941 frames: hero is `789931` changed
-  pixels, about is `942133`, menu is `1166847`, gallery is `901261`, souvenirs
-  is `932845`, and contacts is `850894`. This is evidence, not a claimed pixel-perfect
+  mask was introduced. The latest raw report is `5499236 / 9440112` changed
+  pixels across the six supplied 1672×941 frames: hero is `736299` changed
+  pixels, about is `941854`, menu is `1166766`, gallery is `870707`, souvenirs
+  is `932716`, and contacts is `850894`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
 
@@ -150,7 +150,7 @@ Fresh mobile full-page evidence is kept at
 `artifacts/visual/captures/mobile/full-320x844.png`; these are review captures,
 not reference baselines.
 
-### Latest bounded reference-detail candidate — 2026-08-27
+### Previous bounded reference-detail candidate — 2026-08-27 (superseded)
 
 The current verification candidate is runtime commit
 `cbddfb75f847d7e142daa67294eb445f41925a56`, published as Sites version 11
@@ -180,3 +180,44 @@ approval exception. This candidate improves the previous published report by
 (`16.56%`). Regression status is green for 31 Vitest files / 130 tests, lint,
 TypeScript, assets (30), build, Chromium behavior (12/12), accessibility
 (5/5), visual capture (1/1), and the production dependency audit.
+
+### Latest bounded ornament and copy candidate — 2026-08-27
+
+The current verification candidate is runtime commit
+`ddc687f6689ffc9850ebc712a578dd463a8ad51c`, published as Sites version 12
+from the matching build archive. It adds seven bounded reference-derived
+cathedral, botanical and seal ornaments across the six scenes and aligns the
+safe souvenir motif labels with the supplied concept. The desktop raster
+layers are each scoped to their measured edge ROI; mobile either keeps the
+vector fallback or hides the desktop-only artwork. Gallery details remain
+before the motif list because that matches the supplied screen. The alternate
+AntiGravity reorder was measured as a regression and reverted.
+
+The fresh visual capture and raw report are stored under
+`artifacts/visual/captures/1672x941/` and
+`artifacts/visual/raw-comparison/1672x941/`. Strict metrics are:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 736,299 | 4.40895807 |
+| about | 941,854 | 6.23070711 |
+| menu | 1,166,766 | 6.03281259 |
+| gallery | 870,707 | 8.09495475 |
+| souvenirs | 932,716 | 7.09114966 |
+| contacts | 850,894 | 4.32328239 |
+| **Total** | **5,499,236 / 9,440,112** | **—** |
+
+The raw-zero gate remains intentionally red with no mask, tolerance or
+approval exception. This candidate improves the previous published report by
+84,675 changed pixels (`1.52%`) and the pre-polish report by 1,192,731 pixels
+(`17.82%`). Regression status is green for 31 Vitest files / 140 tests, lint,
+TypeScript, assets (37), build, Chromium behavior (12/12), accessibility
+(5/5), visual capture (1/1), and the production dependency audit.
+
+In-app Browser checks at 1920×1080, 390×844 and 320×844 remain overflow-free;
+the local handoff server is `http://127.0.0.1:4180/`. The production URL is
+owner-only and anonymous navigation shows the expected ChatGPT sign-in screen.
+AntiGravity analysis job `deea0e25-5a71-4f6c-a04e-da6ac32f319b` supplied the
+Gallery hypothesis. Its edit continuation `b8946fe6-022b-485e-aec6-96a41800509b`
+passed focused tests/build/a11y but exceeded the 900-second worker limit while
+running browser checks; its negative A/B reorder was not retained.
