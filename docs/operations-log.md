@@ -239,3 +239,52 @@
   and deployed successfully to the existing owner-only production URL.
   Anonymous production navigation still shows the expected ChatGPT sign-in
   interstitial.
+
+### 2026-08-27 — bounded header-mark pass and publication
+
+- Added one 47×49 `reference-derived` header rosette crop from the supplied
+  hero concept (`x=52,y=32,w=47,h=49`, parent reference hash recorded in the
+  media registry). The crop is non-documentary, excludes text and other
+  header content, is used only on the desktop lockup, and leaves the live SVG
+  mark as the mobile fallback. The Contacts unit assertion now excludes this
+  header decoration when counting its two photo crops.
+- Fresh verification passed: 32 Vitest files / 142 tests, lint, TypeScript,
+  asset audit (38 assets), production build, Chromium browser 12/12,
+  accessibility 5/5, visual capture 1/1, and `npm audit` with zero high
+  severity production vulnerabilities. The local handoff server on port 4180
+  returned HTTP 200 and the required four viewport checks remained
+  overflow-free.
+- Strict raw comparison remains intentionally red at
+  `5,499,213 / 9,440,112` changed pixels: hero `736,298`, about `941,854`,
+  menu `1,166,766`, gallery `870,707`, souvenirs `932,716`, contacts
+  `850,872`. This is a `23`-pixel improvement over the previous published
+  candidate; no tolerance, mask or approval exception was introduced.
+- Runtime commit `31b8f3b3044e4dbde88fae354e253001a92ec8e0` was timestamp-
+  refreshed before push and published to GitHub `main` and
+  `feat/pixel-accurate-landing`, then synchronized to the Sites source
+  repository. Sites version 13 was saved from the matching archive
+  (`sha256:d3baefb19edaf7a64f57c7168b0e68b623de0ad72f616de25ee06640a58276bb`,
+  129 files, 27,596,800 bytes) and deployed successfully to the existing
+  owner-only production URL. The deployment status reached `succeeded`; the
+  access policy still has exactly one allowed account user, zero groups and
+  zero external visitors.
+
+### 2026-08-27 — release-hygiene follow-up and Sites v14
+
+- Runtime commit `6457765628b5156bb9e42322cef653d52495a66d` was timestamp-
+  refreshed before push and published to GitHub `main` and
+  `feat/pixel-accurate-landing`, then synchronized to the Sites source
+  repository. The change resolves the bounded header crop through the
+  validated `mediaManifest` and documents the intentional raw `<img>` usage
+  for warning-free lint; no rendered geometry or responsive rule changed.
+- Full verification stayed green: 32 Vitest files / 142 tests, lint,
+  TypeScript, asset audit (38 assets), production build, browser 12/12,
+  accessibility 5/5, visual capture 1/1 and production dependency audit.
+  The strict raw comparator remains intentionally red at
+  `5,499,213 / 9,440,112` changed pixels, with no tolerance or mask.
+- Sites version 14 was saved from the matching archive
+  (`sha256:6a15fc7cbc29ace4a2b105d1a8f13da432562ab471573db6ea915a7eeb1ad441`,
+  129 files, 27,596,800 bytes) and deployed successfully to the existing
+  owner-only production URL. Deployment
+  `appgdep_6a904abaeba4819181b27efc9ad7e6ec` reached `succeeded`; anonymous
+  access continues to show the expected ChatGPT sign-in interstitial.

@@ -327,3 +327,45 @@ comparator remains intentionally red at `5,499,236 / 9,440,112` changed pixels
 (hero `736,299`; about `941,854`; menu `1,166,766`; gallery `870,707`;
 souvenirs `932,716`; contacts `850,894`), with no tolerance, mask or approval
 exception. Raw-zero and missing responsive baselines remain open quality gates.
+
+## Execution status addendum — 2026-08-27 bounded header-mark pass
+
+The latest bounded pass adds one 47×49 reference-derived rosette crop to the
+desktop header lockup, with the live SVG mark retained below the desktop
+breakpoint. The crop is registered with parent hash, ROI and
+`documentary: false` provenance; it excludes brand text and other header
+content. The Contacts photo contract was narrowed to exclude this separate
+header decoration from its two-photo assertion. Generic desktop paper-grain
+and other exploratory ROI candidates were measured and reverted when they
+increased the raw mismatch.
+
+Runtime commit `31b8f3b3044e4dbde88fae354e253001a92ec8e0` is pushed to GitHub
+`main` and `feat/pixel-accurate-landing` and synchronized to the Sites source
+repository. Sites version 13 is deployed owner-only from the matching archive.
+Fresh verification is green for 32 Vitest files / 142 tests, lint, TypeScript,
+38-asset audit, production build, Chromium browser 12/12, accessibility 5/5,
+visual capture 1/1 and the production dependency audit. The strict raw
+comparator remains intentionally red at `5,499,213 / 9,440,112` changed pixels
+(hero `736,298`; about `941,854`; menu `1,166,766`; gallery `870,707`;
+souvenirs `932,716`; contacts `850,872`), a 23-pixel improvement over the
+previous candidate with no tolerance, mask or approval exception. Raw-zero and
+missing responsive baselines remain open quality gates.
+
+## Execution status addendum — 2026-08-27 release-hygiene follow-up
+
+The release-review follow-up keeps the accepted 47×49 desktop header crop and
+all responsive behavior unchanged. `SiteHeader` now resolves the crop from the
+validated `mediaManifest`, and a local lint suppression records why the exact
+bounded raster `<img>` is intentional. No new visual exception, tolerance or
+mask was introduced.
+
+Runtime commit `6457765628b5156bb9e42322cef653d52495a66d` is pushed to GitHub
+`main` and `feat/pixel-accurate-landing` and synchronized to the Sites source
+repository. Sites version 14 is deployed owner-only from the matching archive
+(`sha256:6a15fc7cbc29ace4a2b105d1a8f13da432562ab471573db6ea915a7eeb1ad441`,
+129 files, 27,596,800 bytes). Full verification remains green for 32 Vitest
+files / 142 tests, lint, TypeScript, 38-asset audit, production build,
+Chromium browser 12/12, accessibility 5/5, visual capture 1/1 and the
+production dependency audit. The strict raw comparator remains intentionally
+red at `5,499,213 / 9,440,112` changed pixels; raw-zero and missing responsive
+baselines remain open quality gates.

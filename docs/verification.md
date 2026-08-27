@@ -11,14 +11,14 @@ continues to own its isolated `4174` server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 31 files, 140 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 32 files, 142 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
-| `npm.cmd run qa:assets` | pass | 37 registered assets, 30 production text files, no unexpected media |
+| `npm.cmd run qa:assets` | pass | 38 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 5,499,236 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 5,499,213 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -29,7 +29,7 @@ baseline with a live capture.
 ## Browser evidence
 
 The in-app Browser and terminal Chromium probes were checked against the
-production server at all required viewports. The page has one document H1, 27
+production server at all required viewports. The page has one document H1, 28
 loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 `aside#events` bridge, and the continuous order
 `hero → about → menu → gallery → souvenirs → events → contacts`.
@@ -51,8 +51,9 @@ by the accessibility suite.
   evidence. The implementation uses bounded regional assets and CSS/SVG scenes;
   it does not import a whole reference PNG. Menu, gallery, souvenirs, contacts,
   hero and about now use photo-only `reference-derived` crops bounded to their
-  live image frames on desktop; mobile keeps the generated responsive fallback
-  where the reference crop would compromise the composition.
+  live image frames on desktop; the header also uses a separate bounded logo
+  mark crop; mobile keeps the generated responsive fallback where the reference
+  crop would compromise the composition.
 - Current production photos in the scene registry are marked
   `generated/reference-compatible` and are not presented as real photographs
   of the café. The provenance register records the separate documentary
@@ -77,10 +78,10 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `5499236 / 9440112` changed
-  pixels across the six supplied 1672×941 frames: hero is `736299` changed
+  mask was introduced. The latest raw report is `5499213 / 9440112` changed
+  pixels across the six supplied 1672×941 frames: hero is `736298` changed
   pixels, about is `941854`, menu is `1166766`, gallery is `870707`, souvenirs
-  is `932716`, and contacts is `850894`. This is evidence, not a claimed pixel-perfect
+  is `932716`, and contacts is `850872`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
 
@@ -119,7 +120,7 @@ in the DOM; mobile keeps the responsive fallback composition.
 
 ### Current bounded rhythm candidate — 2026-08-27
 
-The current verification candidate is runtime commit
+The previous rhythm candidate was runtime commit
 `a8f6e1cd40414143a28e1925fdd99886809aac41`, published as Sites version 10 from
 the matching build archive. The latest visual capture and raw report are the
 ones under `artifacts/visual/captures/1672x941/` and
@@ -152,7 +153,7 @@ not reference baselines.
 
 ### Previous bounded reference-detail candidate — 2026-08-27 (superseded)
 
-The current verification candidate is runtime commit
+The previous verification candidate was runtime commit
 `cbddfb75f847d7e142daa67294eb445f41925a56`, published as Sites version 11
 from the matching build archive. It adds the bounded transparent cathedral
 linework crop, calibrated menu border/rhythm, desktop contacts header/title
@@ -181,9 +182,9 @@ approval exception. This candidate improves the previous published report by
 TypeScript, assets (30), build, Chromium behavior (12/12), accessibility
 (5/5), visual capture (1/1), and the production dependency audit.
 
-### Latest bounded ornament and copy candidate — 2026-08-27
+### Previous bounded ornament and copy candidate — 2026-08-27 (superseded)
 
-The current verification candidate is runtime commit
+The previous verification candidate was runtime commit
 `ddc687f6689ffc9850ebc712a578dd463a8ad51c`, published as Sites version 12
 from the matching build archive. It adds seven bounded reference-derived
 cathedral, botanical and seal ornaments across the six scenes and aligns the
@@ -221,3 +222,48 @@ AntiGravity analysis job `deea0e25-5a71-4f6c-a04e-da6ac32f319b` supplied the
 Gallery hypothesis. Its edit continuation `b8946fe6-022b-485e-aec6-96a41800509b`
 passed focused tests/build/a11y but exceeded the 900-second worker limit while
 running browser checks; its negative A/B reorder was not retained.
+
+### Previous bounded header-mark candidate — 2026-08-27 (superseded by release-hygiene follow-up)
+
+The previous verification candidate was runtime commit
+`31b8f3b3044e4dbde88fae354e253001a92ec8e0`, published as Sites version 13
+from the matching build archive. It adds one 47×49 `reference-derived` header
+rosette crop for the desktop lockup while retaining the live SVG mark below the
+desktop breakpoint. The crop is non-documentary and excludes brand text and
+other header content; the Contacts photo assertion explicitly excludes it.
+
+The fresh visual capture and raw report are stored under
+`artifacts/visual/captures/1672x941/` and
+`artifacts/visual/raw-comparison/1672x941/`. Strict metrics are:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 736,298 | 4.32861814 |
+| about | 941,854 | 6.23070711 |
+| menu | 1,166,766 | 6.03281259 |
+| gallery | 870,707 | 8.09495475 |
+| souvenirs | 932,716 | 7.09114966 |
+| contacts | 850,872 | 4.26629022 |
+| **Total** | **5,499,213 / 9,440,112** | **—** |
+
+The raw-zero gate remains intentionally red with no mask, tolerance or
+approval exception. This candidate improves the previous published report by
+23 changed pixels; it does not alter the mobile composition. Regression status
+is green for 32 Vitest files / 142 tests, lint, TypeScript, assets (38), build,
+Chromium behavior (12/12), accessibility (5/5), visual capture (1/1), and the
+production dependency audit. Sites version 13 was deployed owner-only; anonymous
+navigation continues to show the expected sign-in interstitial.
+
+### Current release-hygiene follow-up — 2026-08-27
+
+Runtime commit `6457765628b5156bb9e42322cef653d52495a66d` is the current
+GitHub/Sites source state. It leaves the bounded header crop and responsive
+rendering unchanged, resolves the crop through the validated `mediaManifest`,
+and documents the intentional raw `<img>` for warning-free lint.
+
+The same strict report remains current: `5,499,213 / 9,440,112` changed
+pixels with no tolerance or mask. All other gates remain green (32 Vitest
+files / 142 tests, lint, TypeScript, 38-asset audit, build, browser 12/12,
+accessibility 5/5, visual 1/1 and production dependency audit). Sites version
+14 is deployed from the matching archive (`sha256:6a15fc7cbc29ace4a2b105d1a8f13da432562ab471573db6ea915a7eeb1ad441`,
+129 files, 27,596,800 bytes) owner-only at the production URL.

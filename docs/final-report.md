@@ -7,7 +7,7 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source commit: `ddc687f6689ffc9850ebc712a578dd463a8ad51c` (GitHub `main` and feature branch; current private Sites deployment)
+- Runtime source commit: `6457765628b5156bb9e42322cef653d52495a66d` (GitHub `main` and feature branch; current private Sites deployment)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -19,17 +19,17 @@
 | --- | --- |
 | `npm.cmd run lint` | pass |
 | `npx.cmd tsc --noEmit` | pass |
-| `npm.cmd run qa:assets` | pass — 37 registered assets / 30 production text files |
-| `npm.cmd test` | pass — 31 files / 140 tests |
+| `npm.cmd run qa:assets` | pass — 38 registered assets / 30 production text files |
+| `npm.cmd test` | pass — 32 files / 142 tests |
 | `npm.cmd run build` | pass |
 | `npm.cmd run qa:browser` | pass — 12 tests |
 | `npm.cmd run qa:a11y` | pass — 5 tests |
 | `npm.cmd run qa:visual` | pass — 1 six-scene capture test |
 | `npm.cmd audit --omit=dev --audit-level=high` | pass — 0 production vulnerabilities |
 | `git diff --check` | pass |
-| Sites deployment | pass — version 12 published to production, owner-only access |
+| Sites deployment | pass — version 14 published to production, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `5,499,236 / 9,440,112` pixels differ across the six 1672×941 captures (hero `736,299`; about `941,854`; menu `1,166,766`; gallery `870,707`; souvenirs `932,716`; contacts `850,894`). No tolerance or mask was introduced. The latest bounded ornament/copy pass improved the previous published report by `84,675` changed pixels (`1.52%`), for a cumulative improvement of `1,192,731` pixels (`17.82%`) from the pre-polish report. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `5,499,213 / 9,440,112` pixels differ across the six 1672×941 captures (hero `736,298`; about `941,854`; menu `1,166,766`; gallery `870,707`; souvenirs `932,716`; contacts `850,872`). No tolerance or mask was introduced. The latest bounded header-mark pass improved the previous published report by `23` changed pixels, for a cumulative improvement of `1,192,754` pixels (`17.82%`) from the pre-polish report. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 
@@ -41,13 +41,48 @@ reference header without a second interactive header, restores gallery inset
 captions/icons, keeps gallery themes phrased as visual motifs rather than
 unverified venue facts, and preserves mobile scene continuity.
 
-Sites version 12 is live at the production URL from the exact source commit
-above (version 11 is superseded). The deployment is intentionally owner-only; an anonymous request is
+Sites version 14 is live at the production URL from the exact source commit
+above (version 13 is superseded). The deployment is intentionally owner-only; an anonymous request is
 expected to show the ChatGPT sign-in screen rather than expose the page publicly.
 
-AntiGravity Worker was available for this refresh. Its analysis job `deea0e25-5a71-4f6c-a04e-da6ac32f319b` identified a Gallery order hypothesis; the follow-up edit job `b8946fe6-022b-485e-aec6-96a41800509b` was allowed to test the bounded DOM change but timed out after its browser suite. Independent A/B measurement showed the reorder was worse, so it was reverted; no tolerance or mask was added. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. The current refresh records a 140-test suite, 37 registered assets, bounded cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork; the source is pushed and the owner-only Sites deployment is live.
+AntiGravity Worker was available for this refresh. Its analysis job `deea0e25-5a71-4f6c-a04e-da6ac32f319b` identified a Gallery order hypothesis; the follow-up edit job `b8946fe6-022b-485e-aec6-96a41800509b` was allowed to test the bounded DOM change but timed out after its browser suite. Independent A/B measurement showed the reorder was worse, so it was reverted; no tolerance or mask was added. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. The current refresh records a 142-test suite, 38 registered assets, bounded header/cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork; the source is pushed and the owner-only Sites deployment is live.
 
-## Latest bounded ornament and copy pass — 2026-08-27
+## Previous bounded header-mark pass — 2026-08-27 (superseded by release-hygiene follow-up)
+
+Runtime `31b8f3b3044e4dbde88fae354e253001a92ec8e0` adds one 47×49
+`reference-derived` header rosette crop from the supplied hero concept. The
+desktop header uses the bounded crop while the live SVG mark remains the
+mobile fallback; the crop is non-documentary and does not include text or a
+whole reference screen. The Contacts photo test was narrowed to exclude this
+header decoration from its two-photo assertion.
+
+Fresh evidence is green for 32 Vitest files / 142 tests, lint, TypeScript,
+asset audit (38 assets), production build, Chromium behavior 12/12,
+accessibility 5/5, visual capture 1/1, and the production dependency audit.
+The raw comparator remains NO-GO at `5,499,213 / 9,440,112` changed pixels
+(hero `736,298`; about `941,854`; menu `1,166,766`; gallery `870,707`;
+souvenirs `932,716`; contacts `850,872`), with no tolerance, mask or approval
+exception. Sites version 13 was deployed from the matching archive to the same
+owner-only URL; anonymous access shows the expected sign-in interstitial.
+
+## Latest release-hygiene follow-up — 2026-08-27
+
+Runtime `6457765628b5156bb9e42322cef653d52495a66d` keeps the same rendered
+geometry and pixel metrics while resolving the release-review recommendations:
+the desktop header crop is obtained from the validated `mediaManifest`, and the
+intentional raw `<img>` usage is locally documented for lint. No visual asset or
+responsive rule changed in this follow-up.
+
+Fresh evidence remains green for 32 Vitest files / 142 tests, lint, TypeScript,
+asset audit (38 assets), production build, Chromium behavior 12/12,
+accessibility 5/5, visual capture 1/1, and the production dependency audit.
+The strict raw comparator remains NO-GO at `5,499,213 / 9,440,112` changed
+pixels, unchanged from the bounded header candidate. Sites version 14 is
+deployed from the matching archive (`sha256:6a15fc7cbc29ace4a2b105d1a8f13da432562ab471573db6ea915a7eeb1ad441`,
+129 files, 27,596,800 bytes) to the same owner-only URL; anonymous access
+continues to show the expected sign-in interstitial.
+
+## Previous bounded ornament and copy pass — 2026-08-27 (superseded)
 
 Runtime `ddc687f6689ffc9850ebc712a578dd463a8ad51c` adds seven bounded,
 non-documentary reference-derived ornament assets across hero, about, menu,
@@ -67,7 +102,7 @@ published as Sites version 12 from the exact source/archive pair to the same
 owner-only URL; anonymous in-app Browser access shows the expected sign-in
 interstitial.
 
-## Latest bounded rhythm pass — 2026-08-27
+## Previous bounded rhythm pass — 2026-08-27 (superseded)
 
 The post-publication candidate tightened the remaining reference geometry without
 introducing a whole-screen image: desktop hero dot-grid registration and copy
@@ -86,7 +121,7 @@ The strict raw comparator remains NO-GO for literal pixel identity at
 exception. The latest private deployment was rechecked in the in-app Browser;
 anonymous access still shows the expected ChatGPT sign-in interstitial.
 
-## Latest bounded reference-detail pass — 2026-08-27
+## Previous bounded reference-detail pass — 2026-08-27 (superseded)
 
 The follow-up candidate is runtime commit
 `cbddfb75f847d7e142daa67294eb445f41925a56`. It adds a transparent,
