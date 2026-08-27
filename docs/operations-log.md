@@ -175,3 +175,32 @@
 - In-app Browser reload confirmed the local handoff, and anonymous production
   access still shows the expected ChatGPT sign-in interstitial. AntiGravity was
   not called, per the user's unavailability instruction.
+
+### 2026-08-27 — bounded reference-detail pass and publication
+
+- Integrated the independent cathedral-linework, contacts, About and Gallery
+  ROI passes into runtime commit
+  `cbddfb75f847d7e142daa67294eb445f41925a56`. The new menu decoration is a
+  transparent `176×450` bounded `reference-derived` asset with a registered
+  parent hash and non-documentary statement; no whole-screen reference PNG was
+  imported. About/Gallery desktop paper tuning is isolated from the restored
+  mobile surfaces, and the contacts header/title adjustment is desktop-only.
+- Re-ran the complete validation set: 31 Vitest files / 130 tests, lint,
+  TypeScript, 30-asset audit, production build, browser 12/12,
+  accessibility 5/5, visual capture 1/1, and npm audit with 0 high-severity
+  issues. The browser suite covers 1920×1080, 1672×941, 390×844 and 320×844
+  overflow/interaction contracts; the in-app Browser also confirmed the local
+  handoff and responsive mobile composition.
+- The strict raw comparator remains red without tolerance or masks at
+  `5,583,911 / 9,440,112` changed pixels (hero `789,931`; about `942,133`;
+  menu `1,166,847`; gallery `901,261`; souvenirs `932,845`; contacts
+  `850,894`). This is a `45,561`-pixel (`0.81%`) improvement over the prior
+  published candidate and a `1,108,056`-pixel (`16.56%`) cumulative improvement
+  over the pre-polish report.
+- Pushed the exact SHA to GitHub `main` and `feat/pixel-accurate-landing`,
+  synchronized the Sites source repository `main`, saved Sites version 11
+  from the matching archive (`sha256:6e9e34d305841406d8f9f5c04c4edebcb758dde9d7b7b19f0c17249efad36005`),
+  and deployed successfully to the existing owner-only production URL.
+  Anonymous production access still shows the expected ChatGPT sign-in
+  interstitial. AntiGravity was not called, per the user's unavailability
+  instruction.

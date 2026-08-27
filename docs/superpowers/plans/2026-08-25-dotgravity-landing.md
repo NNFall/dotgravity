@@ -278,3 +278,27 @@ The exact SHA is pushed to GitHub `main` and `feat/pixel-accurate-landing` and
 the Sites source repository `main`; Sites version 10 was saved from the
 matching archive and deployed owner-only. The local and production browser
 checks remain complete; raw-zero and missing responsive baselines remain open.
+
+## Execution status addendum — 2026-08-27 bounded reference-detail pass
+
+The follow-up independent review kept only measured positive changes: a
+transparent `176×450` cathedral-linework ROI in the menu, a desktop contacts
+header/title surface adjustment, and desktop About/Gallery paper calibration
+with their prior mobile surfaces restored. The asset registry, provenance
+statement, accessibility selector and focused TDD contracts were updated; the
+new decoration is `aria-hidden` and remains bounded to the menu scene.
+
+Runtime commit `cbddfb75f847d7e142daa67294eb445f41925a56` is pushed to GitHub
+`main` and `feat/pixel-accurate-landing` and synchronized to the Sites source
+repository. The matching build archive was saved as Sites version 11 and
+deployed owner-only. Fresh verification is green for 31 Vitest files / 130
+tests, lint, TypeScript, asset audit (30), production build, browser 12/12,
+accessibility 5/5, visual capture 1/1 and npm audit (0 high-severity issues).
+
+The strict raw comparator remains intentionally red at
+`5,583,911 / 9,440,112` changed pixels (hero `789,931`; about `942,133`; menu
+`1,166,847`; gallery `901,261`; souvenirs `932,845`; contacts `850,894`), with
+no tolerance, mask or approval exception. This is a `45,561`-pixel improvement
+over the previous published candidate. Raw-zero and missing responsive
+baselines remain open quality gates; AntiGravity was not called after the user
+reported it unavailable.
