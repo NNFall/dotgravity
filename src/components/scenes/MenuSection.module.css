@@ -107,6 +107,7 @@
 }
 
 .menuCard {
+  --menu-card-x: 0px;
   min-width: 0;
   min-height: 405px;
   padding: 1px;
@@ -126,16 +127,34 @@
     0 calc(100% - 12px)
   );
   scroll-snap-stop: always;
+  transform: translateX(var(--menu-card-x));
   transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .menuCard[data-active='true'] {
-  transform: translateY(-5px);
+  transform: translate(var(--menu-card-x), -5px);
+}
+
+.menuCard:nth-child(1) {
+  --menu-card-x: -1px;
+}
+
+.menuCard:nth-child(2) {
+  --menu-card-x: -2px;
+}
+
+.menuCard:nth-child(3),
+.menuCard:nth-child(4) {
+  --menu-card-x: -4px;
+}
+
+.menuCard:nth-child(5) {
+  --menu-card-x: -3px;
 }
 
 .cardInner {
   display: grid;
-  grid-template-rows: 267px auto auto 1px auto;
+  grid-template-rows: 265px auto auto 1px auto;
   align-content: start;
   min-height: 403px;
   padding: 12px 14px 10px;
@@ -162,6 +181,7 @@
   position: relative;
   overflow: hidden;
   background: var(--porcelain);
+  transform: translateY(2px);
   clip-path: polygon(
     0 13px,
     10px 13px,
@@ -183,7 +203,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.04);
 }
 
 .cardFlower {
@@ -484,7 +503,13 @@
     padding: 10px 11px 18px;
   }
 
-  .menuCard {
+  .menuCard,
+  .menuCard:nth-child(1),
+  .menuCard:nth-child(2),
+  .menuCard:nth-child(3),
+  .menuCard:nth-child(4),
+  .menuCard:nth-child(5) {
+    --menu-card-x: 0px;
     min-height: 372px;
   }
 

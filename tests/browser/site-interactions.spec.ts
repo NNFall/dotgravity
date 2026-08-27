@@ -42,6 +42,16 @@ for (const viewport of viewports) {
     expect(widths.scrollWidth, JSON.stringify(widths)).toBeLessThanOrEqual(
       widths.clientWidth,
     );
+
+    if (viewport.width <= 1200) {
+      const menuCardOffsets = await page
+        .locator("[data-menu-card-index]")
+        .evaluateAll((cards) =>
+          cards.map((card) => getComputedStyle(card).getPropertyValue("--menu-card-x").trim()),
+        );
+
+      expect(menuCardOffsets).toEqual(["0px", "0px", "0px", "0px", "0px"]);
+    }
   });
 }
 

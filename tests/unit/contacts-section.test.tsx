@@ -191,4 +191,15 @@ describe("ContactsSection", () => {
       /\.windowVisual figcaption,\s*\.streetVisual figcaption\s*\{[\s\S]*?clip:\s*rect\(0 0 0 0\)/i,
     );
   });
+
+  test("matches the reference window crop's lifted lower diagonal edge", () => {
+    const css = readFileSync(
+      "src/components/scenes/ContactsSection.module.css",
+      "utf8",
+    );
+
+    expect(css).toMatch(
+      /\.windowVisual\s*\{[\s\S]*?clip-path:\s*polygon\(31\.6%\s+0,\s*100%\s+0,\s*100%\s+100%,\s*5%\s+100%\)/i,
+    );
+  });
 });

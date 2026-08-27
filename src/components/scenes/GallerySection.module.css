@@ -25,7 +25,7 @@
   width: 40.8%;
   height: 866px;
   border: 1px solid rgb(180 71 37 / 54%);
-  border-bottom: 0;
+  border-bottom: 1px solid rgb(180 71 37 / 34%);
   border-radius: 48% 48% 0 0 / 16% 16% 0 0;
   content: "";
   transform: translate(-13px, 0);

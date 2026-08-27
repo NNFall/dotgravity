@@ -15,8 +15,8 @@
 .section::after {
   position: absolute;
   z-index: -1;
-  right: -8%;
-  bottom: -27%;
+  right: -43%;
+  bottom: -80%;
   width: 59%;
   aspect-ratio: 1;
   border: 1px solid rgb(180 71 37 / 9%);
