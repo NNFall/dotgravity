@@ -295,6 +295,18 @@ expanded into full-screen composites or described as evidence of the café,
 its signage, or its geography. The hero sentence paired with the plaque is
 reference-derived concept copy and is not independently confirmed venue fact.
 
+### Inline About plaque cathedral vector — 2026-08-27
+
+The wide-desktop About plaque now includes a hand-authored inline SVG
+(`PlaqueCathedralDrawing`) calibrated from the supplied concept's linework. It
+is a `decorative` / non-documentary vector, has no external file or venue-photo
+claim, and is rendered only at `min-width: 1081px`; the original live SVG
+remains the responsive fallback on tablet and mobile. The surrounding plaque,
+copy, disclosure and ARIA-hidden semantics remain live React/CSS. Because this
+is inline vector markup rather than a media file, it is intentionally tracked
+here instead of the raster registry and is excluded from documentary asset
+counts.
+
 ## Audit policy
 
 `npm.cmd run qa:assets` runs the shared runtime registry validation, then fails when any registered media file is missing, has a different SHA-256, or has different intrinsic dimensions as reported by Sharp. It also rejects:

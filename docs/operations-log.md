@@ -373,3 +373,33 @@
   `appgdep_6a90849d5c2881919fea94dd9c74dc22` reached `succeeded` at the
   existing owner-only production URL. Anonymous access remains the expected
   ChatGPT sign-in interstitial.
+
+### 2026-08-27 — bounded desktop-detail pass and Sites v18
+
+- Integrated a fresh independent ROI cycle after v17. About received a
+  desktop-only detailed inline cathedral SVG plus calibrated plaque frame and
+  copy rhythm; the original vector remains the mobile/tablet fallback. Gallery
+  story details moved down to the measured CTA position at `min-width: 1440px`.
+  Souvenirs removed the desktop-only artwork shadow that created a dark band on
+  the paper surface. No whole-screen PNGs, documentary claims or raw masks were
+  introduced.
+- TDD contracts were kept alongside each bounded rule. Full verification passed:
+  33 Vitest files / 158 tests, lint, TypeScript, production build, 38-asset
+  audit, Chromium browser 12/12, accessibility 5/5, visual capture 1/1 and
+  `npm audit --omit=dev --audit-level=high` with zero vulnerabilities.
+- Fresh strict raw capture at `1672×941` remains intentionally red without
+  tolerance or mask: `5,461,466 / 9,440,112` changed pixels (hero `711,367`,
+  about `941,731`, menu `1,166,729`, gallery `867,542`, souvenirs `923,253`,
+  contacts `850,844`). This improves v17 by `12,335` changed pixels.
+- The rebuilt local `4180` server was rechecked from `1180px` through `320px`:
+  no document overflow or failed requests, live mobile menu focus/body-lock,
+  menu carousel, and desktop-only plaque swap all behave as intended.
+- Runtime `f977e3612ed3ffc75c28757a31273e550557828e` was timestamp-refreshed,
+  pushed to GitHub `main` and `feat/pixel-accurate-landing`, and synchronized
+  to the Sites source repository. Sites version 18 was saved from archive
+  `sha256:e15cc03b7c6f39c2875679dd1a52ea12eefbbb6073bd0f923d82df9364458872`
+  (`129` files, `27,596,800` bytes) and deployed successfully as
+  `appgdep_6a9091d8835481919516e2335ec809c9` to the existing owner-only URL.
+- The strict raw-zero gate and missing responsive reference baselines remain
+  open; this is the best current published candidate, not a literal byte-
+  identity claim.

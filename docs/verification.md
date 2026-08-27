@@ -11,14 +11,14 @@ continues to own its isolated `4174` server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 33 files, 152 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 33 files, 158 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
 | `npm.cmd run qa:assets` | pass | 38 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 5,473,801 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 5,461,466 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -80,10 +80,50 @@ by the accessibility suite.
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
   mask was introduced. The latest raw report is `5473801 / 9440112` changed
   pixels across the six supplied 1672×941 frames: hero is `711367` changed
-  pixels, about is `941743`, menu is `1166729`, gallery is `870690`, souvenirs
-  is `932428`, and contacts is `850844`. This is evidence, not a claimed pixel-perfect
+  pixels, about is `941731`, menu is `1166729`, gallery is `867542`, souvenirs
+  is `923253`, and contacts is `850844`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
+
+## Latest bounded desktop-detail pass and publication — 2026-08-27
+
+The validated runtime is `f977e3612ed3ffc75c28757a31273e550557828e`, pushed to
+both GitHub branches and synchronized to the Sites source repository. About
+adds a detailed inline decorative cathedral SVG only on wide desktop and keeps
+the original vector on mobile/tablet; the plaque frame and copy rhythm are
+calibrated in the same bounded scope. Gallery moves its wide-desktop CTA down
+to the measured story position, and Souvenirs removes the wide-desktop artwork
+shadow that created a dark paper-band mismatch. These are live CSS/SVG rules,
+not whole-screen PNGs, and focused TDD contracts cover each breakpoint guard.
+
+The fresh full suite is green: 33 Vitest files / 158 tests, lint, TypeScript,
+38-asset audit, production build, Chromium browser 12/12, accessibility 5/5,
+visual capture 1/1 and production dependency audit with zero vulnerabilities.
+The rebuilt handoff server at `127.0.0.1:4180` returned HTTP 200; probes from
+`1180px` through `320px` reported equal document/client widths, no failed
+requests, and working live mobile menu/carousel behavior. The plaque swap was
+confirmed at runtime (wide desktop only) and no horizontal overflow was found.
+
+The strict raw report remains red, with no mask or tolerance:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 711,367 | 4.12517653 |
+| about | 941,731 | 5.87446229 |
+| menu | 1,166,729 | 5.88439507 |
+| gallery | 867,542 | 5.96713371 |
+| souvenirs | 923,253 | 6.88134251 |
+| contacts | 850,844 | 4.26206612 |
+| **Total** | **5,461,466 / 9,440,112** | **—** |
+
+Sites version 18 was saved from the matching archive
+(`sha256:e15cc03b7c6f39c2875679dd1a52ea12eefbbb6073bd0f923d82df9364458872`,
+129 files, 27,596,800 bytes) and deployed successfully as
+`appgdep_6a9091d8835481919516e2335ec809c9` to the existing owner-only URL.
+The latest read-only code review was GO for the bounded candidate; its only
+documentation note was to classify the inline About SVG as generated
+decorative vector, which this record now does. Raw-zero and absent responsive
+reference baselines remain open gates.
 
 ## Latest bounded desktop alignment and publication — 2026-08-27
 

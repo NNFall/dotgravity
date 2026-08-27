@@ -475,3 +475,45 @@ The strict raw comparator remains intentionally red with no tolerance or mask:
 This is a `140`-pixel improvement over Sites v16. Raw-zero and missing
 responsive reference baselines remain open quality gates, so the goal stays
 active and the release is not represented as literal pixel identity.
+
+## Execution status addendum — 2026-08-27 bounded desktop-detail pass and Sites v18
+
+The next independent ROI cycle is integrated in runtime commit
+`f977e3612ed3ffc75c28757a31273e550557828e`. About now renders a separate
+desktop-only detailed inline cathedral SVG inside the live plaque and retains
+the original vector below `1081px`; the plaque frame and copy rhythm are
+desktop-calibrated without changing semantic content. Gallery story details
+move down to the measured CTA position at `min-width: 1440px`, and Souvenirs
+removes the wide-desktop artwork shadow that produced a dark paper-band
+mismatch. No whole-screen PNG, documentary claim, tolerance or mask was added.
+
+The runtime SHA was timestamp-refreshed before push and published to GitHub
+`main` and `feat/pixel-accurate-landing`, synchronized to the Sites source
+repository, saved as Sites version 18 from archive
+`sha256:e15cc03b7c6f39c2875679dd1a52ea12eefbbb6073bd0f923d82df9364458872`
+(`129` files, `27,596,800` bytes), and deployed owner-only. Deployment
+`appgdep_6a9091d8835481919516e2335ec809c9` reached `succeeded` at the existing
+production URL.
+
+Fresh verification is green for 33 Vitest files / 158 tests, lint, TypeScript,
+38-asset audit, production build, Chromium browser 12/12, accessibility 5/5,
+visual capture 1/1 and production dependency audit. The rebuilt 4180 handoff
+server and independent mobile guard probe (1180px through 320px) report no
+failed requests or horizontal overflow; live mobile menu, focus/body-lock,
+carousel and the desktop-only plaque swap remain operable.
+
+The strict raw comparator remains intentionally red with no tolerance or mask:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 711,367 | 4.12517653 |
+| about | 941,731 | 5.87446229 |
+| menu | 1,166,729 | 5.88439507 |
+| gallery | 867,542 | 5.96713371 |
+| souvenirs | 923,253 | 6.88134251 |
+| contacts | 850,844 | 4.26206612 |
+| **Total** | **5,461,466 / 9,440,112** | **—** |
+
+This is a `12,335`-pixel improvement over Sites v17. Raw-zero and missing
+responsive reference baselines remain open quality gates, so the goal stays
+active and the release is not represented as literal pixel identity.

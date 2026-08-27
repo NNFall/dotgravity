@@ -7,7 +7,7 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source commit: `32a2249a20592fd1bc99163932d49104058d6fa5` (GitHub `main` and feature branch; current private Sites deployment)
+- Runtime source commit: `f977e3612ed3ffc75c28757a31273e550557828e` (GitHub `main` and feature branch; current private Sites deployment)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -20,16 +20,16 @@
 | `npm.cmd run lint` | pass |
 | `npx.cmd tsc --noEmit` | pass |
 | `npm.cmd run qa:assets` | pass — 38 registered assets / 30 production text files |
-| `npm.cmd test` | pass — 33 files / 152 tests |
+| `npm.cmd test` | pass — 33 files / 158 tests |
 | `npm.cmd run build` | pass |
 | `npm.cmd run qa:browser` | pass — 12 tests |
 | `npm.cmd run qa:a11y` | pass — 5 tests |
 | `npm.cmd run qa:visual` | pass — 1 six-scene capture test |
 | `npm.cmd audit --omit=dev --audit-level=high` | pass — 0 production vulnerabilities |
 | `git diff --check` | pass |
-| Sites deployment | pass — version 17 published to production, owner-only access |
+| Sites deployment | pass — version 18 published to production, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `5,473,801 / 9,440,112` pixels differ across the six 1672×941 captures (hero `711,367`; about `941,743`; menu `1,166,729`; gallery `870,690`; souvenirs `932,428`; contacts `850,844`). No tolerance or mask was introduced. The latest bounded desktop-alignment pass improved the previous published report by `140` changed pixels, with additional mean-channel reductions in About, Menu, Gallery and Souvenirs. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `5,461,466 / 9,440,112` pixels differ across the six 1672×941 captures (hero `711,367`; about `941,731`; menu `1,166,729`; gallery `867,542`; souvenirs `923,253`; contacts `850,844`). No tolerance or mask was introduced. The latest bounded desktop-detail pass improved the previous published report by `12,335` changed pixels, with a substantial Gallery CTA reduction and a confirmed Souvenirs frame-shadow reduction. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 
@@ -45,7 +45,47 @@ Sites version 17 is live at the production URL from the exact source commit
 above (version 16 is superseded). The deployment is intentionally owner-only; an anonymous request is
 expected to show the ChatGPT sign-in screen rather than expose the page publicly.
 
-The latest read-only AntiGravity analysis job `4118fa47-7e2e-4fce-a1af-e0671a138555` ranked About location-card geometry, Menu card-rail calibration and the desktop header ROI as bounded low-risk hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. This release records a 152-test suite, 38 registered assets, bounded header/cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork. The accepted v17 runtime changes are desktop-only About title and cathedral illustration nudges, a wide Gallery heading offset, a wide Menu CTA offset and a desktop Souvenirs story-copy gap; the earlier v16 surface/rail/marker/radius changes remain included. The source is pushed and the owner-only Sites deployment is live.
+The latest read-only AntiGravity analysis job `4dae1830-f1c8-47ee-9a2f-c7d11a7b35bc` ranked the Gallery CTA, Souvenirs frame shadow and About plaque interior as bounded low-risk hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. This release records a 158-test suite, 38 registered assets, bounded header/cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork. The accepted v18 runtime changes are a desktop-only live SVG plaque illustration and plaque rhythm, a wide Gallery CTA offset, and removal of a wide Souvenirs artwork shadow; the earlier v17 alignment and v16 surface/rail/marker/radius changes remain included. The source is pushed and the owner-only Sites deployment is live.
+
+## Latest bounded desktop-detail pass and publication — 2026-08-27
+
+Runtime `f977e3612ed3ffc75c28757a31273e550557828e` adds three measured,
+desktop-scoped refinements. About now swaps in a separate detailed inline SVG
+cathedral only at `min-width: 1081px`, while the original decorative vector is
+retained for mobile/tablet; its plaque frame and compact vertical rhythm are
+calibrated without changing semantic content. Gallery story details move down
+to the supplied CTA rhythm at `min-width: 1440px`. Souvenirs removes the
+desktop-only artwork shadow that painted a dark band over the paper surface.
+Each rule has focused TDD coverage and the responsive browser audit confirms
+the plaque swap, no page overflow and working menu/carousel interactions.
+
+Fresh verification is green for 33 Vitest files / 158 tests, lint, TypeScript,
+asset audit (38 assets / 30 production text files), production build,
+Chromium behavior 12/12, accessibility 5/5, visual capture 1/1 and the
+production dependency audit (0 vulnerabilities). The rebuilt handoff server
+at `http://127.0.0.1:4180/` serves the current client bundle; probes from
+`1180px` through `320px` report equal client and scroll widths, no failed
+requests, and a live mobile menu with focus/body-lock behavior.
+
+The strict raw comparator remains NO-GO at `5,461,466 / 9,440,112` changed
+pixels, with no tolerance or mask:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 711,367 | 4.12517653 |
+| about | 941,731 | 5.87446229 |
+| menu | 1,166,729 | 5.88439507 |
+| gallery | 867,542 | 5.96713371 |
+| souvenirs | 923,253 | 6.88134251 |
+| contacts | 850,844 | 4.26206612 |
+| **Total** | **5,461,466 / 9,440,112** | **—** |
+
+Sites version 18 was saved from the exact source commit above using archive
+`sha256:e15cc03b7c6f39c2875679dd1a52ea12eefbbb6073bd0f923d82df9364458872`
+(`129` files, `27,596,800` bytes) and deployed successfully as
+`appgdep_6a9091d8835481919516e2335ec809c9` to the existing owner-only URL.
+The raw-zero gate and absent responsive reference baselines remain open; the
+published runtime is the best current candidate, not a literal byte identity.
 
 ## Latest bounded desktop alignment and publication — 2026-08-27
 
