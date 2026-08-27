@@ -517,3 +517,47 @@ The strict raw comparator remains intentionally red with no tolerance or mask:
 This is a `12,335`-pixel improvement over Sites v17. Raw-zero and missing
 responsive reference baselines remain open quality gates, so the goal stays
 active and the release is not represented as literal pixel identity.
+
+## Execution status addendum — 2026-08-28 bounded desktop calibration and Sites v19
+
+The next independent ROI cycle is integrated in runtime commit
+`b9373605e57beca244bd6f6f9289d374b2cc33ce`. The wide desktop Menu heading now
+uses measured tracking and a `16px` raster-origin nudge; Gallery inset captions
+use the measured `62%`/`56%` vertical callout rhythm; Contacts route pictograms
+receive small transforms only at the wide desktop breakpoint. Mobile/tablet
+rules remain unchanged. TDD contracts were added for every candidate, and a
+read-only independent review gave GO. AntiGravity job
+`93c2d608-4e03-4784-a70e-c76891f11eb8` supplied the ROI ranking; its horizontal
+Gallery suggestion was tested and rejected after A/B regression.
+
+The runtime SHA was timestamp-refreshed before push and published to GitHub
+`main` and `feat/pixel-accurate-landing`, synchronized to the Sites source
+repository, saved as Sites version 19 from archive
+`sha256:ca4ece7000b492140a927bca1d7babf874f6d3509184856e1362f1684024d817`
+(`129` files, `27,596,800` bytes), and deployed owner-only. Deployment
+`appgdep_6a90a5a1704081919bf0f870546c4644` reached `succeeded` at the existing
+production URL.
+
+Fresh verification is green for 33 Vitest files / 161 tests, lint, TypeScript,
+38-asset audit, production build, Chromium browser behavior 7/7,
+accessibility 5/5, visual capture 1/1 and production dependency audit with
+zero vulnerabilities. The rebuilt 4180 handoff server returns HTTP 200; the
+temporary Playwright config against 4180 reports exact width equality and no
+failed requests from `1920px` through `320px`, with menu/focus/carousel and
+anchor interactions working.
+
+The strict raw comparator remains intentionally red with no tolerance or mask:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 711,367 | 4.12517653 |
+| about | 941,731 | 5.87446229 |
+| menu | 1,166,642 | 5.86854118 |
+| gallery | 866,775 | 5.93994049 |
+| souvenirs | 923,253 | 6.88134251 |
+| contacts | 850,844 | 4.25967346 |
+| **Total** | **5,460,612 / 9,440,112** | **—** |
+
+This is an `854`-pixel improvement over Sites v18. Raw-zero and missing
+responsive reference baselines remain open quality gates, so the goal stays
+active and the release is not represented as literal pixel identity.

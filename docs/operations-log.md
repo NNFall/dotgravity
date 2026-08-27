@@ -403,3 +403,36 @@
 - The strict raw-zero gate and missing responsive reference baselines remain
   open; this is the best current published candidate, not a literal byte-
   identity claim.
+
+### 2026-08-28 — bounded desktop calibration and Sites v19
+
+- Integrated three fresh raw-driven, desktop-scoped refinements in runtime
+  commit `b9373605e57beca244bd6f6f9289d374b2cc33ce`: Menu heading tracking and
+  raster-origin calibration, Gallery inset caption rhythm, and Contacts route
+  pictogram transforms. Mobile/tablet guards remain intact; no media, copy,
+  provenance, tolerance or mask rule changed.
+- Independent AntiGravity ROI audit `93c2d608-4e03-4784-a70e-c76891f11eb8`
+  ranked the hotspots; independent v19 review gave GO. Focused TDD tests pass
+  for all three bounded candidates.
+- Fresh verification passed: 33 Vitest files / 161 tests, lint, TypeScript,
+  38-asset audit, production build, Chromium browser behavior 7/7,
+  accessibility 5/5, visual capture 1/1, and `npm audit --omit=dev
+  --audit-level=high` with zero vulnerabilities. The rebuilt local 4180
+  server returned HTTP 200; probes from `1920px` through `320px` had no page
+  overflow or failed requests, and menu/focus/carousel/anchor behavior stayed
+  operable. Ports 4173/4174 were left untouched because unrelated checkouts
+  occupied them; browser specs used a temporary config against 4180.
+- Strict raw comparison remains intentionally red with no tolerance or mask:
+  `5,460,612 / 9,440,112` changed pixels (hero `711,367`, about `941,731`,
+  menu `1,166,642`, gallery `866,775`, souvenirs `923,253`, contacts
+  `850,844`). This improves v18 by `854` changed pixels and lowers aggregate
+  channel error; no raw-zero claim is made.
+- Runtime `b9373605e57beca244bd6f6f9289d374b2cc33ce` was timestamp-refreshed
+  before push and published to GitHub `main` and
+  `feat/pixel-accurate-landing`, then synchronized to the Sites source
+  repository. Sites version 19 was saved from archive
+  `sha256:ca4ece7000b492140a927bca1d7babf874f6d3509184856e1362f1684024d817`
+  (`129` files, `27,596,800` bytes) and deployed successfully as
+  `appgdep_6a90a5a1704081919bf0f870546c4644` to the existing owner-only
+  production URL. Anonymous access continues to show the expected 401 sign-in
+  interstitial.

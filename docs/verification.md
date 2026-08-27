@@ -1,24 +1,25 @@
 # Verification record
 
-Last full local verification: 2026-08-27 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and at the deterministic Playwright port `4174` for browser gates.
+Last full local verification: 2026-08-28 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates.
 
-Port `4173` was already occupied by the unrelated `comod` checkout, so it was
-left untouched; Dotgravity uses the stable handoff port `4180` and Playwright
-continues to own its isolated `4174` server.
+Port `4173` was already occupied by the unrelated `comod` checkout and port
+`4174` by the unrelated `whitecup` checkout, so both were left untouched.
+Dotgravity uses the stable handoff port `4180`; the browser specs were run with
+a temporary Playwright config pointed at that fresh server.
 
 ## Automated gates
 
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 33 files, 158 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 33 files, 161 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
 | `npm.cmd run qa:assets` | pass | 38 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 5,461,466 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 5,460,612 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -29,7 +30,7 @@ baseline with a live capture.
 ## Browser evidence
 
 The in-app Browser and terminal Chromium probes were checked against the
-production server at all required viewports. The page has one document H1, 28
+fresh local production server at all required viewports. The page has one document H1, 28
 loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 `aside#events` bridge, and the continuous order
 `hero → about → menu → gallery → souvenirs → events → contacts`.
@@ -78,12 +79,48 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `5473801 / 9440112` changed
+  mask was introduced. The latest raw report is `5460612 / 9440112` changed
   pixels across the six supplied 1672×941 frames: hero is `711367` changed
-  pixels, about is `941731`, menu is `1166729`, gallery is `867542`, souvenirs
+  pixels, about is `941731`, menu is `1166642`, gallery is `866775`, souvenirs
   is `923253`, and contacts is `850844`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
+
+## Latest bounded desktop calibration and publication — 2026-08-28
+
+The validated runtime is `b9373605e57beca244bd6f6f9289d374b2cc33ce`, pushed to
+both GitHub branches and synchronized to the Sites source repository. A fresh
+AntiGravity ROI audit identified three low-risk desktop hotspots: Menu heading
+tracking/origin, Gallery inset caption rhythm, and Contacts route pictograms.
+The accepted rules are scoped to wide desktop breakpoints; mobile and tablet
+layouts retain their previous geometry. Focused TDD contracts cover all three
+changes, and an independent v19 review gave GO after A/B comparison.
+
+The fresh full suite is green: 33 Vitest files / 161 tests, lint, TypeScript,
+38-asset audit, production build, Chromium browser behavior 7/7 plus
+accessibility 5/5, visual capture 1/1 and production dependency audit with
+zero vulnerabilities. Browser probes against the rebuilt 4180 server report
+no failed requests and exact document/client widths from `1920px` through
+`320px`; menu focus/body-lock, carousel controls and anchor navigation remain
+operable.
+
+The strict raw report remains red, with no mask or tolerance:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 711,367 | 4.12517653 |
+| about | 941,731 | 5.87446229 |
+| menu | 1,166,642 | 5.86854118 |
+| gallery | 866,775 | 5.93994049 |
+| souvenirs | 923,253 | 6.88134251 |
+| contacts | 850,844 | 4.25967346 |
+| **Total** | **5,460,612 / 9,440,112** | **—** |
+
+Sites version 19 was saved from the matching archive
+(`sha256:ca4ece7000b492140a927bca1d7babf874f6d3509184856e1362f1684024d817`,
+129 files, 27,596,800 bytes) and deployed successfully as
+`appgdep_6a90a5a1704081919bf0f870546c4644` to the existing owner-only URL.
+Raw-zero and missing responsive reference baselines remain open gates.
 
 ## Latest bounded desktop-detail pass and publication — 2026-08-27
 
