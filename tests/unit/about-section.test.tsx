@@ -122,6 +122,21 @@ describe("about anchor scene", () => {
     expect(decoration).toHaveAttribute("alt", "");
   });
 
+  test("keeps the location plaque cathedral as an independent decorative vector", () => {
+    render(<AboutSection />);
+
+    const plaqueCathedral = document.querySelector<SVGElement>(
+      '[data-about-plaque-decoration="cathedral"]',
+    );
+
+    expect(plaqueCathedral).not.toBeNull();
+    expect(plaqueCathedral).toHaveAttribute("aria-hidden", "true");
+    expect(plaqueCathedral?.className.baseVal ?? plaqueCathedral?.getAttribute("class") ?? "").toMatch(
+      /plaqueCathedral/,
+    );
+    expect(plaqueCathedral).toHaveAttribute("viewBox", "0 0 128 198");
+  });
+
   test("does not couple the scene implementation to a reference baseline or hash", async () => {
     const source = await readFile(
       resolve(process.cwd(), "src/components/scenes/AboutSection.tsx"),

@@ -480,6 +480,10 @@
   .copy h2 {
     transform: translateY(2px);
   }
+
+  .storyDetails {
+    margin-top: 77px;
+  }
 }
 
 @media (max-width: 1220px) {

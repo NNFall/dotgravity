@@ -226,6 +226,14 @@
   width: 100%;
 }
 
+.locationCardCathedral .plaqueCathedral {
+  display: none;
+}
+
+.plaqueCathedral {
+  display: none !important;
+}
+
 .content {
   position: relative;
   z-index: 2;
@@ -288,6 +296,42 @@
 }
 
 @media (min-width: 1081px) {
+  .locationCard {
+    align-content: start;
+    padding-top: 60px;
+  }
+
+  .locationCard::before {
+    top: 14px;
+    left: 14px;
+    width: calc(100% - 28px);
+    height: calc(100% - 28px);
+    border: 1px solid rgb(180 71 37 / 38%);
+    border-radius: 11px 11px 14px 14px;
+  }
+
+  .locationCard p {
+    margin-top: 13px;
+  }
+
+  .locationCard small {
+    margin-top: 20px;
+  }
+
+  .locationCardCathedral {
+    width: 110px;
+    margin-bottom: -44px;
+    margin-left: -17px;
+  }
+
+  .locationCardCathedral > svg:first-child {
+    display: none;
+  }
+
+  .locationCardCathedral .plaqueCathedral {
+    display: block !important;
+  }
+
   .content h3 {
     white-space: nowrap;
     transform: translate(7px, -4px);

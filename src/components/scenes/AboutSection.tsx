@@ -135,6 +135,66 @@ function CathedralDrawing() {
   );
 }
 
+function PlaqueCathedralDrawing() {
+  return (
+    <svg
+      aria-hidden="true"
+      className={styles.plaqueCathedral}
+      data-about-plaque-decoration="cathedral"
+      fill="none"
+      viewBox="0 0 128 198"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path
+          d="M5 188h118M11 184c18-12 37-19 55-19 20 0 38 7 52 19M19 188c15-8 31-12 46-12 18 0 32 5 46 12M28 174h71V91H28v83Z"
+          strokeWidth="1"
+        />
+        <path
+          d="M36 91V66h55v25M44 66V37h12v29m16 0V43h12v23M52 37l12-28 12 28M64 9V2m0 7 3 4m-3-4-3 4"
+          strokeWidth="1"
+        />
+        <path
+          d="M27 101 36 84l8 17m39 0 8-17 9 17M30 92h58M44 85h40M37 116h52M38 128h51M30 146h69M24 159h77"
+          strokeWidth="0.72"
+        />
+        <path
+          d="M47 174v-35h12v35m10 0v-35h12v35M61 174v-51h12v51M64 123v-18m-6 9h12M61 103h12"
+          strokeWidth="0.9"
+        />
+        <path
+          d="M39 118c0-8 8-13 15-8 3 2 4 5 4 8v16H39v-16Zm31 0c0-8 8-13 15-8 3 2 4 5 4 8v16H70v-16ZM60 157v-17c0-8 8-14 16-14s16 6 16 14v17H60Z"
+          strokeWidth="0.82"
+        />
+        <path
+          d="M43 118h12m-6-6v12m27-6h12m-6-6v12M68 142h16m-8-8v16"
+          strokeWidth="0.55"
+        />
+        <path
+          d="M20 137V84l5-12 5 12v53m73 4V88l5-12 5 12v53M17 88l8-18m83 18-8-18m-78 7-6-12m89 12 6-12"
+          strokeWidth="0.82"
+        />
+        <path
+          d="M18 98h12m73 2h14M18 111h12m73 2h14M18 125h12m73 1h14M44 47h12m16 7h12M46 55h8m20 8h8"
+          strokeWidth="0.55"
+        />
+        <path
+          d="M30 104 38 93l7 11 7-11 7 11 7-11 7 11 7-11 7 11 7-11 7 11M40 151l9-9 8 9 7-9 8 9 8-9 8 9M34 169l8-8 8 8 8-8 8 8 8-8 8 8"
+          strokeWidth="0.72"
+        />
+        <path
+          d="M8 181 29 174m-16 13 29-13m69 1 23 7m-31-7 27 13M35 188l29-15 31 15M47 188l17-9 18 9"
+          strokeWidth="0.62"
+        />
+      </g>
+    </svg>
+  );
+}
+
 function AboutFeature({
   children,
   description,
@@ -222,6 +282,7 @@ export function AboutSection() {
         </span>
         <div aria-hidden="true" className={styles.locationCardCathedral}>
           <CathedralDrawing />
+          <PlaqueCathedralDrawing />
         </div>
       </aside>
 

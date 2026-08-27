@@ -130,4 +130,61 @@ describe("about desktop scene geometry contract", () => {
       /\.locationCardCathedral\s*\{[\s\S]*?\btransform:\s*translate\(5px,\s*-14px\);/,
     );
   });
+
+  test("keeps the wide desktop plaque copy on the measured compact vertical rhythm", async () => {
+    const source = await readFile(
+      resolve(process.cwd(), "src/components/scenes/AboutSection.module.css"),
+      "utf8",
+    );
+    const mobileStart = source.indexOf("@media (max-width: 760px)");
+    const desktopCss = mobileStart === -1 ? source : source.slice(0, mobileStart);
+    const mobileCss = mobileStart === -1 ? "" : source.slice(mobileStart);
+
+    expect(desktopCss).toMatch(
+      /@media\s*\(min-width:\s*1081px\)\s*\{[\s\S]*?\.locationCard\s*\{[\s\S]*?\balign-content:\s*start;[\s\S]*?\bpadding-top:\s*60px;/,
+    );
+    expect(desktopCss).toMatch(
+      /@media\s*\(min-width:\s*1081px\)\s*\{[\s\S]*?\.locationCard p\s*\{[^}]*?\bmargin-top:\s*13px;/,
+    );
+    expect(desktopCss).toMatch(
+      /@media\s*\(min-width:\s*1081px\)\s*\{[\s\S]*?\.locationCard small\s*\{[^}]*?\bmargin-top:\s*20px;/,
+    );
+    expect(mobileCss).not.toMatch(/\balign-content:\s*start;/);
+    expect(mobileCss).not.toMatch(/\.locationCard p\s*\{[^}]*?\bmargin-top:\s*13px;/);
+    expect(mobileCss).not.toMatch(/\.locationCard small\s*\{[^}]*?\bmargin-top:\s*20px;/);
+  });
+
+  test("keeps a full inset frame around the wide desktop plaque without changing the mobile card", async () => {
+    const source = await readFile(
+      resolve(process.cwd(), "src/components/scenes/AboutSection.module.css"),
+      "utf8",
+    );
+    const mobileStart = source.indexOf("@media (max-width: 760px)");
+    const desktopCss = mobileStart === -1 ? source : source.slice(0, mobileStart);
+    const mobileCss = mobileStart === -1 ? "" : source.slice(mobileStart);
+
+    expect(desktopCss).toMatch(
+      /@media\s*\(min-width:\s*1081px\)\s*\{[\s\S]*?\.locationCard::before\s*\{[^}]*?\btop:\s*14px;[^}]*?\bleft:\s*14px;[^}]*?\bwidth:\s*calc\(100%\s*-\s*28px\);[^}]*?\bheight:\s*calc\(100%\s*-\s*28px\);[^}]*?\bborder:\s*1px solid/,
+    );
+    expect(mobileCss).not.toMatch(/\.locationCard::before\s*\{[\s\S]*?\btop:\s*14px;/);
+  });
+
+  test("swaps only the wide desktop plaque artwork while retaining the original mobile vector", async () => {
+    const source = await readFile(
+      resolve(process.cwd(), "src/components/scenes/AboutSection.module.css"),
+      "utf8",
+    );
+    const mobileStart = source.indexOf("@media (max-width: 760px)");
+    const desktopCss = mobileStart === -1 ? source : source.slice(0, mobileStart);
+
+    expect(desktopCss).toMatch(
+      /\.plaqueCathedral\s*\{\s*display:\s*none\s*!important;/,
+    );
+    expect(desktopCss).toMatch(
+      /@media\s*\(min-width:\s*1081px\)\s*\{[\s\S]*?\.locationCardCathedral\s*>\s*svg:first-child\s*\{\s*display:\s*none;/,
+    );
+    expect(desktopCss).toMatch(
+      /@media\s*\(min-width:\s*1081px\)\s*\{[\s\S]*?\.locationCardCathedral\s+\.plaqueCathedral\s*\{\s*display:\s*block\s*!important;/,
+    );
+  });
 });

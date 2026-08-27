@@ -271,4 +271,12 @@ describe("souvenirs anchor scene", () => {
       /@media\s*\(min-width:\s*901px\)[\s\S]*?\.storyCard article\s*\{[\s\S]*?gap:\s*16px;/i,
     );
   });
+
+  test("keeps the wide desktop artwork frame flush with the paper band", () => {
+    const styles = loadSouvenirsStyles();
+
+    expect(styles).toMatch(
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.mainArtwork\s*\{[\s\S]*?box-shadow:\s*none;/i,
+    );
+  });
 });

@@ -108,4 +108,13 @@ describe("gallery desktop canvas contract", () => {
       /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.copy\s+h2\s*\{[^}]*\btransform:\s*translateY\(2px\)\s*;/,
     );
   });
+
+  test("moves the wide desktop gallery CTA into the reference story rhythm", () => {
+    expect(desktopStyles).toMatch(
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.storyDetails\s*\{[^}]*\bmargin-top:\s*77px\s*;/,
+    );
+    expect(mobileStyles).not.toMatch(
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.storyDetails\s*\{[^}]*\bmargin-top:\s*77px\s*;/,
+    );
+  });
 });
