@@ -40,7 +40,10 @@ describe("bounded header reference mark", () => {
     ]);
 
     expect(headerSource).toMatch(
-      /brand-lockup__reference-mark[\s\S]*header-reference-mark\.png/i,
+      /mediaManifest\.find[\s\S]*header-reference-mark/i,
+    );
+    expect(headerSource).toMatch(
+      /brand-lockup__reference-mark[\s\S]*src=\{headerReferenceMark\.path\}/i,
     );
     expect(globalCss).toMatch(
       /@media\s*\(min-width:\s*721px\)[\s\S]*?brand-lockup__reference-mark[\s\S]*?display:\s*block/i,

@@ -1,6 +1,21 @@
 import { BrandMark } from "./BrandMark";
 import { MobileNav } from "./MobileNav";
 import { PhosphorIcon } from "./PhosphorIcon";
+import { mediaManifest } from "../../media/manifest";
+
+const headerReferenceMark = (() => {
+  const registeredMark = mediaManifest.find(
+    (asset) => asset.id === "header-reference-mark",
+  );
+
+  if (!registeredMark) {
+    throw new Error(
+      "The bounded reference-derived header mark is required to render the desktop header.",
+    );
+  }
+
+  return registeredMark;
+})();
 
 const navigationItems = [
   { href: "#about", label: "О нас" },
@@ -38,6 +53,7 @@ export function SiteHeader({ presentation = false }: { presentation?: boolean } 
     >
       <a aria-label="Точка притяжения, в начало страницы" className="brand-lockup" href="#hero">
         <BrandMark className="brand-lockup__mark" />
+        {/* eslint-disable-next-line @next/next/no-img-element -- bounded reference crop preserves exact pixels */}
         <img
           alt=""
           aria-hidden="true"
@@ -45,7 +61,7 @@ export function SiteHeader({ presentation = false }: { presentation?: boolean } 
           data-provenance="reference-derived"
           data-reference-crop="desktop"
           height={49}
-          src="/media/reference-derived/header-reference-mark.png"
+          src={headerReferenceMark.path}
           width={47}
         />
         <span className="brand-lockup__copy">
