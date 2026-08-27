@@ -202,4 +202,38 @@ describe("ContactsSection", () => {
       /\.windowVisual\s*\{[\s\S]*?clip-path:\s*polygon\(31\.6%\s+0,\s*100%\s+0,\s*100%\s+100%,\s*5%\s+100%\)/i,
     );
   });
+
+  test("pins the desktop photo crops to their intrinsic reference geometry", () => {
+    const css = readFileSync(
+      "src/components/scenes/ContactsSection.module.css",
+      "utf8",
+    );
+
+    expect(css).toMatch(
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.photoPair\s*\{[\s\S]*?aspect-ratio:\s*1048\s*\/\s*479;/i,
+    );
+    expect(css).toMatch(
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.windowVisual\s*\{[\s\S]*?width:\s*40\.935%;[\s\S]*?height:\s*calc\(100%\s*-\s*2px\);/i,
+    );
+    expect(css).toMatch(
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.streetVisual\s*\{[\s\S]*?width:\s*49\.046%;[\s\S]*?left:\s*50\.954%;/i,
+    );
+    expect(css).toMatch(
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.windowVisual img,[\s\S]*?\.streetVisual img\s*\{[\s\S]*?object-fit:\s*fill;[\s\S]*?transform:\s*none;[\s\S]*?filter:\s*none;/i,
+    );
+  });
+
+  test("keeps the desktop route panel on the reference paper surface", () => {
+    const css = readFileSync(
+      "src/components/scenes/ContactsSection.module.css",
+      "utf8",
+    );
+
+    expect(css).toMatch(
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.routePanel\s*\{[\s\S]*?background:\s*#f5e8dc;[\s\S]*?border-radius:\s*14px;[\s\S]*?box-shadow:\s*none;/i,
+    );
+    expect(css).toMatch(
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.routeSidebar\s*\{[\s\S]*?background:\s*transparent;[\s\S]*?border-left-color:\s*rgb\(180\s+71\s+37\s*\/\s*35%\);/i,
+    );
+  });
 });

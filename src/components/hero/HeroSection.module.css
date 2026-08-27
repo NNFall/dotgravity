@@ -38,3 +38,66 @@
     position: relative;
   }
 }
+
+/*
+ * The supplied desktop hero has a nearly flat paper field and a quiet,
+ * narrow cathedral trace. Keep these reference-calibrated adjustments in the
+ * hero module so the mobile composition continues to use the global layout
+ * rules without inheriting desktop-only offsets.
+ */
+@media (min-width: 721px) {
+  /* The bounded desktop crop already carries its calibrated tonal treatment;
+     avoid re-darkening it with the global photo overlay. */
+  :global(.hero-photo)::after {
+    display: none;
+  }
+
+  :global(.hero-scene) {
+    background: #f6ebe0;
+  }
+
+  :global(.hero-cathedral) {
+    width: clamp(128px, 7.66vw, 148px);
+    color: rgb(180 71 37 / 6%);
+  }
+
+  :global(.hero-copy h1) {
+    transform: translate(-6px, 3px);
+  }
+
+  :global(.hero-kicker) {
+    letter-spacing: -0.01em;
+  }
+
+  :global(.hero-introduction) {
+    font-size: clamp(0.9rem, 1.09vw, 1.14rem);
+    line-height: 1.736;
+  }
+
+  /* The reference plaque is a bounded decorative strip. Keep the live
+     aria-hidden plaque element in the document, but use the measured crop for
+     the desktop surface so its ornament, lettering, and photo edge align. */
+  :global(.hero-photo__brand-window) {
+    top: 3.11%;
+    right: auto;
+    left: 72.44%;
+    width: 14.47%;
+    min-height: 0;
+    height: 45.33%;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background-color: transparent;
+    background-image: url("/media/reference-derived/hero-reference-plaque-strip.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: transparent;
+  }
+
+  :global(.hero-photo__brand-window) > * {
+    visibility: hidden;
+  }
+}

@@ -87,9 +87,9 @@ export function HeroSection() {
           <br className="hero-introduction__desktop-break" />{" "}
           искусство и история.
           <br className="hero-introduction__desktop-break" />{" "}
-          Сувенирные идеи и визуальные детали собраны
+          Сувениры и подарки рядом с великолепным
           <br className="hero-introduction__desktop-break" />{" "}
-          в одной тёплой композиции о Самаре.
+          католическим костёлом Самары.
         </p>
         <p className="hero-mobile-address">
           <PhosphorIcon aria-hidden="true" name="mapPin" size={22} weight="light" />

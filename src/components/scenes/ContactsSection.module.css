@@ -373,6 +373,60 @@
   transform: scale(1.025);
 }
 
+@media (min-width: 1181px) {
+  /* The supplied contact crops are already rendered at their source pixels in
+     the reference viewport. Keep that intrinsic raster geometry on desktop;
+     the percentage ratios scale the same composition on wider screens. */
+  .photoPair {
+    height: auto;
+    aspect-ratio: 1048 / 479;
+  }
+
+  .photoPair::before {
+    position: absolute;
+    z-index: 3;
+    top: 1px;
+    left: 43.98855%;
+    width: 6.96565%;
+    height: calc(100% - 2px);
+    background-image: url("/media/reference-derived/contacts-reference-plaque-strip.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    content: "";
+    pointer-events: none;
+  }
+
+  .windowVisual {
+    inset: 1px auto auto 3.053%;
+    width: 40.935%;
+    height: calc(100% - 2px);
+    clip-path: none;
+    background: transparent;
+  }
+
+  .streetVisual {
+    top: 1px;
+    right: auto;
+    width: 49.046%;
+    height: calc(100% - 2px);
+    left: 50.954%;
+    border-left: 0;
+  }
+
+  .windowVisual::after,
+  .streetVisual::after {
+    display: none;
+  }
+
+  .windowVisual img,
+  .streetVisual img {
+    object-fit: fill;
+    transform: none;
+    filter: none;
+  }
+}
+
 .windowVisual figcaption,
 .streetVisual figcaption {
   position: absolute;
@@ -697,6 +751,35 @@
     clip-path: inset(50%);
     border: 0;
     white-space: nowrap;
+  }
+
+  .routePanel {
+    background: #f5e8dc;
+    border-color: rgb(180 71 37 / 35%);
+    border-radius: 14px;
+    box-shadow: none;
+  }
+
+  .routeDrawing {
+    color: rgb(180 71 37 / 35%);
+    background-color: #f5e8dc;
+    background-image: url("/media/reference-derived/contacts-reference-map-crop.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+  }
+
+  .routeDrawing > * {
+    visibility: hidden;
+  }
+
+  .mapBlocks {
+    color: rgb(180 71 37 / 15%);
+  }
+
+  .routeSidebar {
+    background: transparent;
+    border-left-color: rgb(180 71 37 / 35%);
   }
 }
 

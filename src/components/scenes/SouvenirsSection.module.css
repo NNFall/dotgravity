@@ -3,10 +3,7 @@
   isolation: isolate;
   min-height: 941px;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 71% 7%, rgb(255 255 255 / 5%), transparent 25rem),
-    linear-gradient(103deg, rgb(234 219 207 / 20%), transparent 39%),
-    #f6e9dd;
+  background: #f6e9dd;
 }
 
 .composition {

@@ -100,6 +100,38 @@ export const mediaManifest = [
     },
   },
   {
+    id: "hero-reference-plaque-strip",
+    path: "/media/reference-derived/hero-reference-plaque-strip.png",
+    sha256:
+      "76AC5E8232573A91849487531C5F71E24A776E6A251D4B323B50829D183A7E02",
+    dimensions: {
+      width: 137,
+      height: 379,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded plaque-only ROI crop x=1411,y=131,w=137,h=379 from the supplied hero concept; surrounding hero copy, photo frame and live decorative plaque markup remain outside the strip.",
+      statement:
+        "Bounded strip from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "hero reference plaque strip only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "fill the measured desktop hero plaque region with the bounded strip",
+      focalPoint: "vertical plaque, rosette, copper lettering and star ornament",
+      responsive:
+        "Use only as a desktop hero photo overlay; hide it below the desktop breakpoint and never expand it into a full reference screen.",
+    },
+  },
+  {
     id: "about-reference-arch",
     path: "/media/reference-derived/about-reference-arch.png",
     sha256:
@@ -743,6 +775,70 @@ export const mediaManifest = [
       focalPoint: "pink bracelet with gold-tone clasp",
       responsive:
         "Keep the full bracelet silhouette within its bounded product card; never extend it into a full-page reference screen.",
+    },
+  },
+  {
+    id: "contacts-reference-plaque-strip",
+    path: "/media/reference-derived/contacts-reference-plaque-strip.png",
+    sha256:
+      "8A183366677132F156B40C55EED43BED57CBCB275BA5C568B581D4BC94348AD3",
+    dimensions: {
+      width: 73,
+      height: 477,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457",
+      transformation:
+        "Bounded plaque-only strip crop x=1085,y=106,w=73,h=477 from the supplied contacts concept; the surrounding heading, copy, route panel and street frame remain outside the strip and are rendered by live DOM/CSS.",
+      statement:
+        "Bounded strip from the supplied generated contacts concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["contacts"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "contacts reference plaque strip only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "fill the measured desktop contact photo gap with the plaque strip",
+      focalPoint: "vertical plaque, dark wood frame and copper ornament",
+      responsive:
+        "Use only as a desktop contact-photo gap layer; hide it below the desktop breakpoint and never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "contacts-reference-map-crop",
+    path: "/media/reference-derived/contacts-reference-map-crop.png",
+    sha256:
+      "7A027FB903E6071F933CDDC5847FA3E1645D33E633CD11ECE5ADBC8D6BCD46AF",
+    dimensions: {
+      width: 634,
+      height: 312,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457",
+      transformation:
+        "Bounded map-region crop x=624,y=596,w=634,h=312 from the supplied contacts concept; the outer route-panel frame, sidebar and copy remain live HTML/CSS while the existing decorative SVG route markup stays in the DOM as an accessible structural layer.",
+      statement:
+        "Bounded map artwork from the supplied generated contacts concept for visual reference only; it is not documentary venue evidence and must not be presented as a real map screenshot.",
+    },
+    intendedScenes: ["contacts"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "contacts reference map visual only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "fill the measured desktop map drawing region with the bounded crop",
+      focalPoint: "street grid, venue rosette, location pin and church marker",
+      responsive:
+        "Use only inside the desktop route drawing region; hide the reference layer on mobile while the live route panel remains available.",
     },
   },
   {
