@@ -64,6 +64,15 @@ describe("menu desktop scene contract", () => {
     );
   });
 
+  test("uses the reference-calibrated vertical scale for the wide desktop heading", () => {
+    const wideDesktopHeading = menuStyles.match(
+      /@media \(min-width: 1440px\) \{[\s\S]*?\.header h2\s*\{([\s\S]*?)\n  \}/,
+    );
+
+    expect(wideDesktopHeading?.[1]).toContain("transform: scaleY(0.9);");
+    expect(wideDesktopHeading?.[1]).toContain("transform-origin: top center;");
+  });
+
   test("keeps the wide desktop menu paper surface flat", () => {
     expect(menuStyles).toMatch(
       /@media \(min-width: 1440px\) \{[\s\S]*?\.menuScene\s*\{[\s\S]*?background: var\(--menu-paper\);[\s\S]*?\}/,

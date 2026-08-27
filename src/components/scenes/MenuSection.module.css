@@ -498,6 +498,8 @@
   .header h2 {
     margin: 44px 0 0;
     letter-spacing: -0.012em;
+    transform: scaleY(0.9);
+    transform-origin: top center;
   }
 
   .headingOrnament {
