@@ -497,6 +497,10 @@
 }
 
 @media (min-width: 901px) {
+  .storyVisual {
+    border-radius: 0;
+  }
+
   .storyContent {
     padding: 2px 7px 13px 0;
   }

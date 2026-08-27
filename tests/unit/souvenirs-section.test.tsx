@@ -229,7 +229,7 @@ describe("souvenirs anchor scene", () => {
     )?.[1];
     expect(storyContent).toMatch(/padding:\s*17px 7px 13px;/i);
     expect(desktopStyles).toMatch(
-      /\.storyVisual\s*\{[\s\S]*?border-radius:\s*7px;/i,
+      /\.storyVisual\s*\{[\s\S]*?border-radius:\s*0;/i,
     );
   });
 
@@ -249,6 +249,18 @@ describe("souvenirs anchor scene", () => {
 
     expect(styles).toMatch(
       /\.mainArtwork figcaption,\s*\.provenanceNote\s*\{[\s\S]*?clip:\s*rect\(0 0 0 0\)/i,
+    );
+  });
+
+  test("does not clip the already-bounded story crops a second time", () => {
+    const styles = loadSouvenirsStyles();
+    const storyVisual = styles.match(
+      /\.storyVisual\s*\{([\s\S]*?)\n  \}/i,
+    )?.[1];
+
+    expect(storyVisual).toMatch(/border-radius:\s*7px;/i);
+    expect(styles).toMatch(
+      /@media\s*\(min-width:\s*901px\)[\s\S]*?\.storyVisual\s*\{[\s\S]*?border-radius:\s*0;/i,
     );
   });
 });

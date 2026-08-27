@@ -259,6 +259,17 @@ describe("ContactsSection", () => {
     );
   });
 
+  test("keeps desktop route panel corners free of extra pseudo-markers", () => {
+    const css = readFileSync(
+      "src/components/scenes/ContactsSection.module.css",
+      "utf8",
+    );
+
+    expect(css).toMatch(
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.routePanel::after,\s*\.routePanel::before\s*\{[\s\S]*?display:\s*none;/i,
+    );
+  });
+
   test("aligns the desktop co-located header and editorial title without changing mobile rules", () => {
     const css = readFileSync(
       "src/components/scenes/ContactsSection.module.css",

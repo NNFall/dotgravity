@@ -109,6 +109,10 @@ a:focus-visible {
 }
 
 @media (min-width: 721px) {
+  .site-header {
+    background: rgb(246 235 224);
+  }
+
   .brand-lockup__mark {
     display: none;
   }

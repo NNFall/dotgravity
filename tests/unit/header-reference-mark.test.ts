@@ -52,4 +52,18 @@ describe("bounded header reference mark", () => {
       /@media\s*\(max-width:\s*720px\)[\s\S]*?brand-lockup__reference-mark[\s\S]*?display:\s*none/i,
     );
   });
+
+  test("keeps the opaque reference-calibrated header surface desktop-only", async () => {
+    const globalCss = await readFile("app/globals.css", "utf8");
+
+    expect(globalCss).toMatch(
+      /\.site-header\s*\{[\s\S]*?background:\s*rgb\(245\s+238\s+230\s*\/\s*95%\);/i,
+    );
+    expect(globalCss).toMatch(
+      /@media\s*\(min-width:\s*721px\)[\s\S]*?\.site-header\s*\{[\s\S]*?background:\s*rgb\(246\s+235\s+224\);/i,
+    );
+    expect(globalCss).not.toMatch(
+      /@media\s*\(max-width:\s*720px\)[\s\S]*?\.site-header\s*\{[\s\S]*?background:\s*rgb\(246\s+235\s+224\);/i,
+    );
+  });
 });

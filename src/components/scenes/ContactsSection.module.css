@@ -778,6 +778,14 @@
     box-shadow: none;
   }
 
+  /* The supplied route card uses only its rounded outer frame; the compact
+     corner markers belong to the responsive live treatment, not this desktop
+     reference crop. */
+  .routePanel::after,
+  .routePanel::before {
+    display: none;
+  }
+
   /* The contacts reference keeps the co-located header on the same paper
      surface as the scene instead of applying the global translucent header
      wash. Keep this override scoped to the duplicate, non-interactive header

@@ -77,6 +77,12 @@
     transform: translate(-6px, 3px);
   }
 
+  /* The desktop reference places the four-feature rail one pixel lower than
+     the shared flow rhythm. Keep this calibration outside the mobile layout. */
+  :global(.hero-features) {
+    transform: translateY(1px);
+  }
+
   :global(.hero-kicker) {
     letter-spacing: -0.01em;
   }
