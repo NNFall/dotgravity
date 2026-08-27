@@ -760,6 +760,23 @@
     box-shadow: none;
   }
 
+  /* The contacts reference keeps the co-located header on the same paper
+     surface as the scene instead of applying the global translucent header
+     wash. Keep this override scoped to the duplicate, non-interactive header
+     so the live document header and mobile composition remain unchanged. */
+  .referenceHeader :global(.site-header) {
+    background: transparent;
+    border-bottom-color: rgb(180 71 37 / 16%);
+  }
+
+  /* The supplied title raster aligns with a 64px Prata face on the desktop
+     canvas; the wider fluid size introduces a measurable vertical drift. */
+  .copy h2 {
+    font-size: 64px;
+    letter-spacing: -0.01em;
+    line-height: 1;
+  }
+
   /* Match the supplied editorial type scale on the large reference canvas.
      The mobile rules below intentionally keep the compact interface scale. */
   .contactList {

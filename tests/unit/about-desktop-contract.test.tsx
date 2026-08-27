@@ -16,6 +16,25 @@ function getRule(css: string, selector: string) {
 }
 
 describe("about desktop scene geometry contract", () => {
+  test("keeps the desktop paper surface on the reference-calibrated copper wash", async () => {
+    const source = await readFile(
+      resolve(process.cwd(), "src/components/scenes/AboutSection.module.css"),
+      "utf8",
+    );
+    const mobileStart = source.indexOf("@media (max-width: 760px)");
+    const desktopCss = mobileStart === -1 ? source : source.slice(0, mobileStart);
+    const mobileCss = mobileStart === -1 ? "" : source.slice(mobileStart);
+    const section = getRule(desktopCss, ".section");
+
+    expect(section).toMatch(
+      /\bbackground:\s*linear-gradient\(106deg,\s*rgb\(234 219 207 \/ 38%\),\s*transparent 39%\),\s*#f4e9de;/,
+    );
+    expect(section).not.toMatch(/radial-gradient\(/);
+    expect(mobileCss).toMatch(
+      /\.section\s*\{[\s\S]*?radial-gradient\(circle at 75% 4%,\s*rgb\(255 255 255 \/ 5%\),\s*transparent 22rem\)/,
+    );
+  });
+
   test("uses a definite reference-proportional track instead of the image intrinsic height", async () => {
     const source = await readFile(
       resolve(process.cwd(), "src/components/scenes/AboutSection.module.css"),

@@ -111,7 +111,7 @@
   min-width: 0;
   min-height: 405px;
   padding: 1px;
-  background: rgb(180 71 37 / 70%);
+  background: rgb(180 71 37 / 38%);
   clip-path: polygon(
     0 12px,
     8px 12px,
@@ -429,12 +429,11 @@
 .cathedralLinework {
   position: absolute;
   z-index: 0;
-  top: 8px;
+  top: 25px;
   left: 0;
-  width: min(10.2vw, 170px);
+  width: 176px;
   height: auto;
-  color: rgb(180 71 37 / 28%);
-  opacity: 0.9;
+  opacity: 1;
   pointer-events: none;
 }
 

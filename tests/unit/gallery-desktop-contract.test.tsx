@@ -17,6 +17,21 @@ const desktopStyles = galleryStylesheet.slice(0, mobileBreakpointIndex);
 const mobileStyles = galleryStylesheet.slice(mobileBreakpointIndex);
 
 describe("gallery desktop canvas contract", () => {
+  test("keeps the desktop paper surface flat at the reference-calibrated tone", () => {
+    expect(desktopStyles).toMatch(
+      /\.galleryScene\s*\{[^}]*\bbackground:\s*#f6e9de\s*;/,
+    );
+    expect(desktopStyles).not.toMatch(
+      /\.galleryScene\s*\{[^}]*radial-gradient\(/,
+    );
+    expect(desktopStyles).not.toMatch(
+      /\.galleryScene\s*\{[^}]*linear-gradient\(/,
+    );
+    expect(mobileStyles).toMatch(
+      /\.galleryScene\s*\{[\s\S]*?radial-gradient\(circle at 57% 18%,\s*rgb\(255 255 255 \/ 10%\),\s*transparent 25rem\)/,
+    );
+  });
+
   test("keeps the desktop copy aligned to the reference story rhythm", () => {
     expect(desktopStyles).toMatch(
       /\.composition\s*\{[^}]*\bheight:\s*max\(\s*941px\s*,\s*56\.28vw\s*\)\s*;/,

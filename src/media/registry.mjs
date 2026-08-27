@@ -361,6 +361,39 @@ export const mediaManifest = [
     },
   },
   {
+    id: "menu-reference-cathedral-linework",
+    path: "/media/reference-derived/menu-reference-cathedral-linework.png",
+    sha256:
+      "A4FACABBAC7D9BBE6334C7F41727D3F83387E976A534F1A9B88759F09257EA15",
+    dimensions: {
+      width: 176,
+      height: 450,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Bounded cathedral linework ROI x=0,y=25,w=176,h=450 from the supplied menu concept; paper background and card overlap were removed with a deterministic alpha extraction, leaving only the decorative linework for the live CSS layer.",
+      statement:
+        "Bounded decorative linework from the supplied generated menu concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "menu cathedral linework region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the transparent bounded linework behind the menu cards on desktop",
+      focalPoint: "three-spire cathedral illustration and its fine architectural lines",
+      responsive:
+        "Keep the decoration behind the menu scene content, scale it down on mobile, and never expand it into a full reference screen.",
+    },
+  },
+  {
     id: "gallery-arched-interior",
     path: "/media/generated/gallery-arched-interior.png",
     sha256: "95CC57209EBA6A9DB4A11E77397D81803FBEB65C829BE6DC6D7EF2F88CEA9F27",

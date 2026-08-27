@@ -3,10 +3,7 @@
   isolation: isolate;
   min-height: 941px;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 57% 18%, rgb(255 255 255 / 10%), transparent 25rem),
-    linear-gradient(102deg, rgb(234 219 207 / 6%), transparent 38%),
-    #f5e8dd;
+  background: #f6e9de;
 }
 
 .composition {
@@ -521,6 +518,10 @@
 @media (max-width: 900px) {
   .galleryScene {
     min-height: 0;
+    background:
+      radial-gradient(circle at 57% 18%, rgb(255 255 255 / 10%), transparent 25rem),
+      linear-gradient(102deg, rgb(234 219 207 / 6%), transparent 38%),
+      #f5e8dd;
   }
 
   .composition {

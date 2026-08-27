@@ -163,8 +163,36 @@ describe("menu anchor scene", () => {
 
   test("keeps the five-card desktop rail aligned to the measured menu anchor", () => {
     expect(menuStyles).toContain("width: min(100% - 64px, 1470px);");
-    expect(menuStyles).toContain("top: 8px;");
-    expect(menuStyles).toContain("width: min(10.2vw, 170px);");
+    expect(menuStyles).toContain("top: 25px;");
+    expect(menuStyles).toContain("width: 176px;");
+  });
+
+  test("renders the bounded cathedral decoration as a decorative reference asset", async () => {
+    const menuSectionModule = await loadMenuSection();
+
+    expect(menuSectionModule).not.toBeNull();
+    if (!menuSectionModule) {
+      return;
+    }
+
+    render(createElement(menuSectionModule.MenuSection));
+
+    const decoration = document.querySelector<HTMLImageElement>(
+      '[data-menu-decoration="cathedral"]',
+    );
+    const cathedralArtwork = mediaManifest.find(
+      (asset) => asset.id === "menu-reference-cathedral-linework",
+    );
+
+    expect(cathedralArtwork).toBeDefined();
+    expect(decoration).not.toBeNull();
+    expect(decoration).toHaveAttribute(
+      "src",
+      cathedralArtwork?.path,
+    );
+    expect(decoration).toHaveAttribute("data-provenance", "reference-derived");
+    expect(decoration).toHaveAttribute("aria-hidden", "true");
+    expect(decoration).toHaveAttribute("alt", "");
   });
 
   test("keeps touch-sized previous and next controls visible alongside mobile scroll snap", () => {

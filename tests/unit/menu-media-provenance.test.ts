@@ -93,3 +93,35 @@ test("registers five bounded non-documentary menu reference crops", () => {
 
   expect(() => validateMediaManifest(mediaManifest)).not.toThrow();
 });
+
+test("registers the menu cathedral linework as a bounded non-documentary region", () => {
+  const cathedral = mediaManifest.find(
+    (asset) => asset.id === "menu-reference-cathedral-linework",
+  );
+
+  expect(cathedral).toMatchObject({
+    id: "menu-reference-cathedral-linework",
+    path: "/media/reference-derived/menu-reference-cathedral-linework.png",
+    dimensions: { width: 176, height: 450 },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "menu cathedral linework region only",
+      referenceShape: "bounded-reference-region",
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation: expect.stringContaining(
+        "x=0,y=25,w=176,h=450",
+      ),
+    },
+  });
+
+  expect(cathedral?.provenance.statement).toMatch(
+    /not documentary venue evidence/i,
+  );
+  expect(() => validateMediaManifest(mediaManifest)).not.toThrow();
+});

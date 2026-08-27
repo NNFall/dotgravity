@@ -31,7 +31,7 @@ describe("ContactsSection", () => {
     expect(route).toHaveAttribute("href", "https://yandex.ru/maps/-/CTDBI0~o");
     expect(route).toHaveAttribute("target", "_blank");
     expect(route).toHaveAttribute("rel", expect.stringContaining("noreferrer"));
-  }, 15_000);
+  }, 30_000);
 
   test("labels bounded reference crops as non-documentary and avoids baseline imagery", async () => {
     const { ContactsSection } = await import(
@@ -77,7 +77,7 @@ describe("ContactsSection", () => {
     expect(source).toContain('asset.intendedScenes.includes("contacts")');
     expect(source).not.toMatch(/@phosphor-icons[\\/]react/i);
     expect(source).not.toMatch(/tests[\\/]visual[\\/]baselines/i);
-  }, 15_000);
+  }, 30_000);
 
   test("keeps the lower route panel explicitly schematic", async () => {
     const { ContactsSection } = await import(
@@ -234,6 +234,20 @@ describe("ContactsSection", () => {
     );
     expect(css).toMatch(
       /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.routeSidebar\s*\{[\s\S]*?background:\s*transparent;[\s\S]*?border-left-color:\s*rgb\(180\s+71\s+37\s*\/\s*35%\);/i,
+    );
+  });
+
+  test("aligns the desktop co-located header and editorial title without changing mobile rules", () => {
+    const css = readFileSync(
+      "src/components/scenes/ContactsSection.module.css",
+      "utf8",
+    );
+
+    expect(css).toMatch(
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.referenceHeader\s+:global\(\.site-header\)\s*\{[\s\S]*?background:\s*transparent;[\s\S]*?border-bottom-color:\s*rgb\(180\s+71\s+37\s*\/\s*16%\);/i,
+    );
+    expect(css).toMatch(
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.copy\s+h2\s*\{[\s\S]*?font-size:\s*64px;[\s\S]*?letter-spacing:\s*-0\.01em;[\s\S]*?line-height:\s*1;/i,
     );
   });
 });

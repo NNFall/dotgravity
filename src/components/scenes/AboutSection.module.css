@@ -7,7 +7,6 @@
   min-height: max(850px, 56.28vw);
   overflow: clip;
   background:
-    radial-gradient(circle at 75% 4%, rgb(255 255 255 / 5%), transparent 22rem),
     linear-gradient(106deg, rgb(234 219 207 / 38%), transparent 39%),
     #f4e9de;
 }
@@ -492,6 +491,10 @@
     min-height: 0;
     padding: 46px var(--page-gutter) 66px;
     overflow: hidden;
+    background:
+      radial-gradient(circle at 75% 4%, rgb(255 255 255 / 5%), transparent 22rem),
+      linear-gradient(106deg, rgb(234 219 207 / 38%), transparent 39%),
+      #f4e9de;
   }
 
   .photoFrame {

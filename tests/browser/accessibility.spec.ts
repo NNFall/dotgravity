@@ -30,14 +30,19 @@ test("labels reference-derived menu art as illustrative and non-documentary", as
   await page.goto("/", { waitUntil: "domcontentloaded" });
 
   const referenceArtwork = page
-    .locator('#menu img[data-provenance="reference-derived"]')
+    .locator(
+      '#menu img[data-provenance="reference-derived"]:not([data-menu-decoration])',
+    )
     .first();
 
   await expect(referenceArtwork).toHaveAccessibleName(
     /референсный кроп.*не документальн/i,
   );
-  await expect(page.locator('#menu img[data-provenance="reference-derived"]'))
-    .toHaveCount(5);
+  await expect(
+    page.locator(
+      '#menu img[data-provenance="reference-derived"]:not([data-menu-decoration])',
+    ),
+  ).toHaveCount(5);
   await expect(
     page.getByText("Сгенерировано для иллюстрации", { exact: true }),
   ).toHaveCount(0);
