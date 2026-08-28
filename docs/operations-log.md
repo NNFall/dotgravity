@@ -436,3 +436,34 @@
   `appgdep_6a90a5a1704081919bf0f870546c4644` to the existing owner-only
   production URL. Anonymous access continues to show the expected 401 sign-in
   interstitial.
+
+### 2026-08-28 — follow-up A/B audit and baseline re-verification
+
+- Rebuilt and recaptured the clean v19 source after three desktop centroid
+  hypotheses (Hero H1/feature rail, About feature rail, Contacts copy rail)
+  were tested together. The candidate increased the aggregate raw diff from
+  `5,460,612` to `5,463,126` pixels, so all three source/test edits were
+  rejected and reverted.
+- A separate TDD candidate for a `14%` desktop Menu paper wash increased the
+  Menu diff from `1,166,642` to `1,193,041` pixels; it was reverted. A `4%`
+  Hero paper bloom increased Hero from `711,367` to `722,178` changed pixels;
+  it was also reverted. No desktop-only wash remains in production CSS.
+- Independent in-memory text A/B found that reference-like neutral copy still
+  worsened Menu (`1,166,713`) and Souvenirs (`925,409`) metrics. Reference
+  prices would improve Menu (`1,165,959`), but they are unverified and were
+  not implemented. This preserves the factuality rule for current prices,
+  stock, hours and catalogue claims.
+- Fresh final verification from the restored source passed: `npm.cmd test`
+  (`33` files / `161` tests), lint, TypeScript, production build, `38`-asset
+  audit, production dependency audit (`0` vulnerabilities), browser behavior
+  (`12/12`), accessibility (`5/5`) and six-scene visual capture (`1/1`).
+  Fresh mobile full-page captures at `390px` and `320px` remain overflow-free;
+  the final local production server is `http://127.0.0.1:4180/`.
+- The final raw report is again exactly `5,460,612 / 9,440,112` changed
+  pixels (hero `711,367`, about `941,731`, menu `1,166,642`, gallery
+  `866,775`, souvenirs `923,253`, contacts `850,844`). The zero-difference
+  gate remains red with no tolerance or mask. AntiGravity audit
+  `f3b616f9-f7c7-4ce9-8a28-8d94170c791e` and the independent release review
+  both recommend retaining v19 unless a new evidence-backed bounded candidate
+  is found. GitHub/Sites publication remains unchanged and the worktree is
+  clean.
