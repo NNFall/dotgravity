@@ -10,7 +10,7 @@ const menuStyles = readFileSync(
 describe("menu desktop scene contract", () => {
   test("fits the single-line title before sizing the 16:9 scene box", () => {
     const wideDesktopScene = menuStyles.match(
-      /@media \(min-width: 1440px\) \{\s*\.menuScene \{([\s\S]*?)\n  \}/,
+      /@media \(min-width: 1440px\) \{[\s\S]*?\.menuScene \{([\s\S]*?)\n  \}/,
     );
     const heading = menuStyles.match(/\.header h2 \{([\s\S]*?)\n\}/);
     const cardRail = menuStyles.match(/\.cardRail \{([\s\S]*?)\n\}/);

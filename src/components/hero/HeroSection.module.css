@@ -150,3 +150,41 @@
     visibility: hidden;
   }
 }
+
+/* Keep the supplied wide-desktop paper linework as intrinsic bounded crops.
+   Tablet and mobile retain the live CSS fallbacks from globals.css. */
+@media (min-width: 1181px) {
+  :global(.hero-dots) {
+    z-index: 1;
+    width: 66px;
+    height: 190px;
+    background-image: url("/media/reference-derived/hero-reference-dots.png");
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    background-size: 66px 190px;
+    opacity: 1;
+  }
+
+  :global(.hero-curves) {
+    top: 0;
+    left: 0;
+    width: 900px;
+    height: 162px;
+    z-index: 1;
+    color: transparent;
+    background-image:
+      url("/media/reference-derived/hero-reference-curves-upper.png"),
+      url("/media/reference-derived/hero-reference-curves-lower-right.png");
+    background-position:
+      563px 0,
+      640px 130px;
+    background-repeat: no-repeat, no-repeat;
+    background-size:
+      337px 130px,
+      260px 32px;
+  }
+
+  :global(.hero-curves) > span {
+    display: none;
+  }
+}

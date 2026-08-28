@@ -46,6 +46,19 @@
   pointer-events: none;
 }
 
+.paperArcReference {
+  position: absolute;
+  z-index: 0;
+  display: none;
+  left: 83.7320574163%;
+  top: 77.5770456961%;
+  width: 16.2679425837%;
+  height: 22.4229543039%;
+  object-fit: fill;
+  object-position: 0 0;
+  pointer-events: none;
+}
+
 .photoFrame {
   position: relative;
   z-index: 1;
@@ -234,6 +247,19 @@
   display: none !important;
 }
 
+.locationCardReference {
+  position: absolute;
+  z-index: 4;
+  display: none;
+  left: 0.7775119617%;
+  top: 73.1137088204%;
+  width: 407px;
+  height: 206px;
+  object-fit: fill;
+  object-position: 0 0;
+  pointer-events: none;
+}
+
 .content {
   position: relative;
   z-index: 2;
@@ -296,8 +322,15 @@
 }
 
 @media (min-width: 1081px) {
+  .locationCardReference {
+    display: block;
+  }
+
   .locationCard {
     align-content: start;
+    background: #f3e8dd;
+    border-color: #f4e9de;
+    box-shadow: 0 6px 12px rgb(89 47 30 / 6%);
     padding-top: 60px;
   }
 
@@ -350,6 +383,10 @@
   font-weight: 440;
   letter-spacing: 0.004em;
   line-height: 1.7;
+}
+
+.desktopBreak {
+  display: block;
 }
 
 .features {
@@ -409,6 +446,16 @@
   font-weight: 450;
   letter-spacing: 0.003em;
   line-height: 1.55;
+}
+
+@media (min-width: 1081px) {
+  .introduction {
+    max-width: 650px;
+  }
+
+  .feature {
+    padding-inline: 14px;
+  }
 }
 
 .footerCallout {
@@ -501,6 +548,10 @@
 }
 
 @media (min-width: 761px) {
+  .photoFrame::after {
+    box-shadow: inset 0 2px 0 0 rgb(180 71 37 / 50%);
+  }
+
   .cathedralBackdrop {
     top: 40px;
     right: 0;
@@ -516,6 +567,12 @@
     width: 112px;
     height: 690px;
     object-fit: fill;
+  }
+}
+
+@media (min-width: 1081px) {
+  .paperArcReference {
+    display: block;
   }
 }
 
@@ -557,6 +614,9 @@
 }
 
 @media (max-width: 760px) {
+  .desktopBreak {
+    display: none;
+  }
   .section {
     display: block;
     height: auto;

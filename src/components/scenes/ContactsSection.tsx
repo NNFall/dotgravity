@@ -7,7 +7,9 @@ import styles from "./ContactsSection.module.css";
 type ContactVisualId =
   | "contacts-reference-window-crop"
   | "contacts-reference-street-crop"
-  | "contacts-reference-cathedral-linework";
+  | "contacts-reference-cathedral-linework"
+  | "contacts-reference-dot-field"
+  | "contacts-reference-route-panel";
 
 function requireReferenceContactCrop(id: ContactVisualId): MediaAsset {
   const asset = mediaManifest.find((item) => item.id === id);
@@ -36,6 +38,12 @@ const streetVisual = requireReferenceContactCrop(
 );
 const cathedralVisual = requireReferenceContactCrop(
   "contacts-reference-cathedral-linework",
+);
+const dotFieldVisual = requireReferenceContactCrop(
+  "contacts-reference-dot-field",
+);
+const routePanelVisual = requireReferenceContactCrop(
+  "contacts-reference-route-panel",
 );
 
 function DirectionArrow() {
@@ -356,6 +364,33 @@ export function ContactsSection() {
         />
         <div aria-hidden="true" className={styles.paperLines} />
         <div aria-hidden="true" className={styles.dotField} />
+        {/* Wide-desktop dot field is a bounded reference-derived decoration;
+            the live CSS field remains the responsive fallback. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt=""
+          aria-hidden="true"
+          className={styles.dotFieldReference}
+          data-contacts-decoration="dot-field"
+          data-provenance={dotFieldVisual.provenance.classification}
+          decoding="async"
+          height={dotFieldVisual.dimensions.height}
+          src={dotFieldVisual.path}
+          width={dotFieldVisual.dimensions.width}
+        />
+        {/* Keep the measured route-panel crop bounded to the wide-desktop map footprint; the live route figure remains semantic underneath. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt=""
+          aria-hidden="true"
+          className={styles.routePanelReference}
+          data-contacts-decoration="route-panel"
+          data-provenance={routePanelVisual.provenance.classification}
+          decoding="async"
+          height={routePanelVisual.dimensions.height}
+          src={routePanelVisual.path}
+          width={routePanelVisual.dimensions.width}
+        />
 
         <header className={styles.copy}>
           <p className={styles.eyebrow}>

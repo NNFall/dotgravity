@@ -68,11 +68,49 @@
   opacity: 0.62;
 }
 
+.dotFieldReference {
+  display: none;
+}
+
+.routePanelReference {
+  position: absolute;
+  z-index: 6;
+  top: 489px;
+  left: 37.2607655502%;
+  display: none;
+  width: 1000px;
+  height: 317px;
+  object-fit: fill;
+  object-position: 0 0;
+  pointer-events: none;
+}
+
 .cathedralReference {
   display: none;
 }
 
 @media (min-width: 1181px) {
+  .paperLines,
+  .dotField {
+    display: none;
+  }
+
+  .dotFieldReference {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 77px;
+    height: 285px;
+    object-fit: fill;
+    pointer-events: none;
+  }
+
+  .routePanelReference {
+    display: block;
+  }
+
   .cathedralReference {
     position: absolute;
     z-index: 0;
@@ -83,6 +121,12 @@
     height: 560px;
     object-fit: fill;
     pointer-events: none;
+  }
+}
+
+@media (max-width: 1180px) {
+  .dotFieldReference {
+    display: none;
   }
 }
 
@@ -772,7 +816,7 @@
   }
 
   .routePanel {
-    background: #f5e8dc;
+    background: #f6e8dc;
     border-color: rgb(180 71 37 / 35%);
     border-radius: 14px;
     box-shadow: none;

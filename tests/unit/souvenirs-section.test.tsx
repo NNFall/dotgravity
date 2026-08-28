@@ -233,6 +233,24 @@ describe("souvenirs anchor scene", () => {
     );
   });
 
+  test("uses the calibrated paper surface only on desktop story cards", () => {
+    const styles = loadSouvenirsStyles();
+    const desktopStart = styles.indexOf("@media (min-width: 901px)");
+    const mobileStart = styles.indexOf("@media (max-width: 900px)");
+    const desktopStyles = styles.slice(
+      desktopStart,
+      mobileStart === -1 ? undefined : mobileStart,
+    );
+    const mobileStyles = mobileStart === -1 ? "" : styles.slice(mobileStart);
+
+    expect(desktopStyles).toMatch(
+      /\.storyCard\s*\{[\s\S]*?\bbackground:\s*#f7eade;/i,
+    );
+    expect(mobileStyles).not.toMatch(
+      /\.storyCard\s*\{[\s\S]*?\bbackground:\s*#f7eade;/i,
+    );
+  });
+
   test("keeps bounded desktop decoration and card disclosure out of the photo crops", () => {
     const styles = loadSouvenirsStyles();
 

@@ -9,6 +9,9 @@ type GalleryCropId =
   | "gallery-reference-inset-porcelain"
   | "gallery-reference-inset-art"
   | "gallery-reference-inset-space"
+  | "gallery-reference-inset-card-porcelain"
+  | "gallery-reference-inset-card-art"
+  | "gallery-reference-inset-card-space"
   | "gallery-reference-cathedral-linework";
 
 function getGalleryCrop(id: GalleryCropId): MediaAsset {
@@ -34,6 +37,9 @@ const galleryCrops = {
   porcelain: getGalleryCrop("gallery-reference-inset-porcelain"),
   art: getGalleryCrop("gallery-reference-inset-art"),
   space: getGalleryCrop("gallery-reference-inset-space"),
+  porcelainCard: getGalleryCrop("gallery-reference-inset-card-porcelain"),
+  artCard: getGalleryCrop("gallery-reference-inset-card-art"),
+  spaceCard: getGalleryCrop("gallery-reference-inset-card-space"),
 } as const;
 
 const galleryCathedralArtwork = getGalleryCrop(
@@ -46,16 +52,19 @@ const referenceGalleryAlt =
 const storyCrops = [
   {
     asset: galleryCrops.porcelain,
+    desktopAsset: galleryCrops.porcelainCard,
     label: "Винтажный мотив",
     className: styles.porcelainInset,
   },
   {
     asset: galleryCrops.art,
+    desktopAsset: galleryCrops.artCard,
     label: "Художественный мотив",
     className: styles.artInset,
   },
   {
     asset: galleryCrops.space,
+    desktopAsset: galleryCrops.spaceCard,
     label: "Уютное пространство",
     className: styles.spaceInset,
   },
@@ -207,23 +216,41 @@ function FeatureMark({ children, icon }: { children: string; icon: ReactNode }) 
 function GalleryImage({
   asset,
   className,
+  desktopAsset,
   label,
 }: {
   asset: MediaAsset;
   className?: string;
+  desktopAsset?: MediaAsset;
   label: string;
 }) {
   return (
     <figure className={className}>
       {/* Each image is a bounded crop from the supplied concept screen; copy, labels and frames remain HTML/CSS. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        alt={referenceGalleryAlt}
-        data-provenance={asset.provenance.classification}
-        height={asset.dimensions.height}
-        src={asset.path}
-        width={asset.dimensions.width}
-      />
+      {desktopAsset ? (
+        <picture className={styles.referencePicture}>
+          <source
+            media="(min-width: 901px)"
+            srcSet={desktopAsset.path}
+          />
+          <img
+            alt={referenceGalleryAlt}
+            data-provenance={asset.provenance.classification}
+            height={asset.dimensions.height}
+            src={asset.path}
+            width={asset.dimensions.width}
+          />
+        </picture>
+      ) : (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          alt={referenceGalleryAlt}
+          data-provenance={asset.provenance.classification}
+          height={asset.dimensions.height}
+          src={asset.path}
+          width={asset.dimensions.width}
+        />
+      )}
       <figcaption>{label}</figcaption>
     </figure>
   );
@@ -299,6 +326,7 @@ export function GallerySection() {
             <GalleryImage
               asset={crop.asset}
               className={`${styles.inset} ${crop.className}`}
+              desktopAsset={crop.desktopAsset}
               key={crop.label}
               label={crop.label}
             />

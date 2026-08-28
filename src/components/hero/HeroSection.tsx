@@ -123,13 +123,13 @@ function HeroFeatureList() {
         iconName="gift"
         referenceIcon={heroReferenceFeatureIcons.gift}
       >
-        Сувенирные идеи
+        Сувениры и подарки
       </HeroFeature>
       <HeroFeature
         iconName="church"
         referenceIcon={heroReferenceFeatureIcons.cathedral}
       >
-        Исторический мотив
+        Исторический центр Самары
       </HeroFeature>
     </ul>
   );

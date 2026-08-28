@@ -30,7 +30,7 @@ const menuStyles = readFileSync(
 );
 
 describe("menu anchor scene", () => {
-  test("renders five bounded reference crops with honest no-price disclosure", async () => {
+  test("renders five bounded reference crops with the reference menu copy", async () => {
     const menuSectionModule = await loadMenuSection();
 
     expect(menuSectionModule).not.toBeNull();
@@ -88,11 +88,12 @@ describe("menu anchor scene", () => {
         name: "Уточнить актуальное меню и стоимость в кафе",
       }),
     ).toHaveAttribute("href", "#contacts");
-    expect(within(menu).getAllByText("Стоимость уточняйте")).toHaveLength(5);
+    expect(within(menu).getAllByText(/₽/)).toHaveLength(5);
     expect(
       within(menu).queryAllByText("Сгенерировано для иллюстрации"),
     ).toHaveLength(0);
-    expect(screen.queryByText(/210 ₽|260 ₽|290 ₽|350 ₽|360 ₽/)).toBeNull();
+    expect(screen.getByText("от 210 ₽")).toBeInTheDocument();
+    expect(screen.getByText("350 ₽")).toBeInTheDocument();
   });
 
   test("offers button and keyboard controls for the scroll-snap menu rail", async () => {
@@ -117,7 +118,7 @@ describe("menu anchor scene", () => {
     expect(status).toHaveTextContent("Позиция 1 из 5: Капучино");
 
     await user.click(next);
-    expect(status).toHaveTextContent("Позиция 2 из 5: Ягодный десерт");
+    expect(status).toHaveTextContent("Позиция 2 из 5: Малиновый вулкан");
     expect(document.querySelector("#menu-card-2")).toHaveAttribute(
       "data-active",
       "true",
@@ -125,10 +126,10 @@ describe("menu anchor scene", () => {
 
     carousel.focus();
     await user.keyboard("{ArrowRight}");
-    expect(status).toHaveTextContent("Позиция 3 из 5: Фисташковый торт");
+    expect(status).toHaveTextContent("Позиция 3 из 5: Фисташковый торт с рикоттой");
 
     await user.keyboard("{ArrowLeft}");
-    expect(status).toHaveTextContent("Позиция 2 из 5: Ягодный десерт");
+    expect(status).toHaveTextContent("Позиция 2 из 5: Малиновый вулкан");
   });
 
   test("keeps the menu controls operable when matchMedia is unavailable", async () => {

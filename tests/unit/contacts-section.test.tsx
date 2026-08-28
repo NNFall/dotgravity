@@ -252,7 +252,7 @@ describe("ContactsSection", () => {
     );
 
     expect(css).toMatch(
-      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.routePanel\s*\{[\s\S]*?background:\s*#f5e8dc;[\s\S]*?border-radius:\s*14px;[\s\S]*?box-shadow:\s*none;/i,
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.routePanel\s*\{[\s\S]*?background:\s*#f6e8dc;[\s\S]*?border-radius:\s*14px;[\s\S]*?box-shadow:\s*none;/i,
     );
     expect(css).toMatch(
       /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.routeSidebar\s*\{[\s\S]*?background:\s*transparent;[\s\S]*?border-left-color:\s*rgb\(180\s+71\s+37\s*\/\s*35%\);/i,

@@ -391,6 +391,10 @@
 }
 
 @media (min-width: 901px) {
+  .storyCard {
+    background: #f7eade;
+  }
+
   .storyCard article {
     gap: 16px;
   }
@@ -401,6 +405,20 @@
 
   .storyCard:nth-child(4) article {
     padding-left: 6px;
+  }
+
+  /* Per-card desktop gaps are calibrated against the supplied reference
+     while the shared 16px rhythm remains the responsive default. */
+  .storyCard:nth-child(2) article {
+    gap: 17px;
+  }
+
+  .storyCard:nth-child(3) article {
+    gap: 18.5px;
+  }
+
+  .storyCard:nth-child(4) article {
+    gap: 12.3px;
   }
 }
 

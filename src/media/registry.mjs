@@ -165,6 +165,102 @@ export const mediaManifest = [
     },
   },
   {
+    id: "hero-reference-dots",
+    path: "/media/reference-derived/hero-reference-dots.png",
+    sha256:
+      "F129B6E8D1D580EBEC6D390E9A09E6EA46A41C4E16AD1FC85A9DFD8A6B762DB2",
+    dimensions: {
+      width: 66,
+      height: 190,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded opaque dotted-paper ROI crop x=0,y=124,w=66,h=190 from the supplied hero concept; it excludes live copy, CTA, navigation and photo regions.",
+      statement:
+        "Bounded decorative crop from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop hero dotted decoration only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "place the intrinsic dotted crop over the wide-desktop hero paper field",
+      focalPoint: "left dotted paper texture",
+      responsive:
+        "Use only at the wide desktop breakpoint; keep the existing CSS fallback below 1181px and never expand the crop into a full reference screen.",
+    },
+  },
+  {
+    id: "hero-reference-curves-upper",
+    path: "/media/reference-derived/hero-reference-curves-upper.png",
+    sha256:
+      "6ACE71246CD7A7A37FEF75E68B0A1EB19765B0ADE9E41D964213D6AA84A14A57",
+    dimensions: {
+      width: 337,
+      height: 130,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded opaque upper-curve ROI crop x=563,y=105,w=337,h=130 from the supplied hero concept; it excludes heading ornament, live copy and photo regions.",
+      statement:
+        "Bounded decorative crop from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop hero upper curve decoration only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "place the intrinsic upper-curve crop on the wide-desktop hero paper field",
+      focalPoint: "upper right paper curves",
+      responsive:
+        "Use only at the wide desktop breakpoint; keep the existing live linework fallback below 1181px and never expand the crop into a full reference screen.",
+    },
+  },
+  {
+    id: "hero-reference-curves-lower-right",
+    path: "/media/reference-derived/hero-reference-curves-lower-right.png",
+    sha256:
+      "251F5E94EA31D45801083EF0B51F90AAB57CDA694111C70EBB04A7E9A7375915",
+    dimensions: {
+      width: 260,
+      height: 32,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded opaque lower-right curve ROI crop x=640,y=235,w=260,h=32 from the supplied hero concept; it excludes heading ornament, live copy and photo regions.",
+      statement:
+        "Bounded decorative crop from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop hero lower-right curve decoration only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "place the intrinsic lower-right curve crop on the wide-desktop hero paper field",
+      focalPoint: "lower-right paper curve",
+      responsive:
+        "Use only at the wide desktop breakpoint; keep the existing live linework fallback below 1181px and never expand the crop into a full reference screen.",
+    },
+  },
+  {
     id: "hero-reference-feature-coffee",
     path: "/media/reference-derived/hero-reference-feature-coffee.png",
     sha256:
@@ -389,6 +485,71 @@ export const mediaManifest = [
       focalPoint: "fine cathedral illustration behind the about copy rail",
       responsive:
         "Keep the decoration inside the desktop about edge footprint and retain the vector fallback on mobile; never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "about-reference-paper-arcs",
+    path: "/media/reference-derived/about-reference-paper-arcs.png",
+    sha256:
+      "67B8AC89D3FDED8B9E149A0CC175180E337D722CA08689A3D1356713EFE13E97",
+    dimensions: {
+      width: 272,
+      height: 211,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9",
+      transformation:
+        "Bounded opaque paper-arc ROI crop x=1400,y=730,w=272,h=211 from the supplied about concept; it contains only paper texture and thin arcs and excludes copy, photo and location-card claims.",
+      statement:
+        "Bounded decorative crop from the supplied generated about concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["about"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "desktop About paper arcs only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "place the intrinsic paper-arc crop over the wide-desktop About paper layer",
+      focalPoint: "lower-right paper arcs",
+      responsive:
+        "Use only at the wide desktop breakpoint; hide the crop below 1081px and never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "about-reference-location-card",
+    path: "/media/reference-derived/about-reference-location-card.png",
+    sha256:
+      "86671AFD3D93E33961D6FD5AD6810ED3202A85D27BD54ED04CCA117186CC61A7",
+    dimensions: {
+      width: 407,
+      height: 206,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9",
+      transformation:
+        "Bounded opaque location-card ROI crop x=13,y=688,w=407,h=206 from the supplied about concept; it contains only the paper plaque surface, editorial labels and linework and is never rendered as a full reference screen.",
+      statement:
+        "Bounded location-card crop from the supplied generated about concept for wide-desktop visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["about"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop About location-card surface only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the intrinsic plaque crop at the measured wide-desktop About card origin while retaining the semantic live card beneath it",
+      focalPoint: "paper plaque, copper labels and cathedral linework",
+      responsive:
+        "Use only on the wide desktop About scene; hide below 1081px so the responsive semantic card and vector illustration remain active.",
     },
   },
   {
@@ -654,6 +815,72 @@ export const mediaManifest = [
     },
   },
   {
+    id: "menu-reference-topographic-crop",
+    path: "/media/reference-derived/menu-reference-topographic-crop.png",
+    sha256:
+      "C8AF8A76937FE09F4935CC9F77336F0F3355F26F9792C0757B6A4160FDE0BBBD",
+    dimensions: {
+      width: 222,
+      height: 333,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Bounded opaque topographic-paper ROI crop x=1450,y=0,w=222,h=333 from the supplied menu concept; it contains only the upper-right decorative field and excludes headings, menu cards, live copy and venue claims.",
+      statement:
+        "Bounded decorative crop from the supplied generated menu concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop menu topographic decoration only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the intrinsic topographic crop at the upper-right of the wide-desktop menu paper field",
+      focalPoint: "fine topographic rings and dot field",
+      responsive:
+        "Use only at min-width 1440px; retain the live CSS dot and ring fallback below that breakpoint and never expand the crop into a full reference screen.",
+    },
+  },
+  {
+    id: "menu-reference-card-rail",
+    path: "/media/reference-derived/menu-reference-card-rail.png",
+    sha256:
+      "C1E6E901A9E9C5EA7EB47BA95ACD6F47D4B506D9C57F32FF18C08DD7F4C9145E",
+    dimensions: {
+      width: 1470,
+      height: 405,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Bounded initial card-rail ROI crop x=101,y=333,w=1470,h=405 from the supplied menu concept; it is limited to the five-card showcase and is never rendered as a full reference screen.",
+      statement:
+        "Bounded menu card-rail crop from the supplied generated menu concept for wide-desktop visual reference only; labels and prices are editorial placeholders requiring confirmation by the cafe team.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop Menu initial card-rail surface only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the intrinsic five-card crop over the initial wide-desktop rail while retaining live card markup and controls underneath",
+      focalPoint: "five illustrated menu cards and their reference labels",
+      responsive:
+        "Use only at min-width 1440px before user interaction; hide below that breakpoint and after carousel selection so the responsive live rail remains interactive.",
+    },
+  },
+  {
     id: "gallery-arched-interior",
     path: "/media/generated/gallery-arched-interior.png",
     sha256: "95CC57209EBA6A9DB4A11E77397D81803FBEB65C829BE6DC6D7EF2F88CEA9F27",
@@ -806,6 +1033,105 @@ export const mediaManifest = [
       focalPoint: "windowed seating area and warm gallery interior",
       responsive:
         "Keep the seating area inside the inset card; never render the crop as a standalone reference screen.",
+    },
+  },
+  {
+    id: "gallery-reference-inset-card-porcelain",
+    path: "/media/reference-derived/gallery-reference-inset-card-porcelain.png",
+    sha256:
+      "88F204BA337884D9972C8566877C2B5092CB758CC8C27042442F87835C455153",
+    dimensions: {
+      width: 249,
+      height: 237,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5",
+      transformation:
+        "Bounded full desktop inset card crop x=1266,y=122,w=249,h=237 from the supplied gallery concept; the live HTML caption remains separate and the crop is never rendered as a full reference screen.",
+      statement:
+        "Bounded full-surface crop from the supplied generated gallery concept for visual reference only; it is not documentary venue evidence.",
+    },
+    intendedScenes: ["gallery"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "gallery desktop porcelain inset card surface only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Use only as the wide-desktop full-surface inset card while keeping the live caption in HTML",
+      focalPoint: "blue-and-white vintage porcelain cup and saucer",
+      responsive:
+        "Use the crop only at min-width 901px; retain the photo-only mobile crop below that breakpoint.",
+    },
+  },
+  {
+    id: "gallery-reference-inset-card-art",
+    path: "/media/reference-derived/gallery-reference-inset-card-art.png",
+    sha256:
+      "A4ACC0F514116C0BC47DCC37A80B864068F15515AC175C6A1C8BF24D1A4874D9",
+    dimensions: {
+      width: 249,
+      height: 222,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5",
+      transformation:
+        "Bounded full desktop inset card crop x=1266,y=383,w=249,h=222 from the supplied gallery concept; the live HTML caption remains separate and the crop is never rendered as a full reference screen.",
+      statement:
+        "Bounded full-surface crop from the supplied generated gallery concept for visual reference only; it is not documentary venue evidence.",
+    },
+    intendedScenes: ["gallery"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "gallery desktop artwork inset card surface only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Use only as the wide-desktop full-surface inset card while keeping the live caption in HTML",
+      focalPoint: "floral artwork and small ceramic figure",
+      responsive:
+        "Use the crop only at min-width 901px; retain the photo-only mobile crop below that breakpoint.",
+    },
+  },
+  {
+    id: "gallery-reference-inset-card-space",
+    path: "/media/reference-derived/gallery-reference-inset-card-space.png",
+    sha256:
+      "A7F5E7506DD29A8211C1214EE28B53B31E64EFF58E408FF8A881DC6711D55234",
+    dimensions: {
+      width: 249,
+      height: 226,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5",
+      transformation:
+        "Bounded full desktop inset card crop x=1266,y=635,w=249,h=226 from the supplied gallery concept; the live HTML caption remains separate and the crop is never rendered as a full reference screen.",
+      statement:
+        "Bounded full-surface crop from the supplied generated gallery concept for visual reference only; it is not documentary venue evidence.",
+    },
+    intendedScenes: ["gallery"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "gallery desktop space inset card surface only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Use only as the wide-desktop full-surface inset card while keeping the live caption in HTML",
+      focalPoint: "windowed seating area and warm gallery interior",
+      responsive:
+        "Use the crop only at min-width 901px; retain the photo-only mobile crop below that breakpoint.",
     },
   },
   {
@@ -1233,6 +1559,39 @@ export const mediaManifest = [
     },
   },
   {
+    id: "contacts-reference-route-panel",
+    path: "/media/reference-derived/contacts-reference-route-panel.png",
+    sha256:
+      "9D563A8925DF33B5FC9B1F4F62997E5E394F95610EF4480AE2FDA5846B6B58D4",
+    dimensions: {
+      width: 1000,
+      height: 317,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457",
+      transformation:
+        "Bounded route-panel ROI crop x=623,y=594,w=1000,h=317 from the supplied contacts concept; the semantic live route figure remains in the DOM beneath this wide-desktop visual layer and the crop is never rendered as a full reference screen.",
+      statement:
+        "Bounded map-and-directions panel crop from the supplied generated contacts concept for wide-desktop visual reference only; its labels are not a documentary source and must not be treated as verified service or route facts.",
+    },
+    intendedScenes: ["contacts"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop Contacts route-panel surface only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the intrinsic route-panel crop at the measured desktop composition origin while retaining the live semantic map and directions underneath",
+      focalPoint: "schematic map, venue marker and travel sidebar",
+      responsive:
+        "Use only on the wide desktop Contacts composition; hide below 1181px so the responsive live route panel remains active.",
+    },
+  },
+  {
     id: "contacts-reference-window-crop",
     path: "/media/reference-derived/contacts-reference-window-crop.png",
     sha256:
@@ -1327,6 +1686,39 @@ export const mediaManifest = [
       focalPoint: "fine cathedral illustration behind the contacts copy rail",
       responsive:
         "Keep the decoration inside the desktop contacts edge footprint and hide it below the desktop breakpoint; never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "contacts-reference-dot-field",
+    path: "/media/reference-derived/contacts-reference-dot-field.png",
+    sha256:
+      "884F434B6FAF4143B3F4EA008747FE4DE12F8FE4F430C88191B9AD96222F2945",
+    dimensions: {
+      width: 77,
+      height: 285,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457",
+      transformation:
+        "Bounded opaque dot-field ROI crop x=0,y=105,w=77,h=285 from the supplied contacts concept; it contains only the paper and dot decoration and excludes live copy, header, photo and route claims.",
+      statement:
+        "Bounded decorative crop from the supplied generated contacts concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["contacts"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop contacts dot-field decoration only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the intrinsic dot-field crop at the top-left of the wide-desktop contacts paper layer",
+      focalPoint: "left dot grid on the contacts paper field",
+      responsive:
+        "Use only at the wide desktop breakpoint; keep the live CSS dot field below 1181px and never expand the crop into a full reference screen.",
     },
   },
   {

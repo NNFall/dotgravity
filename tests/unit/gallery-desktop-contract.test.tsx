@@ -139,7 +139,7 @@ describe("gallery desktop canvas contract", () => {
     );
 
     expect(wideDesktopInsetBlock?.[1]).toMatch(
-      /\[class\*="_inset_"\]\s*\{[^}]*background:\s*#f4e7dc\s*;/,
+      /\[class\*="_inset_"\]\s*\{[^}]*background:\s*transparent\s*;/,
     );
     expect(wideDesktopInsetBlock?.[1]).toMatch(
       /\[class\*="_inset_"\]\s+figcaption\s*\{[^}]*transform:\s*translate\(3px,\s*calc\(-50%\s*\+\s*1px\)\)\s*;/,

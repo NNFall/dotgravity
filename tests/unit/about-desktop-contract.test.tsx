@@ -154,6 +154,26 @@ describe("about desktop scene geometry contract", () => {
     expect(mobileCss).not.toMatch(/\.locationCard small\s*\{[^}]*?\bmargin-top:\s*20px;/);
   });
 
+  test("keeps the reference copy line length and feature gutters on wide desktop", async () => {
+    const source = await readFile(
+      resolve(process.cwd(), "src/components/scenes/AboutSection.module.css"),
+      "utf8",
+    );
+    const desktopStart = source.indexOf("@media (min-width: 1081px)");
+    const mobileStart = source.indexOf("@media (max-width: 1080px)");
+    const desktopCss = source.slice(
+      desktopStart,
+      mobileStart === -1 ? undefined : mobileStart,
+    );
+
+    expect(desktopCss).toMatch(
+      /\.introduction\s*\{[\s\S]*?\bmax-width:\s*650px;/,
+    );
+    expect(desktopCss).toMatch(
+      /\.feature\s*\{[\s\S]*?\bpadding-inline:\s*14px;/,
+    );
+  });
+
   test("keeps a full inset frame around the wide desktop plaque without changing the mobile card", async () => {
     const source = await readFile(
       resolve(process.cwd(), "src/components/scenes/AboutSection.module.css"),
@@ -167,6 +187,24 @@ describe("about desktop scene geometry contract", () => {
       /@media\s*\(min-width:\s*1081px\)\s*\{[\s\S]*?\.locationCard::before\s*\{[^}]*?\btop:\s*14px;[^}]*?\bleft:\s*14px;[^}]*?\bwidth:\s*calc\(100%\s*-\s*28px\);[^}]*?\bheight:\s*calc\(100%\s*-\s*28px\);[^}]*?\bborder:\s*1px solid/,
     );
     expect(mobileCss).not.toMatch(/\.locationCard::before\s*\{[\s\S]*?\btop:\s*14px;/);
+  });
+
+  test("uses the measured top-only photo accent on desktop and keeps the mobile frame fallback", async () => {
+    const source = await readFile(
+      resolve(process.cwd(), "src/components/scenes/AboutSection.module.css"),
+      "utf8",
+    );
+    const desktopStart = source.indexOf("@media (min-width: 761px)");
+    const mobileStart = source.indexOf("@media (max-width: 760px)");
+    const desktopCss = source.slice(desktopStart, mobileStart === -1 ? undefined : mobileStart);
+    const mobileCss = mobileStart === -1 ? "" : source.slice(mobileStart);
+
+    expect(desktopCss).toMatch(
+      /\.photoFrame::after\s*\{[\s\S]*?\bbox-shadow:\s*inset 0 2px 0 0 rgb\(180 71 37 \/ 50%\);/,
+    );
+    expect(mobileCss).not.toMatch(
+      /\.photoFrame::after\s*\{[\s\S]*?\bbox-shadow:\s*inset 0 2px 0 0 rgb\(180 71 37 \/ 50%\);/,
+    );
   });
 
   test("swaps only the wide desktop plaque artwork while retaining the original mobile vector", async () => {

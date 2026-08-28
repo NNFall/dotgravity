@@ -44,6 +44,34 @@ const aboutCathedralArtwork = (() => {
   return registeredAboutCathedral;
 })();
 
+const aboutPaperArcArtwork = (() => {
+  const registeredAboutPaperArcs = mediaManifest.find(
+    (asset) => asset.id === "about-reference-paper-arcs",
+  );
+
+  if (!registeredAboutPaperArcs) {
+    throw new Error(
+      "The bounded reference-derived about paper-arc artwork is required to render the about scene.",
+    );
+  }
+
+  return registeredAboutPaperArcs;
+})();
+
+const aboutLocationCardArtwork = (() => {
+  const registeredAboutLocationCard = mediaManifest.find(
+    (asset) => asset.id === "about-reference-location-card",
+  );
+
+  if (!registeredAboutLocationCard) {
+    throw new Error(
+      "The bounded reference-derived about location-card artwork is required to render the about scene.",
+    );
+  }
+
+  return registeredAboutLocationCard;
+})();
+
 function getAboutImageAlt() {
   if (aboutMedia.provenance.classification === "generated/reference-compatible") {
     return "Сгенерированный визуальный образ: арочный интерьер с керамикой";
@@ -222,6 +250,19 @@ export function AboutSection() {
       id="about"
     >
       <div aria-hidden="true" className={styles.paperGlow} />
+      {/* Keep the measured paper-only reference fragment bounded to the wide desktop layer. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={styles.paperArcReference}
+        data-about-decoration="paper-arcs"
+        data-provenance={aboutPaperArcArtwork.provenance.classification}
+        decoding="async"
+        height={aboutPaperArcArtwork.dimensions.height}
+        src={aboutPaperArcArtwork.path}
+        width={aboutPaperArcArtwork.dimensions.width}
+      />
       <div aria-hidden="true" className={styles.cathedralBackdrop}>
         <CathedralDrawing />
         {/* Keep the measured reference-derived ornament bounded to this desktop edge layer. */}
@@ -285,6 +326,19 @@ export function AboutSection() {
           <PlaqueCathedralDrawing />
         </div>
       </aside>
+      {/* Keep the measured plaque crop bounded to the wide-desktop card footprint; semantic card text remains in the live aside. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={styles.locationCardReference}
+        data-about-decoration="location-card"
+        data-provenance={aboutLocationCardArtwork.provenance.classification}
+        decoding="async"
+        height={aboutLocationCardArtwork.dimensions.height}
+        src={aboutLocationCardArtwork.path}
+        width={aboutLocationCardArtwork.dimensions.width}
+      />
 
       <div className={styles.content}>
         <div className={styles.eyebrow}>
@@ -299,10 +353,13 @@ export function AboutSection() {
           <br /> встречается с искусством
         </h3>
         <p className={styles.introduction}>
-          Точка притяжения — это уютное пространство в сердце Самары, где
-          каждый гость находит вдохновение. Визуальная концепция объединяет
-          ароматный кофе или какао, мотивы старинной посуды, образы
-          современного искусства и сувенирные идеи в одном особенном месте.
+          Точка притяжения — это уютное пространство в сердце Самары,
+          <br className={styles.desktopBreak} /> где каждый гость находит
+          вдохновение. Мы объединили ароматный кофе
+          <br className={styles.desktopBreak} /> или какао, красоту старинной
+          посуды, творчество современных художников
+          <br className={styles.desktopBreak} /> и уникальные сувениры в одном
+          особенном месте.
         </p>
 
         <ul className={styles.features}>
@@ -313,18 +370,23 @@ export function AboutSection() {
             Кофе и какао
           </AboutFeature>
           <AboutFeature
-            description="Визуальный мотив старинной посуды — изысканная красота в каждой детали."
+            description="Коллекция старинной посуды XIX века — изысканная красота в каждой детали."
             icon={<PorcelainIcon />}
           >
             АНТИКВАРНАЯ ПОСУДА
           </AboutFeature>
           <AboutFeature
-            description="Образы современного искусства и подарочные мотивы с характером."
+            description="Картины современных художников, сувениры, украшения и душевные мелочи с историей."
             icon={<ArtIcon />}
           >
             Искусство и подарки
           </AboutFeature>
         </ul>
+
+        <span className={styles.provenanceNote} role="note">
+          Редакционный текст и подписи взяты из визуального референса и не
+          подтверждают каталог, коллекцию или состав услуг кафе.
+        </span>
 
         <div className={styles.footerCallout}>
           <div aria-hidden="true" className={styles.footerOrnament}>

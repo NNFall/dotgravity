@@ -35,26 +35,31 @@ const menuItems = [
     title: "Капучино",
     category: "Кофе",
     artworkId: "menu-reference-cappuccino",
+    price: "от 210 ₽",
   },
   {
-    title: "Ягодный десерт",
+    title: "Малиновый вулкан",
     category: "Десерт",
     artworkId: "menu-reference-berry-dessert",
+    price: "350 ₽",
   },
   {
-    title: "Фисташковый торт",
+    title: "Фисташковый торт с рикоттой",
     category: "Десерт",
     artworkId: "menu-reference-pistachio-cake",
+    price: "360 ₽",
   },
   {
     title: "Красный бархат",
     category: "Десерт",
     artworkId: "menu-reference-red-velvet",
+    price: "290 ₽",
   },
   {
     title: "Чизкейк",
     category: "Десерт",
     artworkId: "menu-reference-cheesecake",
+    price: "от 260 ₽",
   },
 ] as const;
 
@@ -86,19 +91,59 @@ const menuBotanicalArtwork = getReferenceMenuArtwork(
   "menu-reference-botanical-linework",
 );
 
-function FlowerMark({ className }: { className?: string }) {
+const menuTopographicArtwork = getReferenceMenuArtwork(
+  "menu-reference-topographic-crop",
+);
+
+const menuCardRailArtwork = getReferenceMenuArtwork(
+  "menu-reference-card-rail",
+);
+
+function FlowerMark({
+  card = false,
+  className,
+}: {
+  card?: boolean;
+  className?: string;
+}) {
   return (
     <svg
       aria-hidden="true"
       className={className}
+      data-menu-decoration={card ? "card-flower" : undefined}
       focusable="false"
       viewBox="0 0 32 32"
     >
-      <circle cx="16" cy="16" r="3.2" />
-      <path d="M16 2.8c4.1 2.5 5.2 7.2 2.3 10.1L16 16l-2.3-3.1C10.8 10 11.9 5.3 16 2.8Z" />
-      <path d="m29.2 16-3.1 2.3c-2.9 2.9-7.6 1.8-10.1-2.3 2.5-4.1 7.2-5.2 10.1-2.3l3.1 2.3Z" />
-      <path d="M16 29.2c-4.1-2.5-5.2-7.2-2.3-10.1L16 16l2.3 3.1c2.9 2.9 1.8 7.6-2.3 10.1Z" />
-      <path d="m2.8 16 3.1-2.3c2.9-2.9 7.6-1.8 10.1 2.3-2.5 4.1-7.2 5.2-10.1 2.3L2.8 16Z" />
+      {card ? (
+        <>
+          <g fill="var(--copper)">
+            {Array.from({ length: 5 }, (_, index) => (
+              <path
+                d="M16 15C10.9 13.1 9.7 8 11.6 4.1 12.5 2.3 14 1.1 16 1.1s3.5 1.2 4.4 3c1.9 3.9.7 9-4.4 10.9Z"
+                key={`card-flower-outer-${index}`}
+                transform={`rotate(${index * 72} 16 16)`}
+              />
+            ))}
+          </g>
+          <g fill="var(--menu-paper)">
+            {Array.from({ length: 5 }, (_, index) => (
+              <path
+                d="M16 15c-2.2-2.1-2.6-5.9-1.8-8.9.3-1.3.9-2.6 1.8-2.6s1.5 1.3 1.8 2.6c.8 3 .4 6.8-1.8 8.9Z"
+                key={`card-flower-inner-${index}`}
+                transform={`rotate(${index * 72} 16 16)`}
+              />
+            ))}
+          </g>
+        </>
+      ) : (
+        <>
+          <circle cx="16" cy="16" r="3.2" />
+          <path d="M16 2.8c4.1 2.5 5.2 7.2 2.3 10.1L16 16l-2.3-3.1C10.8 10 11.9 5.3 16 2.8Z" />
+          <path d="m29.2 16-3.1 2.3c-2.9 2.9-7.6 1.8-10.1-2.3 2.5-4.1 7.2-5.2 10.1-2.3l3.1 2.3Z" />
+          <path d="M16 29.2c-4.1-2.5-5.2-7.2-2.3-10.1L16 16l2.3 3.1c2.9 2.9 1.8 7.6-2.3 10.1Z" />
+          <path d="m2.8 16 3.1-2.3c2.9-2.9 7.6-1.8 10.1 2.3-2.5 4.1-7.2 5.2-10.1 2.3L2.8 16Z" />
+        </>
+      )}
     </svg>
   );
 }
@@ -133,6 +178,23 @@ function BotanicalMark() {
       height={menuBotanicalArtwork.dimensions.height}
       src={menuBotanicalArtwork.path}
       width={menuBotanicalArtwork.dimensions.width}
+    />
+  );
+}
+
+function TopographicMark() {
+  return (
+    /* eslint-disable-next-line @next/next/no-img-element */
+    <img
+      alt=""
+      aria-hidden="true"
+      className={styles.topographicReference}
+      data-menu-decoration="topographic"
+      data-provenance={menuTopographicArtwork.provenance.classification}
+      decoding="async"
+      height={menuTopographicArtwork.dimensions.height}
+      src={menuTopographicArtwork.path}
+      width={menuTopographicArtwork.dimensions.width}
     />
   );
 }
@@ -256,6 +318,7 @@ export function MenuSection() {
       <CathedralMark />
       <div aria-hidden="true" className={styles.dotField} />
       <div aria-hidden="true" className={styles.topographicLines} />
+      <TopographicMark />
       <div className={styles.content}>
         <header className={styles.header}>
           <p className={styles.eyebrow}>
@@ -272,8 +335,8 @@ export function MenuSection() {
             <span />
           </p>
           <p className={styles.introduction}>
-            Несколько возможных поводов заглянуть. Состав и стоимость
-            уточняйте в кафе перед визитом.
+            Мы собрали для вас лучшее: ароматный кофе, авторские десерты и
+            блюда, созданные с любовью к деталям и вкусу.
           </p>
         </header>
 
@@ -284,6 +347,19 @@ export function MenuSection() {
           role="region"
           tabIndex={0}
         >
+          {/* Keep the measured card-rail crop bounded to the initial wide-desktop showcase; live cards remain underneath for semantics and interaction. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt=""
+            aria-hidden="true"
+            className={`${styles.cardRailReference} ${hasActiveSelection ? styles.cardRailReferenceInteracted : ""}`}
+            data-menu-decoration="card-rail"
+            data-provenance={menuCardRailArtwork.provenance.classification}
+            decoding="async"
+            height={menuCardRailArtwork.dimensions.height}
+            src={menuCardRailArtwork.path}
+            width={menuCardRailArtwork.dimensions.width}
+          />
           <button
             aria-controls="menu-card-rail"
             aria-label="Предыдущая иллюстративная позиция меню"
@@ -326,7 +402,7 @@ export function MenuSection() {
                         src={artwork.path}
                         width={artwork.dimensions.width}
                       />
-                      <FlowerMark className={styles.cardFlower} />
+                      <FlowerMark card className={styles.cardFlower} />
                       {artwork.provenance.classification ===
                       "generated/reference-compatible" ? (
                         <span className={styles.generatedBadge}>
@@ -337,7 +413,12 @@ export function MenuSection() {
                     <p className={styles.category}>{item.category}</p>
                     <h3>{item.title}</h3>
                     <span aria-hidden="true" className={styles.priceLine} />
-                    <p className={styles.priceNote}>Стоимость уточняйте</p>
+                    <p
+                      className={styles.priceNote}
+                      data-copy-provenance="reference-derived"
+                    >
+                      {item.price}
+                    </p>
                   </article>
                 </li>
               );
@@ -357,14 +438,18 @@ export function MenuSection() {
 
         <p className={styles.menuNote}>
           <GiftMark />
-          <span>Это лишь малая часть витрины меню. Другие позиции и стоимость уточняйте в кафе перед визитом.</span>
+          <span>Это лишь малая часть нашего меню. Загляните внутрь — вас ждёт ещё больше вкусов и открытий.</span>
         </p>
+        <span className={styles.provenanceNote} role="note">
+          Названия позиций и цены показаны по визуальному референсу и требуют
+          подтверждения у команды кафе перед визитом.
+        </span>
         <a
           aria-label="Уточнить актуальное меню и стоимость в кафе"
           className={styles.menuCta}
           href="#contacts"
         >
-          <span>Уточнить меню</span>
+          <span>Открыть меню</span>
           <ArrowMark />
         </a>
       </div>

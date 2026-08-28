@@ -164,7 +164,7 @@ test("menu rail buttons and keyboard commands update the active menu item", asyn
   await expect(status).toHaveText("Позиция 1 из 5: Капучино");
 
   await next.click();
-  await expect(status).toHaveText("Позиция 2 из 5: Ягодный десерт");
+  await expect(status).toHaveText("Позиция 2 из 5: Малиновый вулкан");
   await expect(page.locator("#menu-card-2")).toHaveAttribute(
     "data-active",
     "true",
@@ -181,5 +181,5 @@ test("menu rail buttons and keyboard commands update the active menu item", asyn
   await page.keyboard.press("Home");
   await expect(status).toHaveText("Позиция 1 из 5: Капучино");
   await page.keyboard.press("ArrowRight");
-  await expect(status).toHaveText("Позиция 2 из 5: Ягодный десерт");
+  await expect(status).toHaveText("Позиция 2 из 5: Малиновый вулкан");
 });

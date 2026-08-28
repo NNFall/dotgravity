@@ -28,6 +28,11 @@ describe("hero scene", () => {
     expect(reservationCallToAction).toHaveAttribute("href", "tel:+78462630404");
     expect(reservationCallToAction).toHaveTextContent("Забронировать столик");
 
+    expect(within(hero).getByText("Сувениры и подарки")).toBeInTheDocument();
+    expect(
+      within(hero).getByText("Исторический центр Самары"),
+    ).toBeInTheDocument();
+
     const siteHeader = screen
       .getByRole("link", { name: "Точка притяжения, в начало страницы" })
       .closest("header");
