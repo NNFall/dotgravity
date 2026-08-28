@@ -1,6 +1,6 @@
 # Verification record
 
-Last full local verification: 2026-08-28 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The latest runtime is `6cc049e8d53fada321eedb915cd717e6fa163e1b`.
+Last full local verification: 2026-08-28 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The latest validated runtime is `63e3b95555f3e51adffae90f0558c5faf6e3c1d7`.
 
 Port `4173` was already occupied by the unrelated `comod` checkout and port
 `4174` by the unrelated `whitecup` checkout, so both were left untouched.
@@ -12,14 +12,14 @@ a temporary Playwright config pointed at that fresh server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 34 files, 166 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 48 files, 198 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
-| `npm.cmd run qa:assets` | pass | 42 registered assets, 30 production text files, no unexpected media |
+| `npm.cmd run qa:assets` | pass | 54 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 5,451,343 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 4,706,235 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -30,7 +30,7 @@ baseline with a live capture.
 ## Browser evidence
 
 The in-app Browser and terminal Chromium probes were checked against the
-fresh local production server at all required viewports. The page has one document H1, 28
+fresh local production server at all required viewports. The page has one document H1, 39
 loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 `aside#events` bridge, and the continuous order
 `hero → about → menu → gallery → souvenirs → events → contacts`.
@@ -40,7 +40,7 @@ loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 | 1672×941 | 1672 / 1672 | 6129 px | all six desktop scenes inspected at their anchor positions |
 | 1920×1080 | 1920 / 1920 | 6703 px | desktop scaling and navigation inspected |
 | 390×844 | 390 / 390 | 9463 px | no horizontal overflow; menu rail, contacts wrap and footer inspected |
-| 320×844 | 320 / 320 | 8946 px | no horizontal overflow; `Как нас найти` and footer wrap cleanly |
+| 320×844 | 320 / 320 | 8963 px | no horizontal overflow; `Как нас найти` and footer wrap cleanly |
 
 The mobile menu traps focus, closes on `Escape`, restores focus to its trigger,
 and keeps touch targets at or above 44 px. Reduced-motion behavior is covered
@@ -64,6 +64,15 @@ by the accessibility suite.
   separate assets with registry hashes and source coordinates; mobile and
   narrow tablet layouts keep the live Phosphor fallback so the responsive
   composition remains legible.
+- The current runtime additionally registers bounded reference-derived crops for
+  hero dots/curves, About paper arcs and location plaque, Menu topographic field
+  and initial card rail, three full-surface Gallery inset cards, and Contacts
+  dot field plus route panel. Each crop is limited to its measured desktop
+  region; semantic HTML, live controls and responsive fallbacks remain active.
+- About location-card, Menu card-rail and Contacts route-panel labels are
+  editorial reference placeholders. They are not documentary venue, pricing,
+  schedule or route facts and require confirmation before an unrestricted
+  public launch.
 - Yandex facts used in the UI are limited to the confirmed name, Samara address,
   and phone. Hours, current menu prices, and booking availability are not
   asserted. The VK group could not be read through the managed browser and is
@@ -84,14 +93,27 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `5451343 / 9440112` changed
-  pixels across the six supplied 1672×941 frames: hero is `705612` changed
-  pixels, about is `941731`, menu is `1165210`, gallery is `864693`, souvenirs
-  is `923253`, and contacts is `850844`. This is evidence, not a claimed pixel-perfect
+  mask was introduced. The latest raw report is `4706235 / 9440112` changed
+  pixels across the six supplied 1672×941 frames: hero is `645874` changed
+  pixels, about is `793776`, menu is `836230`, gallery is `803678`, souvenirs
+  is `910096`, and contacts is `716581`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
 
-## Latest bounded wide-desktop Menu heading calibration and publication — 2026-08-28
+## Current runtime publication — 2026-08-28
+
+The exact runtime commit `63e3b95555f3e51adffae90f0558c5faf6e3c1d7` was pushed
+to the configured Sites source branch, saved as version `23`
+(`appgprj_6a8eaec4754c8191b23a3f8e7a841bb6~appgver_fb6e15fed0608191ae6f4944ef21e6bb`),
+and deployed successfully as
+`appgdep_6a91dc2a93448191a33e742572582c3c` to the owner-only production URL.
+The archive was built from the validated `dist/` output and recorded as
+`sha256:87da892af20acc3a29a759bf063a0f3a767f3f1e05e4fe48bbd4a91e2d2acbde`
+(`145` files, `30,208,000` bytes). The deployment returned status
+`succeeded`; anonymous HTTP requests correctly receive `401` because the site
+is intentionally owner-only.
+
+## Previous bounded wide-desktop Menu heading calibration and publication — 2026-08-28
 
 An independent Menu ROI A/B isolated a small wide-desktop raster-origin
 candidate. Runtime commit `6cc049e8d53fada321eedb915cd717e6fa163e1b` moves the

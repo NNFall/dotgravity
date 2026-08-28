@@ -1,5 +1,41 @@
 # Точка притяжения — финальный отчёт
 
+## Актуальный runtime-срез — 2026-08-28
+
+Опубликованный кандидат собран из runtime-коммита
+`63e3b95555f3e51adffae90f0558c5faf6e3c1d7` и оставлен как единый
+непрерывный сайт с шестью anchor-сценами. В production и локальной проверке
+нет цельных PNG-экранов: новые изображения — только bounded reference-derived
+региональные ассеты поверх живой React/HTML-разметки и responsive fallback.
+
+Ссылки: [GitHub feature branch](https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing), [локальный handoff](http://127.0.0.1:4180/), [Sites production](https://dotgravity.ferumnikita2009.chatgpt.site) (owner-only).
+
+Статические и браузерные проверки зелёные: 48 Vitest-файлов / 198 тестов,
+lint, TypeScript, build, asset-audit (54 зарегистрированных ассета), Chromium
+12/12, accessibility 5/5, visual 1/1, `npm audit` — 0 уязвимостей. На
+1672×941, 1920×1080, 390×844 и 320×844 ширина документа равна viewport,
+сетевых ошибок нет; высоты страниц — 6129, 6703, 9463 и 8963 px,
+соответственно. Порт 4180 выбран потому, что 4173 занят `comod`, а 4174 —
+`whitecup`.
+
+Строгий raw RGBA gate остаётся NO-GO (нулевые отличия не заявляются):
+`4,706,235 / 9,440,112` различающихся пикселей; по сценам hero `645,874`,
+about `793,776`, menu `836,230`, gallery `803,678`, souvenirs `910,096`,
+contacts `716,581`. Это последний доказанный срез, а не утверждение полного
+pixel-perfect завершения.
+
+В этот срез входят bounded crops: Hero dots/curves; About paper arcs и
+location card; Menu topographic field и initial card rail; три full-surface
+Gallery inset cards; Contacts dot field и route panel. Editorial labels,
+цены и маршрутные подписи в этих reference-derived слоях требуют подтверждения
+командой кафе и не являются documentary facts.
+
+Sites version `23` (`appgprj_6a8eaec4754c8191b23a3f8e7a841bb6~appgver_fb6e15fed0608191ae6f4944ef21e6bb`) развернута успешно как deployment
+`appgdep_6a91dc2a93448191a33e742572582c3c`; архив exact runtime имеет hash
+`sha256:87da892af20acc3a29a759bf063a0f3a767f3f1e05e4fe48bbd4a91e2d2acbde`.
+Production остаётся owner-only, поэтому анонимный HTTP-запрос ожидаемо
+возвращает `401`, а авторизованная Sites-вкладка открывает страницу.
+
 ## Результат
 
 Собран единый адаптивный сайт кафе с непрерывным scroll-потоком: hero → about → menu → gallery → souvenirs → events bridge → contacts → footer. Шесть присланных экранов сохранены как отдельные React-сцены и anchor-состояния, а переходы между ними связаны общей бумажной фактурой, медными контурами, повторяющимися рамками, мягкими clip-path стыками и restrained motion. Цельные PNG-экраны в production не импортируются.
@@ -7,11 +43,11 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source commit: `6cc049e8d53fada321eedb915cd717e6fa163e1b` (GitHub `main` and feature branch; current private Sites deployment)
+- Runtime source commit: `63e3b95555f3e51adffae90f0558c5faf6e3c1d7` (GitHub `main` and feature branch; current private Sites deployment)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
-- Mobile review captures: `artifacts/visual/captures/mobile/full-390x844.png`, `artifacts/visual/captures/mobile/full-320x844.png`
+- Mobile review captures: `artifacts/visual/captures/mobile/full-390x844-final.png`, `artifacts/visual/captures/mobile/full-320x844-final.png`
 
 ## Verification evidence
 
@@ -19,17 +55,17 @@
 | --- | --- |
 | `npm.cmd run lint` | pass |
 | `npx.cmd tsc --noEmit` | pass |
-| `npm.cmd run qa:assets` | pass — 42 registered assets / 30 production text files |
-| `npm.cmd test` | pass — 34 files / 166 tests |
+| `npm.cmd run qa:assets` | pass — 54 registered assets / 30 production text files |
+| `npm.cmd test` | pass — 48 files / 198 tests |
 | `npm.cmd run build` | pass |
 | `npm.cmd run qa:browser` | pass — 12 tests |
 | `npm.cmd run qa:a11y` | pass — 5 tests |
 | `npm.cmd run qa:visual` | pass — 1 six-scene capture test |
 | `npm.cmd audit --omit=dev --audit-level=high` | pass — 0 production vulnerabilities |
 | `git diff --check` | pass |
-| Sites deployment | pass — version 22 published to production, owner-only access |
+| Sites deployment | pass — version 23 published to production, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `5,451,343 / 9,440,112` pixels differ across the six 1672×941 captures (hero `705,612`; about `941,731`; menu `1,165,210`; gallery `864,693`; souvenirs `923,253`; contacts `850,844`). No tolerance or mask was introduced. The latest bounded wide-desktop Menu heading pass improves the v21 report by `89` changed pixels while preserving the mobile fallback. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `4,706,235 / 9,440,112` pixels differ across the six 1672×941 captures (hero `645,874`; about `793,776`; menu `836,230`; gallery `803,678`; souvenirs `910,096`; contacts `716,581`). No tolerance or mask was introduced. The current bounded crop/calibration pass reduces the previous v22 mismatch while preserving the mobile fallback. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 

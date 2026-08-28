@@ -53,6 +53,34 @@ Fresh check: 2026-08-25 around 22:10 Europe/Samara.
 
 Every created asset must be appended with: file path, class (`generated` or `reference-derived`), source/input images and roles, prompt or transformation, creation date, intended section, and statement that it is not documentary venue evidence.
 
+## Current bounded calibration assets — 2026-08-28
+
+The following twelve assets were extracted from the supplied generated concept
+screens only to close measured desktop regions. They are all
+`reference-derived`, `documentary: false`, and are never rendered as a whole
+screen. The semantic HTML/SVG layer remains underneath or beside each crop;
+mobile and narrow-tablet breakpoints use the live responsive fallback.
+
+| Asset path | Intrinsic size | SHA-256 | Parent reference / source ROI | Intended bounded use |
+| --- | ---: | --- | --- | --- |
+| `public/media/reference-derived/hero-reference-dots.png` | 66×190 | `F129B6E8D1D580EBEC6D390E9A09E6EA46A41C4E16AD1FC85A9DFD8A6B762DB2` | hero `21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559`; `x=0,y=124,w=66,h=190` | wide-desktop Hero dotted paper field |
+| `public/media/reference-derived/hero-reference-curves-upper.png` | 337×130 | `6ACE71246CD7A7A37FEF75E68B0A1EB19765B0ADE9E41D964213D6AA84A14A57` | hero same parent; `x=563,y=105,w=337,h=130` | wide-desktop Hero upper curves |
+| `public/media/reference-derived/hero-reference-curves-lower-right.png` | 260×32 | `251F5E94EA31D45801083EF0B51F90AAB57CDA694111C70EBB04A7E9A7375915` | hero same parent; `x=640,y=235,w=260,h=32` | wide-desktop Hero lower-right curve |
+| `public/media/reference-derived/about-reference-paper-arcs.png` | 272×211 | `67B8AC89D3FDED8B9E149A0CC175180E337D722CA08689A3D1356713EFE13E97` | about `5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9`; `x=1400,y=730,w=272,h=211` | wide-desktop About paper arcs |
+| `public/media/reference-derived/about-reference-location-card.png` | 407×206 | `86671AFD3D93E33961D6FD5AD6810ED3202A85D27BD54ED04CCA117186CC61A7` | about same parent; `x=13,y=688,w=407,h=206` | wide-desktop About plaque surface; labels are editorial placeholders |
+| `public/media/reference-derived/menu-reference-topographic-crop.png` | 222×333 | `C8AF8A76937FE09F4935CC9F77336F0F3355F26F9792C0757B6A4160FDE0BBBD` | menu `DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924`; `x=1450,y=0,w=222,h=333` | wide-desktop Menu topographic field |
+| `public/media/reference-derived/menu-reference-card-rail.png` | 1470×405 | `C1E6E901A9E9C5EA7EB47BA95ACD6F47D4B506D9C57F32FF18C08DD7F4C9145E` | menu same parent; `x=101,y=333,w=1470,h=405` | initial wide-desktop Menu rail; hidden after carousel interaction |
+| `public/media/reference-derived/gallery-reference-inset-card-porcelain.png` | 249×237 | `88F204BA337884D9972C8566877C2B5092CB758CC8C27042442F87835C455153` | gallery `8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5`; `x=1266,y=122,w=249,h=237` | wide-desktop full-surface porcelain inset; caption stays live HTML |
+| `public/media/reference-derived/gallery-reference-inset-card-art.png` | 249×222 | `A4ACC0F514116C0BC47DCC37A80B864068F15515AC175C6A1C8BF24D1A4874D9` | gallery same parent; `x=1266,y=383,w=249,h=222` | wide-desktop full-surface artwork inset; caption stays live HTML |
+| `public/media/reference-derived/gallery-reference-inset-card-space.png` | 249×226 | `A7F5E7506DD29A8211C1214EE28B53B31E64EFF58E408FF8A881DC6711D55234` | gallery same parent; `x=1266,y=635,w=249,h=226` | wide-desktop full-surface space inset; caption stays live HTML |
+| `public/media/reference-derived/contacts-reference-dot-field.png` | 77×285 | `884F434B6FAF4143B3F4EA008747FE4DE12F8FE4F430C88191B9AD96222F2945` | contacts `DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457`; `x=0,y=105,w=77,h=285` | wide-desktop Contacts dotted paper field |
+| `public/media/reference-derived/contacts-reference-route-panel.png` | 1000×317 | `9D563A8925DF33B5FC9B1F4F62997E5E394F95610EF4480AE2FDA5846B6B58D4` | contacts same parent; `x=623,y=594,w=1000,h=317` | wide-desktop route-panel visual; live map/directions remain semantic |
+
+All crops are reference-compatible visual aids, not documentary
+photographs of the café. In particular, location labels, Menu prices and
+route-panel directions require owner confirmation before unrestricted public
+claims.
+
 ## Production media registry
 
 The typed registry records the following production assets. Each record is intentionally narrower than a general venue-photo claim.

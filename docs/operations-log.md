@@ -1,5 +1,43 @@
 # Operations log
 
+## 2026-08-28 — reference-derived crop calibration runtime `63e3b955`
+
+- Completed the bounded wide-desktop calibration pass for Hero, About, Menu,
+  Gallery and Contacts. The runtime adds Hero dots/curves, About paper arcs and
+  location plaque, Menu topographic/card-rail surfaces, three Gallery inset-card
+  surfaces, and Contacts dot-field/route-panel crops. Every asset is registered
+  as `reference-derived`, carries its parent reference SHA and crop coordinates,
+  and stays inside a measured region; live semantic markup and mobile fallbacks
+  remain active.
+- Updated editorial reference copy and prices only where needed for visual
+  alignment. Labels, prices and route-panel text remain placeholders requiring
+  café confirmation and are not documentary facts.
+- Rebuilt and verified the production bundle. `npm.cmd test` passed with 48
+  files / 198 tests; lint, TypeScript, build, asset audit (54 registered
+  assets), Chromium 12/12, accessibility 5/5, visual 1/1 and production audit
+  (0 vulnerabilities) passed. Browser guards at 1672×941, 1920×1080, 390×844
+  and 320×844 report exact client/scroll widths and no failed requests.
+- Fresh strict raw comparison remains intentionally NO-GO: `4,706,235 /
+  9,440,112` changed pixels (hero `645,874`; about `793,776`; menu `836,230`;
+  gallery `803,678`; souvenirs `910,096`; contacts `716,581`). No tolerance,
+  mask or baseline replacement was introduced.
+- A stale 4180 handoff process was found serving an old SSR chunk after an
+  intermediate build; the process was restarted, all current root/static chunks
+  returned 200, and the browser suite was rerun green. The stable local handoff
+  remains `http://127.0.0.1:4180/` because 4173/4174 are occupied by unrelated
+  checkouts.
+- AntiGravity manager attempts were rejected before work because the configured
+  model/effort combinations were unsupported. A direct `agy --print` plan-mode
+  review with `gemini-3.7-flash-high` completed successfully; its bounded
+  decoration hypotheses were treated as advisory and cross-checked locally.
+- Committed as `63e3b95555f3e51adffae90f0558c5faf6e3c1d7`, refreshed local author
+  and commit timestamps, and pushed both GitHub `main` and
+  `feat/pixel-accurate-landing`. The exact runtime was then pushed to the
+  configured Sites source, saved as version `23`, and deployed successfully as
+  `appgdep_6a91dc2a93448191a33e742572582c3c`. The archive hash is
+  `sha256:87da892af20acc3a29a759bf063a0f3a767f3f1e05e4fe48bbd4a91e2d2acbde`
+  (`145` files, `30,208,000` bytes); evidence archives stay untracked.
+
 ## 2026-08-28 — bounded wide-desktop Menu heading calibration and publication
 
 - An independent Menu ROI A/B isolated a small wide-desktop raster-origin
