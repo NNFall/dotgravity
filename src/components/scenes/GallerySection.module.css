@@ -452,6 +452,15 @@
    surrounding card supplies the rounded silhouette; clipping the image adds
    four painted corners that are not present in the reference frame. */
 @media (min-width: 901px) {
+  [class*="_inset_"] {
+    background: #f4e7dc;
+  }
+
+  [class*="_inset_"] figcaption {
+    background: #f4e7dc;
+    transform: translate(3px, calc(-50% + 1px));
+  }
+
   .inset img {
     border-radius: 0;
   }

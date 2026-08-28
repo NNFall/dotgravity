@@ -93,6 +93,16 @@ describe("menu desktop scene contract", () => {
     expect(wideDesktopBlock?.[1]).toContain("top: 1px;");
   });
 
+  test("uses the reference-calibrated copper surface for the wide desktop CTA", () => {
+    const wideDesktopBlock = menuStyles.match(
+      /@media \(min-width: 1440px\) \{([\s\S]*?)\n\}\s*\n\s*@media \(max-width: 1200px\)/,
+    );
+
+    expect(wideDesktopBlock?.[1]).toMatch(
+      /\.menuCta\s*\{[\s\S]*?background:\s*#a04221\s*;/,
+    );
+  });
+
   test("keeps the wide desktop menu paper surface flat", () => {
     expect(menuStyles).toMatch(
       /@media \(min-width: 1440px\) \{[\s\S]*?\.menuScene\s*\{[\s\S]*?background: var\(--menu-paper\);[\s\S]*?\}/,

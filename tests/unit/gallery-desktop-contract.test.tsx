@@ -132,4 +132,18 @@ describe("gallery desktop canvas contract", () => {
       /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.artInset\s+figcaption\s*,\s*\.spaceInset\s+figcaption\s*\{[^}]*\btop:\s*56%\s*;/,
     );
   });
+
+  test("uses the reference-calibrated desktop inset surfaces and caption offset", () => {
+    const wideDesktopInsetBlock = galleryStylesheet.match(
+      /@media\s*\(min-width:\s*901px\)\s*\{([\s\S]*?)\n\}/,
+    );
+
+    expect(wideDesktopInsetBlock?.[1]).toMatch(
+      /\[class\*="_inset_"\]\s*\{[^}]*background:\s*#f4e7dc\s*;/,
+    );
+    expect(wideDesktopInsetBlock?.[1]).toMatch(
+      /\[class\*="_inset_"\]\s+figcaption\s*\{[^}]*transform:\s*translate\(3px,\s*calc\(-50%\s*\+\s*1px\)\)\s*;/,
+    );
+    expect(mobileStyles).not.toContain("#f4e7dc");
+  });
 });
