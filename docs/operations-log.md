@@ -1,5 +1,43 @@
 # Operations log
 
+## 2026-08-28 — bounded Menu/Gallery surface calibration and publication
+
+- Completed two independent read-only ROI audits at `1672×941`. The Menu
+  audit identified a reference-compatible CTA surface (`#a04221` instead of
+  `#b44725`); the Gallery audit identified opaque inset/callout surfaces
+  (`#f4e7dc`) and a `translate(3px, calc(-50% + 1px))` desktop caption offset.
+  Both candidates were bounded to desktop media queries (`min-width:1440px`
+  and `min-width:901px` respectively); no mobile/tablet layout or asset
+  provenance changed.
+- Applied each candidate through TDD: focused contracts were intentionally
+  red before the CSS declarations, then green at `16/16` tests. A scoped code
+  review returned PASS and the gallery mobile-isolation assertion was hardened
+  to inspect the actual `max-width:900px` block.
+- Rebuilt the Vinext production bundle and refreshed the six-scene capture.
+  Full verification passed: 34 Vitest files / 166 tests, lint, TypeScript,
+  42-asset audit, build, Chromium browser 12/12, accessibility 5/5, visual
+  capture 1/1 and `npm audit --omit=dev --audit-level=high` with zero
+  vulnerabilities. Browser guards at `1920×1080`, `1672×941`, `390×844` and
+  `320×844` report exact client/scroll widths and retain menu/carousel/focus
+  behavior.
+- Fresh strict raw comparison remains intentionally red, improving from
+  `5,454,857` to `5,451,432 / 9,440,112` changed pixels. Per-scene changed
+  pixels are hero `705,612`, about `941,731`, menu `1,165,299`, gallery
+  `864,693`, souvenirs `923,253` and contacts `850,844`; no tolerance, mask or
+  baseline replacement was introduced.
+- Committed the exact validated runtime as
+  `e2709dbcefaaf7a60e122d1997f7b659487d060c`, amended with current local
+  author/commit timestamps, and pushed both GitHub `main` and
+  `feat/pixel-accurate-landing`. The same source was pushed to the configured
+  Sites source repository.
+- Packaged the successful `dist/`, saved Sites version 21 from that exact
+  commit (archive hash
+  `sha256:e9ef0351ca1b2efe6e8fc01a6ad2fce3219b880d510879d9b2475d3c27883704`,
+  133 files / 27,648,000 bytes), and deployed successfully as
+  `appgdep_6a91521c33e88191b340813079c44cdd` to the existing owner-only
+  production URL `https://dotgravity.ferumnikita2009.chatgpt.site`. The local
+  handoff server remains available at `http://127.0.0.1:4180/`.
+
 ## 2026-08-25
 
 - Confirmed the local workspace was empty and the remote Git repository was reachable but had no refs.

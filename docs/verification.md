@@ -12,14 +12,14 @@ a temporary Playwright config pointed at that fresh server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 34 files, 164 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 34 files, 166 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
 | `npm.cmd run qa:assets` | pass | 42 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 5,454,857 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 5,451,432 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -84,12 +84,51 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `5454857 / 9440112` changed
+  mask was introduced. The latest raw report is `5451432 / 9440112` changed
   pixels across the six supplied 1672×941 frames: hero is `705612` changed
-  pixels, about is `941731`, menu is `1166642`, gallery is `866775`, souvenirs
+  pixels, about is `941731`, menu is `1165299`, gallery is `864693`, souvenirs
   is `923253`, and contacts is `850844`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
+
+## Latest bounded Menu/Gallery surface calibration and publication — 2026-08-28
+
+Runtime `e2709dbcefaaf7a60e122d1997f7b659487d060c` is pushed to GitHub
+`main`, `feat/pixel-accurate-landing` and the configured Sites source. This
+bounded desktop pass keeps the six-scene React/CSS composition intact while
+calibrating two reference-derived surfaces: the wide Menu CTA uses `#a04221`
+and the Gallery inset cards/callouts use `#f4e7dc`, with a `3px` horizontal and
+`1px` vertical caption offset. Menu is scoped to `min-width:1440px`; Gallery
+is scoped to `min-width:901px`, so mobile/tablet rules remain unchanged. Focused
+TDD contracts cover both selectors and explicitly guard the mobile breakpoint.
+
+Fresh verification is green for 34 Vitest files / 166 tests, lint, TypeScript,
+42-asset audit, production build, Chromium behavior 12/12, accessibility 5/5,
+visual capture 1/1 and the production dependency audit (0 vulnerabilities).
+The rebuilt local handoff at `http://127.0.0.1:4180/` remains running; browser
+guards report equal document/client widths at `1920×1080`, `1672×941`,
+`390×844` and `320×844`, with menu focus/body-lock and carousel interactions
+operable.
+
+The strict raw report is still intentionally NO-GO, but improves from the v20
+`5,454,857` to `5,451,432 / 9,440,112` changed pixels (−3,425):
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 705,612 | 3.89986475 |
+| about | 941,731 | 5.87446229 |
+| menu | 1,165,299 | 5.79437548 |
+| gallery | 864,693 | 5.74929021 |
+| souvenirs | 923,253 | 6.88134251 |
+| contacts | 850,844 | 4.25967346 |
+| **Total** | **5,451,432 / 9,440,112** | **—** |
+
+Sites version 21 was saved from the same source commit and deployed
+successfully as `appgdep_6a91521c33e88191b340813079c44cdd` to the existing
+owner-only URL. The saved archive hash is
+`sha256:e9ef0351ca1b2efe6e8fc01a6ad2fce3219b880d510879d9b2475d3c27883704`
+(`133` files, `27,648,000` bytes). No tolerance, mask or baseline replacement
+was introduced; raw-zero and responsive reference baselines remain open.
 
 ## Latest bounded Hero icon calibration and publication — 2026-08-28
 

@@ -7,7 +7,7 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source commit: `d134743e27ac08a6a9f3a97c832ec5dab8cad093` (GitHub `main` and feature branch; current private Sites deployment)
+- Runtime source commit: `e2709dbcefaaf7a60e122d1997f7b659487d060c` (GitHub `main` and feature branch; current private Sites deployment)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -20,16 +20,16 @@
 | `npm.cmd run lint` | pass |
 | `npx.cmd tsc --noEmit` | pass |
 | `npm.cmd run qa:assets` | pass — 42 registered assets / 30 production text files |
-| `npm.cmd test` | pass — 34 files / 164 tests |
+| `npm.cmd test` | pass — 34 files / 166 tests |
 | `npm.cmd run build` | pass |
 | `npm.cmd run qa:browser` | pass — 12 tests |
 | `npm.cmd run qa:a11y` | pass — 5 tests |
 | `npm.cmd run qa:visual` | pass — 1 six-scene capture test |
 | `npm.cmd audit --omit=dev --audit-level=high` | pass — 0 production vulnerabilities |
 | `git diff --check` | pass |
-| Sites deployment | pass — version 20 published to production, owner-only access |
+| Sites deployment | pass — version 21 published to production, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `5,454,857 / 9,440,112` pixels differ across the six 1672×941 captures (hero `705,612`; about `941,731`; menu `1,166,642`; gallery `866,775`; souvenirs `923,253`; contacts `850,844`). No tolerance or mask was introduced. The latest bounded Hero icon pass improves the published report by `5,755` changed pixels, entirely within the desktop feature rail, while preserving the mobile fallback. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `5,451,432 / 9,440,112` pixels differ across the six 1672×941 captures (hero `705,612`; about `941,731`; menu `1,165,299`; gallery `864,693`; souvenirs `923,253`; contacts `850,844`). No tolerance or mask was introduced. The latest bounded Menu/Gallery surface pass improves the v20 report by `3,425` changed pixels while preserving the mobile fallback. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 
@@ -41,11 +41,40 @@ reference header without a second interactive header, restores gallery inset
 captions/icons, keeps gallery themes phrased as visual motifs rather than
 unverified venue facts, and preserves mobile scene continuity.
 
-Sites version 20 is live at the production URL from the exact source commit
-above (version 19 is superseded). The deployment is intentionally owner-only; an anonymous request is
+Sites version 21 is live at the production URL from the exact source commit
+above (version 20 is superseded). The deployment is intentionally owner-only; an anonymous request is
 expected to show the ChatGPT sign-in screen rather than expose the page publicly.
 
-The current read-only AntiGravity audit is `a18418c1-9ad3-4b20-989c-5111947f974f`; its Contacts map-size hypothesis was independently checked and rejected. Earlier bounded audits supplied the Menu, Gallery and Contacts calibration hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. This release records a 164-test suite, 42 registered assets, bounded Hero feature-icon/cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork. The accepted v20 runtime keeps the v19 wide-desktop Menu/Gallery/Contacts refinements and the v18 plaque/CTA/shadow details; the source is pushed and the owner-only Sites deployment is live.
+The current read-only AntiGravity audit is `a18418c1-9ad3-4b20-989c-5111947f974f`; its Contacts map-size hypothesis was independently checked and rejected. Earlier bounded audits supplied the Menu, Gallery and Contacts calibration hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. This release records a 166-test suite, 42 registered assets, bounded Hero feature-icon/cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork. The accepted v21 runtime keeps the v20 wide-desktop Menu/Gallery surface refinements, v19 Menu/Gallery/Contacts geometry and the v18 plaque/CTA/shadow details; the source is pushed and the owner-only Sites deployment is live.
+
+## Latest bounded Menu/Gallery surface calibration and publication — 2026-08-28
+
+Runtime `e2709dbcefaaf7a60e122d1997f7b659487d060c` is pushed to GitHub
+`main`, `feat/pixel-accurate-landing` and the configured Sites source. The
+bounded desktop calibration keeps the six live React/CSS scene anchors and
+adjusts only two reference-compatible surfaces: wide Menu CTA `#a04221`, and
+Gallery inset cards/callouts `#f4e7dc` with a `translate(3px, calc(-50% + 1px))`
+caption offset. The Menu rule is `min-width:1440px`; Gallery is `min-width:901px`.
+Focused TDD contracts cover the declarations and mobile isolation.
+
+Fresh evidence is green for 34 Vitest files / 166 tests, lint, TypeScript,
+42 registered assets, production build, browser behavior 12/12, accessibility
+5/5, visual capture 1/1 and production dependency audit (0 vulnerabilities).
+The local production handoff remains `http://127.0.0.1:4180/`; required desktop
+and mobile browser guards report no horizontal overflow and retain operable
+menu/carousel behavior.
+
+The strict raw comparator remains NO-GO, with `5,451,432 / 9,440,112` changed
+pixels (hero `705,612`; about `941,731`; menu `1,165,299`; gallery `864,693`;
+souvenirs `923,253`; contacts `850,844`). This is `3,425` fewer changed pixels
+than v20; no tolerance, mask or baseline replacement was introduced.
+
+Sites version 21 was saved from the exact commit and deployed successfully as
+`appgdep_6a91521c33e88191b340813079c44cdd` to the existing owner-only URL.
+The archive hash is
+`sha256:e9ef0351ca1b2efe6e8fc01a6ad2fce3219b880d510879d9b2475d3c27883704`
+(`133` files, `27,648,000` bytes). The published URL remains owner-only, so an
+anonymous browser is expected to show the ChatGPT sign-in interstitial.
 
 ## Latest bounded Hero icon calibration and publication — 2026-08-28
 
