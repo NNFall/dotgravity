@@ -69,7 +69,9 @@ describe("menu desktop scene contract", () => {
       /@media \(min-width: 1440px\) \{[\s\S]*?\.header h2\s*\{([\s\S]*?)\n  \}/,
     );
 
-    expect(wideDesktopHeading?.[1]).toContain("transform: scaleY(0.9);");
+    expect(wideDesktopHeading?.[1]).toContain(
+      "transform: translateY(0.5px) scaleY(0.9);",
+    );
     expect(wideDesktopHeading?.[1]).toContain("transform-origin: top center;");
   });
 
@@ -79,7 +81,10 @@ describe("menu desktop scene contract", () => {
     );
 
     expect(wideDesktopHeading?.[1]).toContain("position: relative;");
-    expect(wideDesktopHeading?.[1]).toContain("left: 16px;");
+    expect(wideDesktopHeading?.[1]).toContain("left: 24px;");
+    expect(wideDesktopHeading?.[1]).toContain(
+      "transform: translateY(0.5px) scaleY(0.9);",
+    );
   });
 
   test("anchors the wide desktop CTA to the supplied raster origin", () => {

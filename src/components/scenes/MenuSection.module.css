@@ -498,9 +498,9 @@
   .header h2 {
     position: relative;
     margin: 44px 0 0;
-    left: 16px;
+    left: 24px;
     letter-spacing: -0.004em;
-    transform: scaleY(0.9);
+    transform: translateY(0.5px) scaleY(0.9);
     transform-origin: top center;
   }
 
