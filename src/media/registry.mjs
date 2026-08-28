@@ -261,6 +261,39 @@ export const mediaManifest = [
     },
   },
   {
+    id: "hero-reference-heading-flower",
+    path: "/media/reference-derived/hero-reference-heading-flower.png",
+    sha256:
+      "EA1BBBCE401164C2E12FDEDC074C504CD39E3DAB8BAA2B9975065E6AECF57940",
+    dimensions: {
+      width: 45,
+      height: 45,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded heading-flower ROI crop x=468,y=236,w=45,h=45 from the supplied hero concept; a deterministic connected chroma-derived alpha mask keeps the copper flower (core r-g >= 20 with adjacent r-g >= 14) and removes the surrounding paper field.",
+      statement:
+        "Bounded decorative crop from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "desktop hero heading flower ornament only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the transparent bounded flower crop over the live desktop heading ornament",
+      focalPoint: "copper flower mark between the hero heading lines",
+      responsive:
+        "Use only at the wide desktop breakpoint; retain the live BrandMark SVG fallback at tablet and mobile widths and never expand the crop into a full reference screen.",
+    },
+  },
+  {
     id: "hero-reference-feature-coffee",
     path: "/media/reference-derived/hero-reference-feature-coffee.png",
     sha256:
@@ -485,6 +518,39 @@ export const mediaManifest = [
       focalPoint: "fine cathedral illustration behind the about copy rail",
       responsive:
         "Keep the decoration inside the desktop about edge footprint and retain the vector fallback on mobile; never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "about-reference-cathedral-opaque",
+    path: "/media/reference-derived/about-reference-cathedral-opaque.png",
+    sha256:
+      "9E3766E244DF6A5BCF4433084E10D978EC2BB69294B34C34B5F4384BD22051E8",
+    dimensions: {
+      width: 112,
+      height: 690,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9",
+      transformation:
+        "Bounded opaque cathedral edge ROI crop x=1560,y=40,w=112,h=690 from the supplied about concept; the paper-backed pixels are retained exactly for a desktop reference overlay.",
+      statement:
+        "Bounded opaque decorative crop from the supplied generated about concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["about"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "about opaque cathedral edge region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the opaque bounded cathedral edge crop at the measured right edge of the about scene on desktop",
+      focalPoint: "fine cathedral illustration and its paper-backed edge surface",
+      responsive:
+        "Use only inside the measured desktop about edge footprint; retain the transparent/vector fallback below the desktop breakpoint and never expand it into a full reference screen.",
     },
   },
   {
@@ -749,6 +815,171 @@ export const mediaManifest = [
     },
   },
   {
+    id: "menu-reference-flower-badge-cappuccino",
+    path: "/media/reference-derived/menu-reference-flower-badge-cappuccino.png",
+    sha256:
+      "8424D29B4AB2DE5BC2D8BD7211244B8519EDE88346F29A97C58B1916F2390069",
+    dimensions: {
+      width: 35,
+      height: 39,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Transparent bounded flower-badge crop x=320,y=359,w=35,h=39 from the supplied menu concept; a deterministic five-petal coverage mask retains only the reference-compatible terracotta flower and pale petals, clearing the cappuccino photo field, card frame, copy and price.",
+      statement:
+        "Bounded non-documentary decorative crop from the supplied generated menu concept for wide-desktop visual matching only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop menu flower badge only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the transparent badge over the corresponding cappuccino photo frame on the initial wide-desktop menu card rail.",
+      focalPoint: "five-petal terracotta flower with pale petals",
+      responsive:
+        "Use only at min-width 1440px; hide below the desktop breakpoint so the live SVG badge remains the responsive fallback.",
+    },
+  },
+  {
+    id: "menu-reference-flower-badge-berry-dessert",
+    path: "/media/reference-derived/menu-reference-flower-badge-berry-dessert.png",
+    sha256:
+      "0931BD5B6D2F37E357AE6914B009DE3EC6CC3111F414CB21D30D98AE74063232",
+    dimensions: {
+      width: 35,
+      height: 39,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Transparent bounded flower-badge crop x=616,y=359,w=35,h=39 from the supplied menu concept; a deterministic five-petal coverage mask retains only the reference-compatible terracotta flower and pale petals, clearing the berry-dessert photo field, card frame, copy and price.",
+      statement:
+        "Bounded non-documentary decorative crop from the supplied generated menu concept for wide-desktop visual matching only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop menu flower badge only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the transparent badge over the corresponding berry-dessert photo frame on the initial wide-desktop menu card rail.",
+      focalPoint: "five-petal terracotta flower with pale petals",
+      responsive:
+        "Use only at min-width 1440px; hide below the desktop breakpoint so the live SVG badge remains the responsive fallback.",
+    },
+  },
+  {
+    id: "menu-reference-flower-badge-pistachio-cake",
+    path: "/media/reference-derived/menu-reference-flower-badge-pistachio-cake.png",
+    sha256:
+      "0DFF72A0B80D86641BD13D1F9E6336231ECF3FFD38E7A5892426A456FDF96861",
+    dimensions: {
+      width: 35,
+      height: 39,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Transparent bounded flower-badge crop x=911,y=359,w=35,h=39 from the supplied menu concept; a deterministic five-petal coverage mask retains only the reference-compatible terracotta flower and pale petals, clearing the pistachio-cake photo field, card frame, copy and price.",
+      statement:
+        "Bounded non-documentary decorative crop from the supplied generated menu concept for wide-desktop visual matching only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop menu flower badge only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the transparent badge over the corresponding pistachio-cake photo frame on the initial wide-desktop menu card rail.",
+      focalPoint: "five-petal terracotta flower with pale petals",
+      responsive:
+        "Use only at min-width 1440px; hide below the desktop breakpoint so the live SVG badge remains the responsive fallback.",
+    },
+  },
+  {
+    id: "menu-reference-flower-badge-red-velvet",
+    path: "/media/reference-derived/menu-reference-flower-badge-red-velvet.png",
+    sha256:
+      "EF855074B8DAC14E1B6D1146C35ED86BB451E865729CBFC9A34C6AF34C8BD4C5",
+    dimensions: {
+      width: 35,
+      height: 39,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Transparent bounded flower-badge crop x=1206,y=359,w=35,h=39 from the supplied menu concept; a deterministic five-petal coverage mask retains only the reference-compatible terracotta flower and pale petals, clearing the red-velvet photo field, card frame, copy and price.",
+      statement:
+        "Bounded non-documentary decorative crop from the supplied generated menu concept for wide-desktop visual matching only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop menu flower badge only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the transparent badge over the corresponding red-velvet photo frame on the initial wide-desktop menu card rail.",
+      focalPoint: "five-petal terracotta flower with pale petals",
+      responsive:
+        "Use only at min-width 1440px; hide below the desktop breakpoint so the live SVG badge remains the responsive fallback.",
+    },
+  },
+  {
+    id: "menu-reference-flower-badge-cheesecake",
+    path: "/media/reference-derived/menu-reference-flower-badge-cheesecake.png",
+    sha256:
+      "200474222F78BA910A43056C3C25758A461303BCC731DF28EB4F1333DB6AAA06",
+    dimensions: {
+      width: 35,
+      height: 39,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Transparent bounded flower-badge crop x=1508,y=359,w=35,h=39 from the supplied menu concept; a deterministic five-petal coverage mask retains only the reference-compatible terracotta flower and pale petals, clearing the cheesecake photo field, card frame, copy and price.",
+      statement:
+        "Bounded non-documentary decorative crop from the supplied generated menu concept for wide-desktop visual matching only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop menu flower badge only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the transparent badge over the corresponding cheesecake photo frame on the initial wide-desktop menu card rail.",
+      focalPoint: "five-petal terracotta flower with pale petals",
+      responsive:
+        "Use only at min-width 1440px; hide below the desktop breakpoint so the live SVG badge remains the responsive fallback.",
+    },
+  },
+  {
     id: "menu-reference-cathedral-linework",
     path: "/media/reference-derived/menu-reference-cathedral-linework.png",
     sha256:
@@ -779,6 +1010,39 @@ export const mediaManifest = [
       focalPoint: "three-spire cathedral illustration and its fine architectural lines",
       responsive:
         "Keep the decoration behind the menu scene content, scale it down on mobile, and never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "menu-reference-cathedral-opaque",
+    path: "/media/reference-derived/menu-reference-cathedral-opaque.png",
+    sha256:
+      "966A27D2BFEF529C0477E807061D890EE01825F2DF6999689026BA258D88EA63",
+    dimensions: {
+      width: 176,
+      height: 450,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Bounded opaque cathedral edge ROI crop x=0,y=25,w=176,h=450 from the supplied menu concept; the paper-backed pixels are retained exactly for a desktop reference overlay behind the card rail.",
+      statement:
+        "Bounded opaque decorative crop from the supplied generated menu concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "menu opaque cathedral edge region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the opaque bounded cathedral edge crop at the measured left edge of the menu scene on desktop behind the card rail",
+      focalPoint: "three-spire cathedral illustration and its paper-backed edge surface",
+      responsive:
+        "Use only inside the measured desktop menu edge footprint; retain the transparent/vector fallback below the desktop breakpoint and never expand it into a full reference screen.",
     },
   },
   {
@@ -1167,6 +1431,39 @@ export const mediaManifest = [
     },
   },
   {
+    id: "gallery-reference-cathedral-opaque",
+    path: "/media/reference-derived/gallery-reference-cathedral-opaque.png",
+    sha256:
+      "8BC2F0F637E25E692627B4EFE85CFFBACE299B7E8218CD2121390FEA3516EA91",
+    dimensions: {
+      width: 120,
+      height: 665,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5",
+      transformation:
+        "Bounded opaque cathedral edge ROI crop x=0,y=250,w=120,h=665 from the supplied gallery concept; the paper-backed pixels are retained exactly for a desktop reference overlay.",
+      statement:
+        "Bounded opaque decorative crop from the supplied generated gallery concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["gallery"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "gallery opaque cathedral edge region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the opaque bounded cathedral edge crop at the measured left edge of the gallery scene on desktop",
+      focalPoint: "three-spire cathedral illustration and its paper-backed edge surface",
+      responsive:
+        "Use only inside the measured desktop gallery edge footprint; retain the transparent/vector fallback below the desktop breakpoint and never expand it into a full reference screen.",
+    },
+  },
+  {
     id: "souvenirs-reference-main-photo",
     path: "/media/reference-derived/souvenirs-reference-main-photo.png",
     sha256:
@@ -1197,6 +1494,39 @@ export const mediaManifest = [
         "open jewelry case, porcelain cups, flowers and facade sign inside the photo region",
       responsive:
         "Keep the photo inside the bounded main artwork frame; never render it as a full-page reference screen.",
+    },
+  },
+  {
+    id: "souvenirs-reference-main-frame-ring",
+    path: "/media/reference-derived/souvenirs-reference-main-frame-ring.png",
+    sha256:
+      "4CAA236F9572322D5B7A9605902F2790F48E5C89D01874C2B69836528680765A",
+    dimensions: {
+      width: 786,
+      height: 536,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0",
+      transformation:
+        "Bounded transparent outer-frame ROI crop x=807,y=89,w=786,h=536 from the supplied souvenirs concept; the measured inner photo rectangle x=818,y=101,w=764,h=512 was alpha-cleared so the exact live photo remains visible beneath the ring.",
+      statement:
+        "Bounded frame-only crop from the supplied generated souvenirs concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop souvenirs main artwork outer frame only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the transparent ring at the measured desktop artwork origin while leaving the exact inner photo and live disclosure underneath",
+      focalPoint: "paper edge, rounded frame and reference border treatment",
+      responsive:
+        "Use only at min-width 1440px; hide below the wide-desktop breakpoint so the responsive live frame remains active and never expand the crop into a full reference screen.",
     },
   },
   {
@@ -1686,6 +2016,39 @@ export const mediaManifest = [
       focalPoint: "fine cathedral illustration behind the contacts copy rail",
       responsive:
         "Keep the decoration inside the desktop contacts edge footprint and hide it below the desktop breakpoint; never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "contacts-reference-cathedral-opaque",
+    path: "/media/reference-derived/contacts-reference-cathedral-opaque.png",
+    sha256:
+      "C7EB5206590BC0033C50A8DDBCC68C5B2801BB9C835C44A84752C4960AB24CF5",
+    dimensions: {
+      width: 95,
+      height: 560,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457",
+      transformation:
+        "Bounded opaque cathedral edge ROI crop x=0,y=350,w=95,h=560 from the supplied contacts concept; the paper-backed pixels are retained exactly for a desktop reference overlay.",
+      statement:
+        "Bounded opaque decorative crop from the supplied generated contacts concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["contacts"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "contacts opaque cathedral edge region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the opaque bounded cathedral edge crop at the measured left edge of the contacts scene on desktop",
+      focalPoint: "fine cathedral illustration and its paper-backed edge surface",
+      responsive:
+        "Use only inside the measured desktop contacts edge footprint; retain the transparent/vector fallback below the desktop breakpoint and never expand it into a full reference screen.",
     },
   },
   {

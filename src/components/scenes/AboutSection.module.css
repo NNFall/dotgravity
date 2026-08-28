@@ -547,6 +547,19 @@
   display: none;
 }
 
+.aboutCathedralOpaqueReference {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 112px;
+  height: 690px;
+  object-fit: fill;
+  object-position: 0 0;
+  pointer-events: none;
+}
+
 @media (min-width: 761px) {
   .photoFrame::after {
     box-shadow: inset 0 2px 0 0 rgb(180 71 37 / 50%);
@@ -567,6 +580,10 @@
     width: 112px;
     height: 690px;
     object-fit: fill;
+  }
+
+  .aboutCathedralOpaqueReference {
+    display: block;
   }
 }
 
@@ -805,6 +822,10 @@
   }
 
   .cathedralReference {
+    display: none;
+  }
+
+  .aboutCathedralOpaqueReference {
     display: none;
   }
 }

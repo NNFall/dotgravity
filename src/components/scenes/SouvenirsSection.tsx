@@ -5,6 +5,7 @@ import styles from "./SouvenirsSection.module.css";
 
 type SouvenirReferenceCropId =
   | "souvenirs-reference-main-photo"
+  | "souvenirs-reference-main-frame-ring"
   | "souvenirs-reference-bracelet"
   | "souvenirs-reference-ring"
   | "souvenirs-reference-teacup"
@@ -33,6 +34,7 @@ function getReferenceSouvenirCrop(id: SouvenirReferenceCropId): MediaAsset {
 
 const souvenirCrops = {
   main: getReferenceSouvenirCrop("souvenirs-reference-main-photo"),
+  mainFrame: getReferenceSouvenirCrop("souvenirs-reference-main-frame-ring"),
   bracelet: getReferenceSouvenirCrop("souvenirs-reference-bracelet"),
   ring: getReferenceSouvenirCrop("souvenirs-reference-ring"),
   teacup: getReferenceSouvenirCrop("souvenirs-reference-teacup"),
@@ -285,6 +287,20 @@ export function SouvenirsSection() {
             height={souvenirCrops.main.dimensions.height}
             src={souvenirCrops.main.path}
             width={souvenirCrops.main.dimensions.width}
+          />
+          {/* The transparent outer ring restores the reference edge treatment while
+              leaving the exact inner photo and live disclosure untouched. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt=""
+            aria-hidden="true"
+            className={styles.mainFrameReference}
+            data-provenance={souvenirCrops.mainFrame.provenance.classification}
+            data-souvenirs-decoration="main-frame-ring"
+            decoding="async"
+            height={souvenirCrops.mainFrame.dimensions.height}
+            src={souvenirCrops.mainFrame.path}
+            width={souvenirCrops.mainFrame.dimensions.width}
           />
           <figcaption>Фрагмент референсной концепции</figcaption>
         </figure>

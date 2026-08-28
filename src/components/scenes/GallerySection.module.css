@@ -442,6 +442,19 @@
   display: none;
 }
 
+.galleryCathedralOpaqueReference {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 120px;
+  height: 665px;
+  object-fit: fill;
+  object-position: 0 0;
+  pointer-events: none;
+}
+
 .cathedralVector {
   display: block;
 }
@@ -503,6 +516,10 @@
     width: 120px;
     height: 665px;
     object-fit: fill;
+  }
+
+  .galleryCathedralOpaqueReference {
+    display: block;
   }
 
   .cathedralVector {
@@ -790,6 +807,10 @@
   }
 
   .cathedralReference {
+    display: none;
+  }
+
+  .galleryCathedralOpaqueReference {
     display: none;
   }
 

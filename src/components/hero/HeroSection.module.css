@@ -2,6 +2,10 @@
   display: none;
 }
 
+:global(.hero-heading-ornament__reference) {
+  display: none;
+}
+
 :global(.hero-reference-icon) {
   display: none;
   width: 62px;
@@ -185,6 +189,30 @@
   }
 
   :global(.hero-curves) > span {
+    display: none;
+  }
+
+  /* Replace only the live heading flower at the wide-desktop reference gate;
+     the live SVG keeps the flex footprint so the measured rule stays fixed. */
+  :global(.hero-heading-ornament) > svg {
+    visibility: hidden;
+  }
+
+  :global(.hero-heading-ornament__reference) {
+    position: absolute;
+    top: calc(92px - clamp(78px, 11vh, 104px));
+    left: calc(104px - clamp(56px, 6.52vw, 110px));
+    display: block;
+    width: 45px;
+    height: 45px;
+    object-fit: fill;
+    object-position: 0 0;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 1180px) {
+  :global(.hero-heading-ornament__reference) {
     display: none;
   }
 }

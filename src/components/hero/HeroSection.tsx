@@ -31,6 +31,20 @@ const heroReferenceMedia = (() => {
   return registeredHeroReference;
 })();
 
+const heroHeadingFlowerReference = (() => {
+  const registeredHeadingFlower = mediaManifest.find(
+    (asset) => asset.id === "hero-reference-heading-flower",
+  );
+
+  if (!registeredHeadingFlower) {
+    throw new Error(
+      "The bounded reference-derived hero heading flower is required to render the hero scene.",
+    );
+  }
+
+  return registeredHeadingFlower;
+})();
+
 function getHeroImageAlt() {
   return heroMedia.provenance.classification ===
     "generated/reference-compatible"
@@ -154,6 +168,19 @@ export function HeroSection() {
         </h1>
         <div aria-hidden="true" className="hero-heading-ornament">
           <BrandMark />
+          {/* The wide-desktop flower is a bounded reference crop; the live SVG remains the tablet/mobile fallback. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt=""
+            aria-hidden="true"
+            className="hero-heading-ornament__reference"
+            data-provenance={heroHeadingFlowerReference.provenance.classification}
+            data-reference-crop="heading-flower"
+            decoding="async"
+            height={heroHeadingFlowerReference.dimensions.height}
+            src={heroHeadingFlowerReference.path}
+            width={heroHeadingFlowerReference.dimensions.width}
+          />
           <i />
         </div>
         <p className="hero-kicker">Кофе. Искусство. Вдохновение.</p>

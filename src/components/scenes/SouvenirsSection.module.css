@@ -258,9 +258,9 @@
   width: 47.01%;
   height: 536px;
   margin: 0;
-  overflow: hidden;
+  overflow: visible;
   padding: 11px 10px;
-  border: 1px solid rgb(143 50 29 / 64%);
+  border: 1px solid transparent;
   border-radius: 25px 25px 19px 19px;
   background: var(--porcelain);
   box-shadow: 0 14px 32px rgb(75 48 33 / 12%);
@@ -279,9 +279,37 @@
   filter: none;
 }
 
+.mainArtwork .mainFrameReference {
+  position: absolute;
+  z-index: 3;
+  inset: auto;
+  top: -1px;
+  right: auto;
+  bottom: auto;
+  left: -1px;
+  display: none;
+  width: calc(100% + 2px);
+  max-width: none;
+  height: calc(100% + 2px);
+  max-height: none;
+  object-fit: fill;
+  object-position: 0 0;
+  pointer-events: none;
+}
+
 @media (min-width: 1440px) {
+  .mainArtwork .mainFrameReference {
+    display: block;
+  }
+
   .mainArtwork {
     box-shadow: none;
+  }
+}
+
+@media (max-width: 1439px) {
+  .mainArtwork .mainFrameReference {
+    display: none;
   }
 }
 

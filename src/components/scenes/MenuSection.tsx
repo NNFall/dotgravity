@@ -35,35 +35,41 @@ const menuItems = [
     title: "Капучино",
     category: "Кофе",
     artworkId: "menu-reference-cappuccino",
+    flowerArtworkId: "menu-reference-flower-badge-cappuccino",
     price: "от 210 ₽",
   },
   {
     title: "Малиновый вулкан",
     category: "Десерт",
     artworkId: "menu-reference-berry-dessert",
+    flowerArtworkId: "menu-reference-flower-badge-berry-dessert",
     price: "350 ₽",
   },
   {
     title: "Фисташковый торт с рикоттой",
     category: "Десерт",
     artworkId: "menu-reference-pistachio-cake",
+    flowerArtworkId: "menu-reference-flower-badge-pistachio-cake",
     price: "360 ₽",
   },
   {
     title: "Красный бархат",
     category: "Десерт",
     artworkId: "menu-reference-red-velvet",
+    flowerArtworkId: "menu-reference-flower-badge-red-velvet",
     price: "290 ₽",
   },
   {
     title: "Чизкейк",
     category: "Десерт",
     artworkId: "menu-reference-cheesecake",
+    flowerArtworkId: "menu-reference-flower-badge-cheesecake",
     price: "от 260 ₽",
   },
 ] as const;
 
 type MenuArtworkId = (typeof menuItems)[number]["artworkId"];
+type MenuFlowerArtworkId = (typeof menuItems)[number]["flowerArtworkId"];
 
 const menuArtworkById: Record<MenuArtworkId, MediaAsset> = {
   "menu-reference-cappuccino": getReferenceMenuArtwork(
@@ -83,8 +89,30 @@ const menuArtworkById: Record<MenuArtworkId, MediaAsset> = {
   ),
 };
 
+const menuFlowerArtworkById: Record<MenuFlowerArtworkId, MediaAsset> = {
+  "menu-reference-flower-badge-cappuccino": getReferenceMenuArtwork(
+    "menu-reference-flower-badge-cappuccino",
+  ),
+  "menu-reference-flower-badge-berry-dessert": getReferenceMenuArtwork(
+    "menu-reference-flower-badge-berry-dessert",
+  ),
+  "menu-reference-flower-badge-pistachio-cake": getReferenceMenuArtwork(
+    "menu-reference-flower-badge-pistachio-cake",
+  ),
+  "menu-reference-flower-badge-red-velvet": getReferenceMenuArtwork(
+    "menu-reference-flower-badge-red-velvet",
+  ),
+  "menu-reference-flower-badge-cheesecake": getReferenceMenuArtwork(
+    "menu-reference-flower-badge-cheesecake",
+  ),
+};
+
 const menuCathedralArtwork = getReferenceMenuArtwork(
   "menu-reference-cathedral-linework",
+);
+
+const menuCathedralOpaqueArtwork = getReferenceMenuArtwork(
+  "menu-reference-cathedral-opaque",
 );
 
 const menuBotanicalArtwork = getReferenceMenuArtwork(
@@ -150,18 +178,33 @@ function FlowerMark({
 
 function CathedralMark() {
   return (
-    /* eslint-disable-next-line @next/next/no-img-element */
-    <img
-      alt=""
-      aria-hidden="true"
-      className={styles.cathedralLinework}
-      data-menu-decoration="cathedral"
-      data-provenance={menuCathedralArtwork.provenance.classification}
-      decoding="async"
-      height={menuCathedralArtwork.dimensions.height}
-      src={menuCathedralArtwork.path}
-      width={menuCathedralArtwork.dimensions.width}
-    />
+    <>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={styles.cathedralLinework}
+        data-menu-decoration="cathedral"
+        data-provenance={menuCathedralArtwork.provenance.classification}
+        decoding="async"
+        height={menuCathedralArtwork.dimensions.height}
+        src={menuCathedralArtwork.path}
+        width={menuCathedralArtwork.dimensions.width}
+      />
+      {/* Keep the paper-backed reference edge as a desktop-only visual overlay. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={styles.menuCathedralOpaqueReference}
+        data-menu-decoration="cathedral-opaque"
+        data-provenance={menuCathedralOpaqueArtwork.provenance.classification}
+        decoding="async"
+        height={menuCathedralOpaqueArtwork.dimensions.height}
+        src={menuCathedralOpaqueArtwork.path}
+        width={menuCathedralOpaqueArtwork.dimensions.width}
+      />
+    </>
   );
 }
 
@@ -376,6 +419,8 @@ export function MenuSection() {
           >
             {menuItems.map((item, index) => {
               const artwork = menuArtworkById[item.artworkId];
+              const flowerArtwork =
+                menuFlowerArtworkById[item.flowerArtworkId];
 
               return (
                 <li
@@ -403,6 +448,21 @@ export function MenuSection() {
                         width={artwork.dimensions.width}
                       />
                       <FlowerMark card className={styles.cardFlower} />
+                      {/* Keep the reference-compatible badge bounded to the corresponding wide-desktop card. */}
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        className={styles.cardFlowerReference}
+                        data-menu-decoration="flower-badge"
+                        data-provenance={
+                          flowerArtwork.provenance.classification
+                        }
+                        decoding="async"
+                        height={flowerArtwork.dimensions.height}
+                        src={flowerArtwork.path}
+                        width={flowerArtwork.dimensions.width}
+                      />
                       {artwork.provenance.classification ===
                       "generated/reference-compatible" ? (
                         <span className={styles.generatedBadge}>

@@ -44,6 +44,20 @@ const aboutCathedralArtwork = (() => {
   return registeredAboutCathedral;
 })();
 
+const aboutCathedralOpaqueArtwork = (() => {
+  const registeredAboutCathedralOpaque = mediaManifest.find(
+    (asset) => asset.id === "about-reference-cathedral-opaque",
+  );
+
+  if (!registeredAboutCathedralOpaque) {
+    throw new Error(
+      "The bounded opaque about cathedral artwork is required to render the about scene.",
+    );
+  }
+
+  return registeredAboutCathedralOpaque;
+})();
+
 const aboutPaperArcArtwork = (() => {
   const registeredAboutPaperArcs = mediaManifest.find(
     (asset) => asset.id === "about-reference-paper-arcs",
@@ -277,6 +291,19 @@ export function AboutSection() {
           height={aboutCathedralArtwork.dimensions.height}
           src={aboutCathedralArtwork.path}
           width={aboutCathedralArtwork.dimensions.width}
+        />
+        {/* Keep the paper-backed reference edge as a desktop-only visual overlay. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt=""
+          aria-hidden="true"
+          className={styles.aboutCathedralOpaqueReference}
+          data-about-decoration="cathedral-opaque"
+          data-provenance={aboutCathedralOpaqueArtwork.provenance.classification}
+          decoding="async"
+          height={aboutCathedralOpaqueArtwork.dimensions.height}
+          src={aboutCathedralOpaqueArtwork.path}
+          width={aboutCathedralOpaqueArtwork.dimensions.width}
         />
       </div>
 

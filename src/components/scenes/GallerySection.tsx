@@ -12,7 +12,8 @@ type GalleryCropId =
   | "gallery-reference-inset-card-porcelain"
   | "gallery-reference-inset-card-art"
   | "gallery-reference-inset-card-space"
-  | "gallery-reference-cathedral-linework";
+  | "gallery-reference-cathedral-linework"
+  | "gallery-reference-cathedral-opaque";
 
 function getGalleryCrop(id: GalleryCropId): MediaAsset {
   const crop = mediaManifest.find((asset) => asset.id === id);
@@ -44,6 +45,10 @@ const galleryCrops = {
 
 const galleryCathedralArtwork = getGalleryCrop(
   "gallery-reference-cathedral-linework",
+);
+
+const galleryCathedralOpaqueArtwork = getGalleryCrop(
+  "gallery-reference-cathedral-opaque",
 );
 
 const referenceGalleryAlt =
@@ -138,18 +143,33 @@ function CathedralLinework() {
 
 function ReferenceCathedralLinework() {
   return (
-    /* eslint-disable-next-line @next/next/no-img-element */
-    <img
-      alt=""
-      aria-hidden="true"
-      className={styles.cathedralReference}
-      data-gallery-decoration="cathedral"
-      data-provenance={galleryCathedralArtwork.provenance.classification}
-      decoding="async"
-      height={galleryCathedralArtwork.dimensions.height}
-      src={galleryCathedralArtwork.path}
-      width={galleryCathedralArtwork.dimensions.width}
-    />
+    <>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={styles.cathedralReference}
+        data-gallery-decoration="cathedral"
+        data-provenance={galleryCathedralArtwork.provenance.classification}
+        decoding="async"
+        height={galleryCathedralArtwork.dimensions.height}
+        src={galleryCathedralArtwork.path}
+        width={galleryCathedralArtwork.dimensions.width}
+      />
+      {/* Keep the paper-backed reference edge as a desktop-only visual overlay. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={styles.galleryCathedralOpaqueReference}
+        data-gallery-decoration="cathedral-opaque"
+        data-provenance={galleryCathedralOpaqueArtwork.provenance.classification}
+        decoding="async"
+        height={galleryCathedralOpaqueArtwork.dimensions.height}
+        src={galleryCathedralOpaqueArtwork.path}
+        width={galleryCathedralOpaqueArtwork.dimensions.width}
+      />
+    </>
   );
 }
 

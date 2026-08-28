@@ -234,6 +234,25 @@
   fill: currentColor;
 }
 
+.cardFlowerReference {
+  position: absolute;
+  z-index: 1;
+  top: 10px;
+  right: 10px;
+  display: none;
+  width: 35px;
+  height: 39px;
+  object-fit: fill;
+  object-position: 0 0;
+  pointer-events: none;
+}
+
+.imageFrame > .cardFlowerReference {
+  width: 35px;
+  height: 39px;
+  object-fit: fill;
+}
+
 .generatedBadge {
   position: absolute;
   right: 8px;
@@ -463,6 +482,19 @@
   pointer-events: none;
 }
 
+.menuCathedralOpaqueReference {
+  position: absolute;
+  z-index: 0;
+  top: 25px;
+  left: 0;
+  display: none;
+  width: 176px;
+  height: 450px;
+  object-fit: fill;
+  object-position: 0 0;
+  pointer-events: none;
+}
+
 .dotField {
   position: absolute;
   z-index: 0;
@@ -539,6 +571,10 @@
     display: none;
   }
 
+  .menuCathedralOpaqueReference {
+    display: block;
+  }
+
   .menuScene {
     box-sizing: border-box;
     height: max(941px, 56.28vw);
@@ -583,11 +619,16 @@
   }
 
   .cardFlower {
+    display: none;
     padding: 0;
     border-radius: 0;
     background: transparent;
     color: transparent;
     fill: none;
+  }
+
+  .cardFlowerReference {
+    display: block;
   }
 }
 

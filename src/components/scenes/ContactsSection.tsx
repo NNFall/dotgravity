@@ -8,6 +8,7 @@ type ContactVisualId =
   | "contacts-reference-window-crop"
   | "contacts-reference-street-crop"
   | "contacts-reference-cathedral-linework"
+  | "contacts-reference-cathedral-opaque"
   | "contacts-reference-dot-field"
   | "contacts-reference-route-panel";
 
@@ -38,6 +39,9 @@ const streetVisual = requireReferenceContactCrop(
 );
 const cathedralVisual = requireReferenceContactCrop(
   "contacts-reference-cathedral-linework",
+);
+const cathedralOpaqueVisual = requireReferenceContactCrop(
+  "contacts-reference-cathedral-opaque",
 );
 const dotFieldVisual = requireReferenceContactCrop(
   "contacts-reference-dot-field",
@@ -361,6 +365,19 @@ export function ContactsSection() {
           height={cathedralVisual.dimensions.height}
           src={cathedralVisual.path}
           width={cathedralVisual.dimensions.width}
+        />
+        {/* Keep the paper-backed reference edge as a desktop-only visual overlay. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          alt=""
+          aria-hidden="true"
+          className={styles.contactsCathedralOpaqueReference}
+          data-contacts-decoration="cathedral-opaque"
+          data-provenance={cathedralOpaqueVisual.provenance.classification}
+          decoding="async"
+          height={cathedralOpaqueVisual.dimensions.height}
+          src={cathedralOpaqueVisual.path}
+          width={cathedralOpaqueVisual.dimensions.width}
         />
         <div aria-hidden="true" className={styles.paperLines} />
         <div aria-hidden="true" className={styles.dotField} />

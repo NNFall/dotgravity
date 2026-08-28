@@ -89,6 +89,19 @@
   display: none;
 }
 
+.contactsCathedralOpaqueReference {
+  position: absolute;
+  z-index: 0;
+  top: 245px;
+  left: 0;
+  display: none;
+  width: 95px;
+  height: 560px;
+  object-fit: fill;
+  object-position: 0 0;
+  pointer-events: none;
+}
+
 @media (min-width: 1181px) {
   .paperLines,
   .dotField {
@@ -121,6 +134,10 @@
     height: 560px;
     object-fit: fill;
     pointer-events: none;
+  }
+
+  .contactsCathedralOpaqueReference {
+    display: block;
   }
 }
 
