@@ -2,6 +2,14 @@
   display: none;
 }
 
+:global(.hero-reference-icon) {
+  display: none;
+  width: 62px;
+  height: 62px;
+  object-fit: fill;
+  object-position: 0 0;
+}
+
 :global(.hero-photo) .generatedPhoto,
 :global(.hero-photo) .referenceCrop {
   position: absolute;
@@ -36,6 +44,14 @@
 @media (max-width: 720px) {
   :global(.hero-photo) .generatedPhoto {
     position: relative;
+  }
+
+  :global(.hero-features) :global(.hero-reference-icon) {
+    display: none;
+  }
+
+  :global(.hero-features) :global(.hero-feature-live-icon) {
+    display: block;
   }
 }
 
@@ -81,6 +97,21 @@
      the shared flow rhythm. Keep this calibration outside the mobile layout. */
   :global(.hero-features) {
     transform: translateY(1px);
+  }
+
+  :global(.hero-features) :global(.hero-feature-live-icon) {
+    display: none;
+  }
+
+  :global(.hero-features) :global(.hero-reference-icon) {
+    display: block;
+  }
+
+  /* The first and fourth reference marks extend four pixels above the shared
+     62px icon box, matching the measured desktop reference artwork. */
+  :global(.hero-features) :global(.hero-reference-icon--coffee),
+  :global(.hero-features) :global(.hero-reference-icon--cathedral) {
+    transform: translateY(-4px);
   }
 
   :global(.hero-kicker) {

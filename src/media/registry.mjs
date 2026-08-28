@@ -165,6 +165,134 @@ export const mediaManifest = [
     },
   },
   {
+    id: "hero-reference-feature-coffee",
+    path: "/media/reference-derived/hero-reference-feature-coffee.png",
+    sha256:
+      "50E4C17BC9999C93708203084359E36E1F074A61314D4054A5FC3D5FDF8C8489",
+    dimensions: {
+      width: 62,
+      height: 62,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded feature-icon ROI crop x=147,y=716,w=62,h=62 from the supplied hero concept; deterministic chroma alpha keeps pixels with r-g >= 12 and removes the paper field.",
+      statement:
+        "Bounded icon crop from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "desktop hero coffee feature icon only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "place the transparent crop in the first desktop hero feature slot",
+      focalPoint: "steaming coffee cup linework",
+      responsive:
+        "Show only at the desktop breakpoint; keep the live SVG fallback for mobile and never expand the crop into a full reference screen.",
+    },
+  },
+  {
+    id: "hero-reference-feature-art",
+    path: "/media/reference-derived/hero-reference-feature-art.png",
+    sha256:
+      "176BCB2BE7D43D300EC66D8311020FB3B4C7579805303FA66C676F2F5B86D027",
+    dimensions: {
+      width: 62,
+      height: 62,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded feature-icon ROI crop x=284,y=720,w=62,h=62 from the supplied hero concept; deterministic chroma alpha keeps pixels with r-g >= 12 and removes the paper field.",
+      statement:
+        "Bounded icon crop from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "desktop hero art feature icon only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "place the transparent crop in the second desktop hero feature slot",
+      focalPoint: "framed artwork linework",
+      responsive:
+        "Show only at the desktop breakpoint; keep the live SVG fallback for mobile and never expand the crop into a full reference screen.",
+    },
+  },
+  {
+    id: "hero-reference-feature-gift",
+    path: "/media/reference-derived/hero-reference-feature-gift.png",
+    sha256:
+      "21BC0EAE1DC000F36025F475B1C74B773EFFB18AA5718F957A4C02983C0F8389",
+    dimensions: {
+      width: 62,
+      height: 62,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded feature-icon ROI crop x=422,y=720,w=62,h=62 from the supplied hero concept; deterministic chroma alpha keeps pixels with r-g >= 12 and removes the paper field.",
+      statement:
+        "Bounded icon crop from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "desktop hero gift feature icon only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "place the transparent crop in the third desktop hero feature slot",
+      focalPoint: "gift-box linework",
+      responsive:
+        "Show only at the desktop breakpoint; keep the live SVG fallback for mobile and never expand the crop into a full reference screen.",
+    },
+  },
+  {
+    id: "hero-reference-feature-cathedral",
+    path: "/media/reference-derived/hero-reference-feature-cathedral.png",
+    sha256:
+      "FF72F14690245672CB956860793849FA90BB1960A38778CA12ABDA225805707D",
+    dimensions: {
+      width: 62,
+      height: 62,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded feature-icon ROI crop x=559,y=716,w=62,h=62 from the supplied hero concept; deterministic chroma alpha keeps pixels with r-g >= 12 and removes the paper field.",
+      statement:
+        "Bounded icon crop from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "desktop hero cathedral feature icon only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy: "place the transparent crop in the fourth desktop hero feature slot",
+      focalPoint: "historical cathedral linework",
+      responsive:
+        "Show only at the desktop breakpoint; keep the live SVG fallback for mobile and never expand the crop into a full reference screen.",
+    },
+  },
+  {
     id: "header-reference-mark",
     path: "/media/reference-derived/header-reference-mark.png",
     sha256:

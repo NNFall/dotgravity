@@ -1,4 +1,5 @@
 import { mediaManifest } from "../../media/manifest";
+import type { MediaAsset } from "../../media/types";
 import { BrandMark } from "./BrandMark";
 import { CathedralOrnament } from "./CathedralOrnament";
 import { PhosphorIcon } from "./PhosphorIcon";
@@ -37,25 +38,99 @@ function getHeroImageAlt() {
     : "Визуальный образ кофейной композиции у окна";
 }
 
+type HeroReferenceFeatureKey = "coffee" | "art" | "gift" | "cathedral";
+
+function getHeroReferenceFeatureIcon(
+  key: HeroReferenceFeatureKey,
+): MediaAsset {
+  const asset = mediaManifest.find(
+    (candidate) => candidate.id === `hero-reference-feature-${key}`,
+  );
+
+  if (!asset) {
+    throw new Error(
+      `The bounded hero reference feature icon is required: ${key}.`,
+    );
+  }
+
+  return asset;
+}
+
+const heroReferenceFeatureIcons = {
+  coffee: getHeroReferenceFeatureIcon("coffee"),
+  art: getHeroReferenceFeatureIcon("art"),
+  gift: getHeroReferenceFeatureIcon("gift"),
+  cathedral: getHeroReferenceFeatureIcon("cathedral"),
+} as const;
+
+function HeroFeature({
+  children,
+  iconName,
+  referenceIcon,
+}: {
+  children: string;
+  iconName: "coffee" | "image" | "gift" | "church";
+  referenceIcon: MediaAsset;
+}) {
+  const referenceIconKey = referenceIcon.id.replace(
+    "hero-reference-feature-",
+    "",
+  );
+
+  return (
+    <li>
+      <PhosphorIcon
+        aria-hidden="true"
+        className="hero-feature-live-icon"
+        name={iconName}
+        size={49}
+        weight="light"
+      />
+      {/* The desktop crop is an icon-only bounded reference asset; mobile keeps the live SVG. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={`hero-reference-icon hero-reference-icon--${referenceIconKey}`}
+        data-provenance={referenceIcon.provenance.classification}
+        data-reference-crop="hero-feature"
+        decoding="async"
+        height={referenceIcon.dimensions.height}
+        src={referenceIcon.path}
+        width={referenceIcon.dimensions.width}
+      />
+      <span>{children}</span>
+    </li>
+  );
+}
+
 function HeroFeatureList() {
   return (
     <ul aria-label="Что можно найти в Точке притяжения" className="hero-features">
-      <li>
-        <PhosphorIcon aria-hidden="true" name="coffee" size={49} weight="light" />
-        <span>Ароматный кофе и какао</span>
-      </li>
-      <li>
-        <PhosphorIcon aria-hidden="true" name="image" size={49} weight="light" />
-        <span>Искусство и атмосфера</span>
-      </li>
-      <li>
-        <PhosphorIcon aria-hidden="true" name="gift" size={49} weight="light" />
-        <span>Сувенирные идеи</span>
-      </li>
-      <li>
-        <PhosphorIcon aria-hidden="true" name="church" size={49} weight="light" />
-        <span>Исторический мотив</span>
-      </li>
+      <HeroFeature
+        iconName="coffee"
+        referenceIcon={heroReferenceFeatureIcons.coffee}
+      >
+        Ароматный кофе и какао
+      </HeroFeature>
+      <HeroFeature
+        iconName="image"
+        referenceIcon={heroReferenceFeatureIcons.art}
+      >
+        Искусство и атмосфера
+      </HeroFeature>
+      <HeroFeature
+        iconName="gift"
+        referenceIcon={heroReferenceFeatureIcons.gift}
+      >
+        Сувенирные идеи
+      </HeroFeature>
+      <HeroFeature
+        iconName="church"
+        referenceIcon={heroReferenceFeatureIcons.cathedral}
+      >
+        Исторический мотив
+      </HeroFeature>
     </ul>
   );
 }
