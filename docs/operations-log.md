@@ -1,5 +1,38 @@
 # Operations log
 
+## 2026-08-28 — bounded wide-desktop Menu heading calibration and publication
+
+- An independent Menu ROI A/B isolated a small wide-desktop raster-origin
+  candidate. The heading now uses `left:24px` and
+  `translateY(0.5px) scaleY(0.9)` inside `@media (min-width:1440px)`;
+  `position:relative` preserves flow and tablet/mobile rules are untouched.
+  The focused contract is green at `10/10`, and the bounded read-only review
+  returned PASS.
+- Rebuilt the Vinext production bundle and refreshed the six-scene capture.
+  Full verification passed: 34 Vitest files / 166 tests, lint, TypeScript,
+  42-asset audit, build, Chromium browser 12/12, accessibility 5/5, visual
+  capture 1/1 and `npm audit --omit=dev --audit-level=high` with zero
+  vulnerabilities. Browser guards at `1920×1080`, `1672×941`, `390×844` and
+  `320×844` report exact client/scroll widths and retain menu/carousel/focus
+  behavior.
+- Fresh strict raw comparison remains intentionally red, improving by 89
+  changed pixels to `5,451,343 / 9,440,112`. Per-scene changed pixels are
+  hero `705,612`, about `941,731`, menu `1,165,210`, gallery `864,693`,
+  souvenirs `923,253` and contacts `850,844`; no tolerance, mask or baseline
+  replacement was introduced.
+- Committed the exact validated runtime as
+  `6cc049e8d53fada321eedb915cd717e6fa163e1b`, amended with current local
+  author/commit timestamps, and pushed both GitHub `main` and
+  `feat/pixel-accurate-landing`. The same source was pushed to the configured
+  Sites source repository.
+- Packaged the successful `dist/`, saved Sites version 22 from that exact
+  commit (archive content hash
+  `sha256:a89d6d716829dcf096843ad56de0d349356fa8bb37cfe8a31be410e040f74dcc`,
+  133 files / 27,648,000 bytes), and deployed successfully as
+  `appgdep_6a916f59998c81918e8a151232af0573` to the existing owner-only
+  production URL `https://dotgravity.ferumnikita2009.chatgpt.site`. The local
+  handoff server remains available at `http://127.0.0.1:4180/`.
+
 ## 2026-08-28 — bounded Menu/Gallery surface calibration and publication
 
 - Completed two independent read-only ROI audits at `1672×941`. The Menu

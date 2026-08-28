@@ -7,7 +7,7 @@
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source commit: `e2709dbcefaaf7a60e122d1997f7b659487d060c` (GitHub `main` and feature branch; current private Sites deployment)
+- Runtime source commit: `6cc049e8d53fada321eedb915cd717e6fa163e1b` (GitHub `main` and feature branch; current private Sites deployment)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -27,9 +27,9 @@
 | `npm.cmd run qa:visual` | pass — 1 six-scene capture test |
 | `npm.cmd audit --omit=dev --audit-level=high` | pass — 0 production vulnerabilities |
 | `git diff --check` | pass |
-| Sites deployment | pass — version 21 published to production, owner-only access |
+| Sites deployment | pass — version 22 published to production, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `5,451,432 / 9,440,112` pixels differ across the six 1672×941 captures (hero `705,612`; about `941,731`; menu `1,165,299`; gallery `864,693`; souvenirs `923,253`; contacts `850,844`). No tolerance or mask was introduced. The latest bounded Menu/Gallery surface pass improves the v20 report by `3,425` changed pixels while preserving the mobile fallback. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `5,451,343 / 9,440,112` pixels differ across the six 1672×941 captures (hero `705,612`; about `941,731`; menu `1,165,210`; gallery `864,693`; souvenirs `923,253`; contacts `850,844`). No tolerance or mask was introduced. The latest bounded wide-desktop Menu heading pass improves the v21 report by `89` changed pixels while preserving the mobile fallback. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 
@@ -41,11 +41,40 @@ reference header without a second interactive header, restores gallery inset
 captions/icons, keeps gallery themes phrased as visual motifs rather than
 unverified venue facts, and preserves mobile scene continuity.
 
-Sites version 21 is live at the production URL from the exact source commit
-above (version 20 is superseded). The deployment is intentionally owner-only; an anonymous request is
+Sites version 22 is live at the production URL from the exact source commit
+above (version 21 is superseded). The deployment is intentionally owner-only; an anonymous request is
 expected to show the ChatGPT sign-in screen rather than expose the page publicly.
 
-The current read-only AntiGravity audit is `a18418c1-9ad3-4b20-989c-5111947f974f`; its Contacts map-size hypothesis was independently checked and rejected. Earlier bounded audits supplied the Menu, Gallery and Contacts calibration hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. This release records a 166-test suite, 42 registered assets, bounded Hero feature-icon/cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork. The accepted v21 runtime keeps the v20 wide-desktop Menu/Gallery surface refinements, v19 Menu/Gallery/Contacts geometry and the v18 plaque/CTA/shadow details; the source is pushed and the owner-only Sites deployment is live.
+The current read-only AntiGravity audit is `a18418c1-9ad3-4b20-989c-5111947f974f`; its Contacts map-size hypothesis was independently checked and rejected. Earlier bounded audits supplied the Menu, Gallery and Contacts calibration hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. This release records a 166-test suite, 42 registered assets, bounded Hero feature-icon/cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork. The accepted v22 runtime keeps the v21 Menu/Gallery surface refinements and adds the wide-desktop heading raster calibration; v19 Menu/Gallery/Contacts geometry and v18 plaque/CTA/shadow details remain in history. The source is pushed and the owner-only Sites deployment is live.
+
+## Latest bounded wide-desktop Menu heading calibration and publication — 2026-08-28
+
+An independent Menu ROI A/B isolated a small desktop raster-origin candidate.
+Runtime `6cc049e8d53fada321eedb915cd717e6fa163e1b` moves the wide Menu heading
+to `left:24px` and applies `translateY(0.5px) scaleY(0.9)` at
+`min-width:1440px`. The relative nudge preserves flow and leaves tablet/mobile
+rules untouched; the focused contract is green at `10/10`, and the bounded
+read-only review returned PASS.
+
+Fresh verification is green for 34 Vitest files / 166 tests, lint, TypeScript,
+42 registered assets, production build, browser behavior 12/12,
+accessibility 5/5, visual capture 1/1 and `npm audit --omit=dev` with zero
+production vulnerabilities. The local handoff remains
+`http://127.0.0.1:4180/`, with equal client/scroll widths at all required
+viewports and operable menu/carousel/focus/reduced-motion behavior.
+
+The strict raw comparator remains NO-GO at `5,451,343 / 9,440,112` changed
+pixels (hero `705,612`; about `941,731`; menu `1,165,210`; gallery `864,693`;
+souvenirs `923,253`; contacts `850,844`). This is 89 fewer changed pixels than
+v21; no tolerance, mask or baseline replacement was introduced.
+
+Sites version 22 was saved from the exact commit and deployed successfully as
+`appgdep_6a916f59998c81918e8a151232af0573` to the existing owner-only URL.
+The archive content hash is
+`sha256:a89d6d716829dcf096843ad56de0d349356fa8bb37cfe8a31be410e040f74dcc`
+(`133` files, `27,648,000` bytes). The strict zero-difference gate remains open,
+so this is a verified published candidate rather than a completed pixel-perfect
+claim.
 
 ## Latest bounded Menu/Gallery surface calibration and publication — 2026-08-28
 

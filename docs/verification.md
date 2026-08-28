@@ -1,6 +1,6 @@
 # Verification record
 
-Last full local verification: 2026-08-28 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates.
+Last full local verification: 2026-08-28 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The latest runtime is `6cc049e8d53fada321eedb915cd717e6fa163e1b`.
 
 Port `4173` was already occupied by the unrelated `comod` checkout and port
 `4174` by the unrelated `whitecup` checkout, so both were left untouched.
@@ -19,7 +19,7 @@ a temporary Playwright config pointed at that fresh server.
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 5,451,432 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 5,451,343 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -84,12 +84,49 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `5451432 / 9440112` changed
+  mask was introduced. The latest raw report is `5451343 / 9440112` changed
   pixels across the six supplied 1672×941 frames: hero is `705612` changed
-  pixels, about is `941731`, menu is `1165299`, gallery is `864693`, souvenirs
+  pixels, about is `941731`, menu is `1165210`, gallery is `864693`, souvenirs
   is `923253`, and contacts is `850844`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
+
+## Latest bounded wide-desktop Menu heading calibration and publication — 2026-08-28
+
+An independent Menu ROI A/B isolated a small wide-desktop raster-origin
+candidate. Runtime commit `6cc049e8d53fada321eedb915cd717e6fa163e1b` moves the
+Menu heading to `left:24px` and applies
+`translateY(0.5px) scaleY(0.9)` inside `@media (min-width:1440px)`. The
+change is `position:relative`, preserves document flow and leaves tablet/mobile
+rules untouched. The focused Menu contract is green at `10/10`, and the
+bounded read-only review returned PASS.
+
+Fresh verification is green for 34 Vitest files / 166 tests, lint, TypeScript,
+42-asset audit, production build, Chromium behavior 12/12, accessibility 5/5,
+visual capture 1/1 and the production dependency audit (0 vulnerabilities).
+The local handoff at `http://127.0.0.1:4180/` remains running; the required
+desktop/mobile browser guards report equal document/client widths and retain
+operable menu, carousel, focus and reduced-motion behavior.
+
+The strict raw report remains intentionally NO-GO, improving by 89 changed
+pixels from v21 to `5,451,343 / 9,440,112`:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 705,612 | 3.89986475 |
+| about | 941,731 | 5.87446229 |
+| menu | 1,165,210 | 5.19177892 |
+| gallery | 864,693 | 5.74929021 |
+| souvenirs | 923,253 | 6.88134251 |
+| contacts | 850,844 | 4.25967346 |
+| **Total** | **5,451,343 / 9,440,112** | **—** |
+
+Sites version 22 was saved from the exact source commit and deployed
+successfully as `appgdep_6a916f59998c81918e8a151232af0573` to the existing
+owner-only URL. Sites recorded archive content hash
+`sha256:a89d6d716829dcf096843ad56de0d349356fa8bb37cfe8a31be410e040f74dcc`
+(`133` files, `27,648,000` bytes). No tolerance, mask or baseline replacement
+was introduced; raw-zero remains open.
 
 ## Latest bounded Menu/Gallery surface calibration and publication — 2026-08-28
 
