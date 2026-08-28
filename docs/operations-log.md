@@ -467,3 +467,39 @@
   both recommend retaining v19 unless a new evidence-backed bounded candidate
   is found. GitHub/Sites publication remains unchanged and the worktree is
   clean.
+
+### 2026-08-28 — bounded Hero icon calibration and Sites v20
+
+- Integrated the accepted desktop-only Hero feature-icon pass in runtime
+  commit `d134743e27ac08a6a9f3a97c832ec5dab8cad093`: four separate `62×62`
+  transparent `reference-derived` crops (coffee, art, gift and cathedral)
+  now sit over the live feature rail on wide desktop. The media registry
+  records each parent-reference SHA, crop coordinates and chroma-alpha
+  transformation. Mobile and narrow tablet layouts retain the live Phosphor
+  fallback; no whole-screen reference PNG was introduced.
+- TDD coverage for registry/provenance, PNG dimensions/alpha, desktop/mobile
+  toggles and whole-screen-image guard is green (`8/8` focused tests). Fresh
+  verification is green for `34` Vitest files / `164` tests, lint, TypeScript,
+  `42` registered assets, production build, Chromium browser `12/12`,
+  accessibility `5/5`, visual capture `1/1`, and `npm audit --omit=dev
+  --audit-level=high` with zero production vulnerabilities. The local 4180
+  browser handoff remains overflow-free at 1920, 390 and 320px; the responsive
+  browser guard also covers 1672px.
+- The Hero feature ROI improved from `44,590` to `38,835` changed pixels
+  (mean channel delta `8.52877358` to `1.8402`). The full strict raw report is
+  `5,454,857 / 9,440,112` changed pixels: hero `705,612`, about `941,731`,
+  menu `1,166,642`, gallery `866,775`, souvenirs `923,253`, contacts
+  `850,844`. The zero-difference gate remains intentionally red; no mask or
+  tolerance was added.
+- Read-only AntiGravity audit `a18418c1-9ad3-4b20-989c-5111947f974f`
+  completed successfully. Its Contacts map-size hypothesis was checked
+  against the source and fresh pixels and rejected; no unrelated Contacts
+  edit was published.
+- The exact runtime commit was timestamp-refreshed before push and published
+  to GitHub `main`, `feat/pixel-accurate-landing` and the Sites source
+  repository. Sites version 20 was saved from the matching build archive and
+  deployed successfully as `appgdep_6a9144c25efc8191a825e46bdde39b47` to the
+  existing owner-only production URL. Sites recorded archive content hash
+  `sha256:5694d9611875861b84218aaea4bcbac2c4a8fb3bc2197a18832b1a099ee7440f`
+  (`133` files, `27,648,000` bytes). Anonymous access remains the expected
+  ChatGPT sign-in interstitial; access policy was not changed.

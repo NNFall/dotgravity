@@ -12,14 +12,14 @@ a temporary Playwright config pointed at that fresh server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 33 files, 161 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 34 files, 164 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
-| `npm.cmd run qa:assets` | pass | 38 registered assets, 30 production text files, no unexpected media |
+| `npm.cmd run qa:assets` | pass | 42 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 5,460,612 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 5,454,857 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -59,6 +59,11 @@ by the accessibility suite.
   `generated/reference-compatible` and are not presented as real photographs
   of the café. The provenance register records the separate documentary
   Yandex package and its access status.
+- The latest bounded Hero pass adds four `62×62` transparent,
+  `reference-derived` feature-icon crops for the wide desktop scene. They are
+  separate assets with registry hashes and source coordinates; mobile and
+  narrow tablet layouts keep the live Phosphor fallback so the responsive
+  composition remains legible.
 - Yandex facts used in the UI are limited to the confirmed name, Samara address,
   and phone. Hours, current menu prices, and booking availability are not
   asserted. The VK group could not be read through the managed browser and is
@@ -79,12 +84,55 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `5460612 / 9440112` changed
-  pixels across the six supplied 1672×941 frames: hero is `711367` changed
+  mask was introduced. The latest raw report is `5454857 / 9440112` changed
+  pixels across the six supplied 1672×941 frames: hero is `705612` changed
   pixels, about is `941731`, menu is `1166642`, gallery is `866775`, souvenirs
   is `923253`, and contacts is `850844`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
+
+## Latest bounded Hero icon calibration and publication — 2026-08-28
+
+The validated runtime is `d134743e27ac08a6a9f3a97c832ec5dab8cad093`, pushed to
+GitHub `main`, `feat/pixel-accurate-landing` and the configured Sites source
+repository. This bounded pass adds four independently registered `62×62`
+transparent `reference-derived` feature-icon crops to the desktop Hero rail:
+coffee, art, gift and cathedral. Each crop is an individual asset with a
+parent-reference SHA, source coordinates and a documented chroma-alpha
+transformation; no whole reference PNG is imported. At `max-width:720px` the
+live Phosphor icons remain the responsive fallback.
+
+Fresh verification is green for 34 Vitest files / 164 tests, lint, TypeScript,
+42-asset audit, production build, Chromium behavior 12/12, accessibility 5/5,
+visual capture 1/1 and `npm audit --omit=dev --audit-level=high` with zero
+vulnerabilities. The rebuilt local `4180` server is running and the mobile
+full-page captures remain overflow-free: document widths are exactly
+`1920/1920`, `390/390` and `320/320`; the browser guard also covers the
+`1672×941` reference viewport. The accepted Hero ROI changed from `44,590` to
+`38,835` pixels (mean channel delta `8.52877358` to `1.8402`) in the feature
+rail while leaving all other scene metrics unchanged.
+
+The strict raw report remains red with no mask or tolerance:
+
+| Scene | Changed pixels | Mean channel delta |
+| --- | ---: | ---: |
+| hero | 705,612 | 3.89986475 |
+| about | 941,731 | 5.87446229 |
+| menu | 1,166,642 | 5.86854118 |
+| gallery | 866,775 | 5.93994049 |
+| souvenirs | 923,253 | 6.88134251 |
+| contacts | 850,844 | 4.25967346 |
+| **Total** | **5,454,857 / 9,440,112** | **—** |
+
+The successful read-only AntiGravity audit `a18418c1-9ad3-4b20-989c-5111947f974f`
+was cross-checked against source and pixels; its stale map-size hypothesis was
+rejected and no unrelated Contacts change was integrated. Sites version 20 was
+saved from the exact commit and deployed successfully as
+`appgdep_6a9144c25efc8191a825e46bdde39b47` to the existing owner-only
+production URL. Sites recorded archive content hash
+`sha256:5694d9611875861b84218aaea4bcbac2c4a8fb3bc2197a18832b1a099ee7440f`
+(`133` files, `27,648,000` bytes). Anonymous access remains expected to show
+the ChatGPT sign-in interstitial; no public-access change was made.
 
 ## Latest bounded desktop calibration and publication — 2026-08-28
 
