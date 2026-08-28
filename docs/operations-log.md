@@ -1,5 +1,40 @@
 # Operations log
 
+## 2026-08-29 — bounded ornament pass and private Sites v24
+
+- Added a bounded transparent Hero heading-flower crop and five bounded Menu
+  flower-badge crops from the supplied generated references. Added exact
+  paper-backed cathedral-edge crops for About, Menu, Gallery and Contacts, plus
+  a transparent Souvenirs outer-frame ring. Each asset is registered with its
+  parent reference SHA, source ROI and `documentary: false`; live React/HTML
+  semantics, carousel controls and responsive fallbacks remain in place.
+- The focused contracts for Hero, Menu, opaque cathedral overlays and the
+  Souvenirs frame passed. Full verification passed: `npm.cmd test` (52 files /
+  211 tests), lint, TypeScript, build, 65-asset audit, Chromium browser 12/12,
+  accessibility 5/5, visual capture 1/1 and production dependency audit (0
+  vulnerabilities). Fresh probes at 1672×941, 1920×1080, 390×844 and 320×844
+  report equal client/scroll widths, 50 loaded images and no failed requests;
+  mobile menu focus trapping and carousel controls remain operable.
+- Fresh strict raw comparison remains intentionally NO-GO: `4,447,420 /
+  9,440,112` changed pixels (hero `645,197`; about `722,601`; menu `771,114`;
+  gallery `759,661`; souvenirs `879,997`; contacts `668,850`). No tolerance,
+  mask or baseline replacement was introduced.
+- The first post-build browser check reproduced the known 4180 static-chunk
+  race after a separate Playwright webServer rebuilt `dist`; the server was
+  fully stopped and restarted after the final build. A clean production probe,
+  the full browser suite and the mobile menu smoke then returned no request
+  failures. The stable handoff remains `http://127.0.0.1:4180/` because 4173
+  and 4174 are occupied by unrelated checkouts.
+- Runtime commit `69dfd75915b0acdf43b28a9bbe2b667ccc4c4144` was amended with
+  current local author/commit timestamps and pushed to GitHub `main` and
+  `feat/pixel-accurate-landing`. The exact source was pushed to the Sites
+  repository, saved as version `24`
+  (`appgprj_6a8eaec4754c8191b23a3f8e7a841bb6~appgver_f65717c796488191ba992662a1d88766`),
+  and deployed successfully as
+  `appgdep_6a91fa50e71c81919887f03c77dc05e9`. The archive content hash is
+  `sha256:0daa637ee661a2ed5079d31f28e44f9bec9b9b29d845c79161ebb7c1d21b1aa5`
+  (`156` files, `31,621,120` bytes); evidence archives remain untracked.
+
 ## 2026-08-28 — reference-derived crop calibration runtime `63e3b955`
 
 - Completed the bounded wide-desktop calibration pass for Hero, About, Menu,

@@ -53,9 +53,9 @@ Fresh check: 2026-08-25 around 22:10 Europe/Samara.
 
 Every created asset must be appended with: file path, class (`generated` or `reference-derived`), source/input images and roles, prompt or transformation, creation date, intended section, and statement that it is not documentary venue evidence.
 
-## Current bounded calibration assets — 2026-08-28
+## Current bounded calibration assets — 2026-08-29
 
-The following twelve assets were extracted from the supplied generated concept
+The following twenty-three assets were extracted from the supplied generated concept
 screens only to close measured desktop regions. They are all
 `reference-derived`, `documentary: false`, and are never rendered as a whole
 screen. The semantic HTML/SVG layer remains underneath or beside each crop;
@@ -75,6 +75,26 @@ mobile and narrow-tablet breakpoints use the live responsive fallback.
 | `public/media/reference-derived/gallery-reference-inset-card-space.png` | 249×226 | `A7F5E7506DD29A8211C1214EE28B53B31E64EFF58E408FF8A881DC6711D55234` | gallery same parent; `x=1266,y=635,w=249,h=226` | wide-desktop full-surface space inset; caption stays live HTML |
 | `public/media/reference-derived/contacts-reference-dot-field.png` | 77×285 | `884F434B6FAF4143B3F4EA008747FE4DE12F8FE4F430C88191B9AD96222F2945` | contacts `DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457`; `x=0,y=105,w=77,h=285` | wide-desktop Contacts dotted paper field |
 | `public/media/reference-derived/contacts-reference-route-panel.png` | 1000×317 | `9D563A8925DF33B5FC9B1F4F62997E5E394F95610EF4480AE2FDA5846B6B58D4` | contacts same parent; `x=623,y=594,w=1000,h=317` | wide-desktop route-panel visual; live map/directions remain semantic |
+
+### Additional bounded calibration assets — 2026-08-29
+
+These eleven crops were added in the v24 runtime pass. They remain
+`reference-derived`, `documentary: false`, and desktop-only; all source ROIs
+are bounded to a live ornament or frame and never rendered as a whole screen.
+
+| Asset path | Intrinsic size | SHA-256 | Parent reference / source ROI | Intended bounded use |
+| --- | ---: | --- | --- | --- |
+| `public/media/reference-derived/hero-reference-heading-flower.png` | 45×45 | `EA1BBBCE401164C2E12FDEDC074C504CD39E3DAB8BAA2B9975065E6AECF57940` | hero `21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559`; `x=468,y=236,w=45,h=45` | wide-desktop Hero heading flower; transparent chroma-derived mask |
+| `public/media/reference-derived/menu-reference-flower-badge-cappuccino.png` | 35×39 | `8424D29B4AB2DE5BC2D8BD7211244B8519EDE88346F29A97C58B1916F2390069` | menu `DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924`; `x=320,y=359,w=35,h=39` | wide-desktop cappuccino flower badge |
+| `public/media/reference-derived/menu-reference-flower-badge-berry-dessert.png` | 35×39 | `0931BD5B6D2F37E357AE6914B009DE3EC6CC3111F414CB21D30D98AE74063232` | menu same parent; `x=616,y=359,w=35,h=39` | wide-desktop berry-dessert flower badge |
+| `public/media/reference-derived/menu-reference-flower-badge-pistachio-cake.png` | 35×39 | `0DFF72A0B80D86641BD13D1F9E6336231ECF3FFD38E7A5892426A456FDF96861` | menu same parent; `x=911,y=359,w=35,h=39` | wide-desktop pistachio-cake flower badge |
+| `public/media/reference-derived/menu-reference-flower-badge-red-velvet.png` | 35×39 | `EF855074B8DAC14E1B6D1146C35ED86BB451E865729CBFC9A34C6AF34C8BD4C5` | menu same parent; `x=1206,y=359,w=35,h=39` | wide-desktop red-velvet flower badge |
+| `public/media/reference-derived/menu-reference-flower-badge-cheesecake.png` | 35×39 | `200474222F78BA910A43056C3C25758A461303BCC731DF28EB4F1333DB6AAA06` | menu same parent; `x=1508,y=359,w=35,h=39` | wide-desktop cheesecake flower badge |
+| `public/media/reference-derived/about-reference-cathedral-opaque.png` | 112×690 | `9E3766E244DF6A5BCF4433084E10D978EC2BB69294B34C34B5F4384BD22051E8` | about `5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9`; `x=1560,y=40,w=112,h=690` | wide-desktop paper-backed cathedral edge |
+| `public/media/reference-derived/menu-reference-cathedral-opaque.png` | 176×450 | `966A27D2BFEF529C0477E807061D890EE01825F2DF6999689026BA258D88EA63` | menu `DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924`; `x=0,y=25,w=176,h=450` | wide-desktop paper-backed cathedral edge |
+| `public/media/reference-derived/gallery-reference-cathedral-opaque.png` | 120×665 | `8BC2F0F637E25E692627B4EFE85CFFBACE299B7E8218CD2121390FEA3516EA91` | gallery `8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5`; `x=0,y=250,w=120,h=665` | wide-desktop paper-backed cathedral edge |
+| `public/media/reference-derived/souvenirs-reference-main-frame-ring.png` | 786×536 | `4CAA236F9572322D5B7A9605902F2790F48E5C89D01874C2B69836528680765A` | souvenirs `1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0`; `x=807,y=89,w=786,h=536` | wide-desktop transparent outer frame ring; inner photo remains live |
+| `public/media/reference-derived/contacts-reference-cathedral-opaque.png` | 95×560 | `C7EB5206590BC0033C50A8DDBCC68C5B2801BB9C835C44A84752C4960AB24CF5` | contacts `DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457`; `x=0,y=350,w=95,h=560` | wide-desktop paper-backed cathedral edge |
 
 All crops are reference-compatible visual aids, not documentary
 photographs of the café. In particular, location labels, Menu prices and

@@ -1,6 +1,6 @@
 # Verification record
 
-Last full local verification: 2026-08-28 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The latest validated runtime is `63e3b95555f3e51adffae90f0558c5faf6e3c1d7`.
+Last full local verification: 2026-08-29 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The latest validated runtime is `69dfd75915b0acdf43b28a9bbe2b667ccc4c4144`.
 
 Port `4173` was already occupied by the unrelated `comod` checkout and port
 `4174` by the unrelated `whitecup` checkout, so both were left untouched.
@@ -12,14 +12,14 @@ a temporary Playwright config pointed at that fresh server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 48 files, 198 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 52 files, 211 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
-| `npm.cmd run qa:assets` | pass | 54 registered assets, 30 production text files, no unexpected media |
+| `npm.cmd run qa:assets` | pass | 65 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 4,706,235 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 4,447,420 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -30,7 +30,7 @@ baseline with a live capture.
 ## Browser evidence
 
 The in-app Browser and terminal Chromium probes were checked against the
-fresh local production server at all required viewports. The page has one document H1, 39
+fresh local production server at all required viewports. The page has one document H1, 50
 loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 `aside#events` bridge, and the continuous order
 `hero → about → menu → gallery → souvenirs → events → contacts`.
@@ -64,6 +64,12 @@ by the accessibility suite.
   separate assets with registry hashes and source coordinates; mobile and
   narrow tablet layouts keep the live Phosphor fallback so the responsive
   composition remains legible.
+- The current runtime adds a bounded transparent Hero heading flower crop,
+  five bounded Menu flower-badge crops, and paper-backed opaque cathedral-edge
+  crops for About, Menu, Gallery and Contacts. A transparent Souvenirs outer
+  frame ring is layered over the live photo. All are desktop-only, registered
+  with source ROIs and `documentary: false`; semantic markup and responsive
+  fallbacks remain active.
 - The current runtime additionally registers bounded reference-derived crops for
   hero dots/curves, About paper arcs and location plaque, Menu topographic field
   and initial card rail, three full-surface Gallery inset cards, and Contacts
@@ -93,23 +99,23 @@ by the accessibility suite.
 - The raw pixel gate remains red because generated/reference-compatible media,
   font rasterization, live browser rendering and intentionally live HTML
   overlays are not byte-identical to the supplied concept PNGs. No tolerance or
-  mask was introduced. The latest raw report is `4706235 / 9440112` changed
-  pixels across the six supplied 1672×941 frames: hero is `645874` changed
-  pixels, about is `793776`, menu is `836230`, gallery is `803678`, souvenirs
-  is `910096`, and contacts is `716581`. This is evidence, not a claimed pixel-perfect
+ mask was introduced. The latest raw report is `4447420 / 9440112` changed
+ pixels across the six supplied 1672×941 frames: hero is `645197` changed
+ pixels, about is `722601`, menu is `771114`, gallery is `759661`, souvenirs
+ is `879997`, and contacts is `668850`. This is evidence, not a claimed pixel-perfect
   pass. No 1920×1080 or mobile baseline was supplied, so those viewports have
   behavioral/overflow coverage, not raw-zero proof.
 
-## Current runtime publication — 2026-08-28
+## Current runtime publication — 2026-08-29
 
-The exact runtime commit `63e3b95555f3e51adffae90f0558c5faf6e3c1d7` was pushed
-to the configured Sites source branch, saved as version `23`
-(`appgprj_6a8eaec4754c8191b23a3f8e7a841bb6~appgver_fb6e15fed0608191ae6f4944ef21e6bb`),
+The exact runtime commit `69dfd75915b0acdf43b28a9bbe2b667ccc4c4144` was pushed
+to the configured Sites source branch, saved as version `24`
+(`appgprj_6a8eaec4754c8191b23a3f8e7a841bb6~appgver_f65717c796488191ba992662a1d88766`),
 and deployed successfully as
-`appgdep_6a91dc2a93448191a33e742572582c3c` to the owner-only production URL.
+`appgdep_6a91fa50e71c81919887f03c77dc05e9` to the owner-only production URL.
 The archive was built from the validated `dist/` output and recorded as
-`sha256:87da892af20acc3a29a759bf063a0f3a767f3f1e05e4fe48bbd4a91e2d2acbde`
-(`145` files, `30,208,000` bytes). The deployment returned status
+`sha256:0daa637ee661a2ed5079d31f28e44f9bec9b9b29d845c79161ebb7c1d21b1aa5`
+(`156` files, `31,621,120` bytes). The deployment returned status
 `succeeded`; anonymous HTTP requests correctly receive `401` because the site
 is intentionally owner-only.
 

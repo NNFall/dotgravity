@@ -1,17 +1,17 @@
 # Точка притяжения — финальный отчёт
 
-## Актуальный runtime-срез — 2026-08-28
+## Актуальный runtime-срез — 2026-08-29
 
 Опубликованный кандидат собран из runtime-коммита
-`63e3b95555f3e51adffae90f0558c5faf6e3c1d7` и оставлен как единый
+`69dfd75915b0acdf43b28a9bbe2b667ccc4c4144` и оставлен как единый
 непрерывный сайт с шестью anchor-сценами. В production и локальной проверке
 нет цельных PNG-экранов: новые изображения — только bounded reference-derived
 региональные ассеты поверх живой React/HTML-разметки и responsive fallback.
 
 Ссылки: [GitHub feature branch](https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing), [локальный handoff](http://127.0.0.1:4180/), [Sites production](https://dotgravity.ferumnikita2009.chatgpt.site) (owner-only).
 
-Статические и браузерные проверки зелёные: 48 Vitest-файлов / 198 тестов,
-lint, TypeScript, build, asset-audit (54 зарегистрированных ассета), Chromium
+Статические и браузерные проверки зелёные: 52 Vitest-файла / 211 тестов,
+lint, TypeScript, build, asset-audit (65 зарегистрированных ассетов), Chromium
 12/12, accessibility 5/5, visual 1/1, `npm audit` — 0 уязвимостей. На
 1672×941, 1920×1080, 390×844 и 320×844 ширина документа равна viewport,
 сетевых ошибок нет; высоты страниц — 6129, 6703, 9463 и 8963 px,
@@ -19,20 +19,22 @@ lint, TypeScript, build, asset-audit (54 зарегистрированных а
 `whitecup`.
 
 Строгий raw RGBA gate остаётся NO-GO (нулевые отличия не заявляются):
-`4,706,235 / 9,440,112` различающихся пикселей; по сценам hero `645,874`,
-about `793,776`, menu `836,230`, gallery `803,678`, souvenirs `910,096`,
-contacts `716,581`. Это последний доказанный срез, а не утверждение полного
+`4,447,420 / 9,440,112` различающихся пикселей; по сценам hero `645,197`,
+about `722,601`, menu `771,114`, gallery `759,661`, souvenirs `879,997`,
+contacts `668,850`. Это последний доказанный срез, а не утверждение полного
 pixel-perfect завершения.
 
-В этот срез входят bounded crops: Hero dots/curves; About paper arcs и
-location card; Menu topographic field и initial card rail; три full-surface
-Gallery inset cards; Contacts dot field и route panel. Editorial labels,
+В этот срез входят bounded crops: Hero dots/curves и heading flower; About paper
+arcs, location card и opaque cathedral edge; Menu topographic field, initial
+card rail, five flower badges и opaque cathedral edge; три full-surface Gallery
+inset cards и opaque cathedral edge; Souvenirs outer frame ring; Contacts dot
+field, route panel и opaque cathedral edge. Editorial labels,
 цены и маршрутные подписи в этих reference-derived слоях требуют подтверждения
 командой кафе и не являются documentary facts.
 
-Sites version `23` (`appgprj_6a8eaec4754c8191b23a3f8e7a841bb6~appgver_fb6e15fed0608191ae6f4944ef21e6bb`) развернута успешно как deployment
-`appgdep_6a91dc2a93448191a33e742572582c3c`; архив exact runtime имеет hash
-`sha256:87da892af20acc3a29a759bf063a0f3a767f3f1e05e4fe48bbd4a91e2d2acbde`.
+Sites version `24` (`appgprj_6a8eaec4754c8191b23a3f8e7a841bb6~appgver_f65717c796488191ba992662a1d88766`) развернута успешно как deployment
+`appgdep_6a91fa50e71c81919887f03c77dc05e9`; архив exact runtime имеет hash
+`sha256:0daa637ee661a2ed5079d31f28e44f9bec9b9b29d845c79161ebb7c1d21b1aa5`.
 Production остаётся owner-only, поэтому анонимный HTTP-запрос ожидаемо
 возвращает `401`, а авторизованная Sites-вкладка открывает страницу.
 
@@ -43,7 +45,7 @@ Production остаётся owner-only, поэтому анонимный HTTP-�
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source commit: `63e3b95555f3e51adffae90f0558c5faf6e3c1d7` (GitHub `main` and feature branch; current private Sites deployment)
+- Runtime source commit: `69dfd75915b0acdf43b28a9bbe2b667ccc4c4144` (GitHub `main` and feature branch; current private Sites deployment)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -55,17 +57,17 @@ Production остаётся owner-only, поэтому анонимный HTTP-�
 | --- | --- |
 | `npm.cmd run lint` | pass |
 | `npx.cmd tsc --noEmit` | pass |
-| `npm.cmd run qa:assets` | pass — 54 registered assets / 30 production text files |
-| `npm.cmd test` | pass — 48 files / 198 tests |
+| `npm.cmd run qa:assets` | pass — 65 registered assets / 30 production text files |
+| `npm.cmd test` | pass — 52 files / 211 tests |
 | `npm.cmd run build` | pass |
 | `npm.cmd run qa:browser` | pass — 12 tests |
 | `npm.cmd run qa:a11y` | pass — 5 tests |
 | `npm.cmd run qa:visual` | pass — 1 six-scene capture test |
 | `npm.cmd audit --omit=dev --audit-level=high` | pass — 0 production vulnerabilities |
 | `git diff --check` | pass |
-| Sites deployment | pass — version 23 published to production, owner-only access |
+| Sites deployment | pass — version 24 published to production, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `4,706,235 / 9,440,112` pixels differ across the six 1672×941 captures (hero `645,874`; about `793,776`; menu `836,230`; gallery `803,678`; souvenirs `910,096`; contacts `716,581`). No tolerance or mask was introduced. The current bounded crop/calibration pass reduces the previous v22 mismatch while preserving the mobile fallback. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `4,447,420 / 9,440,112` pixels differ across the six 1672×941 captures (hero `645,197`; about `722,601`; menu `771,114`; gallery `759,661`; souvenirs `879,997`; contacts `668,850`). No tolerance or mask was introduced. The current bounded crop/calibration pass reduces the previous v23 mismatch while preserving the mobile fallback. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 
@@ -77,11 +79,11 @@ reference header without a second interactive header, restores gallery inset
 captions/icons, keeps gallery themes phrased as visual motifs rather than
 unverified venue facts, and preserves mobile scene continuity.
 
-Sites version 22 is live at the production URL from the exact source commit
-above (version 21 is superseded). The deployment is intentionally owner-only; an anonymous request is
+Sites version 24 is live at the production URL from the exact source commit
+above. The deployment is intentionally owner-only; an anonymous request is
 expected to show the ChatGPT sign-in screen rather than expose the page publicly.
 
-The current read-only AntiGravity audit is `a18418c1-9ad3-4b20-989c-5111947f974f`; its Contacts map-size hypothesis was independently checked and rejected. Earlier bounded audits supplied the Menu, Gallery and Contacts calibration hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. This release records a 166-test suite, 42 registered assets, bounded Hero feature-icon/cathedral/botanical/seal linework crops, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork. The accepted v22 runtime keeps the v21 Menu/Gallery surface refinements and adds the wide-desktop heading raster calibration; v19 Menu/Gallery/Contacts geometry and v18 plaque/CTA/shadow details remain in history. The source is pushed and the owner-only Sites deployment is live.
+The current read-only AntiGravity audit is `a18418c1-9ad3-4b20-989c-5111947f974f`; its Contacts map-size hypothesis was independently checked and rejected. Earlier bounded audits supplied the Menu, Gallery and Contacts calibration hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. This release records a 211-test suite, 65 registered assets, bounded Hero feature-icon/heading/cathedral/botanical/seal crops, five Menu flower badges, opaque cathedral-edge overlays, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork. The source is pushed and the owner-only Sites deployment is live; the strict raw-zero gate remains open.
 
 ## Latest bounded wide-desktop Menu heading calibration and publication — 2026-08-28
 
