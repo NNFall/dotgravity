@@ -349,12 +349,12 @@
 .provenanceNote {
   position: absolute;
   z-index: 4;
-  top: 629px;
+  top: 613px;
   right: 4.7%;
   display: grid;
   grid-template-columns: 25px minmax(0, 1fr);
   gap: 3px 9px;
-  width: 224px;
+  width: 250px;
   padding: 9px 4px 8px 0;
   border-top: 1px solid rgb(180 71 37 / 37%);
   color: var(--copper-deep);
@@ -376,6 +376,7 @@
 }
 
 .provenanceNote small {
+  display: block;
   color: var(--ink);
   font-size: 0.46rem;
   font-weight: 500;
@@ -595,11 +596,6 @@
 .storyCart svg {
   width: 39px;
   height: 39px;
-}
-
-.storyCart:focus-visible {
-  outline: 2px solid var(--copper);
-  outline-offset: 2px;
 }
 
 .storyContent b {
@@ -1075,10 +1071,10 @@
   }
 }
 
-/* Keep the disclosure accessible but out of the photo surface so the live
-   typography and bounded crop retain the supplied composition. */
-.mainArtwork figcaption,
-.provenanceNote {
+/* Keep the photo caption accessible but out of the photo surface. The
+   provenance note remains visible so reference-derived names and prices are
+   not mistaken for a current catalogue. */
+.mainArtwork figcaption {
   position: absolute;
   width: 1px;
   height: 1px;

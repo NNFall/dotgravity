@@ -104,4 +104,18 @@ describe("bounded hero heading glyph reference crop", () => {
       /@media\s*\(max-width:\s*1180px\)[\s\S]*?hero-heading-glyphs[\s\S]*?display:\s*none/i,
     );
   });
+
+  test("preserves the bounded crop aspect ratio as the desktop viewport scales", () => {
+    const css = readFileSync(
+      resolve(process.cwd(), "src/components/hero/HeroSection.module.css"),
+      "utf8",
+    );
+
+    expect(css).toMatch(
+      /hero-heading-glyphs-reference[\s\S]*?height:\s*auto;/i,
+    );
+    expect(css).toMatch(
+      /hero-heading-glyphs-reference[\s\S]*?aspect-ratio:\s*626\s*\/\s*165;/i,
+    );
+  });
 });

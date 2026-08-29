@@ -137,10 +137,13 @@ describe("souvenirs anchor scene", () => {
       );
       expect(within(card).getByText(price)).toBeInTheDocument();
       expect(
-        within(card).getByRole("button", {
-          name: `Образец корзины для референсной позиции ${title}`,
-        }),
-      ).toHaveAttribute("type", "button");
+        within(card).queryByRole("button"),
+      ).not.toBeInTheDocument();
+      const decorativeCart = card.querySelector<HTMLElement>(
+        '[data-reference-control="decorative"]',
+      );
+      expect(decorativeCart).not.toBeNull();
+      expect(decorativeCart).toHaveAttribute("aria-hidden", "true");
     }
     expect(within(souvenirs).getAllByRole("listitem")).toHaveLength(4);
     expect(
@@ -166,7 +169,7 @@ describe("souvenirs anchor scene", () => {
     ).toBeInTheDocument();
     expect(
       within(souvenirs).getByText(
-        "Названия и цены показаны по референсу, уточняйте перед визитом.",
+        "Иллюстративный референс, не актуальный каталог — уточняйте перед визитом.",
       ),
     ).toBeInTheDocument();
   });
@@ -294,10 +297,19 @@ describe("souvenirs anchor scene", () => {
     );
   });
 
-  test("keeps provenance disclosure accessible without overlaying the reference crop", () => {
+  test("keeps provenance disclosure visible without overlaying the reference crop", () => {
     const styles = loadSouvenirsStyles();
 
     expect(styles).toMatch(
+      /\.mainArtwork figcaption\s*\{[\s\S]*?position:\s*absolute;/i,
+    );
+    expect(styles).toMatch(
+      /\.provenanceNote\s*\{[\s\S]*?display:\s*grid;/i,
+    );
+    expect(styles).toMatch(
+      /\.provenanceNote small\s*\{[\s\S]*?display:\s*block;/i,
+    );
+    expect(styles).not.toMatch(
       /\.mainArtwork figcaption,\s*\.provenanceNote\s*\{[\s\S]*?clip:\s*rect\(0 0 0 0\)/i,
     );
   });

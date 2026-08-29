@@ -354,7 +354,8 @@ export function SouvenirsSection() {
           <FloralSeal />
           <span>Фрагменты референсной концепции</span>
           <small>
-            Названия и цены показаны по референсу, уточняйте перед визитом.
+            Иллюстративный референс, не актуальный каталог — уточняйте перед
+            визитом.
           </small>
         </aside>
 
@@ -387,13 +388,13 @@ export function SouvenirsSection() {
                     data-provenance="reference-derived"
                   >
                     <span className={styles.storyPrice}>{story.price}</span>
-                    <button
-                      aria-label={`Образец корзины для референсной позиции ${story.title}`}
+                    <span
+                      aria-hidden="true"
                       className={styles.storyCart}
-                      type="button"
+                      data-reference-control="decorative"
                     >
                       <CartMark />
-                    </button>
+                    </span>
                   </div>
                   <b>Иллюстративный мотив</b>
                 </div>
