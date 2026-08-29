@@ -114,10 +114,13 @@ describe("bounded wide-desktop hero reference decorations", () => {
   });
 
   test("places the crops inside one 1181px wide-desktop media gate", async () => {
-    const css = await readFile(
-      resolve(process.cwd(), "src/components/hero/HeroSection.module.css"),
-      "utf8",
-    );
+    const [css, layout] = await Promise.all([
+      readFile(
+        resolve(process.cwd(), "src/components/hero/HeroSection.module.css"),
+        "utf8",
+      ),
+      readFile(resolve(process.cwd(), "app/layout.tsx"), "utf8"),
+    ]);
     const wideDesktopBlocks = readMediaBlocks(css).filter((block) =>
       /@media\s*\(min-width:\s*1181px\)/i.test(block),
     );
@@ -126,15 +129,21 @@ describe("bounded wide-desktop hero reference decorations", () => {
     const wideDesktop = wideDesktopBlocks[0] ?? "";
 
     expect(wideDesktop).toMatch(
-      /:global\(\.hero-dots\)\s*\{[\s\S]*?z-index:\s*1;[\s\S]*?width:\s*66px;[\s\S]*?height:\s*190px;[\s\S]*?background-image:\s*url\(["']?\/media\/reference-derived\/hero-reference-dots\.png["']?\);[\s\S]*?background-position:\s*0\s+0;[\s\S]*?background-repeat:\s*no-repeat;[\s\S]*?background-size:\s*66px\s+190px;[\s\S]*?opacity:\s*1;/i,
+      /:global\(\.hero-dots\)\s*\{[\s\S]*?z-index:\s*1;[\s\S]*?width:\s*66px;[\s\S]*?height:\s*190px;[\s\S]*?background-image:\s*var\(--hero-dots-reference\);[\s\S]*?background-position:\s*0\s+0;[\s\S]*?background-repeat:\s*no-repeat;[\s\S]*?background-size:\s*66px\s+190px;[\s\S]*?opacity:\s*1;/i,
     );
     expect(wideDesktop).toMatch(
-      /:global\(\.hero-curves\)\s*\{[\s\S]*?top:\s*0;[\s\S]*?left:\s*0;[\s\S]*?width:\s*900px;[\s\S]*?height:\s*162px;[\s\S]*?z-index:\s*1;[\s\S]*?color:\s*transparent;[\s\S]*?background-image:\s*url\(["']?\/media\/reference-derived\/hero-reference-curves-upper\.png["']?\),\s*url\(["']?\/media\/reference-derived\/hero-reference-curves-lower-right\.png["']?\);[\s\S]*?background-position:\s*563px\s+0,\s*640px\s+130px;[\s\S]*?background-repeat:\s*no-repeat,\s*no-repeat;[\s\S]*?background-size:\s*337px\s+130px,\s*260px\s+32px;/i,
+      /:global\(\.hero-curves\)\s*\{[\s\S]*?top:\s*0;[\s\S]*?left:\s*0;[\s\S]*?width:\s*900px;[\s\S]*?height:\s*162px;[\s\S]*?z-index:\s*1;[\s\S]*?color:\s*transparent;[\s\S]*?background-image:\s*var\(--hero-curves-reference\);[\s\S]*?background-position:\s*563px\s+0,\s*640px\s+130px;[\s\S]*?background-repeat:\s*no-repeat,\s*no-repeat;[\s\S]*?background-size:\s*337px\s+130px,\s*260px\s+32px;/i,
     );
     expect(wideDesktop).toMatch(
       /:global\(\.hero-curves\)\s*>\s*span\s*\{[\s\S]*?display:\s*none;/i,
     );
     expect(wideDesktop).not.toMatch(/\b(?:100vw|100vh)\b/i);
+    expect(layout).toMatch(
+      /"--hero-dots-reference":\s*`url\(\"\$\{referenceMediaBasePath\}\/media\/reference-derived\/hero-reference-dots\.png\"\)`/,
+    );
+    expect(layout).toMatch(
+      /"--hero-curves-reference":\s*`url\(\"\$\{referenceMediaBasePath\}\/media\/reference-derived\/hero-reference-curves-upper\.png\"\), url\(\"\$\{referenceMediaBasePath\}\/media\/reference-derived\/hero-reference-curves-lower-right\.png\"\)`/,
+    );
   });
 
   test("does not leak the reference crop URLs into narrower media blocks", async () => {

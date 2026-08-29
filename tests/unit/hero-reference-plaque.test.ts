@@ -65,7 +65,7 @@ describe("bounded hero plaque reference layer", () => {
     ]);
 
     expect(css).toMatch(
-      /@media\s*\(min-width:\s*721px\)[\s\S]*?hero-cathedral[\s\S]*?background-image:\s*url\(["']?\/media\/reference-derived\/hero-reference-cathedral-strip\.png/i,
+      /@media\s*\(min-width:\s*721px\)[\s\S]*?hero-cathedral[\s\S]*?background-image:\s*var\(--hero-cathedral-reference\)/i,
     );
     expect(css).toMatch(
       /@media\s*\(min-width:\s*721px\)[\s\S]*?hero-cathedral[\s\S]*?bottom:\s*0[\s\S]*?left:\s*0[\s\S]*?width:\s*clamp\(108px,\s*6\.46vw,\s*128px\)[\s\S]*?height:\s*calc\(clamp\(108px,\s*6\.46vw,\s*128px\)\s*\*\s*5\.009259\)/i,
@@ -82,7 +82,7 @@ describe("bounded hero plaque reference layer", () => {
     );
 
     expect(css).toMatch(
-      /@media\s*\(min-width:\s*721px\)[\s\S]*?hero-photo__brand-window\)?\s*\{[\s\S]*?background-image:\s*url\(["']?\/media\/reference-derived\/hero-reference-plaque-strip\.png/i,
+      /@media\s*\(min-width:\s*721px\)[\s\S]*?hero-photo__brand-window\)?\s*\{[\s\S]*?background-image:\s*var\(--hero-plaque-reference\)/i,
     );
     expect(css).toMatch(
       /@media\s*\(min-width:\s*721px\)[\s\S]*?hero-photo__brand-window\)?\s*\{[\s\S]*?top:\s*3\.11%;[\s\S]*?left:\s*72\.44%;[\s\S]*?width:\s*14\.47%;[\s\S]*?height:\s*45\.33%;/i,

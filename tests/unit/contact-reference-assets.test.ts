@@ -62,10 +62,10 @@ describe("bounded contacts reference layers", () => {
     );
 
     expect(css).toMatch(
-      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.photoPair::before\s*\{[\s\S]*?background-image:\s*url\(["']?\/media\/reference-derived\/contacts-reference-plaque-strip\.png/i,
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.photoPair::before\s*\{[\s\S]*?background-image:\s*var\(--contacts-plaque-reference\)/i,
     );
     expect(css).toMatch(
-      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.routeDrawing\s*\{[\s\S]*?background-image:\s*url\(["']?\/media\/reference-derived\/contacts-reference-map-crop\.png/i,
+      /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.routeDrawing\s*\{[\s\S]*?background-image:\s*var\(--contacts-map-reference\)/i,
     );
     expect(css).toMatch(
       /@media\s*\(min-width:\s*1181px\)[\s\S]*?\.routeDrawing\s*>\s*\*\s*\{[\s\S]*?visibility:\s*hidden;/i,

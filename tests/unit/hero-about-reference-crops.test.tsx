@@ -120,7 +120,7 @@ describe("bounded hero and about reference crops", () => {
       "height: calc(clamp(108px, 6.46vw, 128px) * 5.009259);",
     );
     expect(heroCss).toContain(
-      'background-image: url("/media/reference-derived/hero-reference-cathedral-strip.png");',
+      "background-image: var(--hero-cathedral-reference);",
     );
     expect(heroCss).toContain("transform: translate(-6px, 3px);");
     expect(heroCss).toContain("letter-spacing: -0.01em;");
