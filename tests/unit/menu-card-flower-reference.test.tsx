@@ -61,9 +61,12 @@ describe("menu desktop reference flower badges", () => {
         throw new Error(`The bounded flower badge must be registered: ${id}.`);
       }
 
-      expect(artwork.provenance.transformation).toContain(
-        `x=${left},y=359,w=35,h=39`,
-      );
+      expect(artwork.provenance.classification).toBe("reference-derived");
+      if (artwork.provenance.classification === "reference-derived") {
+        expect(artwork.provenance.transformation).toContain(
+          `x=${left},y=359,w=35,h=39`,
+        );
+      }
       expect(artwork.provenance.statement).toMatch(
         /not documentary venue evidence/i,
       );
