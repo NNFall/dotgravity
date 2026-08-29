@@ -11,8 +11,9 @@
   archive to the requested VPS, and installed it at `/root/dotgravity`.
   `dotgravity.service` now owns `127.0.0.1:4181`; Nginx has a dedicated
   `dotgravity.conf` location with the exact no-slash redirect, prefixed
-  `_next` proxy, SSR route and root `/media/` alias. Existing `kaigo.space`
-  routes were preserved; the active Nginx configuration passed `nginx -t`.
+  `_next` proxy, CSS static-media/font aliases, SSR route and root `/media/`
+  alias. Existing `kaigo.space` routes were preserved; the active Nginx
+  configuration passed `nginx -t`.
 - Remote smoke checks returned `308` for `/site/dotgravity`, `200` for the
   trailing-slash page, the current JS chunk and a generated media asset. The
   public root `https://kaigo.space/` still returned `200`.
@@ -24,6 +25,10 @@
 - The VPS password was used only for the interactive transfer and is not
   stored in source, logs or documentation. The strict raw RGBA gate remains
   NO-GO and is unchanged by this deployment-only commit.
+- A follow-up public asset audit initially found missing prefixed font and
+  decorative-media paths; the Nginx aliases were corrected and the final
+  four-viewport browser pass returned zero HTTP failures, including all CSS
+  background assets.
 
 ## 2026-08-29 — bounded ornament pass and private Sites v24
 

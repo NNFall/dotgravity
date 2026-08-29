@@ -20,11 +20,11 @@ served by `dotgravity.service` on `127.0.0.1:4181`, and exposed through the
 dedicated Nginx locations at
 [https://kaigo.space/site/dotgravity/](https://kaigo.space/site/dotgravity/).
 The no-slash form redirects with `308`; the canonical route, current JS chunk,
-generated media, and existing `https://kaigo.space/` root all returned `200` in
-remote smoke checks. Public Chromium checks at `1920×1080`, `1672×941`,
-`390×844` and `320×844` found six scenes, no broken images or failed requests,
-equal client/scroll widths and an operable mobile menu. No VPS credential is
-stored in this repository.
+generated media, prefixed CSS media/font assets, and existing
+`https://kaigo.space/` root all returned `200` in remote smoke checks. Public
+Chromium checks at `1920×1080`, `1672×941`, `390×844` and `320×844` found six
+scenes, no broken images or failed requests, equal client/scroll widths and an
+operable mobile menu. No VPS credential is stored in this repository.
 
 Статические и браузерные проверки зелёные: 53 Vitest-файла / 213 тестов,
 lint, TypeScript, build, asset-audit (65 зарегистрированных ассетов), Chromium

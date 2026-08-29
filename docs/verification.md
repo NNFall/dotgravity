@@ -51,16 +51,17 @@ by the accessibility suite.
 The base-path build from `e9b626f84dd52a0e24a1aeba16a5539bcb6f9e32` is live at
 the requested public route [kaigo.space/site/dotgravity](https://kaigo.space/site/dotgravity/).
 The files are installed at `/root/dotgravity`; systemd runs the Vinext adapter
-on `127.0.0.1:4181`, and Nginx owns the `/site/dotgravity/` and root `/media/`
-locations. The exact path without a trailing slash returns `308` to the
-canonical slash URL. `systemd-analyze verify` and `nginx -t` passed (Nginx only
-reported pre-existing duplicate-server-name warnings), and the service is
-`active (running)`.
+on `127.0.0.1:4181`, and Nginx owns the `/site/dotgravity/`, prefixed CSS
+static-media/font aliases and root `/media/` locations. The exact path without
+a trailing slash returns `308` to the canonical slash URL.
+`systemd-analyze verify` and `nginx -t` passed (Nginx only reported pre-existing
+duplicate-server-name warnings), and the service is `active (running)`.
 
 An independent public Chromium pass returned `200` with the expected title,
-six scenes, no failed requests and no broken images at `1920×1080`, `1672×941`,
-`390×844` and `320×844`. In every viewport `scrollWidth === clientWidth`; the
-mobile menu opens, focuses its first link and closes cleanly. The existing
+six scenes, no failed requests (including CSS font and decorative-media
+requests) and no broken images at `1920×1080`, `1672×941`, `390×844` and
+`320×844`. In every viewport `scrollWidth === clientWidth`; the mobile menu
+opens, focuses its first link and closes cleanly. The existing
 `https://kaigo.space/` root route also remained `200`.
 
 ## Provenance and deviations
