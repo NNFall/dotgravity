@@ -3,7 +3,7 @@
 ## Текущая опубликованная ревизия — 2026-08-29
 
 Текущий source/runtime-кандидат —
-`a73a20a7793d337d429c14ab9a83121637027b80`. Сайт остаётся единым
+`ed5e2b16ccb0ef17719a8f306b0a1edc6c37194f`. Сайт остаётся единым
 непрерывным React/TypeScript scroll-потоком с шестью anchor-сценами; целые
 reference PNG не импортируются. В этой ревизии Hero heading crop сохраняет
 соотношение `626:165` при масштабировании от `1672×941` до `1920×1080`,
@@ -96,7 +96,7 @@ Production остаётся owner-only, поэтому анонимный HTTP-�
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source candidate: `a73a20a7793d337d429c14ab9a83121637027b80` (GitHub `main` and feature branch after the next VPS release)
+- Runtime source candidate: `ed5e2b16ccb0ef17719a8f306b0a1edc6c37194f` (GitHub `main` and feature branch after the next VPS release)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`

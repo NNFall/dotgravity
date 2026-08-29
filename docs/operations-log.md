@@ -3,7 +3,7 @@
 ## 2026-08-29 — About/Gallery bounded calibration follow-up
 
 - Accepted the next bounded reference-fidelity candidate in source commit
-  `a73a20a7793d337d429c14ab9a83121637027b80`: About now uses separate
+  `ed5e2b16ccb0ef17719a8f306b0a1edc6c37194f`: About now uses separate
   reference-derived eyebrow and feature-icon crops on wide desktop, while
   Gallery uses a bounded bottom ornament crop and the measured outer-arch
   offset. Live semantic copy, SVG fallbacks and responsive breakpoints remain

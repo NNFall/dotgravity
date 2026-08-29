@@ -1,6 +1,6 @@
 # Verification record
 
-Last full local verification: 2026-08-29 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The current source candidate is `a73a20a7793d337d429c14ab9a83121637027b80`; the strict bounded visual baseline remains the supplied six-scene reference set.
+Last full local verification: 2026-08-29 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The current source candidate is `ed5e2b16ccb0ef17719a8f306b0a1edc6c37194f`; the strict bounded visual baseline remains the supplied six-scene reference set.
 
 Port `4173` was already occupied by the unrelated `comod` checkout and port
 `4174` by the unrelated `whitecup` checkout, so both were left untouched.
@@ -48,7 +48,7 @@ by the accessibility suite.
 
 ## Current VPS deployment — 2026-08-29
 
-The current source candidate `a73a20a7793d337d429c14ab9a83121637027b80` was
+The current source candidate `ed5e2b16ccb0ef17719a8f306b0a1edc6c37194f` was
 built with `DOTGRAVITY_BASE_PATH=/site/dotgravity` and installed at
 `/root/dotgravity`. The uploaded archive SHA-256 is
 `0a393b908a78ea5b9fb17678e85bd6d77d88f1793963da5b40d9592ef368474c`;
