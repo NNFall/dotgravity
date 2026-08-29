@@ -114,6 +114,20 @@ const aboutFeatureIconsArtwork = (() => {
   return registeredAboutFeatureIcons;
 })();
 
+const aboutPaperTextureArtwork = (() => {
+  const registeredAboutPaperTexture = mediaManifest.find(
+    (asset) => asset.id === "about-reference-paper-texture",
+  );
+
+  if (!registeredAboutPaperTexture) {
+    throw new Error(
+      "The bounded reference-derived About paper texture is required to render the about scene.",
+    );
+  }
+
+  return registeredAboutPaperTexture;
+})();
+
 function getAboutImageAlt() {
   if (aboutMedia.provenance.classification === "generated/reference-compatible") {
     return "Сгенерированный визуальный образ: арочный интерьер с керамикой";
@@ -292,6 +306,19 @@ export function AboutSection() {
       id="about"
     >
       <div aria-hidden="true" className={styles.paperGlow} />
+      {/* Keep only the measured paper pixels as a bounded desktop texture layer; all live copy and artwork remain DOM-rendered above it. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={styles.paperTextureReference}
+        data-about-decoration="paper-texture"
+        data-provenance={aboutPaperTextureArtwork.provenance.classification}
+        decoding="async"
+        height={aboutPaperTextureArtwork.dimensions.height}
+        src={aboutPaperTextureArtwork.path}
+        width={aboutPaperTextureArtwork.dimensions.width}
+      />
       {/* Keep the measured paper-only reference fragment bounded to the wide desktop layer. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img

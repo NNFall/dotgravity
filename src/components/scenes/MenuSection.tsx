@@ -127,6 +127,18 @@ const menuCardRailArtwork = getReferenceMenuArtwork(
   "menu-reference-card-rail",
 );
 
+const menuPaperTopArtwork = getReferenceMenuArtwork(
+  "menu-reference-paper-top-strip",
+);
+
+const menuPaperRailEdgesArtwork = getReferenceMenuArtwork(
+  "menu-reference-paper-rail-edges",
+);
+
+const menuPaperBottomArtwork = getReferenceMenuArtwork(
+  "menu-reference-paper-bottom-strip",
+);
+
 function FlowerMark({
   card = false,
   className,
@@ -239,6 +251,50 @@ function TopographicMark() {
       src={menuTopographicArtwork.path}
       width={menuTopographicArtwork.dimensions.width}
     />
+  );
+}
+
+function MenuPaperStrips() {
+  return (
+    <>
+      {/* These transparent, paper-only strips carry bounded reference texture; all live copy stays in the DOM above them. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={`${styles.menuPaperStrip} ${styles.paperTopStrip}`}
+        data-menu-decoration="paper-top-strip"
+        data-provenance={menuPaperTopArtwork.provenance.classification}
+        decoding="async"
+        height={menuPaperTopArtwork.dimensions.height}
+        src={menuPaperTopArtwork.path}
+        width={menuPaperTopArtwork.dimensions.width}
+      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={`${styles.menuPaperStrip} ${styles.paperRailEdges}`}
+        data-menu-decoration="paper-rail-edges"
+        data-provenance={menuPaperRailEdgesArtwork.provenance.classification}
+        decoding="async"
+        height={menuPaperRailEdgesArtwork.dimensions.height}
+        src={menuPaperRailEdgesArtwork.path}
+        width={menuPaperRailEdgesArtwork.dimensions.width}
+      />
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={`${styles.menuPaperStrip} ${styles.paperBottomStrip}`}
+        data-menu-decoration="paper-bottom-strip"
+        data-provenance={menuPaperBottomArtwork.provenance.classification}
+        decoding="async"
+        height={menuPaperBottomArtwork.dimensions.height}
+        src={menuPaperBottomArtwork.path}
+        width={menuPaperBottomArtwork.dimensions.width}
+      />
+    </>
   );
 }
 
@@ -358,6 +414,7 @@ export function MenuSection() {
       data-scene="menu"
       id="menu"
     >
+      <MenuPaperStrips />
       <CathedralMark />
       <div aria-hidden="true" className={styles.dotField} />
       <div aria-hidden="true" className={styles.topographicLines} />

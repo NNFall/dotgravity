@@ -46,6 +46,19 @@
   pointer-events: none;
 }
 
+.paperTextureReference {
+  position: absolute;
+  z-index: 0;
+  left: 48.7440191388%;
+  top: 0;
+  display: none;
+  width: 51.2559808612%;
+  height: 100%;
+  object-fit: fill;
+  object-position: 0 0;
+  pointer-events: none;
+}
+
 .paperArcReference {
   position: absolute;
   z-index: 0;
@@ -633,12 +646,20 @@
 }
 
 @media (min-width: 1081px) {
+  .paperTextureReference {
+    display: block;
+  }
+
   .paperArcReference {
     display: block;
   }
 }
 
 @media (max-width: 1080px) {
+  .paperTextureReference {
+    display: none;
+  }
+
   .section {
     height: 820px;
     min-height: 820px;

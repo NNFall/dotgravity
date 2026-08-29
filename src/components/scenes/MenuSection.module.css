@@ -17,6 +17,35 @@
   margin: 0 auto;
 }
 
+.menuPaperStrip {
+  position: absolute;
+  z-index: 0;
+  display: none;
+  height: auto;
+  object-fit: fill;
+  object-position: 0 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.paperTopStrip {
+  top: 0;
+  left: 10.5263157895%;
+  width: 76.1961722488%;
+}
+
+.paperRailEdges {
+  top: 35.4941551541%;
+  left: 0;
+  width: 100%;
+}
+
+.paperBottomStrip {
+  top: 78.5334750266%;
+  left: 0;
+  width: 87.9186602871%;
+}
+
 .header {
   display: grid;
   justify-items: center;
@@ -546,6 +575,10 @@
 }
 
 @media (min-width: 1440px) {
+  .menuPaperStrip {
+    display: block;
+  }
+
   .dotField,
   .topographicLines {
     display: none;
@@ -641,6 +674,10 @@
 }
 
 @media (max-width: 1439px) {
+  .menuPaperStrip {
+    display: none;
+  }
+
   .topographicReference {
     display: none;
   }

@@ -587,6 +587,39 @@ export const mediaManifest = [
     },
   },
   {
+    id: "about-reference-paper-texture",
+    path: "/media/reference-derived/about-reference-paper-texture.png",
+    sha256:
+      "FEC6BD1BF41DC5A3BBA309327AE56D77CC50F4682542010801E9569A87951A61",
+    dimensions: {
+      width: 857,
+      height: 941,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9",
+      transformation:
+        "Bounded paper-only masked ROI x=815,y=0,w=857,h=941 from the supplied about concept; only warm light paper pixels (r>=220,g>=205,b>=190, channel spread<=60, warm channel ordering) are retained as opaque texture, with a one-pixel halo exclusion around semantic/artwork masks, and all dark copy, photo and venue artwork pixels are transparent.",
+      statement:
+        "Bounded paper-only texture from the supplied generated about concept for visual reference only; it contains no semantic copy or documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["about"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop About paper-only texture layer",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the intrinsic masked texture at the measured right paper field while retaining live DOM copy and artwork above it",
+      focalPoint: "reference paper grain and low-contrast paper field variation",
+      responsive:
+        "Use only on the wide desktop About scene; hide below 1081px so the responsive live paper surface remains active.",
+    },
+  },
+  {
     id: "about-reference-cathedral-linework",
     path: "/media/reference-derived/about-reference-cathedral-linework.png",
     sha256:
@@ -1241,6 +1274,105 @@ export const mediaManifest = [
       focalPoint: "five illustrated menu cards and their reference labels",
       responsive:
         "Use only at min-width 1440px before user interaction; hide below that breakpoint and after carousel selection so the responsive live rail remains interactive.",
+    },
+  },
+  {
+    id: "menu-reference-paper-top-strip",
+    path: "/media/reference-derived/menu-reference-paper-top-strip.png",
+    sha256:
+      "6F7D58E5DE7D49D99CDEFBD5823683C8463EDD1C4988AC59B4D61372B5BEF619",
+    dimensions: {
+      width: 1274,
+      height: 334,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Bounded paper-only ROI x=176,y=0,w=1274,h=334 from the supplied menu concept; warm light paper pixels are retained through a current-base color guard, a two-pixel morphological halo rejection and explicit live header/copy exclusions, while glyphs and ornament pixels remain transparent.",
+      statement:
+        "Bounded transparent paper texture from the supplied generated menu concept for wide-desktop visual reference only; it contains no semantic copy, venue claim or documentary photography.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop Menu upper paper texture only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the intrinsic transparent paper-only crop over the upper menu field while keeping live heading, ornament and introduction content above it",
+      focalPoint: "subtle warm paper grain and reference surface variation",
+      responsive:
+        "Use only at min-width 1440px; hide below the desktop breakpoint and never render as a full reference screen.",
+    },
+  },
+  {
+    id: "menu-reference-paper-rail-edges",
+    path: "/media/reference-derived/menu-reference-paper-rail-edges.png",
+    sha256:
+      "8773C7D6EA233F4856AF85FA51F5C8C084E1C406A9B8BD4CD25C6A3FB2347554",
+    dimensions: {
+      width: 1672,
+      height: 405,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Bounded paper-only ROI x=0,y=334,w=1672,h=405 from the supplied menu concept; only warm light paper pixels passing the current-base guard and two-pixel morphological halo rejection are retained, with live card, arrow, cathedral and topographic artwork left transparent.",
+      statement:
+        "Bounded transparent paper texture from the supplied generated menu concept for the menu rail surround only; it contains no semantic copy, venue claim or documentary photography.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop Menu rail surround paper texture only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the transparent rail-surround strip behind the live card rail and controls, preserving the interactive cards and navigation above it",
+      focalPoint: "paper field between the card rail and edge decorations",
+      responsive:
+        "Use only at min-width 1440px; hide below the desktop breakpoint and never render as a full reference screen.",
+    },
+  },
+  {
+    id: "menu-reference-paper-bottom-strip",
+    path: "/media/reference-derived/menu-reference-paper-bottom-strip.png",
+    sha256:
+      "61F5319469F995A354FFA7D1805C6E6BAA99D26CDA44592EB2C4A9A0507C7009",
+    dimensions: {
+      width: 1470,
+      height: 202,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "DCB62718375D93C4B61D6A0764859575885A0331A940C560DF664D90AFAC0924",
+      transformation:
+        "Bounded paper-only ROI x=0,y=739,w=1470,h=202 from the supplied menu concept; warm light paper pixels are retained through a current-base color guard, a two-pixel morphological halo rejection and explicit live note/CTA exclusions, while botanical artwork remains transparent.",
+      statement:
+        "Bounded transparent paper texture from the supplied generated menu concept for the lower menu field only; it contains no semantic copy, venue claim or documentary photography.",
+    },
+    intendedScenes: ["menu"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop Menu lower paper texture only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the intrinsic transparent paper-only crop behind the lower menu note and CTA while retaining live semantic copy and botanical artwork above it",
+      focalPoint: "subtle warm paper grain beneath the menu note and CTA",
+      responsive:
+        "Use only at min-width 1440px; hide below the desktop breakpoint and never render as a full reference screen.",
     },
   },
   {
