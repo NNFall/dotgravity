@@ -149,3 +149,42 @@ test("rejects a generated cutout whose reviewed derivation chain is falsified", 
     ),
   ).toThrow(/checkerPreviewReviewed/i);
 });
+
+test("registers the bounded souvenirs eyebrow flower as reference-derived decoration", () => {
+  const eyebrowFlower = mediaManifest.find(
+    (asset) => asset.id === "souvenirs-reference-eyebrow-flower",
+  );
+
+  expect(eyebrowFlower).toMatchObject({
+    id: "souvenirs-reference-eyebrow-flower",
+    path: "/media/reference-derived/souvenirs-reference-eyebrow-flower.png",
+    sha256:
+      "706E296721A44E3EEE4E2417D55CB894D7E4C19B3461EE233438FB4D22BE58FA",
+    dimensions: { width: 48, height: 48 },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "souvenirs eyebrow flower decoration only",
+      referenceShape: "bounded-reference-region",
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0",
+      transformation: expect.stringContaining(
+        "x=108,y=79,w=48,h=48",
+      ),
+    },
+    cropRules: {
+      strategy: expect.stringContaining("eyebrow"),
+      focalPoint: expect.stringContaining("flower"),
+      responsive: expect.stringContaining("desktop"),
+    },
+  });
+
+  expect(eyebrowFlower?.provenance.statement).toMatch(
+    /not a documentary venue photograph/i,
+  );
+  expect(() => validateMediaManifest(mediaManifest)).not.toThrow();
+});

@@ -189,6 +189,33 @@ describe("ContactsSection", () => {
     expect(route).toHaveAttribute("rel", expect.stringContaining("noreferrer"));
   });
 
+  test("renders the reference-compatible rounded route glyph with curved leaves", async () => {
+    const { ContactsSection } = await import(
+      "../../src/components/scenes/ContactsSection"
+    );
+
+    const { container } = render(<ContactsSection />);
+    const glyph = container.querySelector("svg[data-route-glyph='true']");
+
+    expect(glyph).toHaveAttribute("aria-hidden", "true");
+    expect(glyph).toHaveAttribute("viewBox", "0 0 44 44");
+    const frame = glyph?.querySelector("rect");
+    expect(frame).not.toBeNull();
+    expect(frame).toHaveAttribute("height", "36");
+    expect(frame).toHaveAttribute("rx", "5");
+    expect(frame).toHaveAttribute("width", "42");
+    expect(frame).toHaveAttribute("x", "1");
+    expect(frame).toHaveAttribute("y", "4");
+
+    const leafPaths = glyph?.querySelectorAll("path");
+    expect(leafPaths).toHaveLength(2);
+    expect(
+      Array.from(leafPaths ?? [], (path) => path.getAttribute("d") ?? "").every(
+        (path) => /[cq]/i.test(path),
+      ),
+    ).toBe(true);
+  });
+
   test("lets the mobile editorial heading wrap inside the contact canvas", () => {
     const css = readFileSync(
       "src/components/scenes/ContactsSection.module.css",

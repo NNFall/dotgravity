@@ -294,6 +294,39 @@ export const mediaManifest = [
     },
   },
   {
+    id: "hero-reference-heading-glyphs",
+    path: "/media/reference-derived/hero-reference-heading-glyphs.png",
+    sha256:
+      "2E4EE66D1B7FB5E800AD48F3B5B538062448CE8F7FC914AAFFA677BE5407DBE4",
+    dimensions: {
+      width: 626,
+      height: 165,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded hero heading glyph ROI crop x=107,y=216,w=626,h=165 from the supplied hero concept; deterministic alpha mask keeps copper first-line and dark second-line glyph pixels, including their antialiased edge colors, while excluding paper, ornament, kicker, CTA and other copy.",
+      statement:
+        "Bounded decorative glyph crop from the supplied generated hero concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop hero heading glyphs only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the transparent two-line glyph crop over the live desktop hero H1",
+      focalPoint: "copper and ink hero title glyphs",
+      responsive:
+        "Use only at the wide desktop breakpoint; keep semantic live typography visible below 1181px and never expand the crop into a full reference screen.",
+    },
+  },
+  {
     id: "hero-reference-feature-coffee",
     path: "/media/reference-derived/hero-reference-feature-coffee.png",
     sha256:
@@ -1461,6 +1494,39 @@ export const mediaManifest = [
       focalPoint: "three-spire cathedral illustration and its paper-backed edge surface",
       responsive:
         "Use only inside the measured desktop gallery edge footprint; retain the transparent/vector fallback below the desktop breakpoint and never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "souvenirs-reference-eyebrow-flower",
+    path: "/media/reference-derived/souvenirs-reference-eyebrow-flower.png",
+    sha256:
+      "706E296721A44E3EEE4E2417D55CB894D7E4C19B3461EE233438FB4D22BE58FA",
+    dimensions: {
+      width: 48,
+      height: 48,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0",
+      transformation:
+        "Bounded eyebrow flower ROI x=108,y=79,w=48,h=48 from the supplied souvenirs concept; the paper background was removed with deterministic warm-line color projection (background [247,234,222], foreground [150,50,20], projection floor 48/255), retaining the rosette and outer ring while excluding neighboring wordmark and rule.",
+      statement:
+        "Bounded decorative flower mark from the supplied generated souvenirs concept for visual reference only; it is not a documentary venue photograph and must not be presented as one.",
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "souvenirs eyebrow flower decoration only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the transparent bounded flower mark in the souvenirs eyebrow lockup on desktop",
+      focalPoint: "terracotta flower rosette and circular outline",
+      responsive:
+        "Use only as the desktop souvenirs eyebrow decoration; retain the live vector fallback below the desktop breakpoint and never expand it into a full reference screen.",
     },
   },
   {

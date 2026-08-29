@@ -64,6 +64,22 @@ describe("menu desktop scene contract", () => {
     );
   });
 
+  test("applies the measured wide desktop introduction and first-card rail calibration", () => {
+    const wideDesktopBlock = menuStyles.match(
+      /@media \(min-width: 1440px\) \{([\s\S]*?)\n\}\s*\n\s*@media \(max-width: 1200px\)/,
+    );
+
+    expect(wideDesktopBlock?.[1]).toMatch(
+      /\.introduction\s*\{[\s\S]*?line-height:\s*1\.48;[\s\S]*?transform:\s*translate\(-2px, -1px\) scaleX\(\.92\);[\s\S]*?transform-origin:\s*center center;/,
+    );
+    expect(wideDesktopBlock?.[1]).toMatch(
+      /\.cardRail\s*\{[\s\S]*?margin-top:\s*23\.46875px;/,
+    );
+    expect(wideDesktopBlock?.[1]).toMatch(
+      /\.menuCard:nth-child\(1\)\s*\{\s*--menu-card-x:\s*0px;/,
+    );
+  });
+
   test("uses the reference-calibrated vertical scale for the wide desktop heading", () => {
     const wideDesktopHeading = menuStyles.match(
       /@media \(min-width: 1440px\) \{[\s\S]*?\.header h2\s*\{([\s\S]*?)\n  \}/,

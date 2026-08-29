@@ -6,6 +6,10 @@
   display: none;
 }
 
+:global(.hero-heading-glyphs-reference) {
+  display: none;
+}
+
 :global(.hero-reference-icon) {
   display: none;
   width: 62px;
@@ -209,10 +213,39 @@
     object-position: 0 0;
     pointer-events: none;
   }
+
+  /* Replace only the wide-desktop H1 paint with its bounded reference crop.
+     The two live spans stay in the DOM for semantics and provide the tablet /
+     mobile fallback below this breakpoint. Percentages keep the crop tied to
+     the measured H1 box as the desktop viewport grows. */
+  :global(.hero-copy h1) {
+    position: relative;
+  }
+
+  :global(.hero-copy h1 > span) {
+    color: transparent !important;
+  }
+
+  :global(.hero-heading-glyphs-reference) {
+    position: absolute;
+    top: 2.31%;
+    left: 0.56%;
+    z-index: 1;
+    display: block;
+    width: 88.14%;
+    height: 84.48%;
+    object-fit: fill;
+    object-position: 0 0;
+    pointer-events: none;
+  }
 }
 
 @media (max-width: 1180px) {
   :global(.hero-heading-ornament__reference) {
+    display: none;
+  }
+
+  :global(.hero-heading-glyphs-reference) {
     display: none;
   }
 }

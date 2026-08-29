@@ -102,12 +102,45 @@ describe("souvenirs anchor scene", () => {
       expect(within(souvenirs).getByText(motif)).toBeInTheDocument();
     }
     for (const title of [
-      "«РОЗОВЫЙ ОТТЕНОК»",
+      "«РОЗОВЫЙ КВАРЦ»",
       "«УЗОР ВРЕМЕНИ»",
-      "ЦВЕТОЧНЫЙ ФАРФОР",
-      "ЧАЙНЫЙ НАБОР",
+      "HEREND",
+      "ЧАЙНОЕ ТРИО",
     ]) {
       expect(within(souvenirs).getByRole("heading", { level: 3, name: title })).toBeInTheDocument();
+    }
+    for (const description of [
+      "Нежный браслет с натуральными камнями и серебряной вставкой.",
+      "Изящное кольцо в винтажном стиле. Лимитированная серия.",
+      "Венгерский фарфор ручной работы. Коллекционный экземпляр.",
+      "Фарфор, Европа. Середина XX века. Отличное состояние.",
+    ]) {
+      expect(within(souvenirs).getByText(description)).toBeInTheDocument();
+    }
+    for (const [price, title] of [
+      ["5 200 ₽", "«РОЗОВЫЙ КВАРЦ»"],
+      ["4 800 ₽", "«УЗОР ВРЕМЕНИ»"],
+      ["12 500 ₽", "HEREND"],
+      ["7 900 ₽", "ЧАЙНОЕ ТРИО"],
+    ] as const) {
+      const card = within(souvenirs)
+        .getByRole("heading", { level: 3, name: title })
+        .closest("article");
+      expect(card).not.toBeNull();
+      if (!card) {
+        continue;
+      }
+      expect(card).toHaveAttribute("data-provenance", "reference-derived");
+      expect(card).toHaveAttribute(
+        "data-souvenirs-metadata",
+        "reference-derived",
+      );
+      expect(within(card).getByText(price)).toBeInTheDocument();
+      expect(
+        within(card).getByRole("button", {
+          name: `Образец корзины для референсной позиции ${title}`,
+        }),
+      ).toHaveAttribute("type", "button");
     }
     expect(within(souvenirs).getAllByRole("listitem")).toHaveLength(4);
     expect(
@@ -128,15 +161,13 @@ describe("souvenirs anchor scene", () => {
     expect(souvenirs.innerHTML).not.toContain(stillLife.path);
     expect(souvenirs.innerHTML).not.toContain(braceletCutout.path);
     expect(souvenirs.innerHTML).not.toContain(braceletSource.path);
-    expect(souvenirs.innerHTML).not.toMatch(/корзин|купить|в наличии|₽/i);
-    expect(souvenirs.innerHTML).not.toMatch(
-      /натуральн|серебрян|лимитирован|венгерск|европ|xx века|отличное состояние/i,
-    );
     expect(
       within(souvenirs).getByText("Фрагменты референсной концепции"),
     ).toBeInTheDocument();
     expect(
-      within(souvenirs).getByText("не документальная фотография места"),
+      within(souvenirs).getByText(
+        "Названия и цены показаны по референсу, уточняйте перед визитом.",
+      ),
     ).toBeInTheDocument();
   });
 
@@ -151,6 +182,7 @@ describe("souvenirs anchor scene", () => {
     const decorationIds = [
       ["cathedral", "souvenirs-reference-cathedral-linework"],
       ["seal", "souvenirs-reference-seal-linework"],
+      ["eyebrow-flower", "souvenirs-reference-eyebrow-flower"],
     ] as const;
 
     render(createElement(souvenirsSectionModule.SouvenirsSection));

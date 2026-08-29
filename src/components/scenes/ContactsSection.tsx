@@ -68,22 +68,30 @@ function RouteLinkGlyph() {
   return (
     <svg
       aria-hidden="true"
+      data-route-glyph="true"
       fill="none"
       focusable="false"
       viewBox="0 0 44 44"
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect
-        height="40"
+        height="36"
         rx="5"
         stroke="currentColor"
         strokeWidth="1.2"
-        width="40"
-        x="2"
-        y="2"
+        width="42"
+        x="1"
+        y="4"
       />
       <path
-        d="m10 31 8-14 8 5 8-12m-8 0h8v8"
+        d="M27 20c-6.6-1.4-12.4 2.1-16 12 7.2-1.1 12.5-5.1 16-12Z"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.25"
+      />
+      <path
+        d="M27 20c-3.7-5-3.3-9.3 1-10.4 5.9-1.5 8.5 2.2 7.1 7.7-.9 3.7-3.6 7.3-7.9 10.7Z"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"

@@ -45,6 +45,20 @@ const heroHeadingFlowerReference = (() => {
   return registeredHeadingFlower;
 })();
 
+const heroHeadingGlyphReference = (() => {
+  const registeredHeadingGlyphs = mediaManifest.find(
+    (asset) => asset.id === "hero-reference-heading-glyphs",
+  );
+
+  if (!registeredHeadingGlyphs) {
+    throw new Error(
+      "The bounded reference-derived hero heading glyph crop is required to render the hero scene.",
+    );
+  }
+
+  return registeredHeadingGlyphs;
+})();
+
 function getHeroImageAlt() {
   return heroMedia.provenance.classification ===
     "generated/reference-compatible"
@@ -163,6 +177,19 @@ export function HeroSection() {
 
       <div className="hero-copy">
         <h1 aria-label="ТОЧКА ПРИТЯЖЕНИЯ" id="hero-title">
+          {/* The wide-desktop glyph crop is decorative; the live spans remain the semantic source and responsive fallback. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            alt=""
+            aria-hidden="true"
+            className="hero-heading-glyphs-reference"
+            data-provenance={heroHeadingGlyphReference.provenance.classification}
+            data-reference-crop="heading-glyphs"
+            decoding="async"
+            height={heroHeadingGlyphReference.dimensions.height}
+            src={heroHeadingGlyphReference.path}
+            width={heroHeadingGlyphReference.dimensions.width}
+          />
           <span>Точка</span>
           <span>притяжения</span>
         </h1>

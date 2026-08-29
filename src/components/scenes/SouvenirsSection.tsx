@@ -11,7 +11,8 @@ type SouvenirReferenceCropId =
   | "souvenirs-reference-teacup"
   | "souvenirs-reference-tea-set"
   | "souvenirs-reference-cathedral-linework"
-  | "souvenirs-reference-seal-linework";
+  | "souvenirs-reference-seal-linework"
+  | "souvenirs-reference-eyebrow-flower";
 
 function getReferenceSouvenirCrop(id: SouvenirReferenceCropId): MediaAsset {
   const crop = mediaManifest.find((asset) => asset.id === id);
@@ -46,6 +47,7 @@ const souvenirDecorations = {
     "souvenirs-reference-cathedral-linework",
   ),
   seal: getReferenceSouvenirCrop("souvenirs-reference-seal-linework"),
+  eyebrowFlower: getReferenceSouvenirCrop("souvenirs-reference-eyebrow-flower"),
 } as const;
 
 const referenceSouvenirAlt =
@@ -54,27 +56,33 @@ const referenceSouvenirAlt =
 const stories = [
   {
     artwork: souvenirCrops.bracelet,
-    description: "Нежный браслет в мягкой розовой гамме. Иллюстративный мотив.",
-    label: "Браслет",
-    title: "«РОЗОВЫЙ ОТТЕНОК»",
+    description:
+      "Нежный браслет с натуральными камнями и серебряной вставкой.",
+    label: "БРАСЛЕТ",
+    price: "5 200 ₽",
+    title: "«РОЗОВЫЙ КВАРЦ»",
   },
   {
     artwork: souvenirCrops.ring,
-    description: "Изящное кольцо в винтажном стиле. Иллюстративный мотив.",
-    label: "Кольцо",
+    description: "Изящное кольцо в винтажном стиле. Лимитированная серия.",
+    label: "КОЛЬЦО",
+    price: "4 800 ₽",
     title: "«УЗОР ВРЕМЕНИ»",
   },
   {
     artwork: souvenirCrops.teacup,
-    description: "Чайная пара с цветочным узором. Иллюстративный мотив.",
-    label: "Чайная пара",
-    title: "ЦВЕТОЧНЫЙ ФАРФОР",
+    description:
+      "Венгерский фарфор ручной работы. Коллекционный экземпляр.",
+    label: "ЧАЙНАЯ ПАРА",
+    price: "12 500 ₽",
+    title: "HEREND",
   },
   {
     artwork: souvenirCrops.teaSet,
-    description: "Фарфоровый комплект с классическим узором. Иллюстративный мотив.",
-    label: "Винтажное трио",
-    title: "ЧАЙНЫЙ НАБОР",
+    description: "Фарфор, Европа. Середина XX века. Отличное состояние.",
+    label: "ВИНТАЖНОЕ ЧАЙНОЕ ТРИО",
+    price: "7 900 ₽",
+    title: "ЧАЙНОЕ ТРИО",
   },
 ] as const;
 
@@ -182,6 +190,29 @@ function ArrowMark() {
   );
 }
 
+function CartMark() {
+  return (
+    <svg
+      aria-hidden="true"
+      fill="none"
+      focusable="false"
+      viewBox="0 0 40 40"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <circle cx="20" cy="20" r="18.25" stroke="currentColor" strokeWidth="1.15" />
+      <path
+        d="M11.5 12.5h2.6l2.15 12.1h11.8l2.35-8.55H15.6"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.35"
+      />
+      <circle cx="18.15" cy="29.3" fill="currentColor" r="1.45" />
+      <circle cx="27.35" cy="29.3" fill="currentColor" r="1.45" />
+    </svg>
+  );
+}
+
 function StoryIcon({ index }: { index: number }) {
   const icon = [<GemIcon key="gem" />, <GiftIcon key="gift" />, <CrownIcon key="crown" />, <HandIcon key="hand" />][index];
 
@@ -235,6 +266,20 @@ export function SouvenirsSection() {
 
         <div className={styles.copy}>
           <p className={styles.eyebrow}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              alt=""
+              aria-hidden="true"
+              className={styles.eyebrowReferenceFlower}
+              data-provenance={
+                souvenirDecorations.eyebrowFlower.provenance.classification
+              }
+              data-souvenirs-decoration="eyebrow-flower"
+              decoding="async"
+              height={souvenirDecorations.eyebrowFlower.dimensions.height}
+              src={souvenirDecorations.eyebrowFlower.path}
+              width={souvenirDecorations.eyebrowFlower.dimensions.width}
+            />
             <FloralSeal />
             <span>Сувениры</span>
             <CopperBloom />
@@ -308,13 +353,18 @@ export function SouvenirsSection() {
         <aside className={styles.provenanceNote}>
           <FloralSeal />
           <span>Фрагменты референсной концепции</span>
-          <small>не документальная фотография места</small>
+          <small>
+            Названия и цены показаны по референсу, уточняйте перед визитом.
+          </small>
         </aside>
 
         <ul aria-label="Иллюстративные сувенирные мотивы" className={styles.storyRail}>
           {stories.map((story, index) => (
             <li className={styles.storyCard} key={story.title}>
-              <article>
+              <article
+                data-provenance="reference-derived"
+                data-souvenirs-metadata="reference-derived"
+              >
                 <div className={styles.storyVisual}>
                   {/* Copy, borders and decorative overlays stay in HTML/CSS around this bounded crop. */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -332,6 +382,19 @@ export function SouvenirsSection() {
                   <h3>{story.title}</h3>
                   <span className={styles.storyRule} />
                   <small>{story.description}</small>
+                  <div
+                    className={styles.storyMetadata}
+                    data-provenance="reference-derived"
+                  >
+                    <span className={styles.storyPrice}>{story.price}</span>
+                    <button
+                      aria-label={`Образец корзины для референсной позиции ${story.title}`}
+                      className={styles.storyCart}
+                      type="button"
+                    >
+                      <CartMark />
+                    </button>
+                  </div>
                   <b>Иллюстративный мотив</b>
                 </div>
               </article>

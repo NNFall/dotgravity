@@ -605,10 +605,18 @@
 
   .introduction {
     margin: 17px 0 0;
+    line-height: 1.48;
+    transform: translate(-2px, -1px) scaleX(.92);
+    transform-origin: center center;
   }
 
   .cardRail {
     margin: 22px auto 0;
+    margin-top: 23.46875px;
+  }
+
+  .menuCard:nth-child(1) {
+    --menu-card-x: 0px;
   }
 
   .menuCta {

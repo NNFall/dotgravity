@@ -82,6 +82,19 @@
     display: none;
   }
 
+  .eyebrowReferenceFlower {
+    display: block;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    object-fit: contain;
+    transform: translate(-8px, 1px);
+  }
+
+  .eyebrow > svg:first-of-type {
+    display: none;
+  }
+
   .cathedralReference,
   .sealReference {
     position: absolute;
@@ -127,12 +140,16 @@
   text-transform: uppercase;
 }
 
-.eyebrow svg:first-child {
+.eyebrowReferenceFlower {
+  display: none;
+}
+
+.eyebrow svg:first-of-type {
   width: 43px;
   height: 43px;
 }
 
-.eyebrow svg:nth-child(3) {
+.eyebrow svg:nth-of-type(2) {
   width: 25px;
   height: 25px;
 }
@@ -541,6 +558,50 @@
   line-height: 1.45;
 }
 
+.storyMetadata {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 8px;
+  color: var(--copper-deep);
+}
+
+.storyPrice {
+  color: var(--copper);
+  font-size: clamp(0.72rem, 0.98vw, 1rem);
+  font-weight: 520;
+  letter-spacing: 0.015em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.storyCart {
+  display: grid;
+  width: 39px;
+  height: 39px;
+  flex: 0 0 39px;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgb(180 71 37 / 52%);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--copper);
+  cursor: default;
+}
+
+.storyCart svg {
+  width: 39px;
+  height: 39px;
+}
+
+.storyCart:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 2px;
+}
+
 .storyContent b {
   margin-top: auto;
   padding-top: 9px;
@@ -552,13 +613,44 @@
   text-transform: uppercase;
 }
 
+.storyMetadata + b {
+  margin-top: 0;
+}
+
 @media (min-width: 901px) {
   .storyVisual {
     border-radius: 0;
   }
 
+  .eyebrowReferenceFlower {
+    display: block;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    object-fit: contain;
+  }
+
   .storyContent {
     padding: 2px 7px 13px 0;
+  }
+
+  .copy h2 {
+    margin-top: 34px;
+  }
+
+  /* The supplied desktop cards pin their price row against the lower photo
+     edge; keep the live metadata below the body-copy baseline as measured. */
+  .storyMetadata {
+    transform: translateY(11px);
+  }
+
+  .storyPrice {
+    transform: translateY(3px);
+  }
+
+  .storyContent small {
+    margin-top: 17px;
+    line-height: 1.75;
   }
 
   .storyRule,
@@ -683,12 +775,12 @@
     font-size: 0.74rem;
   }
 
-  .eyebrow svg:first-child {
+  .eyebrow svg:first-of-type {
     width: 38px;
     height: 38px;
   }
 
-  .eyebrow svg:nth-child(3) {
+  .eyebrow svg:nth-of-type(2) {
     width: 22px;
     height: 22px;
   }
@@ -825,6 +917,17 @@
     font-size: 0.48rem;
   }
 
+  .storyPrice {
+    font-size: 0.74rem;
+  }
+
+  .storyCart,
+  .storyCart svg {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
   .ribbon {
     position: relative;
     bottom: auto;
@@ -939,6 +1042,22 @@
 
   .storyContent small {
     font-size: 0.54rem;
+  }
+
+  .storyMetadata {
+    gap: 5px;
+    padding-top: 6px;
+  }
+
+  .storyPrice {
+    font-size: 0.67rem;
+  }
+
+  .storyCart,
+  .storyCart svg {
+    width: 31px;
+    height: 31px;
+    flex-basis: 31px;
   }
 
   .ribbon {
