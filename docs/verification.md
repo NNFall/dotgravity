@@ -1,6 +1,6 @@
 # Verification record
 
-Last full local verification: 2026-08-29 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The current source commit is `45422fc01d6b7d59c3230225a78c4c4f9057035d`; the strict bounded visual baseline remains the supplied six-scene reference set.
+Last full local verification: 2026-08-29 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The current source candidate is `a73a20a7793d337d429c14ab9a83121637027b80`; the strict bounded visual baseline remains the supplied six-scene reference set.
 
 Port `4173` was already occupied by the unrelated `comod` checkout and port
 `4174` by the unrelated `whitecup` checkout, so both were left untouched.
@@ -12,14 +12,14 @@ a temporary Playwright config pointed at that fresh server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 54 files, 221 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 56 files, 227 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
-| `npm.cmd run qa:assets` | pass | 67 registered assets, 31 production text files, no unexpected media |
+| `npm.cmd run qa:assets` | pass | 70 registered assets, 31 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 4,425,620 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 4,362,241 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -48,7 +48,7 @@ by the accessibility suite.
 
 ## Current VPS deployment — 2026-08-29
 
-The current source commit `45422fc01d6b7d59c3230225a78c4c4f9057035d` was
+The current source candidate `a73a20a7793d337d429c14ab9a83121637027b80` was
 built with `DOTGRAVITY_BASE_PATH=/site/dotgravity` and installed at
 `/root/dotgravity`. The uploaded archive SHA-256 is
 `8b1d4afbf4c04d8cc19c9cb55bccbb933bd33c499db5ca779b95a2a78e945e6d`;
@@ -68,7 +68,7 @@ anchors, and an operable mobile menu. Evidence is under
 `artifacts/vps-public-final-*.png` and
 `artifacts/vps-public-metrics-final.json`.
 
-The strict raw comparator remains NO-GO: `4,425,620 / 9,440,112` pixels differ
+The strict raw comparator remains NO-GO: `4,362,241 / 9,440,112` pixels differ
 across the six supplied `1672×941` scenes. No tolerance, mask or baseline
 replacement is used.
 

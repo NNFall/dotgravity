@@ -76,7 +76,7 @@ describe("gallery desktop canvas contract", () => {
       /\.mainPhoto\s+img\s*\{[^}]*\bwidth:\s*582px\s*;[^}]*\bheight:\s*830px\s*;[^}]*\btransform:\s*none\s*;/,
     );
     expect(desktopStyles).toMatch(
-      /\.composition::after\s*\{[^}]*transform:\s*translate\(-13px,\s*0\)\s*;/,
+      /\.composition::after\s*\{[^}]*transform:\s*translate\(-23px,\s*0\)\s*;/,
     );
     expect(desktopStyles).toMatch(
       /\.inset\s*\{[^}]*overflow:\s*visible\s*;/,

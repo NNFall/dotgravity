@@ -521,6 +521,72 @@ export const mediaManifest = [
     },
   },
   {
+    id: "about-reference-eyebrow-ornament",
+    path: "/media/reference-derived/about-reference-eyebrow-ornament.png",
+    sha256:
+      "DADA9B15D0C9824F1DD7A0DF1AA54879484DCB7B138693DD2BA5628C9FA33B20",
+    dimensions: {
+      width: 199,
+      height: 34,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9",
+      transformation:
+        "Bounded opaque eyebrow ornament ROI x=1115,y=78,w=199,h=34 from the supplied about concept; it contains only the copper rules and bloom mark and excludes semantic copy, photos and venue claims.",
+      statement:
+        "Bounded decorative crop from the supplied generated about concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["about"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop About eyebrow ornament only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the intrinsic ornament crop at the measured wide-desktop About eyebrow origin while retaining the live semantic label below it",
+      focalPoint: "copper horizontal rules and four-petal bloom",
+      responsive:
+        "Use only on the wide desktop About scene; hide below 1081px so the live responsive ornament remains active.",
+    },
+  },
+  {
+    id: "about-reference-feature-icons",
+    path: "/media/reference-derived/about-reference-feature-icons.png",
+    sha256:
+      "2863B3485C8DBAFE57FE498E0FD7F03BC4BA5E069177C307E5B13008E241A4AB",
+    dimensions: {
+      width: 650,
+      height: 80,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9",
+      transformation:
+        "Bounded feature-icon rail ROI x=850,y=520,w=650,h=80 from the supplied about concept; it contains only the three copper icon drawings, their short separators and paper surface, excluding semantic headings and descriptions.",
+      statement:
+        "Bounded decorative crop from the supplied generated about concept for visual reference only; it is not documentary venue evidence and must not be presented as one.",
+    },
+    intendedScenes: ["about"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop About feature icon rail only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "Place the intrinsic feature-icon rail crop at the measured wide-desktop About feature origin while retaining live semantic headings and descriptions below it",
+      focalPoint: "copper cup, antique porcelain and artwork icon drawings",
+      responsive:
+        "Use only on the wide desktop About scene; hide below 1081px so the live responsive icons and separators remain active.",
+    },
+  },
+  {
     id: "about-reference-cathedral-linework",
     path: "/media/reference-derived/about-reference-cathedral-linework.png",
     sha256:
@@ -1494,6 +1560,38 @@ export const mediaManifest = [
       focalPoint: "three-spire cathedral illustration and its paper-backed edge surface",
       responsive:
         "Use only inside the measured desktop gallery edge footprint; retain the transparent/vector fallback below the desktop breakpoint and never expand it into a full reference screen.",
+    },
+  },
+  {
+    id: "gallery-reference-bottom-ornament",
+    path: "/media/reference-derived/gallery-reference-bottom-ornament.png",
+    sha256: "800A8BD738CCB263D272E2F2921A0FAAD804516C861108A66B4DE2EF1D798822",
+    dimensions: {
+      width: 95,
+      height: 95,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5",
+      transformation:
+        "Bounded opaque bottom-ornament ROI x=625,y=835,w=95,h=95 from the supplied gallery concept; the floral medallion, connector rules and paper-backed pixels are retained while semantic copy and neighboring photo regions remain outside the crop.",
+      statement:
+        "Bounded decorative crop from the supplied generated gallery concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["gallery"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "gallery desktop bottom ornament region only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the opaque bounded ornament at the measured lower-left gallery frame coordinates on wide desktop",
+      focalPoint: "floral medallion and fine frame connector lines",
+      responsive:
+        "Use only inside the measured wide-desktop gallery frame footprint; hide below 1221px and retain the responsive gallery composition without the crop.",
     },
   },
   {

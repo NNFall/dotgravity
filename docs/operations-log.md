@@ -1,5 +1,27 @@
 # Operations log
 
+## 2026-08-29 — About/Gallery bounded calibration follow-up
+
+- Accepted the next bounded reference-fidelity candidate in source commit
+  `a73a20a7793d337d429c14ab9a83121637027b80`: About now uses separate
+  reference-derived eyebrow and feature-icon crops on wide desktop, while
+  Gallery uses a bounded bottom ornament crop and the measured outer-arch
+  offset. Live semantic copy, SVG fallbacks and responsive breakpoints remain
+  in place; no whole-screen PNG is imported.
+- Added three registered, non-documentary assets with parent-reference hashes,
+  source ROIs and production allowances. Asset audit now reports `70`
+  registered assets and no unexpected media. Focused About/Gallery contracts,
+  TypeScript and lint pass; the full Vitest run recorded `56` files / `227`
+  tests passing after the regex-contract cleanup.
+- Fresh raw comparison improved the bounded candidate to `4,362,241 /
+  9,440,112` changed pixels: hero `623,383`, about `665,706`, menu `770,912`,
+  gallery `753,177`, souvenirs `880,212`, contacts `668,851`. The comparator
+  remains intentionally NO-GO with zero tolerance; no mask or baseline
+  replacement was introduced.
+- The candidate was rebuilt and is queued for the same base-path VPS release
+  and public four-viewport smoke. Deployment must retain the existing
+  `/root/dotgravity/dist` backup and Nginx alias repair described below.
+
 ## 2026-08-29 — current reference-fidelity candidate and VPS route repair
 
 - Completed the bounded review follow-up in source commit

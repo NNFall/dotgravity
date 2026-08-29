@@ -86,6 +86,34 @@ const aboutLocationCardArtwork = (() => {
   return registeredAboutLocationCard;
 })();
 
+const aboutEyebrowArtwork = (() => {
+  const registeredAboutEyebrow = mediaManifest.find(
+    (asset) => asset.id === "about-reference-eyebrow-ornament",
+  );
+
+  if (!registeredAboutEyebrow) {
+    throw new Error(
+      "The bounded reference-derived about eyebrow ornament is required to render the about scene.",
+    );
+  }
+
+  return registeredAboutEyebrow;
+})();
+
+const aboutFeatureIconsArtwork = (() => {
+  const registeredAboutFeatureIcons = mediaManifest.find(
+    (asset) => asset.id === "about-reference-feature-icons",
+  );
+
+  if (!registeredAboutFeatureIcons) {
+    throw new Error(
+      "The bounded reference-derived about feature-icon rail is required to render the about scene.",
+    );
+  }
+
+  return registeredAboutFeatureIcons;
+})();
+
 function getAboutImageAlt() {
   if (aboutMedia.provenance.classification === "generated/reference-compatible") {
     return "Сгенерированный визуальный образ: арочный интерьер с керамикой";
@@ -365,6 +393,34 @@ export function AboutSection() {
         height={aboutLocationCardArtwork.dimensions.height}
         src={aboutLocationCardArtwork.path}
         width={aboutLocationCardArtwork.dimensions.width}
+      />
+
+      {/* Keep the measured eyebrow rules and bloom as a bounded desktop-only reference overlay; the live label remains semantic below it. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={styles.eyebrowReference}
+        data-about-decoration="eyebrow-ornament"
+        data-provenance={aboutEyebrowArtwork.provenance.classification}
+        decoding="async"
+        height={aboutEyebrowArtwork.dimensions.height}
+        src={aboutEyebrowArtwork.path}
+        width={aboutEyebrowArtwork.dimensions.width}
+      />
+
+      {/* Keep the measured feature icon rail as a bounded desktop-only reference overlay; the live headings and descriptions remain semantic. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={styles.featureIconsReference}
+        data-about-decoration="feature-icons"
+        data-provenance={aboutFeatureIconsArtwork.provenance.classification}
+        decoding="async"
+        height={aboutFeatureIconsArtwork.dimensions.height}
+        src={aboutFeatureIconsArtwork.path}
+        width={aboutFeatureIconsArtwork.dimensions.width}
       />
 
       <div className={styles.content}>

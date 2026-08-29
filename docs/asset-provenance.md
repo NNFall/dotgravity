@@ -78,7 +78,7 @@ mobile and narrow-tablet breakpoints use the live responsive fallback.
 
 ### Additional bounded calibration assets — 2026-08-29
 
-These eleven crops were added in the v24 runtime pass. They remain
+These fourteen crops were added in the v24 runtime pass. They remain
 `reference-derived`, `documentary: false`, and desktop-only; all source ROIs
 are bounded to a live ornament or frame and never rendered as a whole screen.
 
@@ -95,6 +95,9 @@ are bounded to a live ornament or frame and never rendered as a whole screen.
 | `public/media/reference-derived/gallery-reference-cathedral-opaque.png` | 120×665 | `8BC2F0F637E25E692627B4EFE85CFFBACE299B7E8218CD2121390FEA3516EA91` | gallery `8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5`; `x=0,y=250,w=120,h=665` | wide-desktop paper-backed cathedral edge |
 | `public/media/reference-derived/souvenirs-reference-main-frame-ring.png` | 786×536 | `4CAA236F9572322D5B7A9605902F2790F48E5C89D01874C2B69836528680765A` | souvenirs `1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0`; `x=807,y=89,w=786,h=536` | wide-desktop transparent outer frame ring; inner photo remains live |
 | `public/media/reference-derived/contacts-reference-cathedral-opaque.png` | 95×560 | `C7EB5206590BC0033C50A8DDBCC68C5B2801BB9C835C44A84752C4960AB24CF5` | contacts `DC6958CC6FB22CB2892C5D4708B907468EE52A01251A6378F2E3E001B2E88457`; `x=0,y=350,w=95,h=560` | wide-desktop paper-backed cathedral edge |
+| `public/media/reference-derived/about-reference-eyebrow-ornament.png` | 199×34 | `DADA9B15D0C9824F1DD7A0DF1AA54879484DCB7B138693DD2BA5628C9FA33B20` | about `5569EA6A855915480D98A9760A91F9D9D914D53410DCA1FF2EC99143B74A4DC9`; `x=1115,y=78,w=199,h=34` | wide-desktop paper-backed eyebrow rules and bloom |
+| `public/media/reference-derived/about-reference-feature-icons.png` | 650×80 | `2863B3485C8DBAFE57FE498E0FD7F03BC4BA5E069177C307E5B13008E241A4AB` | about same parent; `x=850,y=520,w=650,h=80` | wide-desktop paper-backed feature-icon rail |
+| `public/media/reference-derived/gallery-reference-bottom-ornament.png` | 95×95 | `800A8BD738CCB263D272E2F2921A0FAAD804516C861108A66B4DE2EF1D798822` | gallery `8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5`; `x=625,y=835,w=95,h=95` | wide-desktop paper-backed floral medallion and frame connector |
 
 All crops are reference-compatible visual aids, not documentary
 photographs of the café. In particular, location labels, Menu prices and

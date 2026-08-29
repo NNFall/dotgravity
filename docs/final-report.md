@@ -2,14 +2,17 @@
 
 ## Текущая опубликованная ревизия — 2026-08-29
 
-Текущий runtime-коммит —
-`45422fc01d6b7d59c3230225a78c4c4f9057035d`. Сайт остаётся единым
+Текущий source/runtime-кандидат —
+`a73a20a7793d337d429c14ab9a83121637027b80`. Сайт остаётся единым
 непрерывным React/TypeScript scroll-потоком с шестью anchor-сценами; целые
 reference PNG не импортируются. В этой ревизии Hero heading crop сохраняет
 соотношение `626:165` при масштабировании от `1672×941` до `1920×1080`,
 сувенирная иконка корзины помечена декоративной (без ложной кнопки), а
 reference-derived названия/цены сопровождаются видимой подписью:
 `Иллюстративный референс, не актуальный каталог — уточняйте перед визитом.`
+About получил отдельные bounded crops для eyebrow и feature-icon rail, а
+Gallery — отдельный bounded bottom ornament; оба изменения сохраняют живые
+семантические HTML/SVG fallback-слои и дали измеримое улучшение raw ROI.
 
 Локальный handoff: [http://127.0.0.1:4180/](http://127.0.0.1:4180/).
 Публичный VPS: [https://kaigo.space/site/dotgravity/](https://kaigo.space/site/dotgravity/).
@@ -18,16 +21,16 @@ reference-derived названия/цены сопровождаются вид�
 `dotgravity.service` active на `127.0.0.1:4181`, а Nginx alias обслуживает
 вложенное `/site/dotgravity/_next/` дерево.
 
-Финальные проверки: `npm.cmd test` — 54 файла / 221 тест; lint, TypeScript,
-asset audit — 67 ассетов, Chromium browser — 12/12, accessibility — 5/5,
+Финальные проверки: `npm.cmd test` — 56 файлов / 227 тестов; lint, TypeScript,
+asset audit — 70 ассетов, Chromium browser — 12/12, accessibility — 5/5,
 visual capture — 1/1, production `npm audit` — 0 уязвимостей. Публичный
 Chromium smoke на `1920×1080`, `1672×941`, `390×844` и `320×844` вернул
 `200`, нулевые failed requests и broken images, равные client/scroll widths;
 мобильное меню открылось с `aria-expanded=true` и одним dialog.
 
-Строгий raw RGBA gate остаётся NO-GO и не скрывается: `4,425,620 /
-9,440,112` пикселей отличаются (hero `623,383`, about `722,601`, menu
-`770,912`, gallery `759,661`, souvenirs `880,212`, contacts `668,851`).
+Строгий raw RGBA gate остаётся NO-GO и не скрывается: `4,362,241 /
+9,440,112` пикселей отличаются (hero `623,383`, about `665,706`, menu
+`770,912`, gallery `753,177`, souvenirs `880,212`, contacts `668,851`).
 Ни tolerance, ни mask, ни подмена baseline не использованы; это проверенный
 опубликованный кандидат, а не заявление о завершённом zero-diff.
 
@@ -92,7 +95,7 @@ Production остаётся owner-only, поэтому анонимный HTTP-�
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source commit: `45422fc01d6b7d59c3230225a78c4c4f9057035d` (GitHub `main` and feature branch; current VPS deployment)
+- Runtime source candidate: `a73a20a7793d337d429c14ab9a83121637027b80` (GitHub `main` and feature branch after the next VPS release)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`

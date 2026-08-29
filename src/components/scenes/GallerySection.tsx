@@ -13,7 +13,8 @@ type GalleryCropId =
   | "gallery-reference-inset-card-art"
   | "gallery-reference-inset-card-space"
   | "gallery-reference-cathedral-linework"
-  | "gallery-reference-cathedral-opaque";
+  | "gallery-reference-cathedral-opaque"
+  | "gallery-reference-bottom-ornament";
 
 function getGalleryCrop(id: GalleryCropId): MediaAsset {
   const crop = mediaManifest.find((asset) => asset.id === id);
@@ -49,6 +50,10 @@ const galleryCathedralArtwork = getGalleryCrop(
 
 const galleryCathedralOpaqueArtwork = getGalleryCrop(
   "gallery-reference-cathedral-opaque",
+);
+
+const galleryBottomOrnamentArtwork = getGalleryCrop(
+  "gallery-reference-bottom-ornament",
 );
 
 const referenceGalleryAlt =
@@ -173,6 +178,26 @@ function ReferenceCathedralLinework() {
   );
 }
 
+function ReferenceGalleryBottomOrnament() {
+  return (
+    <>
+      {/* Keep the supplied frame ornament bounded to the wide desktop gallery composition. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={styles.galleryBottomReference}
+        data-gallery-decoration="bottom-ornament"
+        data-provenance={galleryBottomOrnamentArtwork.provenance.classification}
+        decoding="async"
+        height={galleryBottomOrnamentArtwork.dimensions.height}
+        src={galleryBottomOrnamentArtwork.path}
+        width={galleryBottomOrnamentArtwork.dimensions.width}
+      />
+    </>
+  );
+}
+
 function CupIcon() {
   return (
     <svg
@@ -290,6 +315,7 @@ export function GallerySection() {
           <ReferenceCathedralLinework />
           <CathedralLinework />
         </div>
+        <ReferenceGalleryBottomOrnament />
 
         <div className={styles.copy}>
           <p className={styles.eyebrow}>
