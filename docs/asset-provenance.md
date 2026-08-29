@@ -355,6 +355,23 @@ is inline vector markup rather than a media file, it is intentionally tracked
 here instead of the raster registry and is excluded from documentary asset
 counts.
 
+### Latest bounded Hero/Souvenirs detail crops — 2026-08-29
+
+The current desktop detail pass adds two small, non-documentary
+`reference-derived` crops. Both remain bounded to their live decoration slots;
+semantic text and responsive fallbacks stay in React/CSS.
+
+| Asset | SHA-256 | Intrinsic size | Parent / source ROI | Production role |
+| --- | --- | --- | --- | --- |
+| `hero-reference-heading-glyphs.png` | `2E4EE66D1B7FB5E800AD48F3B5B538062448CE8F7FC914AAFFA677BE5407DBE4` | `626×165` | hero concept `21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559`; `x=107,y=216,w=626,h=165` | wide-desktop H1 glyph paint only; live spans remain below `1181px` |
+| `souvenirs-reference-eyebrow-flower.png` | `706E296721A44E3EEE4E2417D55CB894D7E4C19B3461EE233438FB4D22BE58FA` | `48×48` | souvenirs concept `1D154C8FBF7EDD02616B0AE624AB79F803BED47305863F758E93BBF061D6DAE0`; `x=108,y=79,w=48,h=48` | desktop souvenirs eyebrow rosette; live vector fallback remains below `901px` |
+
+The Hero crop uses a deterministic alpha mask retaining antialiased copper/ink
+glyph edges and excludes the ornament, kicker, CTA and surrounding paper. The
+Souvenirs crop uses the registered warm-line color projection to remove paper
+while retaining the rosette and ring. Neither asset is documentary venue
+evidence or a full reference screen.
+
 ## Audit policy
 
 `npm.cmd run qa:assets` runs the shared runtime registry validation, then fails when any registered media file is missing, has a different SHA-256, or has different intrinsic dimensions as reported by Sharp. It also rejects:

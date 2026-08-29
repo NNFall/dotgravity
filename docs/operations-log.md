@@ -1,6 +1,46 @@
 # Operations log
 
-## 2026-08-29 — VPS publication at `kaigo.space/site/dotgravity`
+## 2026-08-29 — current reference-fidelity candidate and VPS route repair
+
+- Completed the bounded review follow-up in source commit
+  `45422fc01d6b7d59c3230225a78c4c4f9057035d`: the wide-desktop Hero heading
+  crop now preserves its intrinsic `626:165` aspect ratio at both `1672×941`
+  and `1920×1080`; the Souvenirs cart glyph is explicitly decorative rather
+  than an inert button; and the reference-derived price disclosure is visible:
+  `Иллюстративный референс, не актуальный каталог — уточняйте перед визитом.`
+- TDD contracts passed after RED→GREEN changes. Final local gates are green:
+  `npm.cmd test` — 54 files / 221 tests; `npm.cmd run lint`; TypeScript;
+  `qa:assets` — 67 registered assets; `qa:browser` — 12/12;
+  `qa:a11y` — 5/5; `qa:visual` — 1/1; and production `npm audit` — 0
+  vulnerabilities. The strict raw comparator remains intentionally NO-GO:
+  `4,425,620 / 9,440,112` changed pixels (hero `623,383`, about `722,601`,
+  menu `770,912`, gallery `759,661`, souvenirs `880,212`, contacts
+  `668,851`); no mask, tolerance or baseline replacement was introduced.
+- Built the base-path archive for the requested VPS. SHA-256 is
+  `8b1d4afbf4c04d8cc19c9cb55bccbb933bd33c499db5ca779b95a2a78e945e6d`.
+  It was installed under `/root/dotgravity/dist` with the previous dist kept
+  as `dist-previous-20260829-1805`; `dotgravity.service` is active on
+  `127.0.0.1:4181`.
+- Remote smoke initially exposed a missing base-path chunk because the
+  existing Nginx location proxied `/site/dotgravity/_next/` to an adapter root
+  that does not contain the nested base-path tree. The exact snippet was backed
+  up as `dotgravity.conf.bak-20260829-1809` and corrected to alias
+  `/root/dotgravity/dist/client/site/dotgravity/_next/`. `nginx -t` and reload
+  passed; pre-existing duplicate-server-name warnings remain unchanged.
+- After the alias repair, the no-slash route returns `308`, the canonical page,
+  every emitted JS/CSS chunk and both new reference-derived PNGs return `200`,
+  and public Chromium confirms the title, six scenes, zero failed requests,
+  no broken images, equal client/scroll widths at `1920×1080`, `1672×941`,
+  `390×844` and `320×844`, plus an operable mobile menu (`aria-expanded=true`,
+  one dialog). Evidence is retained under `artifacts/vps-public-final-*.png`
+  and `artifacts/vps-public-metrics-final.json`.
+- The supplied SSH password was used only interactively and is absent from
+  source, logs and this record. The VPS route is ready at
+  `https://kaigo.space/site/dotgravity/`; raw-zero remains an open quality
+  gate, so this is a verified published candidate rather than a completed
+  pixel-perfect claim.
+
+## 2026-08-29 — previous VPS publication at `kaigo.space/site/dotgravity` (superseded)
 
 - Added a normalized `DOTGRAVITY_BASE_PATH` build setting and a small Vinext
   production adapter so the same React runtime can be served below

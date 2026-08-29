@@ -1,6 +1,6 @@
 # Verification record
 
-Last full local verification: 2026-08-29 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The latest source/deployment-support commit is `e9b626f84dd52a0e24a1aeba16a5539bcb6f9e32`; the bounded visual baseline remains the runtime from `69dfd75915b0acdf43b28a9bbe2b667ccc4c4144`.
+Last full local verification: 2026-08-29 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The current source commit is `45422fc01d6b7d59c3230225a78c4c4f9057035d`; the strict bounded visual baseline remains the supplied six-scene reference set.
 
 Port `4173` was already occupied by the unrelated `comod` checkout and port
 `4174` by the unrelated `whitecup` checkout, so both were left untouched.
@@ -12,14 +12,14 @@ a temporary Playwright config pointed at that fresh server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 53 files, 213 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 54 files, 221 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
-| `npm.cmd run qa:assets` | pass | 65 registered assets, 30 production text files, no unexpected media |
+| `npm.cmd run qa:assets` | pass | 67 registered assets, 31 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 4,447,420 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 4,425,620 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -30,7 +30,7 @@ baseline with a live capture.
 ## Browser evidence
 
 The in-app Browser and terminal Chromium probes were checked against the
-fresh local production server at all required viewports. The page has one document H1, 50
+fresh local production server at all required viewports. The page has one document H1, 52
 loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 `aside#events` bridge, and the continuous order
 `hero → about → menu → gallery → souvenirs → events → contacts`.
@@ -39,14 +39,40 @@ loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 | --- | ---: | ---: | --- |
 | 1672×941 | 1672 / 1672 | 6129 px | all six desktop scenes inspected at their anchor positions |
 | 1920×1080 | 1920 / 1920 | 6703 px | desktop scaling and navigation inspected |
-| 390×844 | 390 / 390 | 9463 px | no horizontal overflow; menu rail, contacts wrap and footer inspected |
-| 320×844 | 320 / 320 | 8963 px | no horizontal overflow; `Как нас найти` and footer wrap cleanly |
+| 390×844 | 390 / 390 | 9560 px | no horizontal overflow; menu rail, contacts wrap and footer inspected |
+| 320×844 | 320 / 320 | 9044 px | no horizontal overflow; `Как нас найти` and footer wrap cleanly |
 
 The mobile menu traps focus, closes on `Escape`, restores focus to its trigger,
 and keeps touch targets at or above 44 px. Reduced-motion behavior is covered
 by the accessibility suite.
 
-## VPS deployment — 2026-08-29
+## Current VPS deployment — 2026-08-29
+
+The current source commit `45422fc01d6b7d59c3230225a78c4c4f9057035d` was
+built with `DOTGRAVITY_BASE_PATH=/site/dotgravity` and installed at
+`/root/dotgravity`. The uploaded archive SHA-256 is
+`8b1d4afbf4c04d8cc19c9cb55bccbb933bd33c499db5ca779b95a2a78e945e6d`;
+`dotgravity.service` is active on `127.0.0.1:4181`. During the smoke pass the
+prefixed chunk exposed a stale Nginx mapping; the snippet was backed up and
+updated to alias `/site/dotgravity/_next/` to the nested
+`dist/client/site/dotgravity/_next/` tree. `nginx -t` and reload passed, with
+only pre-existing duplicate-server-name warnings.
+
+The canonical route at
+[https://kaigo.space/site/dotgravity/](https://kaigo.space/site/dotgravity/)
+returns `200`; the no-slash route returns `308`. The current JS/CSS chunks and
+new Hero/Souvenirs reference-derived assets return `200`. Public Chromium
+smoke is green at `1920×1080`, `1672×941`, `390×844` and `320×844`: zero
+failed requests, zero broken images, equal client/scroll widths, six scene
+anchors, and an operable mobile menu. Evidence is under
+`artifacts/vps-public-final-*.png` and
+`artifacts/vps-public-metrics-final.json`.
+
+The strict raw comparator remains NO-GO: `4,425,620 / 9,440,112` pixels differ
+across the six supplied `1672×941` scenes. No tolerance, mask or baseline
+replacement is used.
+
+## Previous VPS deployment — 2026-08-29 (superseded by current candidate)
 
 The base-path build from `e9b626f84dd52a0e24a1aeba16a5539bcb6f9e32` is live at
 the requested public route [kaigo.space/site/dotgravity](https://kaigo.space/site/dotgravity/).
