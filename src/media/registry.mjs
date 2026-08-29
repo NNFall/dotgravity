@@ -132,6 +132,39 @@ export const mediaManifest = [
     },
   },
   {
+    id: "hero-reference-paper-texture",
+    path: "/media/reference-derived/hero-reference-paper-texture.png",
+    sha256:
+      "791D85CF0A2349D135D0A2D29E11C6BB45D454EB7F981F6B5597A3B51DCAAE65",
+    dimensions: {
+      width: 956,
+      height: 836,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "21380897A08D9C2375C1755DEDEB0E7F4BBFA62271979EE05C0A33D79F0DB559",
+      transformation:
+        "Bounded paper-only ROI x=0,y=105,w=956,h=836 from the supplied hero concept; warm paper pixels pass a current-base guard, a two-pixel morphological halo rejection and explicit exclusions for live header-adjacent artwork, heading, copy, CTA, feature rail, motto, cathedral and photo polygon, leaving semantic DOM paint transparent.",
+      statement:
+        "Bounded transparent paper texture from the supplied generated hero concept for visual reference only; it contains no semantic copy, venue claim or documentary photography and must not be presented as one.",
+    },
+    intendedScenes: ["hero"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "wide-desktop Hero paper-only texture layer",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the intrinsic transparent paper texture over the measured desktop Hero paper field while retaining live copy and linework above it",
+      focalPoint: "reference paper grain and low-contrast paper field variation",
+      responsive:
+        "Use only at the wide desktop breakpoint; keep the CSS paper fallback below 1181px and never expand the crop into a full reference screen.",
+    },
+  },
+  {
     id: "hero-reference-cathedral-strip",
     path: "/media/reference-derived/hero-reference-cathedral-strip.png",
     sha256:
@@ -1724,6 +1757,38 @@ export const mediaManifest = [
       focalPoint: "floral medallion and fine frame connector lines",
       responsive:
         "Use only inside the measured wide-desktop gallery frame footprint; hide below 1221px and retain the responsive gallery composition without the crop.",
+    },
+  },
+  {
+    id: "gallery-reference-paper-texture",
+    path: "/media/reference-derived/gallery-reference-paper-texture.png",
+    sha256: "4D0B95B4A62816CE732E7B6A07226A751DB29C94B269CE2900DC79AAFA6385FE",
+    dimensions: {
+      width: 625,
+      height: 941,
+    },
+    provenance: {
+      classification: "reference-derived",
+      documentary: false,
+      parentReferenceSha256:
+        "8FF8EC7190A48985D57F7BF05590A392049BFBBC5E4C36BBE4C2EA164B85EFB5",
+      transformation:
+        "Bounded paper-only ROI x=0,y=0,w=625,h=941 from the supplied gallery concept; a deterministic warm-paper alpha mask with a one-pixel semantic halo exclusion retains the paper texture while leaving live copy, CTA, icons and cathedral artwork transparent.",
+      statement:
+        "Bounded paper texture from the supplied generated gallery concept for visual reference only; it is not documentary venue evidence and must not be presented as a photograph of the cafe.",
+    },
+    intendedScenes: ["gallery"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "gallery desktop paper field texture only",
+      referenceShape: "bounded-reference-region",
+    },
+    cropRules: {
+      strategy:
+        "place the intrinsic transparent paper-only crop beneath the live wide-desktop gallery copy and decorative layers",
+      focalPoint: "warm paper texture across the bounded left gallery copy field",
+      responsive:
+        "Use only inside the measured wide-desktop gallery paper field; hide below 1221px and retain the responsive CSS paper surface without the crop.",
     },
   },
   {

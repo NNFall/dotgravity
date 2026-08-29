@@ -111,10 +111,22 @@ describe("gallery desktop canvas contract", () => {
 
   test("moves the wide desktop gallery CTA into the reference story rhythm", () => {
     expect(desktopStyles).toMatch(
-      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.storyDetails\s*\{[^}]*\bmargin-top:\s*77px\s*;/,
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.storyDetails\s*\{[^}]*\bmargin-top:\s*34px\s*;/,
     );
     expect(mobileStyles).not.toMatch(
-      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.storyDetails\s*\{[^}]*\bmargin-top:\s*77px\s*;/,
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.storyDetails\s*\{[^}]*\bmargin-top:\s*34px\s*;/,
+    );
+  });
+
+  test("matches the wide desktop reference paragraph and motif rhythm", () => {
+    expect(desktopStyles).toMatch(
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.introduction\s*\{[^}]*\bmargin-top:\s*22px\s*;[^}]*\bline-height:\s*1\.75\s*;/,
+    );
+    expect(desktopStyles).toMatch(
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.featureList\s*\{[^}]*\bmargin-top:\s*52px\s*;/,
+    );
+    expect(mobileStyles).not.toMatch(
+      /@media\s*\(min-width:\s*1440px\)[\s\S]*?\.introduction\s*\{[^}]*\bmargin-top:\s*22px\s*;/,
     );
   });
 

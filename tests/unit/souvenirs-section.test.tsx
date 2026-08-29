@@ -146,6 +146,11 @@ describe("souvenirs anchor scene", () => {
       expect(decorativeCart).toHaveAttribute("aria-hidden", "true");
     }
     expect(within(souvenirs).getAllByRole("listitem")).toHaveLength(4);
+    const eyebrowBloom = souvenirs.querySelector(
+      '[data-souvenirs-decoration="eyebrow-bloom"]',
+    );
+    expect(eyebrowBloom).not.toBeNull();
+    expect(eyebrowBloom).toHaveAttribute("aria-hidden", "true");
     expect(
       within(souvenirs).getByRole("link", {
         name: "Уточнить наличие в кафе",

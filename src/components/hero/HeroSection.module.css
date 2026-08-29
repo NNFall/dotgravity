@@ -2,6 +2,20 @@
   display: none;
 }
 
+.paperTextureReference {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 57.1770334928%;
+  height: 100%;
+  object-fit: fill;
+  object-position: 0 0;
+  pointer-events: none;
+  user-select: none;
+}
+
 :global(.hero-heading-ornament__reference) {
   display: none;
 }
@@ -162,6 +176,10 @@
 /* Keep the supplied wide-desktop paper linework as intrinsic bounded crops.
    Tablet and mobile retain the live CSS fallbacks from globals.css. */
 @media (min-width: 1181px) {
+  .paperTextureReference {
+    display: block;
+  }
+
   :global(.hero-dots) {
     z-index: 1;
     width: 66px;
@@ -240,6 +258,10 @@
 }
 
 @media (max-width: 1180px) {
+  .paperTextureReference {
+    display: none;
+  }
+
   :global(.hero-heading-ornament__reference) {
     display: none;
   }

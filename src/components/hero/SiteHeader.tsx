@@ -73,9 +73,16 @@ export function SiteHeader({ presentation = false }: { presentation?: boolean } 
       <SiteNavigation className="site-header__nav" label="Разделы сайта" />
 
       <address className="site-header__contacts">
-        <a className="site-header__address" href="#contacts">
+        <a
+          aria-label="Самара, ул. Фрунзе, 130"
+          className="site-header__address"
+          href="#contacts"
+        >
           <PhosphorIcon aria-hidden="true" name="mapPin" size={39} weight="light" />
-          <span>Самара, ул. Фрунзе, 130</span>
+          <span className="site-header__address-copy">
+            <span>Самара, </span>
+            <span>ул. Фрунзе, 130</span>
+          </span>
         </a>
         <a className="site-header__phone" href="tel:+78462630404">
           <PhosphorIcon aria-hidden="true" name="phone" size={34} weight="light" />

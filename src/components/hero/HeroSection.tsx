@@ -31,6 +31,20 @@ const heroReferenceMedia = (() => {
   return registeredHeroReference;
 })();
 
+const heroPaperTexture = (() => {
+  const registeredHeroPaperTexture = mediaManifest.find(
+    (asset) => asset.id === "hero-reference-paper-texture",
+  );
+
+  if (!registeredHeroPaperTexture) {
+    throw new Error(
+      "The bounded reference-derived hero paper texture is required to render the hero scene.",
+    );
+  }
+
+  return registeredHeroPaperTexture;
+})();
+
 const heroHeadingFlowerReference = (() => {
   const registeredHeadingFlower = mediaManifest.find(
     (asset) => asset.id === "hero-reference-heading-flower",
@@ -166,6 +180,19 @@ function HeroFeatureList() {
 export function HeroSection() {
   return (
     <section aria-labelledby="hero-title" className="hero-scene" data-scene="hero" id="hero">
+      {/* Keep only the guarded paper pixels from the supplied reference; live copy, controls and linework remain DOM-rendered above it. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={styles.paperTextureReference}
+        data-hero-decoration="paper-texture"
+        data-provenance={heroPaperTexture.provenance.classification}
+        decoding="async"
+        height={heroPaperTexture.dimensions.height}
+        src={heroPaperTexture.path}
+        width={heroPaperTexture.dimensions.width}
+      />
       <div aria-hidden="true" className="hero-dots" />
       <div aria-hidden="true" className="hero-curves">
         <span />

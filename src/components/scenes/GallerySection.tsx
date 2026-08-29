@@ -14,7 +14,8 @@ type GalleryCropId =
   | "gallery-reference-inset-card-space"
   | "gallery-reference-cathedral-linework"
   | "gallery-reference-cathedral-opaque"
-  | "gallery-reference-bottom-ornament";
+  | "gallery-reference-bottom-ornament"
+  | "gallery-reference-paper-texture";
 
 function getGalleryCrop(id: GalleryCropId): MediaAsset {
   const crop = mediaManifest.find((asset) => asset.id === id);
@@ -56,6 +57,10 @@ const galleryBottomOrnamentArtwork = getGalleryCrop(
   "gallery-reference-bottom-ornament",
 );
 
+const galleryPaperTextureArtwork = getGalleryCrop(
+  "gallery-reference-paper-texture",
+);
+
 const referenceGalleryAlt =
   "Референсный фрагмент визуальной концепции галереи, не документальная фотография кафе.";
 
@@ -63,13 +68,13 @@ const storyCrops = [
   {
     asset: galleryCrops.porcelain,
     desktopAsset: galleryCrops.porcelainCard,
-    label: "Винтажный мотив",
+    label: "Винтажная посуда",
     className: styles.porcelainInset,
   },
   {
     asset: galleryCrops.art,
     desktopAsset: galleryCrops.artCard,
-    label: "Художественный мотив",
+    label: "Картины современных художников",
     className: styles.artInset,
   },
   {
@@ -198,6 +203,26 @@ function ReferenceGalleryBottomOrnament() {
   );
 }
 
+function ReferenceGalleryPaperTexture() {
+  return (
+    <>
+      {/* Keep only the bounded paper texture under live copy and decorative layers. */}
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        alt=""
+        aria-hidden="true"
+        className={styles.galleryPaperTexture}
+        data-gallery-decoration="paper-texture"
+        data-provenance={galleryPaperTextureArtwork.provenance.classification}
+        decoding="async"
+        height={galleryPaperTextureArtwork.dimensions.height}
+        src={galleryPaperTextureArtwork.path}
+        width={galleryPaperTextureArtwork.dimensions.width}
+      />
+    </>
+  );
+}
+
 function CupIcon() {
   return (
     <svg
@@ -310,6 +335,7 @@ export function GallerySection() {
       id="gallery"
     >
       <div className={styles.composition}>
+        <ReferenceGalleryPaperTexture />
         <div aria-hidden="true" className={styles.dotField} />
         <div aria-hidden="true" className={styles.cathedralBackdrop}>
           <ReferenceCathedralLinework />
@@ -330,9 +356,9 @@ export function GallerySection() {
             <br /> атмосфера
           </h2>
           <p className={styles.introduction}>
-            Винтажные детали, художественные мотивы и уютное пространство
-            создают особую атмосферу — тёплую, вдохновляющую и располагающую к
-            неспешным встречам.
+            Коллекция винтажной посуды, картины современных художников и
+            продуманные детали интерьера создают особую атмосферу — тёплую,
+            вдохновляющую и располагающую к неспешным встречам.
           </p>
 
           <details
@@ -348,8 +374,10 @@ export function GallerySection() {
           </details>
 
           <ul aria-label="Темы галереи" className={styles.featureList}>
-            <FeatureMark icon={<CupIcon />}>Винтажный мотив</FeatureMark>
-            <FeatureMark icon={<EaselIcon />}>Художественный мотив</FeatureMark>
+            <FeatureMark icon={<CupIcon />}>Винтажная посуда</FeatureMark>
+            <FeatureMark icon={<EaselIcon />}>
+              Картины современных художников
+            </FeatureMark>
             <FeatureMark icon={<ChairIcon />}>Уютное пространство</FeatureMark>
           </ul>
 

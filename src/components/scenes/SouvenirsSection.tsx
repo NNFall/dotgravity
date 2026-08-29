@@ -129,6 +129,33 @@ function CopperBloom({ className }: { className?: string }) {
   );
 }
 
+function ReferenceBloom({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={className}
+      data-provenance="reference-derived"
+      data-souvenirs-decoration="eyebrow-bloom"
+      fill="currentColor"
+      focusable="false"
+      viewBox="0 0 32 32"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      {[0, 60, 120, 180, 240, 300].map((rotation) => (
+        <path
+          d="M16 13.35c-3.9-1.58-5.42-4.78-4.2-8.66 1-3.19 7.4-3.19 8.4 0 1.22 3.88-.3 7.08-4.2 8.66Z"
+          key={rotation}
+          stroke="#f6e9dd"
+          strokeLinejoin="round"
+          strokeWidth="1.05"
+          transform={`rotate(${rotation} 16 16)`}
+        />
+      ))}
+      <circle cx="16" cy="16" r="1.9" />
+    </svg>
+  );
+}
+
 function GemIcon() {
   return (
     <svg aria-hidden="true" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
@@ -282,7 +309,8 @@ export function SouvenirsSection() {
             />
             <FloralSeal />
             <span>Сувениры</span>
-            <CopperBloom />
+            <ReferenceBloom className={styles.eyebrowReferenceBloom} />
+            <CopperBloom className={styles.eyebrowBloomFallback} />
             <i />
           </p>
           <h2 id="souvenirs-title">

@@ -140,6 +140,7 @@
   text-transform: uppercase;
 }
 
+.eyebrowReferenceBloom,
 .eyebrowReferenceFlower {
   display: none;
 }
@@ -149,7 +150,7 @@
   height: 43px;
 }
 
-.eyebrow svg:nth-of-type(2) {
+.eyebrowBloomFallback {
   width: 25px;
   height: 25px;
 }
@@ -626,6 +627,19 @@
     object-fit: contain;
   }
 
+  .eyebrowReferenceBloom {
+    display: block;
+    width: 25px;
+    height: 25px;
+    flex: 0 0 25px;
+    margin-left: 9px;
+    color: rgb(181 104 75);
+  }
+
+  .eyebrowBloomFallback {
+    display: none;
+  }
+
   .storyContent {
     padding: 2px 7px 13px 0;
   }
@@ -776,7 +790,7 @@
     height: 38px;
   }
 
-  .eyebrow svg:nth-of-type(2) {
+  .eyebrowBloomFallback {
     width: 22px;
     height: 22px;
   }

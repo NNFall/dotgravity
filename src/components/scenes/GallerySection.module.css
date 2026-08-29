@@ -455,6 +455,18 @@
   pointer-events: none;
 }
 
+.galleryPaperTexture {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  display: none;
+  width: 625px;
+  height: 941px;
+  object-fit: fill;
+  pointer-events: none;
+}
+
 .galleryBottomReference {
   position: absolute;
   z-index: 6;
@@ -540,6 +552,10 @@
 }
 
 @media (min-width: 1221px) {
+  .galleryPaperTexture {
+    display: block;
+  }
+
   .galleryBottomReference {
     display: block;
   }
@@ -550,8 +566,17 @@
     transform: translateY(2px);
   }
 
+  .introduction {
+    margin-top: 22px;
+    line-height: 1.75;
+  }
+
   .storyDetails {
-    margin-top: 77px;
+    margin-top: 34px;
+  }
+
+  .featureList {
+    margin-top: 52px;
   }
 
   .porcelainInset figcaption {
