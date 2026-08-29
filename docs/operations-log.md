@@ -1,5 +1,36 @@
 # Operations log
 
+## 2026-08-29 — base-path-safe paper layers and VPS publication
+
+- Published source candidate `787e152a5783f650dc72dac59ae94ffdd74dfd78` to
+  `feat/pixel-accurate-landing`. The candidate adds bounded transparent
+  paper-only texture layers for About and Menu, keeps all copy and controls as
+  live React/HTML, and routes CSS reference backgrounds through runtime CSS
+  variables so the nested `/site/dotgravity` deployment does not request
+  missing `_next/static/media` files.
+- Asset audit reports `74` registered assets with no unexpected media. The
+  complete Vitest run is `58` files / `231` tests; lint, TypeScript, browser
+  `12/12`, accessibility `5/5`, visual `1/1` and production audit (`0`
+  vulnerabilities) are green. Fresh raw comparison remains intentionally
+  NO-GO at `3,559,433 / 9,440,112` changed pixels: hero `623,383`, about
+  `207,088`, menu `426,722`, gallery `753,177`, souvenirs `880,212`,
+  contacts `668,851`.
+- Built with `DOTGRAVITY_BASE_PATH=/site/dotgravity` and uploaded
+  `artifacts/dotgravity-787e152-vps.tar.gz` (SHA-256
+  `97d0ae0aad9eb46782776dca3d242c613dd863183f5da1acb100b4dcd1eebb7e`).
+  The release is installed at `/root/dotgravity/dist`, with the previous
+  directory retained as `dist-previous-20260829-2241`; `dotgravity.service`
+  is active and `nginx -t` plus reload succeed (only pre-existing duplicate
+  server-name warnings remain).
+- Public Chromium smoke at
+  [https://kaigo.space/site/dotgravity/](https://kaigo.space/site/dotgravity/)
+  returned `200`, zero failed/4xx responses, zero console errors and zero
+  broken images at `1920×1080`, `1672×941`, `390×844` and `320×844`.
+  Document/client widths match in every viewport, all six scenes are present,
+  and the mobile menu opens with focus and body-scroll lock. Evidence is in
+  `artifacts/vps-public-metrics-787e152.json` and
+  `artifacts/vps-public-787e152-*.png`.
+
 ## 2026-08-29 — About/Gallery bounded calibration follow-up
 
 - Accepted the next bounded reference-fidelity candidate in source commit

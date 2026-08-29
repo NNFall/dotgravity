@@ -3,35 +3,35 @@
 ## Текущая опубликованная ревизия — 2026-08-29
 
 Текущий source/runtime-кандидат —
-`ed5e2b16ccb0ef17719a8f306b0a1edc6c37194f`. Сайт остаётся единым
+`787e152a5783f650dc72dac59ae94ffdd74dfd78`. Сайт остаётся единым
 непрерывным React/TypeScript scroll-потоком с шестью anchor-сценами; целые
 reference PNG не импортируются. В этой ревизии Hero heading crop сохраняет
 соотношение `626:165` при масштабировании от `1672×941` до `1920×1080`,
 сувенирная иконка корзины помечена декоративной (без ложной кнопки), а
 reference-derived названия/цены сопровождаются видимой подписью:
 `Иллюстративный референс, не актуальный каталог — уточняйте перед визитом.`
-About получил отдельные bounded crops для eyebrow и feature-icon rail, а
-Gallery — отдельный bounded bottom ornament; оба изменения сохраняют живые
-семантические HTML/SVG fallback-слои и дали измеримое улучшение raw ROI.
+About и Menu получили отдельные bounded paper-only texture layers с
+прозрачными масками; CSS reference backgrounds теперь используют runtime
+variables, поэтому вложенный base path не создаёт 404 для декоративных файлов.
 
-Локальный handoff: [http://127.0.0.1:4180/](http://127.0.0.1:4180/).
 Публичный VPS: [https://kaigo.space/site/dotgravity/](https://kaigo.space/site/dotgravity/).
-Архив base-path имеет SHA-256
-`0a393b908a78ea5b9fb17678e85bd6d77d88f1793963da5b40d9592ef368474c`;
+Архив base-path `dotgravity-787e152-vps.tar.gz` имеет SHA-256
+`97d0ae0aad9eb46782776dca3d242c613dd863183f5da1acb100b4dcd1eebb7e`;
 `dotgravity.service` active на `127.0.0.1:4181`, а Nginx alias обслуживает
 вложенное `/site/dotgravity/_next/` дерево. Предыдущая dist-версия сохранена
-как `dist-previous-20260829-1955`.
+как `dist-previous-20260829-2241`.
 
-Финальные проверки: `npm.cmd test` — 56 файлов / 227 тестов; lint, TypeScript,
-asset audit — 70 ассетов, Chromium browser — 12/12, accessibility — 5/5,
+Финальные проверки: `npm.cmd test` — 58 файлов / 231 тест; lint, TypeScript,
+asset audit — 74 ассета, Chromium browser — 12/12, accessibility — 5/5,
 visual capture — 1/1, production `npm audit` — 0 уязвимостей. Публичный
 Chromium smoke на `1920×1080`, `1672×941`, `390×844` и `320×844` вернул
-`200`, нулевые failed requests и broken images, равные client/scroll widths;
-мобильное меню открылось с `aria-expanded=true` и одним dialog.
+`200`, нулевые failed/4xx responses, console errors и broken images, равные
+client/scroll widths; мобильное меню открылось с `aria-expanded=true` и
+закрылось с восстановлением focus.
 
-Строгий raw RGBA gate остаётся NO-GO и не скрывается: `4,362,241 /
-9,440,112` пикселей отличаются (hero `623,383`, about `665,706`, menu
-`770,912`, gallery `753,177`, souvenirs `880,212`, contacts `668,851`).
+Строгий raw RGBA gate остаётся NO-GO и не скрывается: `3,559,433 /
+9,440,112` пикселей отличаются (hero `623,383`, about `207,088`, menu
+`426,722`, gallery `753,177`, souvenirs `880,212`, contacts `668,851`).
 Ни tolerance, ни mask, ни подмена baseline не использованы; это проверенный
 опубликованный кандидат, а не заявление о завершённом zero-diff.
 
@@ -96,7 +96,7 @@ Production остаётся owner-only, поэтому анонимный HTTP-�
 ## Ссылки
 
 - GitHub: `https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing`
-- Runtime source candidate: `ed5e2b16ccb0ef17719a8f306b0a1edc6c37194f` (GitHub `main` and feature branch after the next VPS release)
+- Runtime source candidate: `787e152a5783f650dc72dac59ae94ffdd74dfd78` (pushed to the GitHub feature branch; the same tree is synchronized to `main` below)
 - Production (Sites, owner-only): `https://dotgravity.ferumnikita2009.chatgpt.site`
 - Local handoff: `http://127.0.0.1:4180/`
 - Desktop captures: `artifacts/visual/captures/1672x941/`
@@ -108,8 +108,8 @@ Production остаётся owner-only, поэтому анонимный HTTP-�
 | --- | --- |
 | `npm.cmd run lint` | pass |
 | `npx.cmd tsc --noEmit` | pass |
-| `npm.cmd run qa:assets` | pass — 65 registered assets / 30 production text files |
-| `npm.cmd test` | pass — 52 files / 211 tests |
+| `npm.cmd run qa:assets` | pass — 74 registered assets / 31 production text files |
+| `npm.cmd test` | pass — 58 files / 231 tests |
 | `npm.cmd run build` | pass |
 | `npm.cmd run qa:browser` | pass — 12 tests |
 | `npm.cmd run qa:a11y` | pass — 5 tests |
@@ -118,7 +118,7 @@ Production остаётся owner-only, поэтому анонимный HTTP-�
 | `git diff --check` | pass |
 | Sites deployment | pass — version 24 published to production, owner-only access |
 
-The strict raw RGBA comparator remains intentionally red: `4,447,420 / 9,440,112` pixels differ across the six 1672×941 captures (hero `645,197`; about `722,601`; menu `771,114`; gallery `759,661`; souvenirs `879,997`; contacts `668,850`). No tolerance or mask was introduced. The current bounded crop/calibration pass reduces the previous v23 mismatch while preserving the mobile fallback. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
+The strict raw RGBA comparator remains intentionally red: `3,559,433 / 9,440,112` pixels differ across the six 1672×941 captures (hero `623,383`; about `207,088`; menu `426,722`; gallery `753,177`; souvenirs `880,212`; contacts `668,851`). No tolerance or mask was introduced. The bounded paper-layer calibration reduces the previous mismatch while preserving the mobile fallback. There are no supplied 1920×1080 or mobile reference baselines, so those viewports have behavioral, responsive and overflow evidence rather than raw-zero proof.
 
 ## Provenance and rights
 
@@ -134,7 +134,7 @@ Sites version 24 is live at the production URL from the exact source commit
 above. The deployment is intentionally owner-only; an anonymous request is
 expected to show the ChatGPT sign-in screen rather than expose the page publicly.
 
-The current read-only AntiGravity audit is `a18418c1-9ad3-4b20-989c-5111947f974f`; its Contacts map-size hypothesis was independently checked and rejected. Earlier bounded audits supplied the Menu, Gallery and Contacts calibration hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. This release records a 211-test suite, 65 registered assets, bounded Hero feature-icon/heading/cathedral/botanical/seal crops, five Menu flower badges, opaque cathedral-edge overlays, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque and bounded map artwork. The source is pushed and the owner-only Sites deployment is live; the strict raw-zero gate remains open.
+The current read-only AntiGravity audit is `a18418c1-9ad3-4b20-989c-5111947f974f`; its Contacts map-size hypothesis was independently checked and rejected. Earlier bounded audits supplied the Menu, Gallery and Contacts calibration hypotheses. Independent Codex subagents supplied geometry, asset, responsive, raw-diff and code-review evidence. This release records a 231-test suite, 74 registered assets, bounded Hero feature-icon/heading/cathedral/botanical/seal crops, five Menu flower badges, opaque cathedral-edge overlays, reference-safe copy alignment, the exact bounded hero plaque, intrinsic contacts photos, a contacts plaque, bounded map artwork and paper-only texture strips. The source is pushed and the VPS deployment is live; the strict raw-zero gate remains open.
 
 ## Latest bounded wide-desktop Menu heading calibration and publication — 2026-08-28
 

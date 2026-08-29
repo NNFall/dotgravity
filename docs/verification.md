@@ -1,6 +1,6 @@
 # Verification record
 
-Last full local verification: 2026-08-29 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The current source candidate is `ed5e2b16ccb0ef17719a8f306b0a1edc6c37194f`; the strict bounded visual baseline remains the supplied six-scene reference set.
+Last full local verification: 2026-08-29 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The current source candidate is `787e152a5783f650dc72dac59ae94ffdd74dfd78`; the strict bounded visual baseline remains the supplied six-scene reference set.
 
 Port `4173` was already occupied by the unrelated `comod` checkout and port
 `4174` by the unrelated `whitecup` checkout, so both were left untouched.
@@ -12,14 +12,14 @@ a temporary Playwright config pointed at that fresh server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 56 files, 227 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 58 files, 231 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
-| `npm.cmd run qa:assets` | pass | 70 registered assets, 31 production text files, no unexpected media |
+| `npm.cmd run qa:assets` | pass | 74 registered assets, 31 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
 | `npm.cmd run qa:browser` | pass | 12 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 4,362,241 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 3,559,433 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under
@@ -30,7 +30,7 @@ baseline with a live capture.
 ## Browser evidence
 
 The in-app Browser and terminal Chromium probes were checked against the
-fresh local production server at all required viewports. The page has one document H1, 52
+fresh local production server at all required viewports. The page has one document H1, 59
 loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 `aside#events` bridge, and the continuous order
 `hero → about → menu → gallery → souvenirs → events → contacts`.
@@ -48,28 +48,29 @@ by the accessibility suite.
 
 ## Current VPS deployment — 2026-08-29
 
-The current source candidate `ed5e2b16ccb0ef17719a8f306b0a1edc6c37194f` was
+The current source candidate `787e152a5783f650dc72dac59ae94ffdd74dfd78` was
 built with `DOTGRAVITY_BASE_PATH=/site/dotgravity` and installed at
 `/root/dotgravity`. The uploaded archive SHA-256 is
-`0a393b908a78ea5b9fb17678e85bd6d77d88f1793963da5b40d9592ef368474c`;
+`97d0ae0aad9eb46782776dca3d242c613dd863183f5da1acb100b4dcd1eebb7e`;
 `dotgravity.service` is active on `127.0.0.1:4181`, with the previous dist
-kept as `dist-previous-20260829-1955`. During the smoke pass the
-prefixed chunk exposed a stale Nginx mapping; the snippet was backed up and
-updated to alias `/site/dotgravity/_next/` to the nested
-`dist/client/site/dotgravity/_next/` tree. `nginx -t` and reload passed, with
-only pre-existing duplicate-server-name warnings.
+kept as `dist-previous-20260829-2241`. The Nginx alias serves the nested
+`dist/client/site/dotgravity/_next/` tree, and CSS reference backgrounds use
+runtime variables so decorative media stays on the configured `/media/` alias.
+`nginx -t` and reload passed, with only pre-existing duplicate-server-name
+warnings.
 
 The canonical route at
 [https://kaigo.space/site/dotgravity/](https://kaigo.space/site/dotgravity/)
 returns `200`; the no-slash route returns `308`. The current JS/CSS chunks and
-new About/Gallery, Hero and Souvenirs reference-derived assets return `200`. Public Chromium
-smoke is green at `1920×1080`, `1672×941`, `390×844` and `320×844`: zero
-failed requests, zero broken images, equal client/scroll widths, six scene
-anchors, and an operable mobile menu. Evidence is under
-`artifacts/vps-public-a73-*.png` and
-`artifacts/vps-public-metrics-a73.json`.
+new About/Menu paper, Gallery, Hero and Souvenirs reference-derived assets
+return `200`. Public Chromium smoke is green at `1920×1080`, `1672×941`,
+`390×844` and `320×844`: zero failed or 4xx responses, zero console errors,
+zero broken images, equal client/scroll widths, six scene anchors, and an
+operable mobile menu. Evidence is under
+`artifacts/vps-public-787e152-*.png` and
+`artifacts/vps-public-metrics-787e152.json`.
 
-The strict raw comparator remains NO-GO: `4,362,241 / 9,440,112` pixels differ
+The strict raw comparator remains NO-GO: `3,559,433 / 9,440,112` pixels differ
 across the six supplied `1672×941` scenes. No tolerance, mask or baseline
 replacement is used.
 
