@@ -18,9 +18,18 @@
   gallery `753,177`, souvenirs `880,212`, contacts `668,851`. The comparator
   remains intentionally NO-GO with zero tolerance; no mask or baseline
   replacement was introduced.
-- The candidate was rebuilt and is queued for the same base-path VPS release
-  and public four-viewport smoke. Deployment must retain the existing
-  `/root/dotgravity/dist` backup and Nginx alias repair described below.
+- The candidate was rebuilt with `DOTGRAVITY_BASE_PATH=/site/dotgravity`,
+  archived as `artifacts/dotgravity-a73-vps.tar.gz` (SHA-256
+  `0a393b908a78ea5b9fb17678e85bd6d77d88f1793963da5b40d9592ef368474c`),
+  and installed under `/root/dotgravity/dist` with the previous release kept
+  as `dist-previous-20260829-1955`. `dotgravity.service` is active and the
+  existing Nginx alias repair remains in place.
+- Public Chromium smoke after this release returned `200`, zero failed
+  requests and zero broken images at `1920×1080`, `1672×941`, `390×844` and
+  `320×844`; all four document widths equal their viewport, six scenes are
+  present, and the mobile menu opens (`aria-expanded=true`). Evidence is in
+  `artifacts/vps-public-a73-*.png` and
+  `artifacts/vps-public-metrics-a73.json`.
 
 ## 2026-08-29 — current reference-fidelity candidate and VPS route repair
 

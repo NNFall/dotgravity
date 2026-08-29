@@ -17,9 +17,10 @@ Gallery — отдельный bounded bottom ornament; оба изменени�
 Локальный handoff: [http://127.0.0.1:4180/](http://127.0.0.1:4180/).
 Публичный VPS: [https://kaigo.space/site/dotgravity/](https://kaigo.space/site/dotgravity/).
 Архив base-path имеет SHA-256
-`8b1d4afbf4c04d8cc19c9cb55bccbb933bd33c499db5ca779b95a2a78e945e6d`;
+`0a393b908a78ea5b9fb17678e85bd6d77d88f1793963da5b40d9592ef368474c`;
 `dotgravity.service` active на `127.0.0.1:4181`, а Nginx alias обслуживает
-вложенное `/site/dotgravity/_next/` дерево.
+вложенное `/site/dotgravity/_next/` дерево. Предыдущая dist-версия сохранена
+как `dist-previous-20260829-1955`.
 
 Финальные проверки: `npm.cmd test` — 56 файлов / 227 тестов; lint, TypeScript,
 asset audit — 70 ассетов, Chromium browser — 12/12, accessibility — 5/5,

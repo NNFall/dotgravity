@@ -51,8 +51,9 @@ by the accessibility suite.
 The current source candidate `a73a20a7793d337d429c14ab9a83121637027b80` was
 built with `DOTGRAVITY_BASE_PATH=/site/dotgravity` and installed at
 `/root/dotgravity`. The uploaded archive SHA-256 is
-`8b1d4afbf4c04d8cc19c9cb55bccbb933bd33c499db5ca779b95a2a78e945e6d`;
-`dotgravity.service` is active on `127.0.0.1:4181`. During the smoke pass the
+`0a393b908a78ea5b9fb17678e85bd6d77d88f1793963da5b40d9592ef368474c`;
+`dotgravity.service` is active on `127.0.0.1:4181`, with the previous dist
+kept as `dist-previous-20260829-1955`. During the smoke pass the
 prefixed chunk exposed a stale Nginx mapping; the snippet was backed up and
 updated to alias `/site/dotgravity/_next/` to the nested
 `dist/client/site/dotgravity/_next/` tree. `nginx -t` and reload passed, with
@@ -61,12 +62,12 @@ only pre-existing duplicate-server-name warnings.
 The canonical route at
 [https://kaigo.space/site/dotgravity/](https://kaigo.space/site/dotgravity/)
 returns `200`; the no-slash route returns `308`. The current JS/CSS chunks and
-new Hero/Souvenirs reference-derived assets return `200`. Public Chromium
+new About/Gallery, Hero and Souvenirs reference-derived assets return `200`. Public Chromium
 smoke is green at `1920×1080`, `1672×941`, `390×844` and `320×844`: zero
 failed requests, zero broken images, equal client/scroll widths, six scene
 anchors, and an operable mobile menu. Evidence is under
-`artifacts/vps-public-final-*.png` and
-`artifacts/vps-public-metrics-final.json`.
+`artifacts/vps-public-a73-*.png` and
+`artifacts/vps-public-metrics-a73.json`.
 
 The strict raw comparator remains NO-GO: `4,362,241 / 9,440,112` pixels differ
 across the six supplied `1672×941` scenes. No tolerance, mask or baseline
