@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import type { CSSProperties } from "react";
 import "@fontsource/prata/cyrillic-400.css";
 import "@fontsource-variable/montserrat/wght.css";
 import "./globals.css";
+
+import { normalizeBasePath } from "../src/config/base-path";
 
 export const metadata: Metadata = {
   title: "Точка притяжения | Кофе, искусство и атмосфера",
@@ -33,6 +36,19 @@ export const metadata: Metadata = {
   },
 };
 
+const referenceMediaBasePath = normalizeBasePath(
+  process.env.DOTGRAVITY_BASE_PATH ?? "",
+);
+
+const referenceAssetStyle = {
+  "--hero-cathedral-reference": `url("${referenceMediaBasePath}/media/reference-derived/hero-reference-cathedral-strip.png")`,
+  "--hero-plaque-reference": `url("${referenceMediaBasePath}/media/reference-derived/hero-reference-plaque-strip.png")`,
+  "--hero-dots-reference": `url("${referenceMediaBasePath}/media/reference-derived/hero-reference-dots.png")`,
+  "--hero-curves-reference": `url("${referenceMediaBasePath}/media/reference-derived/hero-reference-curves-upper.png"), url("${referenceMediaBasePath}/media/reference-derived/hero-reference-curves-lower-right.png")`,
+  "--contacts-plaque-reference": `url("${referenceMediaBasePath}/media/reference-derived/contacts-reference-plaque-strip.png")`,
+  "--contacts-map-reference": `url("${referenceMediaBasePath}/media/reference-derived/contacts-reference-map-crop.png")`,
+} as CSSProperties;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <body style={referenceAssetStyle}>{children}</body>
     </html>
   );
 }

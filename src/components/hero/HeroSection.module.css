@@ -86,7 +86,7 @@
     width: clamp(108px, 6.46vw, 128px);
     height: calc(clamp(108px, 6.46vw, 128px) * 5.009259);
     color: transparent;
-    background-image: url("/media/reference-derived/hero-reference-cathedral-strip.png");
+    background-image: var(--hero-cathedral-reference);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -147,7 +147,7 @@
     border-radius: 0;
     box-shadow: none;
     background-color: transparent;
-    background-image: url("/media/reference-derived/hero-reference-plaque-strip.png");
+    background-image: var(--hero-plaque-reference);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -166,7 +166,7 @@
     z-index: 1;
     width: 66px;
     height: 190px;
-    background-image: url("/media/reference-derived/hero-reference-dots.png");
+    background-image: var(--hero-dots-reference);
     background-position: 0 0;
     background-repeat: no-repeat;
     background-size: 66px 190px;
@@ -180,9 +180,7 @@
     height: 162px;
     z-index: 1;
     color: transparent;
-    background-image:
-      url("/media/reference-derived/hero-reference-curves-upper.png"),
-      url("/media/reference-derived/hero-reference-curves-lower-right.png");
+    background-image: var(--hero-curves-reference);
     background-position:
       563px 0,
       640px 130px;

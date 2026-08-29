@@ -468,7 +468,7 @@
     left: 43.98855%;
     width: 6.96565%;
     height: calc(100% - 2px);
-    background-image: url("/media/reference-derived/contacts-reference-plaque-strip.png");
+    background-image: var(--contacts-plaque-reference);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -957,7 +957,7 @@
   .routeDrawing {
     color: rgb(180 71 37 / 35%);
     background-color: #f5e8dc;
-    background-image: url("/media/reference-derived/contacts-reference-map-crop.png");
+    background-image: var(--contacts-map-reference);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
