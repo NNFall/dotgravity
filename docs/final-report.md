@@ -8,9 +8,25 @@
 нет цельных PNG-экранов: новые изображения — только bounded reference-derived
 региональные ассеты поверх живой React/HTML-разметки и responsive fallback.
 
-Ссылки: [GitHub feature branch](https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing), [локальный handoff](http://127.0.0.1:4180/), [Sites production](https://dotgravity.ferumnikita2009.chatgpt.site) (owner-only).
+Ссылки: [GitHub feature branch](https://github.com/NNFall/dotgravity/tree/feat/pixel-accurate-landing), [VPS production](https://kaigo.space/site/dotgravity/), [локальный handoff](http://127.0.0.1:4180/), [Sites production](https://dotgravity.ferumnikita2009.chatgpt.site) (owner-only).
 
-Статические и браузерные проверки зелёные: 52 Vitest-файла / 211 тестов,
+## VPS publication — 2026-08-29
+
+The deployment-support commit
+`e9b626f84dd52a0e24a1aeba16a5539bcb6f9e32` adds the normalized
+`DOTGRAVITY_BASE_PATH` build setting and the Vinext production adapter used by
+the requested VPS. The base-path build is installed at `/root/dotgravity`,
+served by `dotgravity.service` on `127.0.0.1:4181`, and exposed through the
+dedicated Nginx locations at
+[https://kaigo.space/site/dotgravity/](https://kaigo.space/site/dotgravity/).
+The no-slash form redirects with `308`; the canonical route, current JS chunk,
+generated media, and existing `https://kaigo.space/` root all returned `200` in
+remote smoke checks. Public Chromium checks at `1920×1080`, `1672×941`,
+`390×844` and `320×844` found six scenes, no broken images or failed requests,
+equal client/scroll widths and an operable mobile menu. No VPS credential is
+stored in this repository.
+
+Статические и браузерные проверки зелёные: 53 Vitest-файла / 213 тестов,
 lint, TypeScript, build, asset-audit (65 зарегистрированных ассетов), Chromium
 12/12, accessibility 5/5, visual 1/1, `npm audit` — 0 уязвимостей. На
 1672×941, 1920×1080, 390×844 и 320×844 ширина документа равна viewport,

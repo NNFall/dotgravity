@@ -1,6 +1,6 @@
 # Verification record
 
-Last full local verification: 2026-08-29 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The latest validated runtime is `69dfd75915b0acdf43b28a9bbe2b667ccc4c4144`.
+Last full local verification: 2026-08-29 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The latest source/deployment-support commit is `e9b626f84dd52a0e24a1aeba16a5539bcb6f9e32`; the bounded visual baseline remains the runtime from `69dfd75915b0acdf43b28a9bbe2b667ccc4c4144`.
 
 Port `4173` was already occupied by the unrelated `comod` checkout and port
 `4174` by the unrelated `whitecup` checkout, so both were left untouched.
@@ -12,7 +12,7 @@ a temporary Playwright config pointed at that fresh server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 52 files, 211 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 53 files, 213 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
 | `npm.cmd run qa:assets` | pass | 65 registered assets, 30 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
@@ -45,6 +45,23 @@ loaded images, a single `main`, six `section[data-scene]` anchors, a separate
 The mobile menu traps focus, closes on `Escape`, restores focus to its trigger,
 and keeps touch targets at or above 44 px. Reduced-motion behavior is covered
 by the accessibility suite.
+
+## VPS deployment — 2026-08-29
+
+The base-path build from `e9b626f84dd52a0e24a1aeba16a5539bcb6f9e32` is live at
+the requested public route [kaigo.space/site/dotgravity](https://kaigo.space/site/dotgravity/).
+The files are installed at `/root/dotgravity`; systemd runs the Vinext adapter
+on `127.0.0.1:4181`, and Nginx owns the `/site/dotgravity/` and root `/media/`
+locations. The exact path without a trailing slash returns `308` to the
+canonical slash URL. `systemd-analyze verify` and `nginx -t` passed (Nginx only
+reported pre-existing duplicate-server-name warnings), and the service is
+`active (running)`.
+
+An independent public Chromium pass returned `200` with the expected title,
+six scenes, no failed requests and no broken images at `1920×1080`, `1672×941`,
+`390×844` and `320×844`. In every viewport `scrollWidth === clientWidth`; the
+mobile menu opens, focuses its first link and closes cleanly. The existing
+`https://kaigo.space/` root route also remained `200`.
 
 ## Provenance and deviations
 

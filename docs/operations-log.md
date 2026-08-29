@@ -1,5 +1,30 @@
 # Operations log
 
+## 2026-08-29 — VPS publication at `kaigo.space/site/dotgravity`
+
+- Added a normalized `DOTGRAVITY_BASE_PATH` build setting and a small Vinext
+  production adapter so the same React runtime can be served below
+  `/site/dotgravity` without changing the page's live asset semantics. The
+  deployment-support commit is `e9b626f84dd52a0e24a1aeba16a5539bcb6f9e32`,
+  pushed to GitHub `main` and `feat/pixel-accurate-landing`.
+- Built with `DOTGRAVITY_BASE_PATH=/site/dotgravity`, uploaded the validated
+  archive to the requested VPS, and installed it at `/root/dotgravity`.
+  `dotgravity.service` now owns `127.0.0.1:4181`; Nginx has a dedicated
+  `dotgravity.conf` location with the exact no-slash redirect, prefixed
+  `_next` proxy, SSR route and root `/media/` alias. Existing `kaigo.space`
+  routes were preserved; the active Nginx configuration passed `nginx -t`.
+- Remote smoke checks returned `308` for `/site/dotgravity`, `200` for the
+  trailing-slash page, the current JS chunk and a generated media asset. The
+  public root `https://kaigo.space/` still returned `200`.
+- Public Chromium checks at `1920×1080`, `1672×941`, `390×844` and `320×844`
+  returned `200`, the expected title, six scenes, zero failed requests and
+  zero broken images; document/client widths were equal (`1920`, `1672`,
+  `390`, `320`). The mobile menu opened and closed through the public route.
+  Evidence screenshots are retained under `artifacts/vps-public/`.
+- The VPS password was used only for the interactive transfer and is not
+  stored in source, logs or documentation. The strict raw RGBA gate remains
+  NO-GO and is unchanged by this deployment-only commit.
+
 ## 2026-08-29 — bounded ornament pass and private Sites v24
 
 - Added a bounded transparent Hero heading-flower crop and five bounded Menu
