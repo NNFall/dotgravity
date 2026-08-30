@@ -32,7 +32,7 @@
   test/reload with only pre-existing duplicate-server-name warnings. The
   previous dist is retained as `dist-previous-20260830-1418`.
 - Public Chromium smoke is captured under
-  `artifacts/vps-public-metrics-12f8443.json` and
+  `artifacts/vps-public-metrics-f3b3a80.json` and
   `artifacts/vps-public/`: canonical `/site/dotgravity/` is `200`, no-slash is
   `308`, the existing root remains `200`, all four target viewports are
   overflow-free with no failed/4xx requests, console errors or broken images,

@@ -2,7 +2,9 @@
 
 ## Current release — 2026-08-30
 
-The validated source is commit `12f844310f4791ec9e9ee04b9747bf50eb36f3b9`.
+The validated runtime is commit `12f844310f4791ec9e9ee04b9747bf50eb36f3b9`;
+the current repository/documentation head is the doc-only follow-up
+`f3b3a80a81af17421e24a4a1dd99dd3884d4b214`.
 All release checks passed: `npm.cmd test` (62 files / 243 tests), lint,
 `npx.cmd tsc --noEmit`, production build, `qa:assets` (76 registered assets,
 68 clean reference-derived PNGs), `qa:browser` (18/18), `qa:a11y` (5/5),
@@ -34,9 +36,9 @@ returns `200`. Public Chromium smoke at 1920×1080, 1672×941, 390×844 and
 320×844 found no failed/4xx responses, console errors or broken images; every
 viewport has equal client/scroll widths, six declared scene anchors and an
 operable mobile menu. Evidence is stored under
-`artifacts/vps-public-metrics-12f8443.json` and `artifacts/vps-public/`.
+`artifacts/vps-public-metrics-f3b3a80.json` and `artifacts/vps-public/`.
 
-Last full local verification: 2026-08-30 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The current source candidate is `12f844310f4791ec9e9ee04b9747bf50eb36f3b9`; the strict bounded visual baseline remains the supplied six-scene reference set.
+Last full local verification: 2026-08-30 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The current source candidate is `f3b3a80a81af17421e24a4a1dd99dd3884d4b214` (runtime unchanged from `12f8443`); the strict bounded visual baseline remains the supplied six-scene reference set.
 
 Port `4173` was already occupied by the unrelated `comod` checkout and port
 `4174` by the unrelated `whitecup` checkout, so both were left untouched.

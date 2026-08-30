@@ -2,9 +2,10 @@
 
 ## Текущая опубликованная ревизия — 2026-08-30
 
-Исходники зафиксированы в commit
-`12f844310f4791ec9e9ee04b9747bf50eb36f3b9`, синхронизированном с GitHub
-`main` и `feat/pixel-accurate-landing`. Ревизия сохраняет единый
+Runtime-исходники зафиксированы в commit
+`12f844310f4791ec9e9ee04b9747bf50eb36f3b9`; текущий GitHub
+`main`/`feat/pixel-accurate-landing` дополнен doc-only commit
+`f3b3a80a81af17421e24a4a1dd99dd3884d4b214`. Ревизия сохраняет единый
 адаптивный React/TypeScript scroll-поток с живыми компонентами и bounded
 reference-derived слоями. Прозрачные PNG очищены от скрытого RGB; Hero и
 Gallery не загружают большие paper-текстуры на мобильных ширинах, а
