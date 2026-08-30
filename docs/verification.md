@@ -1,5 +1,41 @@
 # Verification record
 
+## Current release — 2026-08-30 (procedural grain remediation)
+
+The validated runtime is commit
+`95071658c21a74e14529cc2f4f2537a9f59768a5`, pushed to GitHub `main` and
+`feat/pixel-accurate-landing` and synchronized to the Sites source `main`.
+The rejected full-canvas Souvenirs texture is absent; the scene uses only a
+registered `64×64` deterministic decorative grain tile (SHA-256
+`F5A6CE9E624CD6E51E8A5546E2392B0E940D80261C73BC3F39676199785CC36C`) beneath
+the live composition. The provenance audit rejects reference-derived assets
+with the full `1672×941` supplied canvas and its negative contract is green.
+
+All automated gates passed: `npm.cmd test` (63 files / 245 tests), lint,
+`npx.cmd tsc --noEmit`, production build, `qa:assets` (77 registered assets,
+68 clean reference-derived PNGs), `qa:browser` (18/18), `qa:a11y` (5/5),
+`qa:visual` (1/1) and `npm.cmd audit --omit=dev --audit-level=high` (0
+vulnerabilities). The expected-red raw comparison is
+`3,076,514 / 9,440,112` changed pixels (hero `499,251`, about `207,088`, menu
+`426,722`, gallery `389,226`, souvenirs `885,603`, contacts `668,624`), with
+zero tolerance, no mask and no baseline replacement.
+
+The base-path archive used for publication is
+`sha256:13D1B61C262A0B6FCE61983D4F2B56B26A394D532423BE7F7A05A42D6C579470`
+(`31,052,738` bytes). Sites version 30 was saved/deployed owner-only from the
+matching source/archive pair. The same archive is installed at
+`/root/dotgravity`; `dotgravity.service` is active on `127.0.0.1:4181`, Nginx
+test/reload passed with only pre-existing duplicate-name warnings, and the
+previous dist is kept as `dist-previous-20260830-161417`.
+
+Public Chromium smoke evidence (`artifacts/vps-public-metrics-9507165.json`
+and `artifacts/vps-public-paper-grain-9507165.json`) confirms
+`https://kaigo.space/site/dotgravity/` returns 200 at 1920×1080, 1672×941,
+390×844 and 320×844, with equal client/scroll widths, six scene anchors, no
+failed/4xx requests, console errors or broken images, and an operable mobile
+menu. The new tile returns 200 and computes as a repeated `opacity: 0.28`
+layer with `z-index: 0` under the isolated Souvenirs composition.
+
 ## Current release — 2026-08-30
 
 The validated runtime is commit `12f844310f4791ec9e9ee04b9747bf50eb36f3b9`;

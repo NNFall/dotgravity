@@ -1,5 +1,40 @@
 # Operations log
 
+## 2026-08-30 — procedural Souvenirs grain remediation and publication
+
+- Replaced the rejected full-canvas Souvenirs paper composite with a bounded
+  `64×64` deterministic procedural warm-paper grain tile. The tile is
+  decorative/non-documentary (`F5A6CE9E624CD6E51E8A5546E2392B0E940D80261C73BC3F39676199785CC36C`),
+  repeated at low opacity beneath the live scene composition, and contains no
+  venue photograph, signage or copy. The unsafe reference-sized asset and its
+  contract were removed; the asset audit now rejects any reference-derived
+  `1672×941` full-screen canvas and a negative unit contract covers the gate.
+- Runtime commit `95071658c21a74e14529cc2f4f2537a9f59768a5` was timestamp-
+  refreshed, pushed to GitHub `main` and `feat/pixel-accurate-landing`, and
+  synchronized to the Sites source repository `main`. Sites version 30 was
+  saved from the matching package (`sha256:e015f4ad6e53d902c0d47fbaed41883e8595337c7f0bc072ac3e94c85ed6984b`,
+  168 files) and deployed owner-only to
+  `https://dotgravity.ferumnikita2009.chatgpt.site`.
+- The exact base-path archive (`sha256:13D1B61C262A0B6FCE61983D4F2B56B26A394D532423BE7F7A05A42D6C579470`,
+  31,052,738 bytes) was installed at `/root/dotgravity`; the active
+  `dotgravity.service` runs on `127.0.0.1:4181`, Nginx config test/reload
+  passed with only pre-existing duplicate-name warnings, and the previous
+  directory is retained as `dist-previous-20260830-161417`.
+- Verification is green for `npm.cmd test` (63 files / 245 tests), lint,
+  TypeScript, production build, `qa:assets` (77 assets; 68 clean
+  reference-derived PNGs), browser 18/18, accessibility 5/5, visual 1/1 and
+  production `npm audit` (0 vulnerabilities). Public Chromium evidence is in
+  `artifacts/vps-public-metrics-9507165.json` and
+  `artifacts/vps-public-paper-grain-9507165.json`: canonical
+  `/site/dotgravity/` is 200, no-slash is 308, root remains 200, all four
+  target viewports are overflow-free with no failed/4xx requests, console
+  errors or broken images, and the mobile menu opens/closes with scroll lock.
+- The strict raw comparator remains intentionally red at
+  `3,076,514 / 9,440,112` changed pixels: hero `499,251`, about `207,088`,
+  menu `426,722`, gallery `389,226`, souvenirs `885,603`, contacts `668,624`.
+  No tolerance, mask or baseline replacement was introduced; the release is
+  not represented as literal zero-diff.
+
 ## 2026-08-30 — provenance hardening, responsive paper loading and VPS/Sites publication
 
 - Accepted remediation commit `12f844310f4791ec9e9ee04b9747bf50eb36f3b9`

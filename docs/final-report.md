@@ -1,5 +1,36 @@
 # Точка притяжения — финальный отчёт
 
+## Текущая опубликованная ревизия — 2026-08-30 (remediation)
+
+Runtime-исходники зафиксированы в commit
+`95071658c21a74e14529cc2f4f2537a9f59768a5` и опубликованы в GitHub
+`main`/`feat/pixel-accurate-landing`. Полноэкранная сувенирная текстура,
+отклонённая независимым release review, удалена: вместо неё используется
+зарегистрированный процедурный tile `64×64` с SHA-256
+`F5A6CE9E624CD6E51E8A5546E2392B0E940D80261C73BC3F39676199785CC36C`.
+Он декоративный, не documentary, повторяется под живой композицией и не
+содержит фото заведения, вывесок или текста. Asset audit теперь отдельно
+запрещает `reference-derived` canvas размером `1672×941`.
+
+Проверки зелёные: 63 Vitest-файла / 245 тестов, lint, TypeScript, production
+build, asset audit (77 ассетов; 68 чистых reference-derived PNG), browser
+18/18, accessibility 5/5, visual 1/1 и production `npm audit` без уязвимостей.
+Строгий raw RGBA gate остаётся NO-GO без tolerance/mask:
+`3,076,514 / 9,440,112` пикселей отличаются (hero `499,251`, about `207,088`,
+menu `426,722`, gallery `389,226`, souvenirs `885,603`, contacts `668,624`).
+Это проверенный опубликованный кандидат, не заявление о literal zero-diff.
+
+Публичный VPS: [https://kaigo.space/site/dotgravity/](https://kaigo.space/site/dotgravity/).
+Base-path архив имеет SHA-256
+`13D1B61C262A0B6FCE61983D4F2B56B26A394D532423BE7F7A05A42D6C579470` и размер
+`31,052,738` bytes; `dotgravity.service` active на `127.0.0.1:4181`,
+предыдущая dist-версия сохранена как `dist-previous-20260830-161417`. Public
+Chromium smoke на 1920×1080, 1672×941, 390×844 и 320×844 вернул 200, без
+failed/4xx responses, console errors или broken images, с равными
+client/scroll widths и рабочим mobile menu. Sites version 30 успешно
+сохранён и развёрнут owner-only в
+`https://dotgravity.ferumnikita2009.chatgpt.site`.
+
 ## Текущая опубликованная ревизия — 2026-08-30
 
 Runtime-исходники зафиксированы в commit
