@@ -1,12 +1,42 @@
 import { render } from "@testing-library/react";
+import { readFileSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { PNG } from "pngjs";
 import { describe, expect, test } from "vitest";
 
 import { HeroSection } from "../../src/components/hero/HeroSection";
 import { mediaManifest } from "../../src/media/manifest";
 
 describe("bounded Hero paper-only reference texture", () => {
+  test("stores zero RGB for every fully transparent pixel", () => {
+    const imagePath = resolve(
+      process.cwd(),
+      "public/media/reference-derived/hero-reference-paper-texture.png",
+    );
+    const image = PNG.sync.read(readFileSync(imagePath));
+    let transparentPixelCount = 0;
+    let hiddenRgbPixelCount = 0;
+
+    for (let offset = 0; offset < image.data.length; offset += 4) {
+      if (image.data[offset + 3] !== 0) {
+        continue;
+      }
+
+      transparentPixelCount += 1;
+      if (
+        image.data[offset] !== 0 ||
+        image.data[offset + 1] !== 0 ||
+        image.data[offset + 2] !== 0
+      ) {
+        hiddenRgbPixelCount += 1;
+      }
+    }
+
+    expect(transparentPixelCount).toBeGreaterThan(0);
+    expect(hiddenRgbPixelCount).toBe(0);
+  });
+
   test("registers and renders the guarded desktop paper field without replacing live copy", async () => {
     const texture = mediaManifest.find(
       (asset) => asset.id === "hero-reference-paper-texture",
@@ -16,7 +46,7 @@ describe("bounded Hero paper-only reference texture", () => {
       id: "hero-reference-paper-texture",
       path: "/media/reference-derived/hero-reference-paper-texture.png",
       sha256:
-        "791D85CF0A2349D135D0A2D29E11C6BB45D454EB7F981F6B5597A3B51DCAAE65",
+        "B1FB323674193FC9DEF0A64ED734909CAF146E8867F21B8E8BA62AFEEF4627C0",
       dimensions: { width: 956, height: 836 },
       intendedScenes: ["hero"],
       provenance: {
@@ -40,9 +70,14 @@ describe("bounded Hero paper-only reference texture", () => {
     const decoration = container.querySelector<HTMLImageElement>(
       '[data-hero-decoration="paper-texture"]',
     );
+    const source = decoration
+      ?.closest("picture")
+      ?.querySelector<HTMLSourceElement>('source[media="(min-width: 1181px)"]');
 
     expect(decoration).not.toBeNull();
-    expect(decoration).toHaveAttribute("src", texture.path);
+    expect(source).toHaveAttribute("srcset", texture.path);
+    expect(decoration).not.toHaveAttribute("src", texture.path);
+    expect(decoration?.getAttribute("src")).toMatch(/^data:image\//);
     expect(decoration).toHaveAttribute("data-provenance", "reference-derived");
     expect(decoration).toHaveAttribute("aria-hidden", "true");
     expect(decoration).toHaveAttribute("alt", "");

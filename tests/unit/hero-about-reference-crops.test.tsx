@@ -18,7 +18,7 @@ describe("bounded hero and about reference crops", () => {
     expect(heroCrop).toMatchObject({
       path: "/media/reference-derived/hero-reference-photo.png",
       sha256:
-        "789791B7809699ABDA65EBF2D2AB03A9E2EE2448FB43D12CA24AE0F12FBAC624",
+        "866D387025C7B7DE9DB87444760AB02BF20B87EB54EC046A43F5A1C0A5A88358",
       dimensions: { width: 947, height: 836 },
       provenance: {
         classification: "reference-derived",

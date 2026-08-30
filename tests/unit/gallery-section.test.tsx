@@ -136,7 +136,7 @@ describe("gallery anchor scene", () => {
     expect(within(details).getByText(/референсн(?:ый|ая) фрагмент/i)).toBeInTheDocument();
   });
 
-  test("matches the supplied Gallery reference copy and theme labels", async () => {
+  test("describes reference-compatible motifs without unsupported collection or artist claims", async () => {
     const gallerySectionModule = await loadGallerySection();
 
     expect(gallerySectionModule).not.toBeNull();
@@ -155,17 +155,56 @@ describe("gallery anchor scene", () => {
     }
 
     const introduction = within(gallery).getByText(
-      /Коллекция винтажной посуды, картины современных художников и продуманные детали интерьера создают особую атмосферу — тёплую, вдохновляющую и располагающую к неспешным встречам/i,
+      /Винтажные мотивы, образы современного искусства и продуманные детали визуальной концепции создают особую атмосферу — тёплую, вдохновляющую и располагающую к неспешным встречам/i,
     );
     expect(introduction).toBeInTheDocument();
 
     expect(
-      within(gallery).getAllByText("Винтажная посуда"),
+      within(gallery).getAllByText("Винтажные мотивы"),
     ).not.toHaveLength(0);
     expect(
-      within(gallery).getAllByText("Картины современных художников"),
+      within(gallery).getAllByText("Образы современного искусства"),
     ).not.toHaveLength(0);
     expect(within(gallery).getAllByText("Уютное пространство")).not.toHaveLength(0);
+    expect(gallery).not.toHaveTextContent(/коллекция винтажной посуды/i);
+    expect(gallery).not.toHaveTextContent(/картины современных художников/i);
+  });
+
+  test("offers the large gallery paper texture only to viewports at least 1221px wide", async () => {
+    const gallerySectionModule = await loadGallerySection();
+
+    expect(gallerySectionModule).not.toBeNull();
+    if (!gallerySectionModule) {
+      return;
+    }
+
+    const texture = mediaManifest.find(
+      (asset) => asset.id === "gallery-reference-paper-texture",
+    );
+    expect(texture).toBeDefined();
+
+    render(createElement(gallerySectionModule.GallerySection));
+
+    const fallback = document.querySelector<HTMLImageElement>(
+      'img[data-gallery-decoration="paper-texture"]',
+    );
+    expect(fallback).not.toBeNull();
+    if (!fallback) {
+      return;
+    }
+
+    const source = fallback.closest("picture")?.querySelector("source");
+    expect(source).toBeDefined();
+    if (!source) {
+      return;
+    }
+    expect(source).toHaveAttribute("media", "(min-width: 1221px)");
+    expect(source).toHaveAttribute("srcset", texture?.path);
+    expect(fallback.getAttribute("src")).toMatch(
+      /^data:image\/gif;base64,/i,
+    );
+    expect(fallback).toHaveAttribute("width", "625");
+    expect(fallback).toHaveAttribute("height", "941");
   });
 
   test("uses distinct subject icons for the three gallery themes", async () => {

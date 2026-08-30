@@ -1,6 +1,8 @@
-import { copyFileSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
+import { PNG } from "pngjs";
 import { afterEach, describe, expect, test } from "vitest";
 
 import { auditAssets } from "../../scripts/audit-assets.mjs";
@@ -363,5 +365,48 @@ describe("media provenance registry", () => {
         repoRoot,
       }),
     ).rejects.toThrow(/dimensions mismatch/i);
+  });
+
+  test("rejects a reference-derived PNG that hides nonzero RGB under alpha zero", async () => {
+    const { repoRoot } = createAuditFixture();
+    const tamperedManifest = cloneMediaManifest();
+    const target = tamperedManifest.find(
+      (asset) => asset.id === "menu-reference-flower-badge-cappuccino",
+    );
+
+    if (!target) {
+      throw new Error("The bounded flower badge fixture is required.");
+    }
+
+    const relativeMediaPath = target.path.replace(/^\//, "");
+    const assetPath = join(repoRoot, "public", relativeMediaPath);
+    const image = PNG.sync.read(readFileSync(assetPath));
+    let tamperedOffset = -1;
+    for (let offset = 0; offset < image.data.length; offset += 4) {
+      if (image.data[offset + 3] === 0) {
+        tamperedOffset = offset;
+        break;
+      }
+    }
+    expect(tamperedOffset).toBeGreaterThanOrEqual(0);
+    if (tamperedOffset < 0) {
+      return;
+    }
+
+    image.data[tamperedOffset] = 1;
+    const tamperedBytes = PNG.sync.write(image);
+    writeFileSync(assetPath, tamperedBytes);
+    target.sha256 = createHash("sha256")
+      .update(tamperedBytes)
+      .digest("hex")
+      .toUpperCase();
+
+    await expect(
+      auditAssets({
+        log: () => undefined,
+        manifest: tamperedManifest,
+        repoRoot,
+      }),
+    ).rejects.toThrow(/transparent RGB violation/i);
   });
 });

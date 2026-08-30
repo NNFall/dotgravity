@@ -61,6 +61,9 @@ const galleryPaperTextureArtwork = getGalleryCrop(
   "gallery-reference-paper-texture",
 );
 
+const transparentPixelDataUri =
+  "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+
 const referenceGalleryAlt =
   "Референсный фрагмент визуальной концепции галереи, не документальная фотография кафе.";
 
@@ -68,13 +71,13 @@ const storyCrops = [
   {
     asset: galleryCrops.porcelain,
     desktopAsset: galleryCrops.porcelainCard,
-    label: "Винтажная посуда",
+    label: "Винтажные мотивы",
     className: styles.porcelainInset,
   },
   {
     asset: galleryCrops.art,
     desktopAsset: galleryCrops.artCard,
-    label: "Картины современных художников",
+    label: "Образы современного искусства",
     className: styles.artInset,
   },
   {
@@ -205,9 +208,12 @@ function ReferenceGalleryBottomOrnament() {
 
 function ReferenceGalleryPaperTexture() {
   return (
-    <>
+    <picture className={styles.galleryPaperTexturePicture}>
       {/* Keep only the bounded paper texture under live copy and decorative layers. */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <source
+        media="(min-width: 1221px)"
+        srcSet={galleryPaperTextureArtwork.path}
+      />
       <img
         alt=""
         aria-hidden="true"
@@ -216,10 +222,10 @@ function ReferenceGalleryPaperTexture() {
         data-provenance={galleryPaperTextureArtwork.provenance.classification}
         decoding="async"
         height={galleryPaperTextureArtwork.dimensions.height}
-        src={galleryPaperTextureArtwork.path}
+        src={transparentPixelDataUri}
         width={galleryPaperTextureArtwork.dimensions.width}
       />
-    </>
+    </picture>
   );
 }
 
@@ -356,8 +362,8 @@ export function GallerySection() {
             <br /> атмосфера
           </h2>
           <p className={styles.introduction}>
-            Коллекция винтажной посуды, картины современных художников и
-            продуманные детали интерьера создают особую атмосферу — тёплую,
+            Винтажные мотивы, образы современного искусства и продуманные
+            детали визуальной концепции создают особую атмосферу — тёплую,
             вдохновляющую и располагающую к неспешным встречам.
           </p>
 
@@ -374,9 +380,9 @@ export function GallerySection() {
           </details>
 
           <ul aria-label="Темы галереи" className={styles.featureList}>
-            <FeatureMark icon={<CupIcon />}>Винтажная посуда</FeatureMark>
+            <FeatureMark icon={<CupIcon />}>Винтажные мотивы</FeatureMark>
             <FeatureMark icon={<EaselIcon />}>
-              Картины современных художников
+              Образы современного искусства
             </FeatureMark>
             <FeatureMark icon={<ChairIcon />}>Уютное пространство</FeatureMark>
           </ul>

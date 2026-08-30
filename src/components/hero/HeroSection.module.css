@@ -2,6 +2,10 @@
   display: none;
 }
 
+.paperTexturePicture {
+  display: contents;
+}
+
 .paperTextureReference {
   position: absolute;
   z-index: 0;

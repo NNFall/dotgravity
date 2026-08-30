@@ -74,7 +74,7 @@ test("registers the bracelet source, its reviewed cutout, and contact crops hone
     id: "contacts-reference-window-crop",
     path: "/media/reference-derived/contacts-reference-window-crop.png",
     sha256:
-      "9C339940840CDB19C7690CAB529DD57B77414EDCD3DF23327C4C3124B09DD703",
+      "316287C8908773E9A8BE8F177A9B913CDA2C4FD3C8564F3BA1B7B5E0AD9B0F65",
     dimensions: { width: 429, height: 477 },
     intendedScenes: ["contacts"],
     productionAllowance: {
@@ -159,7 +159,7 @@ test("registers the bounded souvenirs eyebrow flower as reference-derived decora
     id: "souvenirs-reference-eyebrow-flower",
     path: "/media/reference-derived/souvenirs-reference-eyebrow-flower.png",
     sha256:
-      "706E296721A44E3EEE4E2417D55CB894D7E4C19B3461EE233438FB4D22BE58FA",
+      "972655C0BAF4CD703AC9C4A36EE0ED3188D2A6B1071B084B7DB76D1A1C37A498",
     dimensions: { width: 48, height: 48 },
     intendedScenes: ["souvenirs"],
     productionAllowance: {

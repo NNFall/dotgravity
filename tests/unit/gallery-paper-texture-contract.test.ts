@@ -15,6 +15,34 @@ const galleryStyles = readFileSync(
 );
 
 describe("gallery bounded paper-only reference texture", () => {
+  test("stores zero RGB for every fully transparent pixel", () => {
+    const imagePath = resolve(
+      process.cwd(),
+      "public/media/reference-derived/gallery-reference-paper-texture.png",
+    );
+    const image = PNG.sync.read(readFileSync(imagePath));
+    let transparentPixelCount = 0;
+    let hiddenRgbPixelCount = 0;
+
+    for (let offset = 0; offset < image.data.length; offset += 4) {
+      if (image.data[offset + 3] !== 0) {
+        continue;
+      }
+
+      transparentPixelCount += 1;
+      if (
+        image.data[offset] !== 0 ||
+        image.data[offset + 1] !== 0 ||
+        image.data[offset + 2] !== 0
+      ) {
+        hiddenRgbPixelCount += 1;
+      }
+    }
+
+    expect(transparentPixelCount).toBeGreaterThan(0);
+    expect(hiddenRgbPixelCount).toBe(0);
+  });
+
   test("registers a transparent, non-documentary paper ROI", () => {
     const texture = mediaManifest.find(
       (asset) => asset.id === "gallery-reference-paper-texture",
@@ -56,7 +84,10 @@ describe("gallery bounded paper-only reference texture", () => {
 
   test("renders the paper texture as a desktop-only decorative layer", () => {
     expect(gallerySource).toMatch(
-      /data-gallery-decoration="paper-texture"[\s\S]*?data-provenance=/,
+      /<picture\s+className=\{styles\.galleryPaperTexturePicture\}>[\s\S]*?<source[\s\S]*?media="\(min-width: 1221px\)"[\s\S]*?srcSet=\{galleryPaperTextureArtwork\.path\}[\s\S]*?<img/,
+    );
+    expect(gallerySource).toMatch(
+      /data-gallery-decoration="paper-texture"[\s\S]*?data-provenance=[\s\S]*?src=\{transparentPixelDataUri\}/,
     );
     expect(gallerySource).toMatch(
       /className=\{styles\.galleryPaperTexture\}/,

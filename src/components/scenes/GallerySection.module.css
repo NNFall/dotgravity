@@ -455,6 +455,10 @@
   pointer-events: none;
 }
 
+.galleryPaperTexturePicture {
+  display: contents;
+}
+
 .galleryPaperTexture {
   position: absolute;
   z-index: 0;

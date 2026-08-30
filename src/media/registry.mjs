@@ -70,7 +70,7 @@ export const mediaManifest = [
     id: "hero-reference-photo",
     path: "/media/reference-derived/hero-reference-photo.png",
     sha256:
-      "789791B7809699ABDA65EBF2D2AB03A9E2EE2448FB43D12CA24AE0F12FBAC624",
+      "866D387025C7B7DE9DB87444760AB02BF20B87EB54EC046A43F5A1C0A5A88358",
     dimensions: {
       width: 947,
       height: 836,
@@ -135,7 +135,7 @@ export const mediaManifest = [
     id: "hero-reference-paper-texture",
     path: "/media/reference-derived/hero-reference-paper-texture.png",
     sha256:
-      "791D85CF0A2349D135D0A2D29E11C6BB45D454EB7F981F6B5597A3B51DCAAE65",
+      "B1FB323674193FC9DEF0A64ED734909CAF146E8867F21B8E8BA62AFEEF4627C0",
     dimensions: {
       width: 956,
       height: 836,
@@ -330,7 +330,7 @@ export const mediaManifest = [
     id: "hero-reference-heading-glyphs",
     path: "/media/reference-derived/hero-reference-heading-glyphs.png",
     sha256:
-      "2E4EE66D1B7FB5E800AD48F3B5B538062448CE8F7FC914AAFFA677BE5407DBE4",
+      "C787C1BE7421EB1AA37223FDF3E50E8FDFC1B6A37B468F377711AD1285BEB56C",
     dimensions: {
       width: 626,
       height: 165,
@@ -363,7 +363,7 @@ export const mediaManifest = [
     id: "hero-reference-feature-coffee",
     path: "/media/reference-derived/hero-reference-feature-coffee.png",
     sha256:
-      "50E4C17BC9999C93708203084359E36E1F074A61314D4054A5FC3D5FDF8C8489",
+      "C3CE3D583ACCAF2A984C2B156CC11E7CF47E15B7930509D748C60002465F4AE3",
     dimensions: {
       width: 62,
       height: 62,
@@ -395,7 +395,7 @@ export const mediaManifest = [
     id: "hero-reference-feature-art",
     path: "/media/reference-derived/hero-reference-feature-art.png",
     sha256:
-      "176BCB2BE7D43D300EC66D8311020FB3B4C7579805303FA66C676F2F5B86D027",
+      "3AB5790EEC3AB9E9A9929E706AD9751BC48E2787CAD5213F8B7F9F3D154EC5FC",
     dimensions: {
       width: 62,
       height: 62,
@@ -427,7 +427,7 @@ export const mediaManifest = [
     id: "hero-reference-feature-gift",
     path: "/media/reference-derived/hero-reference-feature-gift.png",
     sha256:
-      "21BC0EAE1DC000F36025F475B1C74B773EFFB18AA5718F957A4C02983C0F8389",
+      "C2F1CDE926E6D192F5349DECCB6BA89F80F224D94E7C1535FDF4023BE2175D79",
     dimensions: {
       width: 62,
       height: 62,
@@ -459,7 +459,7 @@ export const mediaManifest = [
     id: "hero-reference-feature-cathedral",
     path: "/media/reference-derived/hero-reference-feature-cathedral.png",
     sha256:
-      "FF72F14690245672CB956860793849FA90BB1960A38778CA12ABDA225805707D",
+      "0E0307249C70ADFC5673E8469D0848359364FD084E8714911BCB21C662B9145F",
     dimensions: {
       width: 62,
       height: 62,
@@ -491,7 +491,7 @@ export const mediaManifest = [
     id: "header-reference-mark",
     path: "/media/reference-derived/header-reference-mark.png",
     sha256:
-      "9549F3F59AB4CB784568C4D77575497A95EAD2125C63489648F50F6789DA8A3E",
+      "4D1747A25CA7CCEF9609290C2F1647DD5382776E8D19F3DC61329DEEFC60393E",
     dimensions: {
       width: 47,
       height: 49,
@@ -656,7 +656,7 @@ export const mediaManifest = [
     id: "about-reference-cathedral-linework",
     path: "/media/reference-derived/about-reference-cathedral-linework.png",
     sha256:
-      "825909493396B1A94D31A496CC28C54EB04C0866FE07831666B6A838A96AEA5E",
+      "5C67221A571B2CAD86B4434609646DD061FCFF89D7AC09D0144B7386EF8CA7DD",
     dimensions: {
       width: 112,
       height: 690,
@@ -818,7 +818,7 @@ export const mediaManifest = [
     id: "menu-reference-cappuccino",
     path: "/media/reference-derived/menu-reference-cappuccino.png",
     sha256:
-      "881BD0DAE160C87BB9E513D3F5F7E4B732F214BF2833EC9538E50CB0AA41D8D5",
+      "95F73B1C75F5264B04A02A63F5471B298C42C2BD1C1B9764A25C8947FC9C50A9",
     dimensions: {
       width: 250,
       height: 265,
@@ -851,7 +851,7 @@ export const mediaManifest = [
     id: "menu-reference-berry-dessert",
     path: "/media/reference-derived/menu-reference-berry-dessert.png",
     sha256:
-      "6F6DD5DF972A41568C20597B7EE26A571F169596F00B49DFFE00CC3E3F12EE68",
+      "B3D7CDF11359095D33199F4114956084E4B529444E69ADB56CCB95DE6C9B9E98",
     dimensions: {
       width: 250,
       height: 265,
@@ -884,7 +884,7 @@ export const mediaManifest = [
     id: "menu-reference-pistachio-cake",
     path: "/media/reference-derived/menu-reference-pistachio-cake.png",
     sha256:
-      "2DD28E974E27337A21F4A2E1FBD8498D63D4F6052AA70C2E2AF045F3EA927F2F",
+      "C6026F6084279F1ECB56374A76B39D20425225E5FED23F3B83817E40431D70D3",
     dimensions: {
       width: 250,
       height: 265,
@@ -917,7 +917,7 @@ export const mediaManifest = [
     id: "menu-reference-red-velvet",
     path: "/media/reference-derived/menu-reference-red-velvet.png",
     sha256:
-      "C55F076C6A9B96355CA045D9444281D7EE455AF49DC95CB10A76ACEC2C3B793A",
+      "7F86707FD54069A248EFFCDBB0CBD7086D80A0934B930D4F60C29A85E25C3B66",
     dimensions: {
       width: 250,
       height: 265,
@@ -950,7 +950,7 @@ export const mediaManifest = [
     id: "menu-reference-cheesecake",
     path: "/media/reference-derived/menu-reference-cheesecake.png",
     sha256:
-      "437F25968CFE07C25006BD3AFC536976C0BD19B538E6417ED39C5C03419BAED9",
+      "96921BE889FFCB57B9B994257438968D5E8393EBE9E604A48C367282653A9476",
     dimensions: {
       width: 250,
       height: 265,
@@ -983,7 +983,7 @@ export const mediaManifest = [
     id: "menu-reference-flower-badge-cappuccino",
     path: "/media/reference-derived/menu-reference-flower-badge-cappuccino.png",
     sha256:
-      "8424D29B4AB2DE5BC2D8BD7211244B8519EDE88346F29A97C58B1916F2390069",
+      "F4CA1627139514F46997A7F91338C4072F87D9A6FAFCC64A5FD898ED9B08515A",
     dimensions: {
       width: 35,
       height: 39,
@@ -1016,7 +1016,7 @@ export const mediaManifest = [
     id: "menu-reference-flower-badge-berry-dessert",
     path: "/media/reference-derived/menu-reference-flower-badge-berry-dessert.png",
     sha256:
-      "0931BD5B6D2F37E357AE6914B009DE3EC6CC3111F414CB21D30D98AE74063232",
+      "A9F9B0B92DE6EBA6135B09FB6C607FEA4E83250AF0132EDD3014DB28A45DFD88",
     dimensions: {
       width: 35,
       height: 39,
@@ -1049,7 +1049,7 @@ export const mediaManifest = [
     id: "menu-reference-flower-badge-pistachio-cake",
     path: "/media/reference-derived/menu-reference-flower-badge-pistachio-cake.png",
     sha256:
-      "0DFF72A0B80D86641BD13D1F9E6336231ECF3FFD38E7A5892426A456FDF96861",
+      "96E5EE4EF90E1A34C670C5CEC3A85884E791ABAB0A51C56373048BD8AEF495AC",
     dimensions: {
       width: 35,
       height: 39,
@@ -1082,7 +1082,7 @@ export const mediaManifest = [
     id: "menu-reference-flower-badge-red-velvet",
     path: "/media/reference-derived/menu-reference-flower-badge-red-velvet.png",
     sha256:
-      "EF855074B8DAC14E1B6D1146C35ED86BB451E865729CBFC9A34C6AF34C8BD4C5",
+      "99B29DE8DC57A0C2AFCD77264BD0C364435AFA3107EAE6BA738823BDB4AC401B",
     dimensions: {
       width: 35,
       height: 39,
@@ -1115,7 +1115,7 @@ export const mediaManifest = [
     id: "menu-reference-flower-badge-cheesecake",
     path: "/media/reference-derived/menu-reference-flower-badge-cheesecake.png",
     sha256:
-      "200474222F78BA910A43056C3C25758A461303BCC731DF28EB4F1333DB6AAA06",
+      "E84F8CA41470D85884E6DA6A7A71C46BA7285329E19479B70F8187B2167FEA00",
     dimensions: {
       width: 35,
       height: 39,
@@ -1148,7 +1148,7 @@ export const mediaManifest = [
     id: "menu-reference-cathedral-linework",
     path: "/media/reference-derived/menu-reference-cathedral-linework.png",
     sha256:
-      "A4FACABBAC7D9BBE6334C7F41727D3F83387E976A534F1A9B88759F09257EA15",
+      "B81CC58D2B268E5F7B3651018124414318C431FB189C55C048B21745C89419DD",
     dimensions: {
       width: 176,
       height: 450,
@@ -1214,7 +1214,7 @@ export const mediaManifest = [
     id: "menu-reference-botanical-linework",
     path: "/media/reference-derived/menu-reference-botanical-linework.png",
     sha256:
-      "6A96766CB4BFF22AE8123404E1050B71C5F6B8DD0F205020A636A4C8072582D3",
+      "A24A4AABC552D49600C5C6561C3AF3B96D00EF0185FBF9D9E5AA38D3BD550CEA",
     dimensions: {
       width: 199,
       height: 227,
@@ -1665,7 +1665,7 @@ export const mediaManifest = [
   {
     id: "gallery-reference-cathedral-linework",
     path: "/media/reference-derived/gallery-reference-cathedral-linework.png",
-    sha256: "B9DC6C4A466013FAF30C777C1817DDF73AFF4179C2C75EC50A6FAFC813E32AFC",
+    sha256: "AEE0024D8469AE3FF33AAB8BA4DDD035E322AA3B4B023CB973F60795886EDBD4",
     dimensions: {
       width: 120,
       height: 665,
@@ -1762,7 +1762,7 @@ export const mediaManifest = [
   {
     id: "gallery-reference-paper-texture",
     path: "/media/reference-derived/gallery-reference-paper-texture.png",
-    sha256: "4D0B95B4A62816CE732E7B6A07226A751DB29C94B269CE2900DC79AAFA6385FE",
+    sha256: "A16066A8A55BBB076F198D93FB5A30C25B9D4DA70A83F1E405F08A448592B8B8",
     dimensions: {
       width: 625,
       height: 941,
@@ -1795,7 +1795,7 @@ export const mediaManifest = [
     id: "souvenirs-reference-eyebrow-flower",
     path: "/media/reference-derived/souvenirs-reference-eyebrow-flower.png",
     sha256:
-      "706E296721A44E3EEE4E2417D55CB894D7E4C19B3461EE233438FB4D22BE58FA",
+      "972655C0BAF4CD703AC9C4A36EE0ED3188D2A6B1071B084B7DB76D1A1C37A498",
     dimensions: {
       width: 48,
       height: 48,
@@ -1861,7 +1861,7 @@ export const mediaManifest = [
     id: "souvenirs-reference-main-frame-ring",
     path: "/media/reference-derived/souvenirs-reference-main-frame-ring.png",
     sha256:
-      "4CAA236F9572322D5B7A9605902F2790F48E5C89D01874C2B69836528680765A",
+      "D91D140DD8194E728392603DF8751A9C7BDB9C3A421B4FD21FA327EAF58282E8",
     dimensions: {
       width: 786,
       height: 536,
@@ -2022,7 +2022,7 @@ export const mediaManifest = [
     id: "souvenirs-reference-cathedral-linework",
     path: "/media/reference-derived/souvenirs-reference-cathedral-linework.png",
     sha256:
-      "D1BB9136A76718626B4AEC9D399F5CB4B4A35E7EEA14DF9E451A1E770A59A18C",
+      "76905078965C0431F1ED8C0FD7AFEB594AD504BFC08772DB98C928C9C789A602",
     dimensions: {
       width: 95,
       height: 520,
@@ -2055,7 +2055,7 @@ export const mediaManifest = [
     id: "souvenirs-reference-seal-linework",
     path: "/media/reference-derived/souvenirs-reference-seal-linework.png",
     sha256:
-      "71703D5F543B93658E258AEC33F7BD34CD4F155ED06ECACC52F4137DF0443E55",
+      "8CF351FC322E613186669370CE933DD598F611B3D27ACFE3556B3B269BCF9AE3",
     dimensions: {
       width: 82,
       height: 250,
@@ -2286,7 +2286,7 @@ export const mediaManifest = [
     id: "contacts-reference-window-crop",
     path: "/media/reference-derived/contacts-reference-window-crop.png",
     sha256:
-      "9C339940840CDB19C7690CAB529DD57B77414EDCD3DF23327C4C3124B09DD703",
+      "316287C8908773E9A8BE8F177A9B913CDA2C4FD3C8564F3BA1B7B5E0AD9B0F65",
     dimensions: {
       width: 429,
       height: 477,
@@ -2350,7 +2350,7 @@ export const mediaManifest = [
     id: "contacts-reference-cathedral-linework",
     path: "/media/reference-derived/contacts-reference-cathedral-linework.png",
     sha256:
-      "AC2E5872FF4E7ED578198D6F194BB6397E962C560B2BE7C156A16C4EC1BD123D",
+      "7875EC7F0EA1EA1D256DA26AF9B9731E0F0A9FC856767CF15751B7AD9411B3D2",
     dimensions: {
       width: 95,
       height: 560,

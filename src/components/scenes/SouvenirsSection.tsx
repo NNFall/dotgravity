@@ -129,12 +129,13 @@ function CopperBloom({ className }: { className?: string }) {
   );
 }
 
-function ReferenceBloom({ className }: { className?: string }) {
+function ReferenceCompatibleBloom({ className }: { className?: string }) {
   return (
     <svg
       aria-hidden="true"
       className={className}
-      data-provenance="reference-derived"
+      data-creation-method="hand-authored-inline-svg"
+      data-provenance="decorative"
       data-souvenirs-decoration="eyebrow-bloom"
       fill="currentColor"
       focusable="false"
@@ -309,7 +310,7 @@ export function SouvenirsSection() {
             />
             <FloralSeal />
             <span>Сувениры</span>
-            <ReferenceBloom className={styles.eyebrowReferenceBloom} />
+            <ReferenceCompatibleBloom className={styles.eyebrowReferenceBloom} />
             <CopperBloom className={styles.eyebrowBloomFallback} />
             <i />
           </p>

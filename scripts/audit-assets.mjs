@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { readdir, readFile } from "node:fs/promises";
 import { extname, isAbsolute, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
+import { PNG } from "pngjs";
 import sharp from "sharp";
 
 import { mediaManifest } from "../src/media/registry.mjs";
@@ -112,6 +113,56 @@ const assertMediaBytes = async (asset, publicDirectory) => {
   );
 };
 
+const assertReferenceDerivedPngTransparentRgb = async (
+  manifest,
+  publicDirectory,
+) => {
+  const referenceDerivedPngs = manifest.filter(
+    (asset) =>
+      asset.provenance.classification === "reference-derived" &&
+      extname(asset.path).toLowerCase() === ".png",
+  );
+  const violations = [];
+
+  for (const asset of referenceDerivedPngs) {
+    const filePath = toPublicAssetPath(publicDirectory, asset.path);
+    const image = PNG.sync.read(await readFile(filePath));
+    let transparentPixels = 0;
+    let hiddenRgbPixels = 0;
+    let hiddenRgbChannels = 0;
+
+    for (let offset = 0; offset < image.data.length; offset += 4) {
+      if (image.data[offset + 3] !== 0) {
+        continue;
+      }
+
+      transparentPixels += 1;
+      let pixelHasHiddenRgb = false;
+      for (let channel = 0; channel < 3; channel += 1) {
+        if (image.data[offset + channel] !== 0) {
+          pixelHasHiddenRgb = true;
+          hiddenRgbChannels += 1;
+        }
+      }
+      if (pixelHasHiddenRgb) {
+        hiddenRgbPixels += 1;
+      }
+    }
+
+    if (hiddenRgbPixels > 0) {
+      violations.push(
+        `${asset.path}: ${hiddenRgbPixels} pixel(s), ${hiddenRgbChannels} channel(s), ${transparentPixels} fully transparent pixel(s) total`,
+      );
+    }
+  }
+
+  assert(
+    violations.length === 0,
+    `Reference-derived PNG transparent RGB violation(s):\n${violations.join("\n")}`,
+  );
+  return referenceDerivedPngs.length;
+};
+
 const assertNoUnexpectedMedia = async (manifest, publicDirectory) => {
   const mediaDirectory = resolve(publicDirectory, "media");
   const expectedPaths = new Set(
@@ -212,6 +263,11 @@ export const auditAssets = async ({
     );
     await assertMediaBytes(asset, publicDirectory);
   }
+  const referenceDerivedPngsChecked =
+    await assertReferenceDerivedPngTransparentRgb(
+      validatedManifest,
+      publicDirectory,
+    );
 
   const unexpectedMedia = await assertNoUnexpectedMedia(
     validatedManifest,
@@ -230,11 +286,12 @@ export const auditAssets = async ({
   const result = {
     assetsChecked: validatedManifest.length,
     publicFilesHashed,
+    referenceDerivedPngsChecked,
     scannedTextFiles,
     unexpectedMedia,
   };
   log(
-    `[asset audit] ${result.assetsChecked} registered asset(s), ${result.scannedTextFiles} production text file(s), no unexpected media.`,
+    `[asset audit] ${result.assetsChecked} registered asset(s), ${result.referenceDerivedPngsChecked} reference-derived PNG(s) with clean transparent RGB, ${result.scannedTextFiles} production text file(s), no unexpected media.`,
   );
   return result;
 };

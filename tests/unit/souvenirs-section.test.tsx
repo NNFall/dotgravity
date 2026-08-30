@@ -179,6 +179,31 @@ describe("souvenirs anchor scene", () => {
     ).toBeInTheDocument();
   });
 
+  test("classifies the hand-authored eyebrow bloom as decorative inline SVG", async () => {
+    const souvenirsSectionModule = await loadSouvenirsSection();
+
+    expect(souvenirsSectionModule).not.toBeNull();
+    if (!souvenirsSectionModule) {
+      return;
+    }
+
+    render(createElement(souvenirsSectionModule.SouvenirsSection));
+
+    const eyebrowBloom = document.querySelector<SVGElement>(
+      '[data-souvenirs-decoration="eyebrow-bloom"]',
+    );
+
+    expect(eyebrowBloom).not.toBeNull();
+    expect(eyebrowBloom?.tagName.toLowerCase()).toBe("svg");
+    expect(eyebrowBloom).toHaveAttribute("data-provenance", "decorative");
+    expect(eyebrowBloom).toHaveAttribute(
+      "data-creation-method",
+      "hand-authored-inline-svg",
+    );
+    expect(eyebrowBloom).toHaveAttribute("aria-hidden", "true");
+    expect(eyebrowBloom).toHaveAttribute("focusable", "false");
+  });
+
   test("renders the desktop cathedral and floral seal as bounded reference decorations", async () => {
     const souvenirsSectionModule = await loadSouvenirsSection();
 
