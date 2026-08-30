@@ -245,6 +245,16 @@ The souvenirs desktop composition uses five bounded, photo-only crops from the s
 
 These are concept-derived visual references, not photographs of the real cafe. They remain bounded to the main artwork frame and responsive story-card visuals and are never used as a full-screen reference composite. The previously reviewed generated bracelet cutout remains registered for provenance, but the scene uses the reference bracelet crop because it matches the supplied card geometry more faithfully.
 
+### Souvenirs procedural paper grain
+
+`public/media/generated/souvenirs-paper-grain-tile.png` is a small `64×64`
+decorative repeat tile (`F5A6CE9E624CD6E51E8A5546E2392B0E940D80261C73BC3F39676199785CC36C`).
+It is made by a deterministic seeded-noise generator, not sampled from any
+reference screen, and is rendered at low opacity beneath the live Souvenirs
+paper surface. It contains no venue photograph, signage, copy or documentary
+evidence; its production shape is `not-reference` and it is never expanded
+into a reference-sized canvas.
+
 ### `souvenirs-window-still-life`
 
 | Field | Registered value |
@@ -395,6 +405,9 @@ evidence or a full reference screen.
 - any unregistered file under `public/media`;
 - a record marked as a full reference screen or reference composite;
 - a production asset whose hash equals one of the six authoritative target references;
+- any `reference-derived` asset whose intrinsic canvas is the full supplied
+  `1672×941` reference viewport (masked full-screen composites are not allowed;
+  use a genuinely bounded crop or procedural/generated texture instead);
 - an authoritative target-reference file copied anywhere else under `public`, including a top-level image referenced by app code;
 - baseline fixture paths or any authoritative target-reference hash embedded in production `app`, `src`, or `public` text/CSS.
 

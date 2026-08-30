@@ -2085,6 +2085,36 @@ export const mediaManifest = [
     },
   },
   {
+    id: "souvenirs-paper-grain-tile",
+    path: "/media/generated/souvenirs-paper-grain-tile.png",
+    sha256:
+      "F5A6CE9E624CD6E51E8A5546E2392B0E940D80261C73BC3F39676199785CC36C",
+    dimensions: {
+      width: 64,
+      height: 64,
+    },
+    provenance: {
+      classification: "decorative",
+      documentary: false,
+      creationMethod:
+        "deterministic procedural warm-paper grain generated from a seeded noise function",
+      statement:
+        "Small generated repeat tile for subtle paper grain only; it contains no venue photograph, signage, copy or documentary evidence.",
+    },
+    intendedScenes: ["souvenirs"],
+    productionAllowance: {
+      allowed: true,
+      intendedUse: "procedural Souvenirs paper grain tile",
+      referenceShape: "not-reference",
+    },
+    cropRules: {
+      strategy: "repeat the small generated tile beneath the live paper surface",
+      focalPoint: "subtle warm-paper grain",
+      responsive:
+        "Keep the low-contrast repeat beneath the live paper surface at every viewport; never use it as a full-screen reference image.",
+    },
+  },
+  {
     id: "souvenirs-window-still-life",
     path: "/media/generated/souvenirs-window-still-life.png",
     sha256: "B3282A1935F124EC54934396AF1A9F75257D2739DB84561850CD25683F1AC7B0",

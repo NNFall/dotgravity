@@ -47,6 +47,7 @@ const referenceAssetStyle = {
   "--hero-curves-reference": `url("${referenceMediaBasePath}/media/reference-derived/hero-reference-curves-upper.png"), url("${referenceMediaBasePath}/media/reference-derived/hero-reference-curves-lower-right.png")`,
   "--contacts-plaque-reference": `url("${referenceMediaBasePath}/media/reference-derived/contacts-reference-plaque-strip.png")`,
   "--contacts-map-reference": `url("${referenceMediaBasePath}/media/reference-derived/contacts-reference-map-crop.png")`,
+  "--souvenirs-paper-grain": `url("${referenceMediaBasePath}/media/generated/souvenirs-paper-grain-tile.png")`,
 } as CSSProperties;
 
 export default function RootLayout({

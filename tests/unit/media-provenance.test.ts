@@ -311,6 +311,28 @@ describe("media provenance registry", () => {
     ).rejects.toThrow("Reference screen cannot be a production asset");
   });
 
+  test("rejects a reference-derived asset with the full supplied reference canvas", async () => {
+    const { repoRoot } = createAuditFixture();
+    const fullCanvasManifest = cloneMediaManifest();
+    const candidate = fullCanvasManifest.find(
+      (asset) => asset.id === "about-reference-arch",
+    );
+
+    if (!candidate) {
+      throw new Error("The bounded reference fixture is required.");
+    }
+
+    candidate.dimensions = { width: 1672, height: 941 };
+
+    await expect(
+      auditAssets({
+        log: () => undefined,
+        manifest: fullCanvasManifest,
+        repoRoot,
+      }),
+    ).rejects.toThrow(/full 1672x941 reference canvas/i);
+  });
+
   test.each([
     ["createdAt", (asset: MutableMediaAsset) => delete asset.provenance.createdAt],
     [

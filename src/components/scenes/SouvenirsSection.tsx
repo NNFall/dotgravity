@@ -33,6 +33,27 @@ function getReferenceSouvenirCrop(id: SouvenirReferenceCropId): MediaAsset {
   return crop;
 }
 
+function getSouvenirPaperGrain(): MediaAsset {
+  const grain = mediaManifest.find(
+    (asset) => asset.id === "souvenirs-paper-grain-tile",
+  );
+
+  if (
+    !grain ||
+    grain.provenance.classification !== "decorative" ||
+    grain.provenance.documentary ||
+    !grain.productionAllowance.allowed ||
+    grain.productionAllowance.referenceShape !== "not-reference" ||
+    !grain.intendedScenes.includes("souvenirs")
+  ) {
+    throw new Error(
+      "The souvenirs scene requires the registered procedural paper grain tile.",
+    );
+  }
+
+  return grain;
+}
+
 const souvenirCrops = {
   main: getReferenceSouvenirCrop("souvenirs-reference-main-photo"),
   mainFrame: getReferenceSouvenirCrop("souvenirs-reference-main-frame-ring"),
@@ -43,6 +64,7 @@ const souvenirCrops = {
 } as const;
 
 const souvenirDecorations = {
+  paperGrain: getSouvenirPaperGrain(),
   cathedral: getReferenceSouvenirCrop(
     "souvenirs-reference-cathedral-linework",
   ),
@@ -255,6 +277,12 @@ export function SouvenirsSection() {
       data-scene="souvenirs"
       id="souvenirs"
     >
+      <div
+        aria-hidden="true"
+        className={styles.paperGrain}
+        data-provenance={souvenirDecorations.paperGrain.provenance.classification}
+        data-souvenirs-decoration="paper-grain"
+      />
       <div className={styles.composition}>
         <div aria-hidden="true" className={styles.topographicLines}>
           <span />

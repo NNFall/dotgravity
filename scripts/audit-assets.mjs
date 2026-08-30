@@ -113,6 +113,22 @@ const assertMediaBytes = async (asset, publicDirectory) => {
   );
 };
 
+const assertNoReferenceSizedMaskedComposites = (manifest) => {
+  const violations = manifest
+    .filter(
+      (asset) =>
+        asset.provenance.classification === "reference-derived" &&
+        asset.dimensions.width === 1672 &&
+        asset.dimensions.height === 941,
+    )
+    .map((asset) => asset.path);
+
+  assert(
+    violations.length === 0,
+    `Reference-derived asset cannot use the full 1672x941 reference canvas (masked full-screen composites are not allowed): ${violations.join(", ")}`,
+  );
+};
+
 const assertReferenceDerivedPngTransparentRgb = async (
   manifest,
   publicDirectory,
@@ -256,6 +272,7 @@ export const auditAssets = async ({
 
   const resolvedRepoRoot = resolve(repoRoot);
   const publicDirectory = resolve(resolvedRepoRoot, "public");
+  assertNoReferenceSizedMaskedComposites(validatedManifest);
   for (const asset of validatedManifest) {
     assert(
       !AUTHORITATIVE_REFERENCE_SHA256.has(asset.sha256),
