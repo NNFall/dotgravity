@@ -53,6 +53,19 @@ Fresh check: 2026-08-25 around 22:10 Europe/Samara.
 
 Every created asset must be appended with: file path, class (`generated` or `reference-derived`), source/input images and roles, prompt or transformation, creation date, intended section, and statement that it is not documentary venue evidence.
 
+## 2026-08-30 — transparent-pixel sanitation
+
+All 68 registered `reference-derived` PNGs are now covered by a deterministic
+release invariant: every pixel with `alpha = 0` must also have RGB `0,0,0`.
+Twenty-nine files were rewritten only in fully transparent RGB channels; alpha,
+dimensions, color metadata and every visible RGBA pixel were preserved. The
+sanitation removed `921,855` hidden RGB pixels while leaving `1,360,376`
+alpha-positive pixels byte-equivalent. `scripts/audit-assets.mjs` enforces the
+rule after registry SHA/dimension checks, and the unit suite includes an
+adversarial tampered-PNG regression test. This does not change the visual
+appearance of any bounded layer and does not turn a reference-derived crop
+into documentary venue media.
+
 ## Current bounded calibration assets — 2026-08-29
 
 The following twenty-three assets were extracted from the supplied generated concept

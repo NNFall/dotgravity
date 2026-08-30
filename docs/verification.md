@@ -1,6 +1,42 @@
 # Verification record
 
-Last full local verification: 2026-08-29 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The current source candidate is `787e152a5783f650dc72dac59ae94ffdd74dfd78`; the strict bounded visual baseline remains the supplied six-scene reference set.
+## Current release — 2026-08-30
+
+The validated source is commit `12f844310f4791ec9e9ee04b9747bf50eb36f3b9`.
+All release checks passed: `npm.cmd test` (62 files / 243 tests), lint,
+`npx.cmd tsc --noEmit`, production build, `qa:assets` (76 registered assets,
+68 clean reference-derived PNGs), `qa:browser` (18/18), `qa:a11y` (5/5),
+`qa:visual` (1/1), and `npm.cmd audit --omit=dev --audit-level=high` (0
+vulnerabilities). The alpha gate now rejects any nonzero RGB hidden beneath
+fully transparent pixels; the new negative unit contract covers that failure.
+
+Hero/Gallery paper textures request their large PNG only on the desktop media
+queries and retain a transparent data-URI fallback at 390px and 320px. Fresh
+Chromium evidence shows zero mobile texture requests and one desktop request
+per texture at 1672px, with Hero `955.98×836` and Gallery `625×941` boxes.
+The strict raw comparator is still expected red with no tolerance or mask:
+`3,071,124 / 9,440,112` changed pixels (hero `499,251`, about `207,088`,
+menu `426,722`, gallery `389,226`, souvenirs `880,213`, contacts `668,624`).
+
+## Current VPS deployment — 2026-08-30
+
+The base-path build (`DOTGRAVITY_BASE_PATH=/site/dotgravity`) was installed at
+`/root/dotgravity` from archive SHA-256
+`02b2e5b654cc646339c93c2106639c874fe77f623aa0ca0f3d3d0ec085bbad47`.
+`dotgravity.service` is active on `127.0.0.1:4181`; Nginx config test and
+reload succeeded with only the server's existing duplicate-name warnings. The
+previous dist is retained as `dist-previous-20260830-1418`.
+
+The canonical route
+[https://kaigo.space/site/dotgravity/](https://kaigo.space/site/dotgravity/)
+returns `200`; the no-slash route returns `308`, and the existing domain root
+returns `200`. Public Chromium smoke at 1920×1080, 1672×941, 390×844 and
+320×844 found no failed/4xx responses, console errors or broken images; every
+viewport has equal client/scroll widths, six declared scene anchors and an
+operable mobile menu. Evidence is stored under
+`artifacts/vps-public-metrics-12f8443.json` and `artifacts/vps-public/`.
+
+Last full local verification: 2026-08-30 (Europe/Samara), production build served at `http://127.0.0.1:4180/` for geometry probes and browser gates. The current source candidate is `12f844310f4791ec9e9ee04b9747bf50eb36f3b9`; the strict bounded visual baseline remains the supplied six-scene reference set.
 
 Port `4173` was already occupied by the unrelated `comod` checkout and port
 `4174` by the unrelated `whitecup` checkout, so both were left untouched.
@@ -12,14 +48,14 @@ a temporary Playwright config pointed at that fresh server.
 | Check | Result | Evidence |
 | --- | --- | --- |
 | `npm.cmd run lint` | pass | ESLint exited 0 |
-| `npm.cmd test` | pass | 58 files, 231 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
+| `npm.cmd test` | pass | 62 files, 243 tests; file parallelism disabled to avoid a reproducible Windows Vite-temp rename race |
 | `npx.cmd tsc --noEmit` | pass | TypeScript exited 0 |
-| `npm.cmd run qa:assets` | pass | 74 registered assets, 31 production text files, no unexpected media |
+| `npm.cmd run qa:assets` | pass | 76 registered assets, 68 clean reference-derived PNGs, 31 production text files, no unexpected media |
 | `npm.cmd run build` | pass | Vinext production build completed |
-| `npm.cmd run qa:browser` | pass | 12 Chromium tests |
+| `npm.cmd run qa:browser` | pass | 18 Chromium tests |
 | `npm.cmd run qa:a11y` | pass | 5 Chromium tests |
 | `npm.cmd run qa:visual` | pass | live six-scene capture, 1 test |
-| `npm.cmd run qa:raw` | expected red | 3,559,433 / 9,440,112 pixels differ; zero-difference contract is not claimed |
+| `npm.cmd run qa:raw` | expected red | 3,071,124 / 9,440,112 pixels differ; zero-difference contract is not claimed |
 
 The raw comparison report and six heatmaps are stored under
 `artifacts/visual/raw-comparison/1672x941/`. Live captures are stored under

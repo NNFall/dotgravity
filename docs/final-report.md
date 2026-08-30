@@ -1,5 +1,34 @@
 # Точка притяжения — финальный отчёт
 
+## Текущая опубликованная ревизия — 2026-08-30
+
+Исходники зафиксированы в commit
+`12f844310f4791ec9e9ee04b9747bf50eb36f3b9`, синхронизированном с GitHub
+`main` и `feat/pixel-accurate-landing`. Ревизия сохраняет единый
+адаптивный React/TypeScript scroll-поток с живыми компонентами и bounded
+reference-derived слоями. Прозрачные PNG очищены от скрытого RGB; Hero и
+Gallery не загружают большие paper-текстуры на мобильных ширинах, а
+галерейный текст и сувенирный bloom имеют явную безопасную provenance-разметку.
+
+Локальные проверки зелёные: 62 Vitest-файла / 243 теста, lint, TypeScript,
+production build, asset/provenance audit (76 ассетов, 68 чистых
+reference-derived PNG), browser 18/18, accessibility 5/5, visual 1/1 и
+production `npm audit` без уязвимостей. Строгий raw RGBA gate остаётся NO-GO
+без tolerance/mask: `3,071,124 / 9,440,112` пикселей отличаются (hero
+`499,251`, about `207,088`, menu `426,722`, gallery `389,226`, souvenirs
+`880,213`, contacts `668,624`). Это проверенный опубликованный кандидат, не
+заявление о literal zero-diff.
+
+Публичный VPS: [https://kaigo.space/site/dotgravity/](https://kaigo.space/site/dotgravity/).
+Base-path архив имеет SHA-256
+`02b2e5b654cc646339c93c2106639c874fe77f623aa0ca0f3d3d0ec085bbad47`;
+`dotgravity.service` active на `127.0.0.1:4181`, предыдущая dist-версия
+сохранена. Public Chromium smoke на 1920×1080, 1672×941, 390×844 и 320×844
+вернул `200`, без failed/4xx responses, console errors или broken images,
+с равными client/scroll widths и рабочим mobile menu. Sites version 26
+успешно опубликован в owner-only проекте
+`https://dotgravity.ferumnikita2009.chatgpt.site`.
+
 ## Текущая опубликованная ревизия — 2026-08-29
 
 Текущий source/runtime-кандидат —

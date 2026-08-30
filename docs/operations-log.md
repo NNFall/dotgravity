@@ -1,5 +1,45 @@
 # Operations log
 
+## 2026-08-30 — provenance hardening, responsive paper loading and VPS/Sites publication
+
+- Accepted remediation commit `12f844310f4791ec9e9ee04b9747bf50eb36f3b9`
+  after an independent release review returned GO with no P1/P2 findings. The
+  commit sanitizes RGB values hidden beneath fully transparent pixels in all 68
+  `reference-derived` PNGs (29 files changed; alpha and all visible RGBA pixels
+  remain unchanged), adds the repository-wide alpha invariant to
+  `scripts/audit-assets.mjs`, and records the actual registry hashes.
+- Hero and Gallery paper textures now use desktop-only `<source>` elements with
+  a transparent 1×1 fallback on mobile, preserving the original desktop boxes.
+  Gallery labels/copy are neutral visual-concept wording rather than
+  unverified catalogue claims, and the Souvenirs inline bloom is explicitly
+  marked decorative and hand-authored.
+- Verification is green for 62 Vitest files / 243 tests (including the new
+  adversarial transparent-RGB test), lint, TypeScript, production build,
+  asset/provenance audit (76 assets; 68 clean reference-derived PNGs), browser
+  behavior 18/18, accessibility 5/5, visual capture 1/1, and production
+  dependency audit (0 vulnerabilities). The strict raw comparison remains
+  intentionally red at `3,071,124 / 9,440,112` changed pixels: hero `499,251`,
+  about `207,088`, menu `426,722`, gallery `389,226`, souvenirs `880,213`,
+  contacts `668,624`.
+- The exact commit is pushed to GitHub `main` and
+  `feat/pixel-accurate-landing`. Sites version 26 was saved from the matching
+  base-path build archive (`sha256:a88745a0f05adb2f46fde2b5e5eb09751494330c78a13c47cbc51fa909559b49`,
+  167 files, 32,890,880 bytes) and deployed successfully to the existing
+  owner-only URL `https://dotgravity.ferumnikita2009.chatgpt.site`.
+- The same base-path archive (`sha256:02b2e5b654cc646339c93c2106639c874fe77f623aa0ca0f3d3d0ec085bbad47`,
+  31,052,424 bytes) was installed at `/root/dotgravity` on the requested VPS;
+  `dotgravity.service` is active on `127.0.0.1:4181` and Nginx passed config
+  test/reload with only pre-existing duplicate-server-name warnings. The
+  previous dist is retained as `dist-previous-20260830-1418`.
+- Public Chromium smoke is captured under
+  `artifacts/vps-public-metrics-12f8443.json` and
+  `artifacts/vps-public/`: canonical `/site/dotgravity/` is `200`, no-slash is
+  `308`, the existing root remains `200`, all four target viewports are
+  overflow-free with no failed/4xx requests, console errors or broken images,
+  and the mobile menu opens/closes with body-scroll locking. The deployed
+  reference-derived photo bytes match the local registry hash. The in-app
+  Browser is left on the published Sites view for handoff.
+
 ## 2026-08-29 — base-path-safe paper layers and VPS publication
 
 - Published source candidate `787e152a5783f650dc72dac59ae94ffdd74dfd78` to
